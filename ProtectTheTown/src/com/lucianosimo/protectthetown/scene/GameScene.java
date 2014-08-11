@@ -22,6 +22,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
+import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.Rock;
 import com.lucianosimo.protectthetown.pools.RockPool;
 
@@ -40,6 +41,7 @@ public class GameScene extends BaseScene{
 	//Instances
 	private RockPool rockPool;
 	private Rock rock;
+	private House house;
 	
 	//Sprites
 	private Sprite floor;
@@ -71,6 +73,7 @@ public class GameScene extends BaseScene{
 	private void initializeGame() {
 		rockPool = new RockPool(vbom, camera, physicsWorld);
 		createRock();
+		createHouses();
 		
 		//Sprites
 		floor = new Sprite(RIGHT_MARGIN/2, 50, resourcesManager.game_floor_region, vbom);
@@ -99,6 +102,11 @@ public class GameScene extends BaseScene{
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);
+	}
+	
+	public void createHouses() {
+		house = new House(600, 200, vbom, camera, physicsWorld);
+		GameScene.this.attachChild(house);
 	}
 	
 	private void createBackground() {
@@ -147,6 +155,17 @@ public class GameScene extends BaseScene{
 						public void run() {
 							rockPool.recyclePoolItem(rock);
 							createRock();
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("rock") && x2.getBody().getUserData().equals("house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							house.setVisible(false);
+							house.getHouseBody().setActive(false);
 						}
 					});
 				}

@@ -5,8 +5,6 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.adt.pool.GenericPool;
 
-import android.util.Log;
-
 import com.lucianosimo.protectthetown.object.Rock;
 
 public class RockPool extends GenericPool<Rock>{
@@ -23,7 +21,6 @@ public class RockPool extends GenericPool<Rock>{
  
     @Override
     protected Rock onAllocatePoolItem() {
-    	Log.i("protect", "new");
     	final Rock rock = new Rock(0, 0, vbom, camera, physicsWorld); 
         return rock;
     }
@@ -39,7 +36,6 @@ public class RockPool extends GenericPool<Rock>{
     
     @Override
     protected void onHandleObtainItem(Rock rock) {
-    	Log.i("protect", "recycled");
     	rock.getRockBody().setActive(true);
     	rock.reset();
     }
