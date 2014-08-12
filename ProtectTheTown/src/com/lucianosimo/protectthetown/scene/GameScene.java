@@ -24,7 +24,9 @@ import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.Rock;
+import com.lucianosimo.protectthetown.object.SmallRock;
 import com.lucianosimo.protectthetown.pools.RockPool;
+import com.lucianosimo.protectthetown.pools.SmallRockPool;
 
 public class GameScene extends BaseScene{
 	
@@ -40,6 +42,9 @@ public class GameScene extends BaseScene{
 	
 	//Instances
 	private RockPool rockPool;
+	private SmallRockPool smallRockPool;
+	
+	private SmallRock smallRock;
 	private Rock rock;
 	private House house;
 	
@@ -49,6 +54,8 @@ public class GameScene extends BaseScene{
 	//Bodies
 	private Body floor_body;
 	
+	//Booleans
+
 	//Variables
 	private static final int LEFT_MARGIN = 0;
 	private static final int RIGHT_MARGIN = 1280;
@@ -72,6 +79,9 @@ public class GameScene extends BaseScene{
 	
 	private void initializeGame() {
 		rockPool = new RockPool(vbom, camera, physicsWorld);
+		smallRockPool = new SmallRockPool(vbom, camera, physicsWorld);
+		
+		createRock();
 		createRock();
 		createHouses();
 		
@@ -88,6 +98,7 @@ public class GameScene extends BaseScene{
 	
 	public void createRock() {
 		rock = rockPool.obtainPoolItem();
+		
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
 		int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
@@ -99,13 +110,41 @@ public class GameScene extends BaseScene{
 		} else {
 			rock.setDirection(ROCK_NEGATIVE_VEL_X, yVel);
 		}
+		
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);
 	}
 	
+	public void createSmallRock(float x, float y) {
+		smallRock = smallRockPool.obtainPoolItem();
+		
+		smallRock.moveSmallRock(x, y);
+		
+		smallRock.setCullingEnabled(true);
+		GameScene.this.attachChild(smallRock);
+		GameScene.this.registerTouchArea(smallRock);
+	}
+	
 	public void createHouses() {
-		house = new House(600, 200, vbom, camera, physicsWorld);
+		house = new House(600, 200, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (rock.isDestroyed()) {
+					final float x = rock.getX();
+					final float y = rock.getY();
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							createSmallRock(x, y);
+						}
+					});
+					rock.unDestroyRock();
+				}
+			}
+		};
 		GameScene.this.attachChild(house);
 	}
 	
