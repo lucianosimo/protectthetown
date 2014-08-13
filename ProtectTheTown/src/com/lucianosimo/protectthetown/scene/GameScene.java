@@ -10,10 +10,9 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
-
-import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -26,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 import com.lucianosimo.protectthetown.object.House;
+import com.lucianosimo.protectthetown.object.LargeRock;
 import com.lucianosimo.protectthetown.object.Rock;
 import com.lucianosimo.protectthetown.object.SmallRock;
 
@@ -42,14 +42,7 @@ public class GameScene extends BaseScene{
 	private float screenHeight;
 	
 	//Instances
-	//private Rock rock;
 	private House house;
-	
-	//Sprites
-	private Sprite floor;
-	
-	//Bodies
-	private Body floor_body;
 	
 	//Booleans
 
@@ -75,21 +68,65 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void initializeGame() {
+		createLargeRock();
 		createRock();
-		createRock();
+		createSmallRock();
 		//createHouses();
 		
 		//Sprites
-		floor = new Sprite(RIGHT_MARGIN/2, 50, resourcesManager.game_floor_region, vbom);
+		Sprite floor = new Sprite(RIGHT_MARGIN/2, 50, resourcesManager.game_floor_region, vbom);
 		
 		//Bodies
-		floor_body = PhysicsFactory.createBoxBody(physicsWorld, floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+		Body floor_body = PhysicsFactory.createBoxBody(physicsWorld, floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		floor_body.setUserData("floor");
 
 		floor.setCullingEnabled(true);
 		GameScene.this.attachChild(floor);
 	}
 	
+	/*
+	 * Creates a new large rock
+	 */
+	private void createLargeRock() {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final float yVel = -(rand.nextInt(8) + 5);
+		
+		LargeRock largeRock = new LargeRock(x, 800, vbom, camera, physicsWorld){
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final LargeRock largeRockRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						if (largeRockRef.getLargeRockBody().isActive()) {
+							createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), largeRockRef.getLargeRockXVel());
+							createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), -largeRockRef.getLargeRockXVel());
+						}						
+						largeRockRef.setVisible(false);
+						largeRockRef.getLargeRockBody().setActive(false);
+					}
+				});
+				return true;
+			}
+		};
+		
+		if (x > RIGHT_MARGIN/2) {
+			largeRock.setLargeRockDirection(ROCK_POSITIVE_VEL_X, yVel);
+		} else {
+			largeRock.setLargeRockDirection(ROCK_NEGATIVE_VEL_X, yVel);
+		}
+
+		largeRock.setCullingEnabled(true);
+		GameScene.this.attachChild(largeRock);
+		GameScene.this.registerTouchArea(largeRock);
+	}
+	
+	/*
+	 * Creates a new medium rock
+	 */
 	private void createRock() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
@@ -104,8 +141,10 @@ public class GameScene extends BaseScene{
 					
 					@Override
 					public void run() {
-						Log.d("protect", "new small");
-						createSmallRock(rockRef.getX(), rockRef.getY(), rockRef.getRockXVel());
+						if (rockRef.getRockBody().isActive()) {
+							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), rockRef.getRockXVel());
+							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), -rockRef.getRockXVel());
+						}						
 			 			rockRef.setVisible(false);
 						rockRef.getRockBody().setActive(false);
 					}
@@ -125,7 +164,79 @@ public class GameScene extends BaseScene{
 		GameScene.this.registerTouchArea(rock);
 	}
 	
-	private void createSmallRock(float x, float y, float xVel) {
+	/*
+	 * Creates a new rock when a large rock is destroyed
+	 */
+	private void createRockFromLargeRock(float x, float y, float xVel) {
+		Random rand = new Random();
+		final float yVel = -(rand.nextInt(10) + 5);
+		
+		Rock rock = new Rock(x, y, vbom, camera, physicsWorld) {
+			
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final Rock rockRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						rockRef.setVisible(false);
+						rockRef.getRockBody().setActive(false);			
+					}
+				});				
+				return true;
+			}
+			
+		};
+
+		rock.setRockDirection(5 * xVel, yVel);
+				
+		rock.setCullingEnabled(true);
+		GameScene.this.attachChild(rock);
+		GameScene.this.registerTouchArea(rock);		
+	}
+		
+	/*
+	 * Creates a new small rock
+	 */
+	private void createSmallRock() {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final float yVel = -(rand.nextInt(10) + 5);
+		
+		SmallRock smallRock = new SmallRock(x, 800, vbom, camera, physicsWorld) {
+			
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final SmallRock smallRockRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						smallRockRef.setVisible(false);
+						smallRockRef.getSmallRockBody().setActive(false);			
+					}
+				});				
+				return true;
+			}
+			
+		};
+
+		if (x > RIGHT_MARGIN/2) {
+			smallRock.setSmallRockDirection(ROCK_POSITIVE_VEL_X, yVel);
+		} else {
+			smallRock.setSmallRockDirection(ROCK_NEGATIVE_VEL_X, yVel);
+		}
+				
+		smallRock.setCullingEnabled(true);
+		GameScene.this.attachChild(smallRock);
+		GameScene.this.registerTouchArea(smallRock);		
+	}
+	
+	/*
+	 * Creates a new small rock when a medium rock is destroyed
+	 */
+	private void createSmallRockFromRock(float x, float y, float xVel) {
 		Random rand = new Random();
 		final float yVel = -(rand.nextInt(10) + 5);
 		
@@ -147,11 +258,27 @@ public class GameScene extends BaseScene{
 			
 		};
 
-		smallRock.setSmallRockDirection(-3 * xVel, yVel);
+		smallRock.setSmallRockDirection(5 * xVel, yVel);
 				
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);
 		GameScene.this.registerTouchArea(smallRock);		
+	}
+	
+	/*
+	 * Used to regenerate the rocks when they touch the floor.
+	 */
+	private void regenerateRocks(Body rockBody) {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final float yVel = -(rand.nextInt(8) + 5);
+		
+		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 800 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
+		if (x > RIGHT_MARGIN/2) {
+			rockBody.setLinearVelocity(ROCK_POSITIVE_VEL_X, yVel);
+		} else {
+			rockBody.setLinearVelocity(ROCK_NEGATIVE_VEL_X, yVel);
+		}
 	}
 	
 	private void createHouses() {
@@ -198,14 +325,32 @@ public class GameScene extends BaseScene{
 				final Fixture x1 = contact.getFixtureA();
 				final Fixture x2 = contact.getFixtureB();
 				
+				if (x1.getBody().getUserData().equals("large_rock") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("large_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
 				if (x1.getBody().getUserData().equals("rock") && x2.getBody().getUserData().equals("floor")) {
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							x1.getBody().setActive(false);
-							x1.getBody().setTransform(1500, 1500, x1.getBody().getAngle());
-							createRock();
+							regenerateRocks(x1.getBody());
 						}
 					});
 				}
@@ -215,9 +360,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							x2.getBody().setActive(false);
-							x2.getBody().setTransform(1500, 1500, x2.getBody().getAngle());
-							createRock();
+							regenerateRocks(x2.getBody());
 						}
 					});
 				}
@@ -227,8 +370,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							x1.getBody().setActive(false);
-							x1.getBody().setTransform(1500, 1500, x1.getBody().getAngle());
+							regenerateRocks(x1.getBody());
 						}
 					});
 				}
@@ -238,8 +380,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							x2.getBody().setActive(false);
-							x2.getBody().setTransform(1500, 1500, x2.getBody().getAngle());
+							regenerateRocks(x2.getBody());
 						}
 					});
 				}
