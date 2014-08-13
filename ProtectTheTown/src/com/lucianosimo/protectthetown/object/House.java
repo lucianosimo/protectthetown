@@ -14,10 +14,14 @@ import com.lucianosimo.protectthetown.manager.ResourcesManager;
 public class House extends Sprite{
 
 	private Body body;
+	private int energy;
+	
+	private final static int MAX_ENERGY = 4;
 	
 	public House(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
 		super(pX, pY, ResourcesManager.getInstance().game_house_region.deepCopy(), vbom);
 		createPhysics(camera, physicsWorld);
+		energy = MAX_ENERGY;
 		//camera.setChaseEntity(this);
 	}
 	
@@ -36,6 +40,36 @@ public class House extends Sprite{
 	
 	public Body getHouseBody() {
 		return body;
+	}
+	
+	public void repairCompleteHouse() {
+		energy = MAX_ENERGY;
+	}
+	
+	public void repairPartialHouse() {
+		if (energy < MAX_ENERGY) {
+			energy++;
+		}		
+	}
+	
+	public void destroyHouse() {
+		energy = 0;
+	}
+	
+	public void damageHouse() {
+		energy--;
+	}
+	
+	public int getHouseEnergy() {
+		return energy;
+	}
+	
+	public boolean isHouseDestroyed() {
+		if (energy > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }
