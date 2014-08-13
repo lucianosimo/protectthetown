@@ -8,11 +8,12 @@ import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
+
+import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -25,6 +26,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 import com.lucianosimo.protectthetown.object.House;
+import com.lucianosimo.protectthetown.object.Rock;
+import com.lucianosimo.protectthetown.object.SmallRock;
 
 public class GameScene extends BaseScene{
 	
@@ -39,8 +42,7 @@ public class GameScene extends BaseScene{
 	private float screenHeight;
 	
 	//Instances
-	private Sprite smallRock;
-	private Sprite rock;
+	//private Rock rock;
 	private House house;
 	
 	//Sprites
@@ -48,8 +50,6 @@ public class GameScene extends BaseScene{
 	
 	//Bodies
 	private Body floor_body;
-	private Body small_rock_body;
-	private Body rock_body;
 	
 	//Booleans
 
@@ -76,7 +76,8 @@ public class GameScene extends BaseScene{
 	
 	private void initializeGame() {
 		createRock();
-		createHouses();
+		createRock();
+		//createHouses();
 		
 		//Sprites
 		floor = new Sprite(RIGHT_MARGIN/2, 50, resourcesManager.game_floor_region, vbom);
@@ -84,85 +85,76 @@ public class GameScene extends BaseScene{
 		//Bodies
 		floor_body = PhysicsFactory.createBoxBody(physicsWorld, floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		floor_body.setUserData("floor");
-		
+
 		floor.setCullingEnabled(true);
 		GameScene.this.attachChild(floor);
 	}
 	
-	public void createRock() {
+	private void createRock() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		final float yVel = -(rand.nextInt(15) + 7);
+		final float yVel = -(rand.nextInt(8) + 5);
 		
-		rock = new Sprite(x, 700, resourcesManager.game_rock_region, vbom){
+		Rock rock = new Rock(x, 800, vbom, camera, physicsWorld){
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final float x = this.getX();
-				final float y = this.getY();
-				final Sprite rockRef = this;
+				final Rock rockRef = this;
 				engine.runOnUpdateThread(new Runnable() {
 					
 					@Override
 					public void run() {
-						createSmallRock(x, y);
-						rockRef.setVisible(false);
-						rock_body.setActive(false);
+						Log.d("protect", "new small");
+						createSmallRock(rockRef.getX(), rockRef.getY(), rockRef.getRockXVel());
+			 			rockRef.setVisible(false);
+						rockRef.getRockBody().setActive(false);
 					}
 				});
 				return true;
 			}
 		};
-		rock_body = PhysicsFactory.createBoxBody(physicsWorld, rock, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
-		rock_body.setUserData("rock");
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(rock, rock_body, true, false) {
-			@Override
-			public void onUpdate(float pSecondsElapsed) {
-				super.onUpdate(pSecondsElapsed);
-				camera.onUpdate(0.1f);
-				if (x > RIGHT_MARGIN/2) {
-					rock_body.setLinearVelocity(ROCK_POSITIVE_VEL_X, yVel);
-				} else {
-					rock_body.setLinearVelocity(ROCK_NEGATIVE_VEL_X, yVel);
-				}
-			}
-		});
-	
-		//rock_body.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 700 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rock_body.getAngle());
 		
-		
+		if (x > RIGHT_MARGIN/2) {
+			rock.setRockDirection(ROCK_POSITIVE_VEL_X, yVel);
+		} else {
+			rock.setRockDirection(ROCK_NEGATIVE_VEL_X, yVel);
+		}
+
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);
 	}
 	
-	public void createSmallRock(final float x, float y) {
-		smallRock = new Sprite(x, y, resourcesManager.game_small_rock_region, vbom);
-		small_rock_body = PhysicsFactory.createBoxBody(physicsWorld, smallRock, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
-		small_rock_body.setUserData("small_rock");
-		
+	private void createSmallRock(float x, float y, float xVel) {
 		Random rand = new Random();
-		final float yVel = -(rand.nextInt(15) + 7);
+		final float yVel = -(rand.nextInt(10) + 5);
 		
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(smallRock, small_rock_body, true, false) {
+		SmallRock smallRock = new SmallRock(x, y, vbom, camera, physicsWorld) {
+			
 			@Override
-			public void onUpdate(float pSecondsElapsed) {
-				super.onUpdate(pSecondsElapsed);
-				camera.onUpdate(0.1f);
-				if (x > RIGHT_MARGIN/2) {
-					small_rock_body.setLinearVelocity(ROCK_POSITIVE_VEL_X, yVel);
-				} else {
-					small_rock_body.setLinearVelocity(ROCK_NEGATIVE_VEL_X, yVel);
-				}
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final SmallRock smallRockRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						smallRockRef.setVisible(false);
+						smallRockRef.getSmallRockBody().setActive(false);			
+					}
+				});				
+				return true;
 			}
-		});
-		
+			
+		};
+
+		smallRock.setSmallRockDirection(-3 * xVel, yVel);
+				
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);
-		GameScene.this.registerTouchArea(smallRock);
+		GameScene.this.registerTouchArea(smallRock);		
 	}
 	
-	public void createHouses() {
+	private void createHouses() {
 		house = new House(600, 200, vbom, camera, physicsWorld);
 		GameScene.this.attachChild(house);
 	}
@@ -211,9 +203,43 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							rock.setVisible(false);
-							rock_body.setActive(false);
+							x1.getBody().setActive(false);
+							x1.getBody().setTransform(1500, 1500, x1.getBody().getAngle());
 							createRock();
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setActive(false);
+							x2.getBody().setTransform(1500, 1500, x2.getBody().getAngle());
+							createRock();
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_rock") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setActive(false);
+							x1.getBody().setTransform(1500, 1500, x1.getBody().getAngle());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("small_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setActive(false);
+							x2.getBody().setTransform(1500, 1500, x2.getBody().getAngle());
 						}
 					});
 				}
