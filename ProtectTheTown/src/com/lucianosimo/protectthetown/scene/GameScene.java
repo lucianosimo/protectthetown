@@ -308,7 +308,7 @@ public class GameScene extends BaseScene{
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		Sprite floor = new Sprite(screenWidth/2, 50, resourcesManager.game_floor_region, vbom);
+		Sprite floor = new Sprite(screenWidth/2, 25, resourcesManager.game_floor_region, vbom);
 				
 		Body floor_body = PhysicsFactory.createBoxBody(physicsWorld, floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		floor_body.setUserData("floor");
