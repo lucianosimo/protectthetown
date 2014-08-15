@@ -2,6 +2,9 @@ package com.lucianosimo.protectthetown.manager;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.BoundCamera;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -11,6 +14,7 @@ import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtla
 import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
 import com.lucianosimo.protectthetown.GameActivity;
@@ -37,6 +41,10 @@ public class ResourcesManager {
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
 	private BuildableBitmapTextureAtlas menuBackgroundTextureAtlas;
 	
+	
+	//Game fonts
+	public Font scoreFont;
+	public Font countdownFont;
 	
 	//Game HUD
 	
@@ -152,12 +160,12 @@ public class ResourcesManager {
 	public void loadGameResources() {
 		loadGameGraphics();
 		//loadGameAudio();
-		//loadGameFonts();
+		loadGameFonts();
 	}
 	
 	public void unloadGameResources() {
 		unloadGameTextures();
-		//unloadGameFonts();	
+		unloadGameFonts();	
 		//unloadGameAudio();
 	}
 	
@@ -203,11 +211,17 @@ public class ResourcesManager {
 	
 	public void unloadGameAudio() {
 		System.gc();
-	}
+	}*/
 	
 	private void loadGameFonts() {
-		FontFactory.setAssetBasePath("font/game/");
-	}*/
+		FontFactory.setAssetBasePath("fonts/game/");
+		final ITexture scoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final ITexture countdownTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		scoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), scoreTexture, activity.getAssets(), "AgentOrange.ttf", 35, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
+		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT); 
+		scoreFont.load();
+		countdownFont.load();
+	}
 	
 	private void unloadGameTextures() {
 		this.gameTextureAtlas.unload();
@@ -215,9 +229,10 @@ public class ResourcesManager {
 		this.gameBackgroundTextureAtlas.unload();
 	}
 	
-	/*private void unloadGameFonts() {
-		
-	}*/
+	private void unloadGameFonts() {
+		scoreFont.unload();
+		countdownFont.unload();
+	}
 	
 	
 	//Manager Methods

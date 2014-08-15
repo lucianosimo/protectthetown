@@ -4,16 +4,20 @@ import java.util.Iterator;
 import java.util.Random;
 
 import org.andengine.engine.camera.hud.HUD;
+import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
 import org.andengine.extension.debugdraw.DebugRenderer;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
@@ -43,6 +47,10 @@ public class GameScene extends BaseScene{
 	//Physics world variable
 	private PhysicsWorld physicsWorld;
 	
+	//Texts
+	private Text scoreText;
+	private Text countdownText;
+	
 	//Constants	
 	private float screenWidth;
 	private float screenHeight;
@@ -53,6 +61,9 @@ public class GameScene extends BaseScene{
 	private LargeHouse largeHouse;
 	
 	//Booleans
+	
+	//Integers
+	private int score = 0;
 
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
@@ -70,6 +81,12 @@ public class GameScene extends BaseScene{
 	
 	private static final int ROCK_MAX_RANDOM_X = 1000;
 	private static final int ROCK_MIN_RANDOM_X = 100;
+	
+	private static final int LARGE_ROCK_SCORE = 100;
+	private static final int ROCK_SCORE = 250;
+	private static final int SMALL_ROCK_SCORE = 500;
+	
+	private static final int UPDATES = 200;
 
 	@Override
 	public void createScene() {
@@ -84,11 +101,38 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void initializeGame() {
-		createLargeRock();
-		createRock();
-		createSmallRock();
 		createFloor();
-		createHouses();		
+		createHouses();	
+		engine.registerUpdateHandler(new IUpdateHandler() {
+			private int updates = 0;
+			
+			@Override
+			public void reset() {
+
+			}
+			
+			@Override
+			public void onUpdate(float pSecondsElapsed) {
+				updates++;
+				if (updates == 50) {
+					countdownText.setText("2");
+				}
+				if (updates == 100) {
+					countdownText.setText("1");
+				}
+				if (updates == 150) {
+					countdownText.setPosition(screenWidth/2 - 250, screenHeight/2);
+					countdownText.setText("Protect!!!");
+				}
+				if (updates > UPDATES) {
+					createLargeRock();
+					gameHud.detachChild(countdownText);
+					engine.unregisterUpdateHandler(this);
+				}
+			}
+		});
+		//createRock();
+		//createSmallRock();
 	}
 	
 	/*
@@ -111,7 +155,8 @@ public class GameScene extends BaseScene{
 						if (largeRockRef.getLargeRockBody().isActive()) {
 							createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
-						}						
+							addScore(LARGE_ROCK_SCORE);
+						}
 						largeRockRef.setVisible(false);
 						largeRockRef.getLargeRockBody().setActive(false);
 					}
@@ -147,7 +192,8 @@ public class GameScene extends BaseScene{
 						if (rockRef.getRockBody().isActive()) {
 							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
-						}						
+							addScore(ROCK_SCORE);
+						}											
 			 			rockRef.setVisible(false);
 						rockRef.getRockBody().setActive(false);
 					}
@@ -183,6 +229,7 @@ public class GameScene extends BaseScene{
 						if (rockRef.getRockBody().isActive()) {
 							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
+							addScore(ROCK_SCORE);
 						}
 						rockRef.setVisible(false);
 						rockRef.getRockBody().setActive(false);			
@@ -217,10 +264,13 @@ public class GameScene extends BaseScene{
 					
 					@Override
 					public void run() {
+						if (smallRockRef.getSmallRockBody().isActive()) {
+							addScore(SMALL_ROCK_SCORE);
+						}						
 						smallRockRef.setVisible(false);
 						smallRockRef.getSmallRockBody().setActive(false);			
 					}
-				});				
+				});
 				return true;
 			}
 			
@@ -238,7 +288,7 @@ public class GameScene extends BaseScene{
 	 */
 	private void createSmallRockFromRock(float x, float y, float xVel) {
 		Random rand = new Random();
-		final float yVel = -(rand.nextInt(10) + 5);
+		final float yVel = -(rand.nextInt(SMALL_ROCK_MAX_RANDOM_Y_VEL) + SMALL_ROCK_MIN_RANDOM_Y_VEL);
 		final float velocityMultiplier = rand.nextInt(3) + 3;
 		
 		SmallRock smallRock = new SmallRock(x, y, vbom, camera, physicsWorld) {
@@ -250,6 +300,9 @@ public class GameScene extends BaseScene{
 					
 					@Override
 					public void run() {
+						if (smallRockRef.getSmallRockBody().isActive()) {
+							addScore(SMALL_ROCK_SCORE);
+						}
 						smallRockRef.setVisible(false);
 						smallRockRef.getSmallRockBody().setActive(false);			
 					}
@@ -286,12 +339,15 @@ public class GameScene extends BaseScene{
 	 * Creates houses on level generation
 	 */
 	private void createHouses() {
-		final Rectangle houseHealthBarBackground = new Rectangle(50, 250, 100, 10, vbom);
-		final Rectangle houseHealthBar = new Rectangle(50, 250, 100, 10, vbom);
-		final Rectangle smallHouseHealthBarBackground = new Rectangle(50, 150, 100, 10, vbom);
-		final Rectangle smallHouseHealthBar = new Rectangle(50, 150, 100, 10, vbom);
-		final Rectangle largeHouseHealthBarBackground = new Rectangle(50, 350, 100, 10, vbom);
-		final Rectangle largeHouseHealthBar = new Rectangle(50, 350, 100, 10, vbom);
+		final int housesInitialHeight = 400;
+		final int healthBarWidth = 100;
+		
+		final Rectangle houseHealthBarBackground = new Rectangle(50, 250, healthBarWidth, 10, vbom);
+		final Rectangle houseHealthBar = new Rectangle(50, 250, healthBarWidth, 10, vbom);
+		final Rectangle smallHouseHealthBarBackground = new Rectangle(50, 150, healthBarWidth, 10, vbom);
+		final Rectangle smallHouseHealthBar = new Rectangle(50, 150, healthBarWidth, 10, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(50, 350, 102, 10, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(50, 350, 102, 10, vbom);
 		
 		houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
@@ -300,42 +356,45 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(600, 500, vbom, camera, physicsWorld) {
+		house = new House(600, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
+				float energyWidthFactor = healthBarWidth / this.getMaxEnergy();
 				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getHouseBody().setActive(false);
 				}
-				houseHealthBar.setSize(this.getHouseEnergy() * 25, 10);
-				houseHealthBar.setPosition((this.getHouseEnergy() * 25) / 2, houseHealthBar.getY());
+				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
+				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2, houseHealthBar.getY());
 			}
 		};
 		
-		smallHouse = new SmallHouse(300, 500, vbom, camera, physicsWorld) {
+		smallHouse = new SmallHouse(300, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
+				float energyWidthFactor = healthBarWidth / this.getMaxEnergy();
 				if (this.isSmallHouseDestroyed() && this.getSmallHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getSmallHouseBody().setActive(false);
 				}
-				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * 50, 10);
-				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * 50) / 2, smallHouseHealthBar.getY());
+				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
+				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2, smallHouseHealthBar.getY());
 			}
 		};
 		
-		largeHouse = new LargeHouse(900, 500, vbom, camera, physicsWorld) {
+		largeHouse = new LargeHouse(900, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
+				float energyWidthFactor = 102 / this.getMaxEnergy();
 				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getLargeHouseBody().setActive(false);
 				}
-				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * (100/6), 10);
-				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * (100/6)) / 2, largeHouseHealthBar.getY());
+				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
+				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2, largeHouseHealthBar.getY());
 			}
 		};
 		
@@ -386,7 +445,23 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createHud() {
-		gameHud = new HUD();		
+		gameHud = new HUD();	
+		
+		scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		countdownText = new Text(screenWidth/2, screenHeight/2, resourcesManager.countdownFont, "321Protect!", new TextOptions(HorizontalAlign.CENTER), vbom);
+		
+		scoreText.setAnchorCenter(0, 0);
+		countdownText.setAnchorCenter(0, 0);
+		
+		scoreText.setText("Score: " + score);
+		countdownText.setText("3");
+		
+		scoreText.setColor(Color.WHITE_ARGB_PACKED_INT);
+		countdownText.setColor(Color.RED_ARGB_PACKED_INT);
+
+		gameHud.attachChild(scoreText);
+		gameHud.attachChild(countdownText);
+
 		camera.setHUD(gameHud);
 	}
 		
@@ -394,6 +469,11 @@ public class GameScene extends BaseScene{
 		physicsWorld = new FixedStepPhysicsWorld(60, new Vector2(0, -3), false);
 		physicsWorld.setContactListener(contactListener());
 		registerUpdateHandler(physicsWorld);
+	}
+	
+	private void addScore(int score) {
+		this.score += score;
+		scoreText.setText("Score: " + this.score);
 	}
 	
 	private ContactListener contactListener() {

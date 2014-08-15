@@ -47,6 +47,10 @@ public class SmallHouse extends Sprite{
 		energy = MAX_ENERGY;
 	}
 	
+	public int getMaxEnergy() {
+		return MAX_ENERGY;
+	}
+	
 	public void repairPartialSmallHouse() {
 		if (energy < MAX_ENERGY) {
 			energy++;

@@ -43,6 +43,10 @@ public class House extends Sprite{
 		return body;
 	}
 	
+	public int getMaxEnergy() {
+		return MAX_ENERGY;
+	}
+	
 	public void repairCompleteHouse() {
 		energy = MAX_ENERGY;
 	}
