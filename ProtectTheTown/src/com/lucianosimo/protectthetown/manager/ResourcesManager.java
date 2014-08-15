@@ -45,9 +45,12 @@ public class ResourcesManager {
 	public ITextureRegion game_small_rock_region;
 	public ITextureRegion game_large_rock_region;
 	public ITextureRegion game_house_region;
+	public ITextureRegion game_small_house_region;
+	public ITextureRegion game_large_house_region;
 	
 	//Platforms
 	public ITextureRegion game_floor_region;
+	public ITextureRegion game_base_floor_region;
 	
 	//Backgrounds
 	public ITextureRegion game_background_region;
@@ -171,6 +174,9 @@ public class ResourcesManager {
 		game_small_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_small_rock.png");
 		game_large_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_large_rock.png");
 		game_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house.png");
+		game_small_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_small_house.png");
+		game_large_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_large_house.png");
+		game_base_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_base_floor.png");
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		
 		try {

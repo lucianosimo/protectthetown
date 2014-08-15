@@ -8,6 +8,7 @@ import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.extension.debugdraw.DebugRenderer;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -26,9 +27,12 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
+import com.lucianosimo.protectthetown.object.Floor;
 import com.lucianosimo.protectthetown.object.House;
+import com.lucianosimo.protectthetown.object.LargeHouse;
 import com.lucianosimo.protectthetown.object.LargeRock;
 import com.lucianosimo.protectthetown.object.Rock;
+import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
 
 public class GameScene extends BaseScene{
@@ -44,7 +48,9 @@ public class GameScene extends BaseScene{
 	private float screenHeight;
 	
 	//Instances
+	private SmallHouse smallHouse;
 	private House house;
+	private LargeHouse largeHouse;
 	
 	//Booleans
 
@@ -73,8 +79,8 @@ public class GameScene extends BaseScene{
 		createPhysics();
 		createHud();
 		initializeGame();		
-		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
-        //GameScene.this.attachChild(debug);
+		DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
+        GameScene.this.attachChild(debug);
 	}
 	
 	private void initializeGame() {
@@ -280,13 +286,21 @@ public class GameScene extends BaseScene{
 	 * Creates houses on level generation
 	 */
 	private void createHouses() {
-		final Rectangle healthBarBackground = new Rectangle(50, 250, 100, 10, vbom);
-		final Rectangle healthBar = new Rectangle(50, 250, 100, 10, vbom);
+		final Rectangle houseHealthBarBackground = new Rectangle(50, 250, 100, 10, vbom);
+		final Rectangle houseHealthBar = new Rectangle(50, 250, 100, 10, vbom);
+		final Rectangle smallHouseHealthBarBackground = new Rectangle(50, 150, 100, 10, vbom);
+		final Rectangle smallHouseHealthBar = new Rectangle(50, 150, 100, 10, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(50, 350, 100, 10, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(50, 350, 100, 10, vbom);
 		
-		healthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		healthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		smallHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		smallHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(600, 300, vbom, camera, physicsWorld) {
+		house = new House(600, 500, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -294,27 +308,67 @@ public class GameScene extends BaseScene{
 					this.setVisible(false);
 					this.getHouseBody().setActive(false);
 				}
-				healthBar.setSize(this.getHouseEnergy() * 25, 10);
-				healthBar.setPosition((house.getHouseEnergy() * 25) / 2, healthBar.getY());
+				houseHealthBar.setSize(this.getHouseEnergy() * 25, 10);
+				houseHealthBar.setPosition((this.getHouseEnergy() * 25) / 2, houseHealthBar.getY());
 			}
 		};
 		
-		house.attachChild(healthBarBackground);
-		house.attachChild(healthBar);		
+		smallHouse = new SmallHouse(300, 500, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.isSmallHouseDestroyed() && this.getSmallHouseBody().isActive()) {
+					this.setVisible(false);
+					this.getSmallHouseBody().setActive(false);
+				}
+				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * 50, 10);
+				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * 50) / 2, smallHouseHealthBar.getY());
+			}
+		};
+		
+		largeHouse = new LargeHouse(900, 500, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
+					this.setVisible(false);
+					this.getLargeHouseBody().setActive(false);
+				}
+				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * (100/6), 10);
+				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * (100/6)) / 2, largeHouseHealthBar.getY());
+			}
+		};
+		
+		house.attachChild(houseHealthBarBackground);
+		house.attachChild(houseHealthBar);
+		smallHouse.attachChild(smallHouseHealthBarBackground);
+		smallHouse.attachChild(smallHouseHealthBar);
+		largeHouse.attachChild(largeHouseHealthBarBackground);
+		largeHouse.attachChild(largeHouseHealthBar);
 		GameScene.this.attachChild(house);
+		GameScene.this.attachChild(smallHouse);
+		GameScene.this.attachChild(largeHouse);
 	}
 	
 	/*
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		Sprite floor = new Sprite(screenWidth/2, 25, resourcesManager.game_floor_region, vbom);
-				
-		Body floor_body = PhysicsFactory.createBoxBody(physicsWorld, floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
-		floor_body.setUserData("floor");
-
-		floor.setCullingEnabled(true);
-		GameScene.this.attachChild(floor);
+		int[] floor_positions = {80, 241, 404, 567, 730, 896, 1055, 1220};
+		Floor[] floor = new Floor[8];
+ 		
+		Sprite base_floor = new Sprite(screenWidth/2, 25, resourcesManager.game_base_floor_region, vbom);
+		Body base_floor_body = PhysicsFactory.createBoxBody(physicsWorld, base_floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+		base_floor_body.setUserData("base_floor");
+		base_floor.setCullingEnabled(true);
+		GameScene.this.attachChild(base_floor);
+		
+		for (int i = 0; i < 8; i++) {
+			floor[i] = new Floor(floor_positions[i], 100 + 10 * i, vbom, camera, physicsWorld);
+			floor[i].setCullingEnabled(true);
+			GameScene.this.attachChild(floor[i]);
+		}
+		
 	}
 	
 	private void setRockDirection(float x, Body body, float yVel) {
@@ -446,6 +500,52 @@ public class GameScene extends BaseScene{
 					});
 				}
 				
+				if (x1.getBody().getUserData().equals("large_rock") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.destroySmallHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("large_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.destroySmallHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_rock") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("large_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
 				if (x1.getBody().getUserData().equals("rock") && x2.getBody().getUserData().equals("house")) {
 					engine.runOnUpdateThread(new Runnable() {
 						
@@ -465,6 +565,54 @@ public class GameScene extends BaseScene{
 						public void run() {
 							house.damageHouse();
 							house.damageHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("rock") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							smallHouse.damageSmallHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("rock") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							smallHouse.damageSmallHouse();
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -492,6 +640,50 @@ public class GameScene extends BaseScene{
 					});
 				}
 				
+				if (x1.getBody().getUserData().equals("small_rock") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("small_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_rock") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x1.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("small_rock")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
 				if (x1.getBody().getUserData().equals("house") && x2.getBody().getUserData().equals("floor")) {
 					engine.runOnUpdateThread(new Runnable() {
 						
@@ -508,6 +700,66 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.getHouseBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.getSmallHouseBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.getSmallHouseBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.getLargeHouseBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.getLargeHouseBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("base_floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("base_floor") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setType(BodyType.StaticBody);
 						}
 					});
 				}

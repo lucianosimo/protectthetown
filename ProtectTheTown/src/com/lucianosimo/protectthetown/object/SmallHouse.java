@@ -11,15 +11,15 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 
-public class House extends Sprite{
+public class SmallHouse extends Sprite{
 
 	private Body body;
 	private int energy;
 	
-	private final static int MAX_ENERGY = 4;
+	private final static int MAX_ENERGY = 2;
 	
-	public House(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
-		super(pX, pY, ResourcesManager.getInstance().game_house_region.deepCopy(), vbom);
+	public SmallHouse(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
+		super(pX, pY, ResourcesManager.getInstance().game_small_house_region.deepCopy(), vbom);
 		createPhysics(camera, physicsWorld);
 		energy = MAX_ENERGY;
 		//camera.setChaseEntity(this);
@@ -27,7 +27,7 @@ public class House extends Sprite{
 	
 	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) {
 		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
-		body.setUserData("house");
+		body.setUserData("small_house");
 		body.setFixedRotation(true);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {
 			@Override
@@ -39,33 +39,33 @@ public class House extends Sprite{
 		});
 	}
 	
-	public Body getHouseBody() {
+	public Body getSmallHouseBody() {
 		return body;
 	}
 	
-	public void repairCompleteHouse() {
+	public void repairCompleteSmallHouse() {
 		energy = MAX_ENERGY;
 	}
 	
-	public void repairPartialHouse() {
+	public void repairPartialSmallHouse() {
 		if (energy < MAX_ENERGY) {
 			energy++;
 		}		
 	}
 	
-	public void destroyHouse() {
+	public void destroySmallHouse() {
 		energy = 0;
 	}
 	
-	public void damageHouse() {
+	public void damageSmallHouse() {
 		energy--;
 	}
 	
-	public int getHouseEnergy() {
+	public int getSmallHouseEnergy() {
 		return energy;
 	}
 	
-	public boolean isHouseDestroyed() {
+	public boolean isSmallHouseDestroyed() {
 		if (energy > 0) {
 			return false;
 		} else {
