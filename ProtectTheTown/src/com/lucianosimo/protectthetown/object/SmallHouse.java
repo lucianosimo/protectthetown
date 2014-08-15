@@ -11,12 +11,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 
-public class SmallHouse extends Sprite{
+public abstract class SmallHouse extends Sprite{
 
 	private Body body;
 	private int energy;
 	
 	private final static int MAX_ENERGY = 2;
+	
+	public abstract void onDie();
 	
 	public SmallHouse(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
 		super(pX, pY, ResourcesManager.getInstance().game_small_house_region.deepCopy(), vbom);
@@ -35,6 +37,9 @@ public class SmallHouse extends Sprite{
 				super.onUpdate(pSecondsElapsed);
 				camera.onUpdate(0.1f);
 				body.setLinearVelocity(body.getLinearVelocity().x, -7);
+				if (isSmallHouseDestroyed()) {
+					onDie();
+				}
 			}
 		});
 	}

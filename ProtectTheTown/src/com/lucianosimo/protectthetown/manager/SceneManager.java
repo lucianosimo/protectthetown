@@ -98,7 +98,6 @@ public class SceneManager {
 			default:
 				break;
 		}
-		//ResourcesManager.getInstance().unloadMapResources();
 		mEngine.registerUpdateHandler(new TimerHandler(0.1f, new ITimerCallback() {
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {

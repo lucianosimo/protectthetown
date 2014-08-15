@@ -45,6 +45,7 @@ public class ResourcesManager {
 	//Game fonts
 	public Font scoreFont;
 	public Font countdownFont;
+	public Font gameOverFont;
 	
 	//Game HUD
 	
@@ -217,10 +218,13 @@ public class ResourcesManager {
 		FontFactory.setAssetBasePath("fonts/game/");
 		final ITexture scoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		final ITexture countdownTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final ITexture gameOverTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		scoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), scoreTexture, activity.getAssets(), "AgentOrange.ttf", 35, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
-		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT); 
+		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT);
+		gameOverFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), gameOverTexture, activity.getAssets(), "AgentOrange.ttf", 40, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT);
 		scoreFont.load();
 		countdownFont.load();
+		gameOverFont.load();
 	}
 	
 	private void unloadGameTextures() {
@@ -232,6 +236,7 @@ public class ResourcesManager {
 	private void unloadGameFonts() {
 		scoreFont.unload();
 		countdownFont.unload();
+		gameOverFont.unload();
 	}
 	
 	

@@ -50,6 +50,7 @@ public class GameScene extends BaseScene{
 	//Texts
 	private Text scoreText;
 	private Text countdownText;
+	private Text gameOverText;
 	
 	//Constants	
 	private float screenWidth;
@@ -368,6 +369,14 @@ public class GameScene extends BaseScene{
 				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
 				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2, houseHealthBar.getY());
 			}
+
+			@Override
+			public void onDie() {
+				if (this.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
+					gameOver();
+				}
+				
+			}
 		};
 		
 		smallHouse = new SmallHouse(300, housesInitialHeight, vbom, camera, physicsWorld) {
@@ -382,6 +391,13 @@ public class GameScene extends BaseScene{
 				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
 				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2, smallHouseHealthBar.getY());
 			}
+
+			@Override
+			public void onDie() {
+				if (this.isSmallHouseDestroyed() && house.isHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
+					gameOver();
+				}
+			}
 		};
 		
 		largeHouse = new LargeHouse(900, housesInitialHeight, vbom, camera, physicsWorld) {
@@ -395,6 +411,13 @@ public class GameScene extends BaseScene{
 				}
 				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
 				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2, largeHouseHealthBar.getY());
+			}
+
+			@Override
+			public void onDie() {
+				if (this.isLargeHouseDestroyed() && house.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed()) {
+					gameOver();
+				}
 			}
 		};
 		
@@ -474,6 +497,22 @@ public class GameScene extends BaseScene{
 	private void addScore(int score) {
 		this.score += score;
 		scoreText.setText("Score: " + this.score);
+	}
+	
+	public void gameOver() {
+		engine.runOnUpdateThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				GameScene.this.setIgnoreUpdate(true);
+		        camera.setChaseEntity(null);
+		        gameOverText = new Text(screenWidth/2 - 425, screenHeight/2, resourcesManager.gameOverFont, "GameOver! Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+				gameOverText.setAnchorCenter(0, 0);
+				gameOverText.setColor(Color.RED_ARGB_PACKED_INT);
+				gameOverText.setText("Game Over!!! Your score: " + score);
+				GameScene.this.attachChild(gameOverText);
+			}
+		});
 	}
 	
 	private ContactListener contactListener() {
@@ -888,7 +927,7 @@ public class GameScene extends BaseScene{
 	
 	@Override
 	public void onBackKeyPressed() {
-
+	
 	}
 	
 }
