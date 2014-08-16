@@ -18,7 +18,7 @@ public class SplashScene extends BaseScene{
 	private float screenWidth;
 	private float screenHeight;	
 	
-	private static final int UPDATES = 150;
+	private static final int UPDATES = 100;
 	
 	@Override
 	public void createScene() {

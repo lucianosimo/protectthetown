@@ -11,7 +11,6 @@ import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
-import org.andengine.extension.debugdraw.DebugRenderer;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -30,6 +29,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
+import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 import com.lucianosimo.protectthetown.object.Floor;
 import com.lucianosimo.protectthetown.object.House;
@@ -51,6 +51,8 @@ public class GameScene extends BaseScene{
 	private Text scoreText;
 	private Text countdownText;
 	private Text gameOverText;
+	private Text finalScoreText;
+	private Text pauseText;
 	
 	//Constants	
 	private float screenWidth;
@@ -62,9 +64,17 @@ public class GameScene extends BaseScene{
 	private LargeHouse largeHouse;
 	
 	//Booleans
+	private boolean availablePause = false;
+	private boolean gameOver = false;
 	
 	//Integers
 	private int score = 0;
+	
+	//Windows
+	private Sprite window;
+	
+	//Rectangle
+	private Rectangle fade;
 
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
@@ -96,9 +106,10 @@ public class GameScene extends BaseScene{
 		createBackground();
 		createPhysics();
 		createHud();
+		createWindow();
 		initializeGame();		
-		DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
-        GameScene.this.attachChild(debug);
+		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
+        //GameScene.this.attachChild(debug);
 	}
 	
 	private void initializeGame() {
@@ -114,6 +125,7 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
+				availablePause = false;
 				updates++;
 				if (updates == 50) {
 					countdownText.setText("2");
@@ -126,6 +138,7 @@ public class GameScene extends BaseScene{
 					countdownText.setText("Protect!!!");
 				}
 				if (updates > UPDATES) {
+					availablePause = true;
 					createLargeRock();
 					gameHud.detachChild(countdownText);
 					engine.unregisterUpdateHandler(this);
@@ -340,15 +353,15 @@ public class GameScene extends BaseScene{
 	 * Creates houses on level generation
 	 */
 	private void createHouses() {
-		final int housesInitialHeight = 400;
+		final int housesInitialHeight = 600;
 		final int healthBarWidth = 100;
 		
 		final Rectangle houseHealthBarBackground = new Rectangle(50, 250, healthBarWidth, 10, vbom);
 		final Rectangle houseHealthBar = new Rectangle(50, 250, healthBarWidth, 10, vbom);
 		final Rectangle smallHouseHealthBarBackground = new Rectangle(50, 150, healthBarWidth, 10, vbom);
 		final Rectangle smallHouseHealthBar = new Rectangle(50, 150, healthBarWidth, 10, vbom);
-		final Rectangle largeHouseHealthBarBackground = new Rectangle(50, 350, 102, 10, vbom);
-		final Rectangle largeHouseHealthBar = new Rectangle(50, 350, 102, 10, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(51, 350, 102, 10, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(51, 350, 102, 10, vbom);
 		
 		houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
@@ -357,7 +370,7 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(600, housesInitialHeight, vbom, camera, physicsWorld) {
+		house = new House(650, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -373,7 +386,11 @@ public class GameScene extends BaseScene{
 			@Override
 			public void onDie() {
 				if (this.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
-					gameOver();
+					engine.runOnUpdateThread(new Runnable() {
+						public void run() {
+							gameOver();
+						}
+					});					
 				}
 				
 			}
@@ -395,12 +412,16 @@ public class GameScene extends BaseScene{
 			@Override
 			public void onDie() {
 				if (this.isSmallHouseDestroyed() && house.isHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
-					gameOver();
+					engine.runOnUpdateThread(new Runnable() {
+						public void run() {
+							gameOver();
+						}
+					});
 				}
 			}
 		};
 		
-		largeHouse = new LargeHouse(900, housesInitialHeight, vbom, camera, physicsWorld) {
+		largeHouse = new LargeHouse(1000, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -416,7 +437,11 @@ public class GameScene extends BaseScene{
 			@Override
 			public void onDie() {
 				if (this.isLargeHouseDestroyed() && house.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed()) {
-					gameOver();
+					engine.runOnUpdateThread(new Runnable() {
+						public void run() {
+							gameOver();
+						}
+					});
 				}
 			}
 		};
@@ -467,6 +492,13 @@ public class GameScene extends BaseScene{
 		this.setBackground(background);
 	}
 	
+	private void createWindow() {
+		window = new Sprite(0, 0, resourcesManager.game_window_region, vbom);
+		fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
+		fade.setColor(Color.BLACK);
+		fade.setAlpha(0.75f);
+	}
+	
 	private void createHud() {
 		gameHud = new HUD();	
 		
@@ -499,20 +531,56 @@ public class GameScene extends BaseScene{
 		scoreText.setText("Score: " + this.score);
 	}
 	
-	public void gameOver() {
-		engine.runOnUpdateThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				GameScene.this.setIgnoreUpdate(true);
-		        camera.setChaseEntity(null);
-		        gameOverText = new Text(screenWidth/2 - 425, screenHeight/2, resourcesManager.gameOverFont, "GameOver! Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-				gameOverText.setAnchorCenter(0, 0);
-				gameOverText.setColor(Color.RED_ARGB_PACKED_INT);
-				gameOverText.setText("Game Over!!! Your score: " + score);
-				GameScene.this.attachChild(gameOverText);
-			}
-		});
+	private void displayPauseWindow() {
+		GameScene.this.setIgnoreUpdate(true);
+		pauseText = new Text(screenWidth/2 - 75, screenHeight/2 + 100, resourcesManager.pauseFont, "Pause", new TextOptions(HorizontalAlign.LEFT), vbom);
+		availablePause = false;		
+		
+		pauseText.setAnchorCenter(0, 0);
+		
+		window.setPosition(camera.getCenterX(), camera.getCenterY());
+		
+		pauseText.setColor(Color.RED_ARGB_PACKED_INT);
+		
+		pauseText.setText("Pause");
+		
+		GameScene.this.attachChild(fade);
+		GameScene.this.attachChild(window);
+		GameScene.this.attachChild(pauseText);
+		
+		gameHud.setVisible(false);
+	}
+	
+	private void gameOver() {
+		Sprite gameOverWindow = new Sprite(0, 0, resourcesManager.game_window_region, vbom);
+		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
+		
+		fade.setColor(Color.BLACK);
+		fade.setAlpha(0.35f);
+		
+		availablePause = false;
+		gameOver = true;
+		
+		GameScene.this.setIgnoreUpdate(true);
+		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
+		        
+		gameOverText = new Text(screenWidth/2 - 200, screenHeight/2 + 100, resourcesManager.gameOverFont, "GameOver!!! ", new TextOptions(HorizontalAlign.LEFT), vbom);
+		finalScoreText = new Text(screenWidth/2 - 225, screenHeight/2, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		
+		gameOverText.setAnchorCenter(0, 0);
+		finalScoreText.setAnchorCenter(0, 0);
+		
+		gameOverText.setColor(Color.RED_ARGB_PACKED_INT);
+		finalScoreText.setColor(Color.RED_ARGB_PACKED_INT);
+		
+		gameOverText.setText("Game Over!!!");
+		finalScoreText.setText("Your score: " + score);
+		
+		gameHud.setVisible(false);
+		GameScene.this.attachChild(fade);
+		GameScene.this.attachChild(gameOverWindow);
+		GameScene.this.attachChild(gameOverText);
+		GameScene.this.attachChild(finalScoreText);
 	}
 	
 	private ContactListener contactListener() {
@@ -927,7 +995,29 @@ public class GameScene extends BaseScene{
 	
 	@Override
 	public void onBackKeyPressed() {
-	
+		engine.runOnUpdateThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (availablePause) {
+					displayPauseWindow();
+				} else if (!gameOver){
+					availablePause = true;
+					gameHud.setVisible(true);
+					GameScene.this.detachChild(fade);
+					GameScene.this.detachChild(window);
+					GameScene.this.detachChild(pauseText);
+	    			GameScene.this.setIgnoreUpdate(false);
+	    			//camera.setChaseEntity(player);
+				} else {
+					gameHud.dispose();
+					gameHud.setVisible(false);
+					detachChild(gameHud);
+					myGarbageCollection();
+					SceneManager.getInstance().loadMenuScene(engine, GameScene.this);
+				}
+			}
+		});
 	}
 	
 }

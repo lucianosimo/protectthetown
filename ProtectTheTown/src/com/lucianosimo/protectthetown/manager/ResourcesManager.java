@@ -46,6 +46,8 @@ public class ResourcesManager {
 	public Font scoreFont;
 	public Font countdownFont;
 	public Font gameOverFont;
+	public Font finalScoreFont;
+	public Font pauseFont;
 	
 	//Game HUD
 	
@@ -66,8 +68,12 @@ public class ResourcesManager {
 	
 	//Animated
 	
+	//Windows
+	public ITextureRegion game_window_region;
+	
 	//Game Textures
 	private BuildableBitmapTextureAtlas gameTextureAtlas;
+	private BuildableBitmapTextureAtlas gameWindowsTextureAtlas;
 	private BuildableBitmapTextureAtlas gameAnimatedTextureAtlas;
 	private BuildableBitmapTextureAtlas gameBackgroundTextureAtlas;
 	
@@ -174,6 +180,7 @@ public class ResourcesManager {
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
 		
 		gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR);
+		gameWindowsTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
 		gameAnimatedTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
 		gameBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR);
 		
@@ -188,11 +195,15 @@ public class ResourcesManager {
 		game_base_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_base_floor.png");
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		
+		game_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_window.png");
+		
 		try {
 			this.gameTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
+			this.gameWindowsTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameAnimatedTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameBackgroundTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameTextureAtlas.load();
+			this.gameWindowsTextureAtlas.load();
 			this.gameAnimatedTextureAtlas.load();
 			this.gameBackgroundTextureAtlas.load();
 		} catch (final TextureAtlasBuilderException e) {
@@ -219,16 +230,23 @@ public class ResourcesManager {
 		final ITexture scoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		final ITexture countdownTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		final ITexture gameOverTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final ITexture finalScoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final ITexture pauseTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		scoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), scoreTexture, activity.getAssets(), "AgentOrange.ttf", 35, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
-		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT);
-		gameOverFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), gameOverTexture, activity.getAssets(), "AgentOrange.ttf", 40, true, Color.RED_ARGB_PACKED_INT, 1f, Color.RED_ARGB_PACKED_INT);
+		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		gameOverFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), gameOverTexture, activity.getAssets(), "AgentOrange.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		finalScoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), finalScoreTexture, activity.getAssets(), "AgentOrange.ttf", 40, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		pauseFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), pauseTexture, activity.getAssets(), "AgentOrange.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
 		scoreFont.load();
 		countdownFont.load();
 		gameOverFont.load();
+		finalScoreFont.load();
+		pauseFont.load();
 	}
 	
 	private void unloadGameTextures() {
 		this.gameTextureAtlas.unload();
+		this.gameWindowsTextureAtlas.unload();
 		this.gameAnimatedTextureAtlas.unload();
 		this.gameBackgroundTextureAtlas.unload();
 	}
@@ -237,6 +255,8 @@ public class ResourcesManager {
 		scoreFont.unload();
 		countdownFont.unload();
 		gameOverFont.unload();
+		finalScoreFont.unload();
+		pauseFont.unload();
 	}
 	
 	

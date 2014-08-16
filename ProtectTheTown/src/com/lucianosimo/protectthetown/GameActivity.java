@@ -14,6 +14,8 @@ import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import android.view.KeyEvent;
+
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 
@@ -21,7 +23,7 @@ public class GameActivity extends BaseGameActivity {
 
 	private BoundCamera camera;
 	public static float mGravityX = 0;
-	private final static float SPLASH_DURATION = 7f;
+	private final static float SPLASH_DURATION = 5f;
 	
 	//private Chartboost cb;
 	
@@ -95,6 +97,14 @@ public class GameActivity extends BaseGameActivity {
 		super.onDestroy();
 		//this.cb.onDestroy(this);
 		System.exit(0);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			SceneManager.getInstance().getCurrentScene().onBackKeyPressed();
+		}
+		return false;
 	}
 	
 	/*@Override
