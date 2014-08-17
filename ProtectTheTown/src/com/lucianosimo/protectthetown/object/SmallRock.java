@@ -1,6 +1,10 @@
 package com.lucianosimo.protectthetown.object;
 
+import java.util.Random;
+
 import org.andengine.engine.camera.Camera;
+import org.andengine.entity.modifier.LoopEntityModifier;
+import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -22,6 +26,10 @@ public class SmallRock extends Sprite{
 	}
 	
 	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int random = rand.nextInt(2) + 5;
+		final float omega = random;
 		this.setUserData("small_rock");
 		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		body.setUserData("small_rock");
@@ -31,9 +39,10 @@ public class SmallRock extends Sprite{
 			public void onUpdate(float pSecondsElapsed) {
 				super.onUpdate(pSecondsElapsed);
 				camera.onUpdate(0.1f);
-				//body.setLinearVelocity(new Vector2(25, body.getLinearVelocity().y));
+				body.setAngularVelocity(omega);
 			}
 		});
+		this.registerEntityModifier(new LoopEntityModifier(new RotationModifier(5, 0, -(omega * 180))));
 	}
 	
 	public void setSmallRockDirection(float x, float y) {

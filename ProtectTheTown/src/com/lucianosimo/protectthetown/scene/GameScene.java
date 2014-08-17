@@ -11,6 +11,7 @@ import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
+import org.andengine.extension.debugdraw.DebugRenderer;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -108,8 +109,8 @@ public class GameScene extends BaseScene{
 		createHud();
 		createWindow();
 		initializeGame();		
-		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
-        //GameScene.this.attachChild(debug);
+		DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
+        GameScene.this.attachChild(debug);
 	}
 	
 	private void initializeGame() {
