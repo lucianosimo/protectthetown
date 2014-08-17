@@ -37,6 +37,7 @@ import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.LargeHouse;
 import com.lucianosimo.protectthetown.object.LargeRock;
 import com.lucianosimo.protectthetown.object.Rock;
+import com.lucianosimo.protectthetown.object.Satelite;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
 import com.lucianosimo.protectthetown.object.Ufo;
@@ -83,6 +84,7 @@ public class GameScene extends BaseScene{
 	private static final int ROCK_NEGATIVE_VEL_X = -2;
 	private static final int ROCK_INITIAL_Y = 800;
 	private static final int UFO_INITIAL_Y = 600;
+	private static final int SATELITE_INITIAL_Y = 1500;
 	
 	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 8;
 	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 5;
@@ -99,6 +101,8 @@ public class GameScene extends BaseScene{
 	private static final int LARGE_ROCK_SCORE = 100;
 	private static final int ROCK_SCORE = 250;
 	private static final int SMALL_ROCK_SCORE = 500;
+	private static final int UFO_SCORE = 1000;
+	private static final int SATELITE_SCORE = 1000;
 	
 	private static final int UPDATES = 200;
 	
@@ -146,6 +150,8 @@ public class GameScene extends BaseScene{
 				if (updates > UPDATES) {
 					availablePause = true;
 					createLargeRock();
+					createUfo();
+					createSatelite();
 					gameHud.detachChild(countdownText);
 					engine.unregisterUpdateHandler(this);
 				}
@@ -153,7 +159,51 @@ public class GameScene extends BaseScene{
 		});
 		//createRock();
 		//createSmallRock();
-		createUfo();
+	}
+	
+	private void createSatelite() {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int whichHouse = rand.nextInt(3) + 1;
+		final float initialX;
+		
+		switch (whichHouse) {
+			case 1:
+				initialX = smallHouse.getX();
+				break;
+			case 2:
+				initialX = house.getX();
+				break;
+			case 3:
+				initialX = largeHouse.getX();
+				break;
+			default:
+				initialX = screenWidth/2;
+				break;
+		}
+		
+		Satelite satelite = new Satelite(initialX, SATELITE_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final Satelite satRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						if (satRef.getSateliteBody().isActive()) {
+							addScore(SATELITE_SCORE);
+						}
+						satRef.setVisible(false);
+						satRef.getSateliteBody().setActive(false);
+					}
+				});
+				return true;
+			}
+		};
+		
+		satelite.setCullingEnabled(true);
+		GameScene.this.attachChild(satelite);
+		GameScene.this.registerTouchArea(satelite);
 	}
 	
 	private void createUfo() {
@@ -179,7 +229,7 @@ public class GameScene extends BaseScene{
 					@Override
 					public void run() {
 						if (ufoRef.getUfoBody().isActive()) {
-							addScore(LARGE_ROCK_SCORE);
+							addScore(UFO_SCORE);
 						}
 						ufoRef.setVisible(false);
 						ufoRef.getUfoBody().setActive(false);
@@ -922,6 +972,78 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("satelite")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("satelite") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("house") && x2.getBody().getUserData().equals("satelite")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							house.damageHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("satelite") && x2.getBody().getUserData().equals("house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							house.damageHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("satelite")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("satelite") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
 						}
 					});
 				}
