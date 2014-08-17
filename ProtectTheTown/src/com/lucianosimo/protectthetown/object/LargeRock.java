@@ -13,11 +13,13 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 
 public class LargeRock extends Sprite{
 
 	private Body body;
+	private FixtureDef fixture;
 	
 	public LargeRock(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
 		super(pX, pY, ResourcesManager.getInstance().game_large_rock_region.deepCopy(), vbom);
@@ -31,7 +33,9 @@ public class LargeRock extends Sprite{
 		final int random = rand.nextInt(2) + 1;
 		final float omega = random;
 		this.setUserData("large_rock");
-		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+		fixture = PhysicsFactory.createFixtureDef(0, 0, 0);
+		fixture.filter.groupIndex = -1;
+		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
 		body.setUserData("large_rock");
 		body.setFixedRotation(true);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {
@@ -56,4 +60,5 @@ public class LargeRock extends Sprite{
 	public float getLargeRockXVel() {
 		return body.getLinearVelocity().x;
 	}
+
 }

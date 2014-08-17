@@ -39,6 +39,7 @@ import com.lucianosimo.protectthetown.object.LargeRock;
 import com.lucianosimo.protectthetown.object.Rock;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
+import com.lucianosimo.protectthetown.object.Ufo;
 
 public class GameScene extends BaseScene{
 	
@@ -81,6 +82,7 @@ public class GameScene extends BaseScene{
 	private static final int ROCK_POSITIVE_VEL_X = 2;
 	private static final int ROCK_NEGATIVE_VEL_X = -2;
 	private static final int ROCK_INITIAL_Y = 800;
+	private static final int UFO_INITIAL_Y = 600;
 	
 	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 8;
 	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 5;
@@ -99,6 +101,9 @@ public class GameScene extends BaseScene{
 	private static final int SMALL_ROCK_SCORE = 500;
 	
 	private static final int UPDATES = 200;
+	
+	//If negative, never collides between groups, if positive yes
+	private static final int GROUP_ENEMY = -1;
 
 	@Override
 	public void createScene() {
@@ -148,6 +153,55 @@ public class GameScene extends BaseScene{
 		});
 		//createRock();
 		//createSmallRock();
+		createUfo();
+	}
+	
+	private void createUfo() {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int ufoSpeed = rand.nextInt(3) + 5;
+		final int ufoLimit = 200;
+		final int appereanceSide = rand.nextInt(2) + 1;
+		final int ufo_initial_x;
+		
+		if (appereanceSide == 1) {
+			ufo_initial_x = 1500;
+		} else {
+			ufo_initial_x = -250;
+		}
+		
+		Ufo ufo = new Ufo(ufo_initial_x, UFO_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				final Ufo ufoRef = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						if (ufoRef.getUfoBody().isActive()) {
+							addScore(LARGE_ROCK_SCORE);
+						}
+						ufoRef.setVisible(false);
+						ufoRef.getUfoBody().setActive(false);
+					}
+				});
+				return true;
+			}
+			
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.getX() > (screenWidth + ufoLimit)) {
+					this.setUfoVelocity(-ufoSpeed);
+				} else if (this.getX() < (-ufoLimit)) {
+					this.setUfoVelocity(ufoSpeed);
+				}
+			}
+		};
+		
+		ufo.setCullingEnabled(true);
+		GameScene.this.attachChild(ufo);
+		GameScene.this.registerTouchArea(ufo);
 	}
 	
 	/*
