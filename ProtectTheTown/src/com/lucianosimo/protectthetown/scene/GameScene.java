@@ -16,6 +16,7 @@ import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
@@ -78,6 +79,13 @@ public class GameScene extends BaseScene{
 	
 	//Rectangle
 	private Rectangle fade;
+	
+	//Counters
+	private int largeRocksCounter = 0;
+	private int rocksCounter = 0;
+	private int smallRocksCounter = 0;
+	private int ufoCounter = 0;
+	private int sateliteCounter = 0;
 
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
@@ -104,7 +112,18 @@ public class GameScene extends BaseScene{
 	private static final int UFO_SCORE = 1000;
 	private static final int SATELITE_SCORE = 1000;
 	
-	private static final int UPDATES = 200;
+	private static final int START_GAME_UPDATES = 200;
+	private static final int ROCK_CREATION_UPDATES = 500;
+	private static final int SMALL_ROCK_CREATION_UPDATES = 750;
+	private static final int LARGE_ROCK_CREATION_UPDATES = 1000;
+	private static final int UFO_CREATION_UPDATES = 1250;
+	private static final int SATELITE_CREATION_UPDATES = 1500;
+	
+	private static final int SMALL_ROCKS_MAX = 10;
+	private static final int ROCK_MAX = 5;
+	private static final int LARGE_ROCK_MAX = 2;
+	private static final int UFO_MAX = 2;
+	private static final int SATELITE_MAX = 1;
 	
 	//If negative, never collides between groups, if positive yes
 	//private static final int GROUP_ENEMY = -1;
@@ -147,22 +166,34 @@ public class GameScene extends BaseScene{
 					countdownText.setPosition(screenWidth/2 - 250, screenHeight/2);
 					countdownText.setText("Protect!!!");
 				}
-				if (updates == UPDATES) {
-					availablePause = true;
-					//createLargeRock();
-					createUfo();
+				if (updates == START_GAME_UPDATES) {
 					gameHud.detachChild(countdownText);
+					availablePause = true;
+					createLargeRock();					
 					//engine.unregisterUpdateHandler(this);
 				}
 				
-				/*if ((updates % 500) == 0) {
+				if (((updates % LARGE_ROCK_CREATION_UPDATES) == 0) && (largeRocksCounter < LARGE_ROCK_MAX)) {
+					createLargeRock();
+				}
+				
+				if (((updates % ROCK_CREATION_UPDATES) == 0) && (rocksCounter < ROCK_MAX)) {
+					createRock();
+				}
+				
+				if (((updates % SMALL_ROCK_CREATION_UPDATES) == 0) && (smallRocksCounter < SMALL_ROCKS_MAX)) {
+					createSmallRock();
+				}
+				
+				if (((updates % UFO_CREATION_UPDATES) == 0) && (ufoCounter < UFO_MAX)) {
 					createUfo();
+				}
+				
+				if ((updates % SATELITE_CREATION_UPDATES) == 0 && (sateliteCounter < SATELITE_MAX)) {
 					createSatelite();
-				}*/
+				}
 			}
 		});
-		//createRock();
-		//createSmallRock();
 	}
 	
 	private void createSatelite() {
@@ -196,6 +227,7 @@ public class GameScene extends BaseScene{
 					public void run() {
 						if (satRef.getSateliteBody().isActive()) {
 							addScore(SATELITE_SCORE);
+							sateliteCounter--;
 						}
 						satRef.setVisible(false);
 						satRef.getSateliteBody().setActive(false);
@@ -204,6 +236,8 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
+		
+		sateliteCounter++;
 		
 		satelite.setCullingEnabled(true);
 		GameScene.this.attachChild(satelite);
@@ -217,6 +251,8 @@ public class GameScene extends BaseScene{
 		final int ufoLimit = 200;
 		final int appereanceSide = rand.nextInt(2) + 1;
 		final int ufo_initial_x;
+		final int ufoRandomRegion = rand.nextInt(3) + 1;
+		final ITextureRegion ufoRegion;
 		
 		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
 		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
@@ -226,13 +262,28 @@ public class GameScene extends BaseScene{
 		sensor.setVisible(false);
 		largeSensor.setVisible(false);
 		
+		switch (ufoRandomRegion) {
+		case 1:
+			ufoRegion = resourcesManager.game_ufo_1_region;
+			break;
+		case 2:
+			ufoRegion = resourcesManager.game_ufo_2_region;
+			break;
+		case 3:
+			ufoRegion = resourcesManager.game_ufo_3_region;
+			break;
+		default:
+			ufoRegion = resourcesManager.game_ufo_1_region;
+			break;
+		}
+		
 		if (appereanceSide == 1) {
 			ufo_initial_x = 1500;
 		} else {
 			ufo_initial_x = -250;
 		}
 		
-		Ufo ufo = new Ufo(ufo_initial_x, UFO_INITIAL_Y, vbom, camera, physicsWorld) {
+		Ufo ufo = new Ufo(ufo_initial_x, UFO_INITIAL_Y, vbom, camera, physicsWorld, ufoRegion) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				final Ufo ufoRef = this;
@@ -242,6 +293,7 @@ public class GameScene extends BaseScene{
 					public void run() {
 						if (ufoRef.getUfoBody().isActive()) {
 							addScore(UFO_SCORE);
+							ufoCounter--;
 						}
 						ufoRef.setVisible(false);
 						ufoRef.getUfoBody().setActive(false);
@@ -294,6 +346,8 @@ public class GameScene extends BaseScene{
 		
 		ufo.setCullingEnabled(true);
 		
+		ufoCounter++;
+		
 		GameScene.this.attachChild(smallSensor);
 		GameScene.this.attachChild(sensor);
 		GameScene.this.attachChild(largeSensor);
@@ -322,6 +376,7 @@ public class GameScene extends BaseScene{
 							createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
 							addScore(LARGE_ROCK_SCORE);
+							largeRocksCounter--;
 						}
 						largeRockRef.setVisible(false);
 						largeRockRef.getLargeRockBody().setActive(false);
@@ -333,6 +388,8 @@ public class GameScene extends BaseScene{
 		
 		setRockDirection(x, largeRock.getLargeRockBody(), yVel);
 
+		largeRocksCounter++;
+		
 		largeRock.setCullingEnabled(true);
 		GameScene.this.attachChild(largeRock);
 		GameScene.this.registerTouchArea(largeRock);
@@ -359,6 +416,7 @@ public class GameScene extends BaseScene{
 							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 							addScore(ROCK_SCORE);
+							rocksCounter--;
 						}											
 			 			rockRef.setVisible(false);
 						rockRef.getRockBody().setActive(false);
@@ -370,6 +428,8 @@ public class GameScene extends BaseScene{
 		
 		setRockDirection(x, rock.getRockBody(), yVel);
 
+		rocksCounter++;
+		
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);
@@ -396,6 +456,7 @@ public class GameScene extends BaseScene{
 							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 							addScore(ROCK_SCORE);
+							rocksCounter--;
 						}
 						rockRef.setVisible(false);
 						rockRef.getRockBody().setActive(false);			
@@ -407,6 +468,8 @@ public class GameScene extends BaseScene{
 		};
 
 		rock.setRockDirection(velocityMultiplier * xVel, yVel);
+		
+		rocksCounter++;
 				
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
@@ -432,6 +495,7 @@ public class GameScene extends BaseScene{
 					public void run() {
 						if (smallRockRef.getSmallRockBody().isActive()) {
 							addScore(SMALL_ROCK_SCORE);
+							smallRocksCounter--;
 						}						
 						smallRockRef.setVisible(false);
 						smallRockRef.getSmallRockBody().setActive(false);			
@@ -443,6 +507,8 @@ public class GameScene extends BaseScene{
 		};
 		
 		setRockDirection(x, smallRock.getSmallRockBody(), yVel);
+		
+		smallRocksCounter++;
 				
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);
@@ -468,9 +534,10 @@ public class GameScene extends BaseScene{
 					public void run() {
 						if (smallRockRef.getSmallRockBody().isActive()) {
 							addScore(SMALL_ROCK_SCORE);
+							smallRocksCounter--;
 						}
 						smallRockRef.setVisible(false);
-						smallRockRef.getSmallRockBody().setActive(false);			
+						smallRockRef.getSmallRockBody().setActive(false);
 					}
 				});				
 				return true;
@@ -479,6 +546,8 @@ public class GameScene extends BaseScene{
 		};
 
 		smallRock.setSmallRockDirection(velocityMultiplier * xVel, yVel);
+		
+		smallRocksCounter++;
 				
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);

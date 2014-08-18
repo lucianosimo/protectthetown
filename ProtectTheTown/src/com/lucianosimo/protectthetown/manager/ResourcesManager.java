@@ -58,7 +58,10 @@ public class ResourcesManager {
 	
 	public ITextureRegion game_satelite_region;
 	
-	public ITextureRegion game_ufo_region;
+	public ITextureRegion game_ufo_1_region;
+	public ITextureRegion game_ufo_2_region;
+	public ITextureRegion game_ufo_3_region;
+	
 	public ITextureRegion game_ufo_shot_region;
 		
 	public ITextureRegion game_small_house_region;
@@ -198,7 +201,10 @@ public class ResourcesManager {
 		
 		game_satelite_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_satelite.png");
 		
-		game_ufo_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo.png");
+		game_ufo_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_1.png");
+		game_ufo_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_2.png");
+		game_ufo_3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_3.png");
+		
 		game_ufo_shot_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_shot.png");
 		
 		game_small_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_small_house.png");

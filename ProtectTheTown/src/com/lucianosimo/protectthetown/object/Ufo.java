@@ -5,20 +5,20 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.lucianosimo.protectthetown.manager.ResourcesManager;
 
 public class Ufo extends Sprite{
 
 	private Body body;
 	private FixtureDef fixture;
 	
-	public Ufo(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
-		super(pX, pY, ResourcesManager.getInstance().game_ufo_region.deepCopy(), vbom);
+	public Ufo(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld, ITextureRegion region) {
+		super(pX, pY, region.deepCopy(), vbom);
 		createPhysics(camera, physicsWorld);
 	}
 	
