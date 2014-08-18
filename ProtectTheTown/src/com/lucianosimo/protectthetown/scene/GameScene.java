@@ -11,7 +11,6 @@ import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
-import org.andengine.extension.debugdraw.DebugRenderer;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -118,8 +117,8 @@ public class GameScene extends BaseScene{
 		createHud();
 		createWindow();
 		initializeGame();		
-		DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
-        GameScene.this.attachChild(debug);
+		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
+        //GameScene.this.attachChild(debug);
 	}
 	
 	private void initializeGame() {
@@ -242,9 +241,15 @@ public class GameScene extends BaseScene{
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
 				if (this.getX() > (screenWidth + ufoLimit)) {
-					this.setUfoVelocity(-ufoSpeed);
+					this.setUfoVelocityX(-ufoSpeed);
 				} else if (this.getX() < (-ufoLimit)) {
-					this.setUfoVelocity(ufoSpeed);
+					this.setUfoVelocityX(ufoSpeed);
+				}
+				
+				if (this.getY() > UFO_INITIAL_Y + 100) {
+					this.setUfoVelocityY(-5);
+				} else if (this.getY() < UFO_INITIAL_Y - 100) {
+					this.setUfoVelocityY(5);
 				}
 			}
 		};
@@ -972,6 +977,28 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("satelite")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("satelite") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
 						}
 					});
 				}
