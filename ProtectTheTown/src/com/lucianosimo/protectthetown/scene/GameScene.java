@@ -37,6 +37,7 @@ import com.lucianosimo.protectthetown.object.LargeHouse;
 import com.lucianosimo.protectthetown.object.LargeRock;
 import com.lucianosimo.protectthetown.object.Rock;
 import com.lucianosimo.protectthetown.object.Satelite;
+import com.lucianosimo.protectthetown.object.Shot;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
 import com.lucianosimo.protectthetown.object.Ufo;
@@ -106,7 +107,7 @@ public class GameScene extends BaseScene{
 	private static final int UPDATES = 200;
 	
 	//If negative, never collides between groups, if positive yes
-	private static final int GROUP_ENEMY = -1;
+	//private static final int GROUP_ENEMY = -1;
 
 	@Override
 	public void createScene() {
@@ -134,7 +135,7 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
-				availablePause = false;
+				//availablePause = false;
 				updates++;
 				if (updates == 50) {
 					countdownText.setText("2");
@@ -146,14 +147,18 @@ public class GameScene extends BaseScene{
 					countdownText.setPosition(screenWidth/2 - 250, screenHeight/2);
 					countdownText.setText("Protect!!!");
 				}
-				if (updates > UPDATES) {
+				if (updates == UPDATES) {
 					availablePause = true;
-					createLargeRock();
+					//createLargeRock();
+					createUfo();
+					gameHud.detachChild(countdownText);
+					//engine.unregisterUpdateHandler(this);
+				}
+				
+				/*if ((updates % 500) == 0) {
 					createUfo();
 					createSatelite();
-					gameHud.detachChild(countdownText);
-					engine.unregisterUpdateHandler(this);
-				}
+				}*/
 			}
 		});
 		//createRock();
@@ -213,6 +218,14 @@ public class GameScene extends BaseScene{
 		final int appereanceSide = rand.nextInt(2) + 1;
 		final int ufo_initial_x;
 		
+		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
+		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
+		final Rectangle largeSensor = new Rectangle(largeHouse.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
+		
+		smallSensor.setVisible(false);
+		sensor.setVisible(false);
+		largeSensor.setVisible(false);
+		
 		if (appereanceSide == 1) {
 			ufo_initial_x = 1500;
 		} else {
@@ -248,13 +261,42 @@ public class GameScene extends BaseScene{
 				
 				if (this.getY() > UFO_INITIAL_Y + 100) {
 					this.setUfoVelocityY(-5);
+					smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
+					sensor.setPosition(house.getX(), screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);
 				} else if (this.getY() < UFO_INITIAL_Y - 100) {
 					this.setUfoVelocityY(5);
+					smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
+					sensor.setPosition(house.getX(), screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);
 				}
+				
+				if (this.collidesWith(smallSensor)) {
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					smallSensor.setPosition(10000, 10000);
+					GameScene.this.attachChild(shot);
+				}
+				
+				if (this.collidesWith(sensor)) {
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					sensor.setPosition(10000, 10000);
+					GameScene.this.attachChild(shot);
+				}
+				
+				if (this.collidesWith(largeSensor)) {
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					largeSensor.setPosition(10000, 10000);
+					GameScene.this.attachChild(shot);
+				}
+				
 			}
 		};
 		
 		ufo.setCullingEnabled(true);
+		
+		GameScene.this.attachChild(smallSensor);
+		GameScene.this.attachChild(sensor);
+		GameScene.this.attachChild(largeSensor);
 		GameScene.this.attachChild(ufo);
 		GameScene.this.registerTouchArea(ufo);
 	}
@@ -977,6 +1019,100 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							regenerateRocks(x2.getBody());
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("shot") && x2.getBody().getUserData().equals("large_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("large_house") && x2.getBody().getUserData().equals("shot")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							largeHouse.damageLargeHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("shot") && x2.getBody().getUserData().equals("house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							house.damageHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("house") && x2.getBody().getUserData().equals("shot")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							house.damageHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("shot") && x2.getBody().getUserData().equals("small_house")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("small_house") && x2.getBody().getUserData().equals("shot")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							smallHouse.damageSmallHouse();
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("shot") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
+							x1.getBody().setActive(false);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("shot")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
+							x2.getBody().setActive(false);
 						}
 					});
 				}
