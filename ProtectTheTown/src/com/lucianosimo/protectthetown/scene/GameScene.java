@@ -94,13 +94,13 @@ public class GameScene extends BaseScene{
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
-	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 8;
-	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 5;
+	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 5;
+	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 3;
 	
-	private static final int ROCK_MAX_RANDOM_Y_VEL = 8;
-	private static final int ROCK_MIN_RANDOM_Y_VEL = 5;
+	private static final int ROCK_MAX_RANDOM_Y_VEL = 6;
+	private static final int ROCK_MIN_RANDOM_Y_VEL = 4;
 	
-	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 10;
+	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 7;
 	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 5;
 	
 	private static final int ROCK_MAX_RANDOM_X = 1000;
@@ -115,9 +115,9 @@ public class GameScene extends BaseScene{
 	private static final int START_GAME_UPDATES = 200;
 	private static final int ROCK_CREATION_UPDATES = 500;
 	private static final int SMALL_ROCK_CREATION_UPDATES = 750;
-	private static final int LARGE_ROCK_CREATION_UPDATES = 1000;
-	private static final int UFO_CREATION_UPDATES = 1250;
-	private static final int SATELITE_CREATION_UPDATES = 1500;
+	private static final int LARGE_ROCK_CREATION_UPDATES = 350;
+	private static final int UFO_CREATION_UPDATES = 500;
+	private static final int SATELITE_CREATION_UPDATES = 750;
 	
 	private static final int SMALL_ROCKS_MAX = 10;
 	private static final int ROCK_MAX = 5;
@@ -173,23 +173,23 @@ public class GameScene extends BaseScene{
 					//engine.unregisterUpdateHandler(this);
 				}
 				
-				if (((updates % LARGE_ROCK_CREATION_UPDATES) == 0) && (largeRocksCounter < LARGE_ROCK_MAX)) {
+				if (((updates % LARGE_ROCK_CREATION_UPDATES) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX)) {
 					createLargeRock();
 				}
 				
-				if (((updates % ROCK_CREATION_UPDATES) == 0) && (rocksCounter < ROCK_MAX)) {
+				/*if (((updates % ROCK_CREATION_UPDATES) == 0) && (rocksCounter < ROCK_MAX)) {
 					createRock();
-				}
+				}*/
 				
-				if (((updates % SMALL_ROCK_CREATION_UPDATES) == 0) && (smallRocksCounter < SMALL_ROCKS_MAX)) {
+				/*if (((updates % SMALL_ROCK_CREATION_UPDATES) == 0) && (smallRocksCounter < SMALL_ROCKS_MAX)) {
 					createSmallRock();
-				}
+				}*/
 				
-				if (((updates % UFO_CREATION_UPDATES) == 0) && (ufoCounter < UFO_MAX)) {
+				if (((updates % UFO_CREATION_UPDATES) == 0) && (ufoCounter <= UFO_MAX)) {
 					createUfo();
 				}
 				
-				if ((updates % SATELITE_CREATION_UPDATES) == 0 && (sateliteCounter < SATELITE_MAX)) {
+				if ((updates % SATELITE_CREATION_UPDATES) == 0 && (sateliteCounter <= SATELITE_MAX)) {
 					createSatelite();
 				}
 			}
@@ -685,7 +685,7 @@ public class GameScene extends BaseScene{
 		int[] floor_positions = {80, 241, 404, 567, 730, 896, 1055, 1220};
 		Floor[] floor = new Floor[8];
  		
-		Sprite base_floor = new Sprite(screenWidth/2, 25, resourcesManager.game_base_floor_region, vbom);
+		Sprite base_floor = new Sprite(screenWidth/2, 0, resourcesManager.game_base_floor_region, vbom);
 		Body base_floor_body = PhysicsFactory.createBoxBody(physicsWorld, base_floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		base_floor_body.setUserData("base_floor");
 		base_floor.setCullingEnabled(true);
