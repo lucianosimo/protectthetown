@@ -21,6 +21,8 @@ import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
+import android.util.Log;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -115,7 +117,7 @@ public class GameScene extends BaseScene{
 	private static final int START_GAME_UPDATES = 200;
 	private static final int ROCK_CREATION_UPDATES = 500;
 	private static final int SMALL_ROCK_CREATION_UPDATES = 750;
-	private static final int LARGE_ROCK_CREATION_UPDATES = 350;
+	private static final int LARGE_ROCK_CREATION_UPDATES = 250;
 	private static final int UFO_CREATION_UPDATES = 500;
 	private static final int SATELITE_CREATION_UPDATES = 750;
 	
@@ -169,7 +171,7 @@ public class GameScene extends BaseScene{
 				if (updates == START_GAME_UPDATES) {
 					gameHud.detachChild(countdownText);
 					availablePause = true;
-					createLargeRock();					
+					//createLargeRock();					
 					//engine.unregisterUpdateHandler(this);
 				}
 				
@@ -220,19 +222,21 @@ public class GameScene extends BaseScene{
 		Satelite satelite = new Satelite(initialX, SATELITE_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final Satelite satRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (satRef.getSateliteBody().isActive()) {
-							addScore(SATELITE_SCORE);
-							sateliteCounter--;
+				if (pSceneTouchEvent.isActionDown()) {
+					final Satelite satRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (satRef.getSateliteBody().isActive()) {
+								addScore(SATELITE_SCORE);
+								satRef.setVisible(false);
+								satRef.getSateliteBody().setActive(false);
+								sateliteCounter--;
+							}						
 						}
-						satRef.setVisible(false);
-						satRef.getSateliteBody().setActive(false);
-					}
-				});
+					});
+				}				
 				return true;
 			}
 		};
@@ -286,19 +290,23 @@ public class GameScene extends BaseScene{
 		Ufo ufo = new Ufo(ufo_initial_x, UFO_INITIAL_Y, vbom, camera, physicsWorld, ufoRegion) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final Ufo ufoRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (ufoRef.getUfoBody().isActive()) {
-							addScore(UFO_SCORE);
-							ufoCounter--;
+				if (pSceneTouchEvent.isActionDown()) {
+					final Ufo ufoRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (ufoRef.getUfoBody().isActive()) {
+								addScore(UFO_SCORE);
+								ufoRef.setVisible(false);
+								ufoRef.getUfoBody().setActive(false);
+								ufoCounter--;
+							}
+							
 						}
-						ufoRef.setVisible(false);
-						ufoRef.getUfoBody().setActive(false);
-					}
-				});
+					});
+				}
+				
 				return true;
 			}
 			
@@ -367,21 +375,25 @@ public class GameScene extends BaseScene{
 		LargeRock largeRock = new LargeRock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld){
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final LargeRock largeRockRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (largeRockRef.getLargeRockBody().isActive()) {
-							createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
-							createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
-							addScore(LARGE_ROCK_SCORE);
-							largeRocksCounter--;
+				if (pSceneTouchEvent.isActionDown()) {
+					final LargeRock largeRockRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (largeRockRef.getLargeRockBody().isActive()) {
+								createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
+								createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
+								addScore(LARGE_ROCK_SCORE);
+								largeRocksCounter--;
+								Log.d("protect", "destroy large");
+								largeRockRef.setVisible(false);
+								largeRockRef.getLargeRockBody().setActive(false);
+							}						
 						}
-						largeRockRef.setVisible(false);
-						largeRockRef.getLargeRockBody().setActive(false);
-					}
-				});
+					});
+				}
+				
 				return true;
 			}
 		};
@@ -407,21 +419,25 @@ public class GameScene extends BaseScene{
 		Rock rock = new Rock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld){
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final Rock rockRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (rockRef.getRockBody().isActive()) {
-							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
-							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
-							addScore(ROCK_SCORE);
-							rocksCounter--;
-						}											
-			 			rockRef.setVisible(false);
-						rockRef.getRockBody().setActive(false);
-					}
-				});
+				if (pSceneTouchEvent.isActionDown()) {
+					final Rock rockRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (rockRef.getRockBody().isActive()) {
+								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
+								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
+								addScore(ROCK_SCORE);
+								rocksCounter--;
+								Log.d("protect", "destroy rock");
+					 			rockRef.setVisible(false);
+								rockRef.getRockBody().setActive(false);
+							}									
+						}
+					});
+				}
+				
 				return true;
 			}
 		};
@@ -447,21 +463,26 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final Rock rockRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (rockRef.getRockBody().isActive()) {
-							createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
-							createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
-							addScore(ROCK_SCORE);
-							rocksCounter--;
+				if (pSceneTouchEvent.isActionDown()) {
+					final Rock rockRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (rockRef.getRockBody().isActive()) {
+								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
+								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
+								addScore(ROCK_SCORE);
+								rocksCounter--;
+								Log.d("protect", "destroy rock");
+								rockRef.setVisible(false);
+								rockRef.getRockBody().setActive(false);
+							}
+										
 						}
-						rockRef.setVisible(false);
-						rockRef.getRockBody().setActive(false);			
-					}
-				});				
+					});	
+				}
+							
 				return true;
 			}
 			
@@ -488,19 +509,24 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final SmallRock smallRockRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (smallRockRef.getSmallRockBody().isActive()) {
-							addScore(SMALL_ROCK_SCORE);
-							smallRocksCounter--;
-						}						
-						smallRockRef.setVisible(false);
-						smallRockRef.getSmallRockBody().setActive(false);			
-					}
-				});
+				if (pSceneTouchEvent.isActionDown()) {
+					final SmallRock smallRockRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (smallRockRef.getSmallRockBody().isActive()) {
+								addScore(SMALL_ROCK_SCORE);
+								smallRocksCounter--;
+								Log.d("protect", "destroy small");
+								smallRockRef.setVisible(false);
+								smallRockRef.getSmallRockBody().setActive(false);	
+							}
+									
+						}
+					});
+				}
+				
 				return true;
 			}
 			
@@ -527,19 +553,24 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				final SmallRock smallRockRef = this;
-				engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						if (smallRockRef.getSmallRockBody().isActive()) {
-							addScore(SMALL_ROCK_SCORE);
-							smallRocksCounter--;
+				if (pSceneTouchEvent.isActionDown()) {
+					final SmallRock smallRockRef = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							if (smallRockRef.getSmallRockBody().isActive()) {
+								addScore(SMALL_ROCK_SCORE);
+								smallRocksCounter--;
+								Log.d("protect", "destroy small");
+								smallRockRef.setVisible(false);
+								smallRockRef.getSmallRockBody().setActive(false);
+							}
+							
 						}
-						smallRockRef.setVisible(false);
-						smallRockRef.getSmallRockBody().setActive(false);
-					}
-				});				
+					});
+				}
+								
 				return true;
 			}
 			
@@ -577,12 +608,23 @@ public class GameScene extends BaseScene{
 		final int housesInitialHeight = 600;
 		final int healthBarWidth = 100;
 		
-		final Rectangle houseHealthBarBackground = new Rectangle(50, 250, healthBarWidth, 10, vbom);
-		final Rectangle houseHealthBar = new Rectangle(50, 250, healthBarWidth, 10, vbom);
-		final Rectangle smallHouseHealthBarBackground = new Rectangle(50, 150, healthBarWidth, 10, vbom);
-		final Rectangle smallHouseHealthBar = new Rectangle(50, 150, healthBarWidth, 10, vbom);
-		final Rectangle largeHouseHealthBarBackground = new Rectangle(51, 350, 102, 10, vbom);
-		final Rectangle largeHouseHealthBar = new Rectangle(51, 350, 102, 10, vbom);
+		final int smallInitialX = 37;
+		final int smallInitialY = 100;
+		final int houseInitialX = 37;
+		final int houseInitialY = 125;
+		final int largeInitialX = 37;
+		final int largeInitialY = 175;
+		
+		final Rectangle smallHouseHealthBarBackground = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, 10, vbom);
+		final Rectangle smallHouseHealthBar = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, 10, vbom);
+		final Rectangle houseHealthBarBackground = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, 10, vbom);
+		final Rectangle houseHealthBar = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, 10, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(largeInitialX, largeInitialY, 102, 10, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(largeInitialX, largeInitialY, 102, 10, vbom);
+		
+		final Sprite smallHealthBarFrame = new Sprite(smallInitialX, smallInitialY, resourcesManager.game_health_bar_frame_region, vbom);
+		final Sprite healthBarFrame = new Sprite(houseInitialX, houseInitialY, resourcesManager.game_health_bar_frame_region, vbom);
+		final Sprite largeHealthBarFrame = new Sprite(largeInitialX, largeInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		
 		houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
@@ -601,7 +643,7 @@ public class GameScene extends BaseScene{
 					this.getHouseBody().setActive(false);
 				}
 				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
-				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2, houseHealthBar.getY());
+				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
 			}
 
 			@Override
@@ -627,7 +669,7 @@ public class GameScene extends BaseScene{
 					this.getSmallHouseBody().setActive(false);
 				}
 				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
-				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2, smallHouseHealthBar.getY());
+				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2 - 13, smallHouseHealthBar.getY());
 			}
 
 			@Override
@@ -652,7 +694,7 @@ public class GameScene extends BaseScene{
 					this.getLargeHouseBody().setActive(false);
 				}
 				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
-				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2, largeHouseHealthBar.getY());
+				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2 - 13, largeHouseHealthBar.getY());
 			}
 
 			@Override
@@ -669,10 +711,13 @@ public class GameScene extends BaseScene{
 		
 		house.attachChild(houseHealthBarBackground);
 		house.attachChild(houseHealthBar);
+		house.attachChild(healthBarFrame);
 		smallHouse.attachChild(smallHouseHealthBarBackground);
 		smallHouse.attachChild(smallHouseHealthBar);
+		smallHouse.attachChild(smallHealthBarFrame);
 		largeHouse.attachChild(largeHouseHealthBarBackground);
 		largeHouse.attachChild(largeHouseHealthBar);
+		largeHouse.attachChild(largeHealthBarFrame);
 		GameScene.this.attachChild(house);
 		GameScene.this.attachChild(smallHouse);
 		GameScene.this.attachChild(largeHouse);
@@ -786,7 +831,7 @@ public class GameScene extends BaseScene{
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		        
 		gameOverText = new Text(screenWidth/2 - 200, screenHeight/2 + 100, resourcesManager.gameOverFont, "GameOver!!! ", new TextOptions(HorizontalAlign.LEFT), vbom);
-		finalScoreText = new Text(screenWidth/2 - 225, screenHeight/2, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		finalScoreText = new Text(screenWidth/2 - 275, screenHeight/2, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		
 		gameOverText.setAnchorCenter(0, 0);
 		finalScoreText.setAnchorCenter(0, 0);
