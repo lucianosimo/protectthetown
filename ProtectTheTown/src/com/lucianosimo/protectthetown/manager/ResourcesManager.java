@@ -13,6 +13,7 @@ import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSourc
 import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
 import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException;
 import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
@@ -91,6 +92,12 @@ public class ResourcesManager {
 	public ITextureRegion game_background_region;
 	
 	//Animated
+	public ITiledTextureRegion game_explosion_region;
+	/*public ITiledTextureRegion game_large_rock_explosion_region;
+	public ITiledTextureRegion game_rock_explosion_region;
+	public ITiledTextureRegion game_small_rock_explosion_region;
+	public ITiledTextureRegion game_ufo_explosion_region;
+	public ITiledTextureRegion game_satelite_explosion_region;*/
 	
 	//Windows
 	public ITextureRegion game_window_region;
@@ -205,7 +212,7 @@ public class ResourcesManager {
 		
 		gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		gameWindowsTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
-		gameAnimatedTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
+		gameAnimatedTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR);
 		gameBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		
 		game_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBackgroundTextureAtlas, activity, "game_background.png");
@@ -245,6 +252,13 @@ public class ResourcesManager {
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		
 		game_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_window.png");
+		
+		game_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_explosion.png", 6, 1);
+		/*game_large_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_large_rock_explosion.png", 6, 1);
+		game_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_rock_explosion.png", 6, 1);
+		game_small_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_small_rock_explosion.png", 6, 1);
+		game_ufo_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_ufo_explosion.png", 6, 1);
+		game_satelite_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_satelite_explosion.png", 6, 1);*/
 		
 		try {
 			this.gameTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));

@@ -9,6 +9,7 @@ import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
+import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
@@ -21,8 +22,6 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
-
-import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -91,6 +90,14 @@ public class GameScene extends BaseScene{
 	private int smallRocksCounter = 0;
 	private int ufoCounter = 0;
 	private int sateliteCounter = 0;
+	
+	//Explosions
+	/*private AnimatedSprite large_rock_explosion;
+	private AnimatedSprite rock_explosion;
+	private AnimatedSprite small_rock_explosion;
+	private AnimatedSprite ufo_explosion;
+	private AnimatedSprite satelite_explosion;*/
+	private AnimatedSprite explosion;
 
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
@@ -231,6 +238,11 @@ public class GameScene extends BaseScene{
 								satRef.getSateliteBody().setActive(false);
 								sateliteCounter--;
 								GameScene.this.unregisterTouchArea(satRef);
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(satRef.getX(), satRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
 							}						
 						}
 					});
@@ -300,6 +312,11 @@ public class GameScene extends BaseScene{
 								ufoRef.getUfoBody().setActive(false);
 								ufoCounter--;
 								GameScene.this.unregisterTouchArea(ufoRef);
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(ufoRef.getX(), ufoRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
 							}
 							
 						}
@@ -385,10 +402,14 @@ public class GameScene extends BaseScene{
 								createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(LARGE_ROCK_SCORE);
 								largeRocksCounter--;
-								Log.d("protect", "destroy large");
 								largeRockRef.setVisible(false);
 								largeRockRef.getLargeRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(largeRockRef);
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(largeRockRef.getX(), largeRockRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
 							}						
 						}
 					});
@@ -430,11 +451,15 @@ public class GameScene extends BaseScene{
 								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(ROCK_SCORE);
 								rocksCounter--;
-								Log.d("protect", "destroy rock");
 					 			rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(rockRef);
-							}									
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(rockRef.getX(), rockRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
+							}
 						}
 					});
 				}
@@ -475,12 +500,15 @@ public class GameScene extends BaseScene{
 								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(ROCK_SCORE);
 								rocksCounter--;
-								Log.d("protect", "destroy rock");
 								rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(rockRef);
-							}
-										
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(rockRef.getX(), rockRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
+							}										
 						}
 					});	
 				}
@@ -520,12 +548,15 @@ public class GameScene extends BaseScene{
 							if (smallRockRef.getSmallRockBody().isActive()) {
 								addScore(SMALL_ROCK_SCORE);
 								smallRocksCounter--;
-								Log.d("protect", "destroy small");
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(smallRockRef);
-							}
-									
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(smallRockRef.getX(), smallRockRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
+							}	
 						}
 					});
 				}
@@ -565,12 +596,15 @@ public class GameScene extends BaseScene{
 							if (smallRockRef.getSmallRockBody().isActive()) {
 								addScore(SMALL_ROCK_SCORE);
 								smallRocksCounter--;
-								Log.d("protect", "destroy small");
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(smallRockRef);
+								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+								explosion.setPosition(smallRockRef.getX(), smallRockRef.getY());
+								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+								GameScene.this.attachChild(explosion);
 							}
-							
 						}
 					});
 				}
