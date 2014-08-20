@@ -34,6 +34,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
+import com.lucianosimo.protectthetown.object.Earth;
 import com.lucianosimo.protectthetown.object.Floor;
 import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.LargeHouse;
@@ -633,7 +634,7 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(650, housesInitialHeight, vbom, camera, physicsWorld) {
+		house = new House(600, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -659,7 +660,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		smallHouse = new SmallHouse(300, housesInitialHeight, vbom, camera, physicsWorld) {
+		smallHouse = new SmallHouse(240, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -684,7 +685,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		largeHouse = new LargeHouse(1000, housesInitialHeight, vbom, camera, physicsWorld) {
+		largeHouse = new LargeHouse(1040, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -727,7 +728,10 @@ public class GameScene extends BaseScene{
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		int[] floor_positions = {80, 241, 404, 567, 730, 896, 1055, 1220};
+		//int[] floor_positions = {80, 241, 404, 567, 730, 896, 1055, 1220};
+		Random rand = new Random();
+		int elevation;
+		int[] floor_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
 		Floor[] floor = new Floor[8];
  		
 		Sprite base_floor = new Sprite(screenWidth/2, 0, resourcesManager.game_base_floor_region, vbom);
@@ -737,9 +741,14 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(base_floor);
 		
 		for (int i = 0; i < 8; i++) {
-			floor[i] = new Floor(floor_positions[i], 100 + 10 * i, vbom, camera, physicsWorld);
+			elevation = rand.nextInt(8) + 1;
+			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
 			floor[i].setCullingEnabled(true);
 			GameScene.this.attachChild(floor[i]);
+			if (elevation == 2) {
+				Earth earth = new Earth(floor_positions[i], 50, vbom, camera, physicsWorld);
+				GameScene.this.attachChild(earth);
+			}
 		}
 		
 	}
@@ -1396,6 +1405,26 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (x1.getBody().getUserData().equals("base_floor") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("earth")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("earth") && x2.getBody().getUserData().equals("floor")) {
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
