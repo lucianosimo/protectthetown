@@ -58,6 +58,18 @@ public class ResourcesManager {
 	
 	public ITextureRegion game_satelite_region;
 	
+	public ITextureRegion game_cloud_1_region;
+	public ITextureRegion game_cloud_2_region;
+	public ITextureRegion game_far_cloud_1_region;
+	public ITextureRegion game_far_cloud_2_region;
+	
+	public ITextureRegion game_trees_1_region;
+	public ITextureRegion game_trees_2_region;
+	public ITextureRegion game_trees_3_region;
+	public ITextureRegion game_trees_4_region;
+	public ITextureRegion game_trees_5_region;
+	public ITextureRegion game_trees_6_region;
+	
 	public ITextureRegion game_ufo_1_region;
 	public ITextureRegion game_ufo_2_region;
 	public ITextureRegion game_ufo_3_region;
@@ -203,6 +215,18 @@ public class ResourcesManager {
 		game_large_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_large_rock.png");
 		
 		game_satelite_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_satelite.png");
+		
+		game_far_cloud_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_far_cloud_1.png");
+		game_far_cloud_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_far_cloud_2.png");		
+		game_cloud_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_cloud_1.png");
+		game_cloud_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_cloud_2.png");
+		
+		game_trees_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_1.png");
+		game_trees_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_2.png");
+		game_trees_3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_3.png");
+		game_trees_4_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_4.png");
+		game_trees_5_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_5.png");
+		game_trees_6_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_trees_6.png");
 		
 		game_ufo_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_1.png");
 		game_ufo_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_2.png");

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.IUpdateHandler;
+import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
@@ -44,6 +45,7 @@ import com.lucianosimo.protectthetown.object.Satelite;
 import com.lucianosimo.protectthetown.object.Shot;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
+import com.lucianosimo.protectthetown.object.Tree;
 import com.lucianosimo.protectthetown.object.Ufo;
 
 public class GameScene extends BaseScene{
@@ -116,14 +118,14 @@ public class GameScene extends BaseScene{
 	private static final int SATELITE_SCORE = 1000;
 	
 	private static final int START_GAME_UPDATES = 200;
-	private static final int ROCK_CREATION_UPDATES = 500;
-	private static final int SMALL_ROCK_CREATION_UPDATES = 750;
+	//private static final int ROCK_CREATION_UPDATES = 500;
+	//private static final int SMALL_ROCK_CREATION_UPDATES = 750;
 	private static final int LARGE_ROCK_CREATION_UPDATES = 250;
 	private static final int UFO_CREATION_UPDATES = 500;
 	private static final int SATELITE_CREATION_UPDATES = 750;
 	
-	private static final int SMALL_ROCKS_MAX = 10;
-	private static final int ROCK_MAX = 5;
+	//private static final int SMALL_ROCKS_MAX = 10;
+	//private static final int ROCK_MAX = 5;
 	private static final int LARGE_ROCK_MAX = 2;
 	private static final int UFO_MAX = 2;
 	private static final int SATELITE_MAX = 1;
@@ -146,9 +148,11 @@ public class GameScene extends BaseScene{
 	
 	private void initializeGame() {
 		createFloor();
-		createHouses();	
+		createHouses();
+		createDecoration();
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
+			private int difficulty = 0;
 			
 			@Override
 			public void reset() {
@@ -157,7 +161,7 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
-				//availablePause = false;
+				
 				updates++;
 				if (updates == 50) {
 					countdownText.setText("2");
@@ -172,27 +176,19 @@ public class GameScene extends BaseScene{
 				if (updates == START_GAME_UPDATES) {
 					gameHud.detachChild(countdownText);
 					availablePause = true;
-					//createLargeRock();					
-					//engine.unregisterUpdateHandler(this);
 				}
 				
-				if (((updates % LARGE_ROCK_CREATION_UPDATES) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX)) {
+				if ((((updates % LARGE_ROCK_CREATION_UPDATES) - difficulty) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
 					createLargeRock();
+					if (difficulty > (LARGE_ROCK_CREATION_UPDATES + 50)) {
+						difficulty += 50;
+					}					
 				}
-				
-				/*if (((updates % ROCK_CREATION_UPDATES) == 0) && (rocksCounter < ROCK_MAX)) {
-					createRock();
-				}*/
-				
-				/*if (((updates % SMALL_ROCK_CREATION_UPDATES) == 0) && (smallRocksCounter < SMALL_ROCKS_MAX)) {
-					createSmallRock();
-				}*/
-				
-				if (((updates % UFO_CREATION_UPDATES) == 0) && (ufoCounter <= UFO_MAX)) {
+				if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
 					createUfo();
 				}
 				
-				if ((updates % SATELITE_CREATION_UPDATES) == 0 && (sateliteCounter <= SATELITE_MAX)) {
+				if (((updates % SATELITE_CREATION_UPDATES) - difficulty) == 0 && (sateliteCounter <= SATELITE_MAX) && availablePause) {
 					createSatelite();
 				}
 			}
@@ -234,6 +230,7 @@ public class GameScene extends BaseScene{
 								satRef.setVisible(false);
 								satRef.getSateliteBody().setActive(false);
 								sateliteCounter--;
+								GameScene.this.unregisterTouchArea(satRef);
 							}						
 						}
 					});
@@ -302,6 +299,7 @@ public class GameScene extends BaseScene{
 								ufoRef.setVisible(false);
 								ufoRef.getUfoBody().setActive(false);
 								ufoCounter--;
+								GameScene.this.unregisterTouchArea(ufoRef);
 							}
 							
 						}
@@ -390,6 +388,7 @@ public class GameScene extends BaseScene{
 								Log.d("protect", "destroy large");
 								largeRockRef.setVisible(false);
 								largeRockRef.getLargeRockBody().setActive(false);
+								GameScene.this.unregisterTouchArea(largeRockRef);
 							}						
 						}
 					});
@@ -434,6 +433,7 @@ public class GameScene extends BaseScene{
 								Log.d("protect", "destroy rock");
 					 			rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
+								GameScene.this.unregisterTouchArea(rockRef);
 							}									
 						}
 					});
@@ -478,6 +478,7 @@ public class GameScene extends BaseScene{
 								Log.d("protect", "destroy rock");
 								rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
+								GameScene.this.unregisterTouchArea(rockRef);
 							}
 										
 						}
@@ -521,7 +522,8 @@ public class GameScene extends BaseScene{
 								smallRocksCounter--;
 								Log.d("protect", "destroy small");
 								smallRockRef.setVisible(false);
-								smallRockRef.getSmallRockBody().setActive(false);	
+								smallRockRef.getSmallRockBody().setActive(false);
+								GameScene.this.unregisterTouchArea(smallRockRef);
 							}
 									
 						}
@@ -566,6 +568,7 @@ public class GameScene extends BaseScene{
 								Log.d("protect", "destroy small");
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
+								GameScene.this.unregisterTouchArea(smallRockRef);
 							}
 							
 						}
@@ -608,6 +611,7 @@ public class GameScene extends BaseScene{
 	private void createHouses() {
 		final int housesInitialHeight = 600;
 		final int healthBarWidth = 100;
+		final int healthBarHeight = 12;
 		
 		final int smallInitialX = 37;
 		final int smallInitialY = 100;
@@ -616,12 +620,12 @@ public class GameScene extends BaseScene{
 		final int largeInitialX = 37;
 		final int largeInitialY = 175;
 		
-		final Rectangle smallHouseHealthBarBackground = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, 10, vbom);
-		final Rectangle smallHouseHealthBar = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, 10, vbom);
-		final Rectangle houseHealthBarBackground = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, 10, vbom);
-		final Rectangle houseHealthBar = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, 10, vbom);
-		final Rectangle largeHouseHealthBarBackground = new Rectangle(largeInitialX, largeInitialY, 102, 10, vbom);
-		final Rectangle largeHouseHealthBar = new Rectangle(largeInitialX, largeInitialY, 102, 10, vbom);
+		final Rectangle smallHouseHealthBarBackground = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, healthBarHeight, vbom);
+		final Rectangle smallHouseHealthBar = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, healthBarHeight, vbom);
+		final Rectangle houseHealthBarBackground = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, healthBarHeight, vbom);
+		final Rectangle houseHealthBar = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, healthBarHeight, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(largeInitialX, largeInitialY, 102, healthBarHeight, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(largeInitialX, largeInitialY, 102, healthBarHeight, vbom);
 		
 		final Sprite smallHealthBarFrame = new Sprite(smallInitialX, smallInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		final Sprite healthBarFrame = new Sprite(houseInitialX, houseInitialY, resourcesManager.game_health_bar_frame_region, vbom);
@@ -728,7 +732,6 @@ public class GameScene extends BaseScene{
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		//int[] floor_positions = {80, 241, 404, 567, 730, 896, 1055, 1220};
 		Random rand = new Random();
 		int elevation;
 		int[] floor_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
@@ -741,7 +744,7 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(base_floor);
 		
 		for (int i = 0; i < 8; i++) {
-			elevation = rand.nextInt(8) + 1;
+			elevation = rand.nextInt(5) + 1;
 			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
 			floor[i].setCullingEnabled(true);
 			GameScene.this.attachChild(floor[i]);
@@ -751,6 +754,109 @@ public class GameScene extends BaseScene{
 			}
 		}
 		
+	}
+	
+	private void createDecoration() {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		int x = rand.nextInt(1281) + 1;
+		int y = rand.nextInt(321) + 400;
+		int cloudSpeed = -(rand.nextInt(11) + 35);
+		int farCloudSpeed = -(rand.nextInt(11) + 10);
+		Tree[] trees = new Tree[6];
+		int[] trees_positions = {80, 350, 450, 680, 880, 1200};
+		ITextureRegion region = resourcesManager.game_trees_1_region;
+		
+		for (int i = 0; i < 6; i++) {
+			switch (i) {
+			case 0:
+				region = resourcesManager.game_trees_1_region;
+				break;
+			case 1:
+				region = resourcesManager.game_trees_2_region;
+				break;
+			case 2:
+				region = resourcesManager.game_trees_3_region;
+				break;
+			case 3:
+				region = resourcesManager.game_trees_4_region;
+				break;
+			case 4:
+				region = resourcesManager.game_trees_5_region;
+				break;
+			case 5:
+				region = resourcesManager.game_trees_6_region;
+				break;
+			default:
+				break;
+			}
+			trees[i] = new Tree(trees_positions[i], 600, vbom, camera, physicsWorld, region);
+			GameScene.this.attachChild(trees[i]);
+		}
+		
+		Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.getX() < -200) {
+					this.setPosition(1480, this.getY());
+				}
+			};
+		};
+		PhysicsHandler handler = new PhysicsHandler(cloud1);
+		cloud1.registerUpdateHandler(handler);
+		handler.setVelocity(cloudSpeed, 0);
+		
+		x = rand.nextInt(1281) + 1;
+		y = rand.nextInt(321) + 400;
+		cloudSpeed = -(rand.nextInt(11) + 35);
+		
+		Sprite cloud2 = new Sprite(x, y, resourcesManager.game_cloud_2_region, vbom) {
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.getX() < -200) {
+					this.setPosition(1480, this.getY());
+				}
+			};
+		};
+		PhysicsHandler handler2 = new PhysicsHandler(cloud2);
+		cloud1.registerUpdateHandler(handler2);
+		handler2.setVelocity(cloudSpeed, 0);
+		
+		x = rand.nextInt(1281) + 1;
+		y = rand.nextInt(321) + 400;
+		
+		Sprite farCloud1 = new Sprite(x, y, resourcesManager.game_far_cloud_1_region, vbom) {
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.getX() < -200) {
+					this.setPosition(1480, this.getY());
+				}
+			};
+		};
+		PhysicsHandler handler4 = new PhysicsHandler(farCloud1);
+		farCloud1.registerUpdateHandler(handler4);
+		handler4.setVelocity(farCloudSpeed, 0);
+		
+		x = rand.nextInt(1281) + 1;
+		y = rand.nextInt(321) + 400;
+		farCloudSpeed = -(rand.nextInt(11) + 10);
+		
+		Sprite farCloud2 = new Sprite(x, y, resourcesManager.game_far_cloud_2_region, vbom) {
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (this.getX() < -200) {
+					this.setPosition(1480, this.getY());
+				}
+			};
+		};
+		PhysicsHandler handler5 = new PhysicsHandler(farCloud2);
+		farCloud2.registerUpdateHandler(handler5);
+		handler5.setVelocity(farCloudSpeed, 0);
+		
+		GameScene.this.attachChild(cloud1);
+		GameScene.this.attachChild(cloud2);
+		GameScene.this.attachChild(farCloud1);
+		GameScene.this.attachChild(farCloud2);
 	}
 	
 	private void setRockDirection(float x, Body body, float yVel) {
@@ -808,6 +914,7 @@ public class GameScene extends BaseScene{
 	
 	private void displayPauseWindow() {
 		GameScene.this.setIgnoreUpdate(true);
+		
 		pauseText = new Text(screenWidth/2 - 75, screenHeight/2 + 100, resourcesManager.pauseFont, "Pause", new TextOptions(HorizontalAlign.LEFT), vbom);
 		availablePause = false;		
 		
@@ -1430,6 +1537,26 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							x2.getBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("floor") && x2.getBody().getUserData().equals("tree")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x2.getBody().setType(BodyType.StaticBody);
+						}
+					});
+				}
+				
+				if (x1.getBody().getUserData().equals("tree") && x2.getBody().getUserData().equals("floor")) {
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							x1.getBody().setType(BodyType.StaticBody);
 						}
 					});
 				}
