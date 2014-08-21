@@ -93,6 +93,7 @@ public class ResourcesManager {
 	
 	//Animated
 	public ITiledTextureRegion game_explosion_region;
+	public ITiledTextureRegion game_small_explosion_region;
 	/*public ITiledTextureRegion game_large_rock_explosion_region;
 	public ITiledTextureRegion game_rock_explosion_region;
 	public ITiledTextureRegion game_small_rock_explosion_region;
@@ -254,6 +255,7 @@ public class ResourcesManager {
 		game_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_window.png");
 		
 		game_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_explosion.png", 6, 1);
+		game_small_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_small_explosion.png", 6, 1);
 		/*game_large_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_large_rock_explosion.png", 6, 1);
 		game_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_rock_explosion.png", 6, 1);
 		game_small_rock_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_small_rock_explosion.png", 6, 1);

@@ -98,6 +98,7 @@ public class GameScene extends BaseScene{
 	private AnimatedSprite ufo_explosion;
 	private AnimatedSprite satelite_explosion;*/
 	private AnimatedSprite explosion;
+	private AnimatedSprite small_explosion;
 
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
@@ -232,17 +233,13 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (satRef.getSateliteBody().isActive()) {
+							if (satRef.getSateliteBody().isActive() && availablePause && !gameOver) {
 								addScore(SATELITE_SCORE);
 								satRef.setVisible(false);
 								satRef.getSateliteBody().setActive(false);
 								sateliteCounter--;
 								GameScene.this.unregisterTouchArea(satRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(satRef.getX(), satRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(satRef.getX(), satRef.getY());
 							}						
 						}
 					});
@@ -306,17 +303,13 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (ufoRef.getUfoBody().isActive()) {
+							if (ufoRef.getUfoBody().isActive() && availablePause && !gameOver) {
 								addScore(UFO_SCORE);
 								ufoRef.setVisible(false);
 								ufoRef.getUfoBody().setActive(false);
 								ufoCounter--;
 								GameScene.this.unregisterTouchArea(ufoRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(ufoRef.getX(), ufoRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(ufoRef.getX(), ufoRef.getY());
 							}
 							
 						}
@@ -397,7 +390,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (largeRockRef.getLargeRockBody().isActive()) {
+							if (largeRockRef.getLargeRockBody().isActive() && availablePause && !gameOver) {
 								createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
 								createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(LARGE_ROCK_SCORE);
@@ -405,11 +398,7 @@ public class GameScene extends BaseScene{
 								largeRockRef.setVisible(false);
 								largeRockRef.getLargeRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(largeRockRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(largeRockRef.getX(), largeRockRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(largeRockRef.getX(), largeRockRef.getY());
 							}						
 						}
 					});
@@ -446,7 +435,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (rockRef.getRockBody().isActive()) {
+							if (rockRef.getRockBody().isActive() && availablePause && !gameOver) {
 								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(ROCK_SCORE);
@@ -454,11 +443,7 @@ public class GameScene extends BaseScene{
 					 			rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(rockRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(rockRef.getX(), rockRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(rockRef.getX(), rockRef.getY());
 							}
 						}
 					});
@@ -495,7 +480,7 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (rockRef.getRockBody().isActive()) {
+							if (rockRef.getRockBody().isActive() && availablePause && !gameOver) {
 								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
 								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(ROCK_SCORE);
@@ -503,11 +488,7 @@ public class GameScene extends BaseScene{
 								rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(rockRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(rockRef.getX(), rockRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(rockRef.getX(), rockRef.getY());
 							}										
 						}
 					});	
@@ -545,17 +526,13 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (smallRockRef.getSmallRockBody().isActive()) {
+							if (smallRockRef.getSmallRockBody().isActive() && availablePause && !gameOver) {
 								addScore(SMALL_ROCK_SCORE);
 								smallRocksCounter--;
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(smallRockRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(smallRockRef.getX(), smallRockRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(smallRockRef.getX(), smallRockRef.getY());
 							}	
 						}
 					});
@@ -593,17 +570,13 @@ public class GameScene extends BaseScene{
 						
 						@Override
 						public void run() {
-							if (smallRockRef.getSmallRockBody().isActive()) {
+							if (smallRockRef.getSmallRockBody().isActive() && availablePause && !gameOver) {
 								addScore(SMALL_ROCK_SCORE);
 								smallRocksCounter--;
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
 								GameScene.this.unregisterTouchArea(smallRockRef);
-								explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-								explosion.setPosition(smallRockRef.getX(), smallRockRef.getY());
-								final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-								explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-								GameScene.this.attachChild(explosion);
+								createExplosion(smallRockRef.getX(), smallRockRef.getY());
 							}
 						}
 					});
@@ -680,6 +653,11 @@ public class GameScene extends BaseScene{
 				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getHouseBody().setActive(false);
+					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+					explosion.setPosition(this.getX(), this.getY());
+					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+					GameScene.this.attachChild(explosion);
 				}
 				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
 				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
@@ -706,6 +684,11 @@ public class GameScene extends BaseScene{
 				if (this.isSmallHouseDestroyed() && this.getSmallHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getSmallHouseBody().setActive(false);
+					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+					explosion.setPosition(this.getX(), this.getY());
+					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+					GameScene.this.attachChild(explosion);
 				}
 				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
 				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2 - 13, smallHouseHealthBar.getY());
@@ -731,6 +714,11 @@ public class GameScene extends BaseScene{
 				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getLargeHouseBody().setActive(false);
+					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+					explosion.setPosition(this.getX(), this.getY());
+					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+					GameScene.this.attachChild(explosion);
 				}
 				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
 				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2 - 13, largeHouseHealthBar.getY());
@@ -999,6 +987,20 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(finalScoreText);
 	}
 	
+	private void createExplosion(float x, float y) {
+		explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
+		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+		explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+		GameScene.this.attachChild(explosion);
+	}
+	
+	private void createSmallExplosion(float x, float y) {
+		small_explosion = new AnimatedSprite(x, y, resourcesManager.game_small_explosion_region.deepCopy(), vbom);
+		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+		small_explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+		GameScene.this.attachChild(small_explosion);
+	}
+	
 	private ContactListener contactListener() {
 		ContactListener contactListener = new ContactListener() {
 			
@@ -1087,6 +1089,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.destroyHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}							
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1098,6 +1103,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.destroyHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}							
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1109,6 +1117,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.destroySmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1120,6 +1131,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.destroySmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1132,6 +1146,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1144,6 +1161,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1156,6 +1176,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							house.damageHouse();
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1168,6 +1191,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							house.damageHouse();
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1180,6 +1206,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							smallHouse.damageSmallHouse();
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1192,6 +1221,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1204,6 +1236,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							largeHouse.damageLargeHouse();
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1216,6 +1251,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							smallHouse.damageSmallHouse();
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1227,6 +1265,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1238,6 +1279,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1249,6 +1293,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1260,6 +1307,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1271,6 +1321,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x1.getBody());
 						}
 					});
@@ -1282,6 +1335,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							regenerateRocks(x2.getBody());
 						}
 					});
@@ -1293,6 +1349,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}
@@ -1305,6 +1364,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1317,6 +1379,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}
@@ -1329,6 +1394,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1341,6 +1409,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}
@@ -1353,6 +1424,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1409,6 +1483,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1421,6 +1498,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							smallHouse.damageSmallHouse();
+							if (!smallHouse.isSmallHouseDestroyed()) {
+								createSmallExplosion(smallHouse.getX(), smallHouse.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}
@@ -1433,6 +1513,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1445,6 +1528,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							house.damageHouse();
+							if (!house.isHouseDestroyed()) {
+								createSmallExplosion(house.getX(), house.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}
@@ -1457,6 +1543,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							x2.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x2.getBody().getAngle());
 							x2.getBody().setActive(false);
 						}
@@ -1469,6 +1558,9 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							largeHouse.damageLargeHouse();
+							if (!largeHouse.isLargeHouseDestroyed()) {
+								createSmallExplosion(largeHouse.getX(), largeHouse.getY());
+							}
 							x1.getBody().setTransform(2000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 1000 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, x1.getBody().getAngle());
 							x1.getBody().setActive(false);
 						}

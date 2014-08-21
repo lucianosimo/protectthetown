@@ -36,7 +36,7 @@ public abstract class House extends Sprite{
 			public void onUpdate(float pSecondsElapsed) {
 				super.onUpdate(pSecondsElapsed);
 				camera.onUpdate(0.1f);
-				body.setLinearVelocity(body.getLinearVelocity().x, -7);
+				body.setLinearVelocity(body.getLinearVelocity().x, -11);
 				if (isHouseDestroyed()) {
 					onDie();
 				}
