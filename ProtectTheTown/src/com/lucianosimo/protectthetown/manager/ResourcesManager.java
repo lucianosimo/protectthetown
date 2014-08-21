@@ -76,6 +76,10 @@ public class ResourcesManager {
 	public ITextureRegion game_ufo_3_region;
 	
 	public ITextureRegion game_ufo_shot_region;
+	
+	public ITextureRegion game_bomb_region;
+	public ITextureRegion game_repair_region;
+	public ITextureRegion game_shield_region;
 		
 	public ITextureRegion game_small_house_region;
 	public ITextureRegion game_house_region;
@@ -247,6 +251,10 @@ public class ResourcesManager {
 		game_large_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_large_house.png");
 		
 		game_health_bar_frame_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_health_bar_frame.png");
+		
+		game_bomb_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_bomb.png");
+		game_repair_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_repair.png");
+		game_shield_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_shield.png");
 		
 		game_base_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_base_floor.png");
 		game_earth_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_earth.png");

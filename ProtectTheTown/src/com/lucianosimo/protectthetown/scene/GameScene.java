@@ -34,13 +34,16 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
+import com.lucianosimo.protectthetown.object.Bomb;
 import com.lucianosimo.protectthetown.object.Earth;
 import com.lucianosimo.protectthetown.object.Floor;
 import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.LargeHouse;
 import com.lucianosimo.protectthetown.object.LargeRock;
+import com.lucianosimo.protectthetown.object.Repair;
 import com.lucianosimo.protectthetown.object.Rock;
 import com.lucianosimo.protectthetown.object.Satelite;
+import com.lucianosimo.protectthetown.object.Shield;
 import com.lucianosimo.protectthetown.object.Shot;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
@@ -131,6 +134,7 @@ public class GameScene extends BaseScene{
 	private static final int LARGE_ROCK_CREATION_UPDATES = 250;
 	private static final int UFO_CREATION_UPDATES = 500;
 	private static final int SATELITE_CREATION_UPDATES = 750;
+	private static final int HELP_BOXES_CREATION_UPDATES = 500;
 	
 	//private static final int SMALL_ROCKS_MAX = 10;
 	//private static final int ROCK_MAX = 5;
@@ -169,8 +173,10 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
-				
+				Random rand = new Random();
+				int box;
 				updates++;
+				
 				if (updates == 50) {
 					countdownText.setText("2");
 				}
@@ -198,6 +204,25 @@ public class GameScene extends BaseScene{
 				
 				if (((updates % SATELITE_CREATION_UPDATES) - difficulty) == 0 && (sateliteCounter <= SATELITE_MAX) && availablePause) {
 					createSatelite();
+				}
+				
+				if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
+					//n = rand.nextInt(max - min + 1) + min;
+					box = rand.nextInt(3) + 1;
+					
+					switch (box) {
+						case 1:
+							createBombBox();
+							break;
+						case 2:
+							createRepairBox();
+							break;
+						case 3:
+							createShieldBox();
+							break;
+						default:
+							break;
+					}
 				}
 			}
 		});
@@ -999,6 +1024,27 @@ public class GameScene extends BaseScene{
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
 		small_explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
 		GameScene.this.attachChild(small_explosion);
+	}
+	
+	private void createBombBox() {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		Bomb bomb = new Bomb(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		GameScene.this.attachChild(bomb);
+	}
+	
+	private void createRepairBox() {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		Repair repair = new Repair(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		GameScene.this.attachChild(repair);
+	}
+	
+	private void createShieldBox() {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		Shield shield = new Shield(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		GameScene.this.attachChild(shield);
 	}
 	
 	private ContactListener contactListener() {
