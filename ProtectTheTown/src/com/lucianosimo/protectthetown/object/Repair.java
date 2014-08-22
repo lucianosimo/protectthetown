@@ -38,4 +38,7 @@ public class Repair extends Sprite{
 		});
 	}
 	
+	public Body getRepairBody() {
+		return body;
+	}	
 }

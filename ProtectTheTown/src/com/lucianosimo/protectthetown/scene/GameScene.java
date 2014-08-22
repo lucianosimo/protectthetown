@@ -6,6 +6,9 @@ import java.util.Random;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.engine.handler.physics.PhysicsHandler;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.DelayModifier;
+import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
@@ -22,6 +25,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
+import org.andengine.util.modifier.IModifier;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -77,6 +81,7 @@ public class GameScene extends BaseScene{
 	//Booleans
 	private boolean availablePause = false;
 	private boolean gameOver = false;
+	private boolean destroyAllEnemies = false;
 	
 	//Integers
 	private int score = 0;
@@ -188,6 +193,7 @@ public class GameScene extends BaseScene{
 					countdownText.setText("Protect!!!");
 				}
 				if (updates == START_GAME_UPDATES) {
+					createBombBox();
 					gameHud.detachChild(countdownText);
 					availablePause = true;
 				}
@@ -250,6 +256,27 @@ public class GameScene extends BaseScene{
 		}
 		
 		Satelite satelite = new Satelite(initialX, SATELITE_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (destroyAllEnemies && this.getSateliteBody().isActive() && availablePause && !gameOver) {
+					if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+						final Satelite ref = this;
+						engine.runOnUpdateThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								addScore(SATELITE_SCORE);
+								ref.setVisible(false);
+								ref.getSateliteBody().setActive(false);
+								sateliteCounter--;
+								GameScene.this.unregisterTouchArea(ref);
+								createExplosion(ref.getX(), ref.getY());
+							}
+						});
+					}
+				}
+			}
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -347,6 +374,24 @@ public class GameScene extends BaseScene{
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
+				if (destroyAllEnemies && this.getUfoBody().isActive() && availablePause && !gameOver) {
+					if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+						final Ufo ref = this;
+						engine.runOnUpdateThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								addScore(UFO_SCORE);
+								ref.setVisible(false);
+								ref.getUfoBody().setActive(false);
+								sateliteCounter--;
+								GameScene.this.unregisterTouchArea(ref);
+								createExplosion(ref.getX(), ref.getY());
+							}
+						});
+					}
+				}
+				
 				if (this.getX() > (screenWidth + ufoLimit)) {
 					this.setUfoVelocityX(-ufoSpeed);
 				} else if (this.getX() < (-ufoLimit)) {
@@ -406,7 +451,29 @@ public class GameScene extends BaseScene{
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(LARGE_ROCK_MAX_RANDOM_Y_VEL) + LARGE_ROCK_MIN_RANDOM_Y_VEL);
 		
-		LargeRock largeRock = new LargeRock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld){
+		LargeRock largeRock = new LargeRock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (destroyAllEnemies && this.getLargeRockBody().isActive() && availablePause && !gameOver) {
+					if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+						final LargeRock ref = this;
+						engine.runOnUpdateThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								addScore(LARGE_ROCK_SCORE);
+								ref.setVisible(false);
+								ref.getLargeRockBody().setActive(false);
+								largeRocksCounter--;
+								GameScene.this.unregisterTouchArea(ref);
+								createExplosion(ref.getX(), ref.getY());
+							}
+						});
+					}
+				}
+			}
+			
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -445,7 +512,7 @@ public class GameScene extends BaseScene{
 	/*
 	 * Creates a new medium rock
 	 */
-	private void createRock() {
+	/*private void createRock() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
@@ -485,7 +552,7 @@ public class GameScene extends BaseScene{
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);
-	}
+	}*/
 	
 	/*
 	 * Creates a new rock when a large rock is destroyed
@@ -496,7 +563,27 @@ public class GameScene extends BaseScene{
 		final float velocityMultiplier = rand.nextInt(3) + 3;
 		
 		Rock rock = new Rock(x, y, vbom, camera, physicsWorld) {
-			
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (destroyAllEnemies && this.getRockBody().isActive() && availablePause && !gameOver) {
+					if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+						final Rock ref = this;
+						engine.runOnUpdateThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								addScore(ROCK_SCORE);
+								ref.setVisible(false);
+								ref.getRockBody().setActive(false);
+								rocksCounter--;
+								GameScene.this.unregisterTouchArea(ref);
+								createExplosion(ref.getX(), ref.getY());
+							}
+						});
+					}
+				}
+			}
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -536,7 +623,7 @@ public class GameScene extends BaseScene{
 	/*
 	 * Creates a new small rock
 	 */
-	private void createSmallRock() {
+	/*private void createSmallRock() {
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(SMALL_ROCK_MAX_RANDOM_Y_VEL) + SMALL_ROCK_MIN_RANDOM_Y_VEL);
@@ -575,7 +662,7 @@ public class GameScene extends BaseScene{
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);
 		GameScene.this.registerTouchArea(smallRock);		
-	}
+	}*/
 	
 	/*
 	 * Creates a new small rock when a medium rock is destroyed
@@ -586,7 +673,27 @@ public class GameScene extends BaseScene{
 		final float velocityMultiplier = rand.nextInt(3) + 3;
 		
 		SmallRock smallRock = new SmallRock(x, y, vbom, camera, physicsWorld) {
-			
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				if (destroyAllEnemies && this.getSmallRockBody().isActive() && availablePause && !gameOver) {
+					if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+						final SmallRock ref = this;
+						engine.runOnUpdateThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								addScore(SMALL_ROCK_SCORE);
+								ref.setVisible(false);
+								ref.getSmallRockBody().setActive(false);
+								smallRocksCounter--;
+								GameScene.this.unregisterTouchArea(ref);
+								createExplosion(ref.getX(), ref.getY());
+							}
+						});
+					}
+				}
+			}
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1029,15 +1136,77 @@ public class GameScene extends BaseScene{
 	private void createBombBox() {
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Bomb bomb = new Bomb(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		Bomb bomb = new Bomb(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					final Bomb ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						@Override
+						public void run() {
+							if (ref.getBombBody().isActive() && availablePause && !gameOver) {
+								ref.setVisible(false);
+								ref.getBombBody().setActive(false);
+								GameScene.this.unregisterTouchArea(ref);
+								registerEntityModifier(new DelayModifier(1f, new IEntityModifierListener() {
+									
+									@Override
+									public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+										destroyAllEnemies = true;										
+									}
+									
+									@Override
+									public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+										destroyAllEnemies = false;
+										
+									}
+								}));
+							}
+						}
+					});
+				}
+				
+				return true;
+			}
+		};
 		GameScene.this.attachChild(bomb);
+		GameScene.this.registerTouchArea(bomb);
 	}
 	
 	private void createRepairBox() {
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Repair repair = new Repair(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		Repair repair = new Repair(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					final Repair ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						@Override
+						public void run() {
+							if (ref.getRepairBody().isActive() && availablePause && !gameOver) {
+								ref.setVisible(false);
+								ref.getRepairBody().setActive(false);
+								GameScene.this.unregisterTouchArea(ref);
+								if (!smallHouse.isSmallHouseDestroyed()) {
+									smallHouse.repairCompleteSmallHouse();
+								}
+								if (!house.isHouseDestroyed()) {
+									house.repairCompleteHouse();
+								}
+								if (!largeHouse.isLargeHouseDestroyed()) {
+									largeHouse.repairCompleteLargeHouse();
+								}
+							}
+						}
+					});
+				}
+				
+				return true;
+			}
+		};
 		GameScene.this.attachChild(repair);
+		GameScene.this.registerTouchArea(repair);
 	}
 	
 	private void createShieldBox() {

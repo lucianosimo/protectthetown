@@ -38,4 +38,7 @@ public class Bomb extends Sprite{
 		});
 	}
 	
+	public Body getBombBody() {
+		return body;
+	}
 }

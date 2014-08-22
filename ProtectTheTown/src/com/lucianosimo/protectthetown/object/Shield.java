@@ -38,4 +38,7 @@ public class Shield extends Sprite{
 		});
 	}
 	
+	public Body getShieldBody() {
+		return body;
+	}
 }
