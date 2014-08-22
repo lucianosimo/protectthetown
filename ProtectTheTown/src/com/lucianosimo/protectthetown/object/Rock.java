@@ -9,11 +9,13 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 
 public class Rock extends Sprite{
@@ -32,10 +34,22 @@ public class Rock extends Sprite{
 		Random rand = new Random();
 		final int random = rand.nextInt(2) + 3;
 		final float omega = random;
+		final float width = 85 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		final float height = 95 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;		
+		final Vector2[] v = {
+			new Vector2(-0.36471f*width, -0.31579f*height),
+			new Vector2(+0.03529f*width, -0.48421f*height),
+			new Vector2(+0.37647f*width, -0.30526f*height),
+			new Vector2(+0.51765f*width, -0.02105f*height),
+			new Vector2(+0.37647f*width, +0.42105f*height),
+			new Vector2(-0.08235f*width, +0.55789f*height),
+			new Vector2(-0.55294f*width, +0.14737f*height),
+		};		
 		this.setUserData("rock");
 		fixture = PhysicsFactory.createFixtureDef(0, 0, 0);
 		fixture.filter.groupIndex = -1;
-		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
+		//body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
+		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v, BodyType.DynamicBody, fixture);
 		body.setUserData("rock");
 		body.setFixedRotation(true);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {

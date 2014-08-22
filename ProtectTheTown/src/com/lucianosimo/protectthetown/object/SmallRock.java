@@ -9,8 +9,10 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -32,10 +34,22 @@ public class SmallRock extends Sprite{
 		Random rand = new Random();
 		final int random = rand.nextInt(2) + 5;
 		final float omega = random;
+		final float width = 63 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		final float height = 66 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;		
+		final Vector2[] v = {
+			new Vector2(-0.25397f*width, -0.42424f*height),
+			new Vector2(+0.11111f*width, -0.51515f*height),
+			new Vector2(+0.34921f*width, -0.33333f*height),
+			new Vector2(+0.50794f*width, +0.06061f*height),
+			new Vector2(+0.19048f*width, +0.53030f*height),
+			new Vector2(-0.39683f*width, +0.46970f*height),
+			new Vector2(-0.53968f*width, -0.03030f*height),	
+		};
 		this.setUserData("small_rock");
 		fixture = PhysicsFactory.createFixtureDef(0, 0, 0);
 		fixture.filter.groupIndex = -1;
-		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
+		//body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
+		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v, BodyType.DynamicBody, fixture);
 		body.setUserData("small_rock");
 		body.setFixedRotation(true);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {
