@@ -82,6 +82,7 @@ public class GameScene extends BaseScene{
 	private boolean availablePause = false;
 	private boolean gameOver = false;
 	private boolean destroyAllEnemies = false;
+	private boolean domeActivated = false;
 	
 	//Integers
 	private int score = 0;
@@ -89,8 +90,15 @@ public class GameScene extends BaseScene{
 	//Windows
 	private Sprite window;
 	
+	//Dome
+	private Sprite dome;
+	private Sprite shieldBarFrame;
+	private Sprite shieldBarLogo;
+	
 	//Rectangle
 	private Rectangle fade;
+	private Rectangle shieldBarBackground;
+	private Rectangle shieldBar;
 	
 	//Counters
 	private int largeRocksCounter = 0;
@@ -100,11 +108,6 @@ public class GameScene extends BaseScene{
 	private int sateliteCounter = 0;
 	
 	//Explosions
-	/*private AnimatedSprite large_rock_explosion;
-	private AnimatedSprite rock_explosion;
-	private AnimatedSprite small_rock_explosion;
-	private AnimatedSprite ufo_explosion;
-	private AnimatedSprite satelite_explosion;*/
 	private AnimatedSprite explosion;
 	private AnimatedSprite small_explosion;
 
@@ -134,15 +137,13 @@ public class GameScene extends BaseScene{
 	private static final int SATELITE_SCORE = 1000;
 	
 	private static final int START_GAME_UPDATES = 200;
-	//private static final int ROCK_CREATION_UPDATES = 500;
-	//private static final int SMALL_ROCK_CREATION_UPDATES = 750;
 	private static final int LARGE_ROCK_CREATION_UPDATES = 250;
 	private static final int UFO_CREATION_UPDATES = 500;
 	private static final int SATELITE_CREATION_UPDATES = 750;
 	private static final int HELP_BOXES_CREATION_UPDATES = 500;
 	
-	//private static final int SMALL_ROCKS_MAX = 10;
-	//private static final int ROCK_MAX = 5;
+	private static final float SHIELD_DURATION = 10f;
+
 	private static final int LARGE_ROCK_MAX = 2;
 	private static final int UFO_MAX = 2;
 	private static final int SATELITE_MAX = 1;
@@ -167,6 +168,7 @@ public class GameScene extends BaseScene{
 		createFloor();
 		createHouses();
 		createDecoration();
+		createDome();
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
 			private int difficulty = 0;
@@ -180,6 +182,7 @@ public class GameScene extends BaseScene{
 			public void onUpdate(float pSecondsElapsed) {
 				Random rand = new Random();
 				int box;
+				float timeElapsed = 0;
 				updates++;
 				
 				if (updates == 50) {
@@ -193,7 +196,7 @@ public class GameScene extends BaseScene{
 					countdownText.setText("Protect!!!");
 				}
 				if (updates == START_GAME_UPDATES) {
-					createBombBox();
+					createShieldBox();
 					gameHud.detachChild(countdownText);
 					availablePause = true;
 				}
@@ -229,6 +232,12 @@ public class GameScene extends BaseScene{
 						default:
 							break;
 					}
+				}
+				
+				if (domeActivated && availablePause) {
+					timeElapsed++;
+					shieldBar.setSize(shieldBar.getWidth() - timeElapsed, shieldBar.getHeight());
+					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 150) + shieldBar.getWidth() / 2, shieldBar.getY());
 				}
 			}
 		});
@@ -275,6 +284,21 @@ public class GameScene extends BaseScene{
 							}
 						});
 					}
+				}
+				if (this.collidesWith(dome) && this.getSateliteBody().isActive()) {
+					final Satelite ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							addScore(SATELITE_SCORE);
+							ref.setVisible(false);
+							ref.getSateliteBody().setActive(false);
+							sateliteCounter--;
+							GameScene.this.unregisterTouchArea(ref);
+							createExplosion(ref.getX(), ref.getY());
+						}
+					});
 				}
 			}
 			@Override
@@ -392,6 +416,22 @@ public class GameScene extends BaseScene{
 					}
 				}
 				
+				if (this.collidesWith(dome)) {
+					final Ufo ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							addScore(UFO_SCORE);
+							ref.setVisible(false);
+							ref.getUfoBody().setActive(false);
+							sateliteCounter--;
+							GameScene.this.unregisterTouchArea(ref);
+							createExplosion(ref.getX(), ref.getY());
+						}
+					});
+				}
+				
 				if (this.getX() > (screenWidth + ufoLimit)) {
 					this.setUfoVelocityX(-ufoSpeed);
 				} else if (this.getX() < (-ufoLimit)) {
@@ -411,19 +451,67 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (this.collidesWith(smallSensor)) {
-					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld){
+						protected void onManagedUpdate(float pSecondsElapsed) {
+							if (this.collidesWith(dome)) {
+								if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+									final Shot ref = this;
+									engine.runOnUpdateThread(new Runnable() {
+										
+										@Override
+										public void run() {
+											ref.setVisible(false);
+											ref.getShotBody().setActive(false);
+										}
+									});
+								}
+							} 
+						};
+					};
 					smallSensor.setPosition(10000, 10000);
 					GameScene.this.attachChild(shot);
 				}
 				
 				if (this.collidesWith(sensor)) {
-					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
+						protected void onManagedUpdate(float pSecondsElapsed) {
+							if (this.collidesWith(dome)) {
+								if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+									final Shot ref = this;
+									engine.runOnUpdateThread(new Runnable() {
+										
+										@Override
+										public void run() {
+											ref.setVisible(false);
+											ref.getShotBody().setActive(false);
+										}
+									});
+								}
+							} 
+						};
+					};
 					sensor.setPosition(10000, 10000);
 					GameScene.this.attachChild(shot);
 				}
 				
 				if (this.collidesWith(largeSensor)) {
-					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld);
+					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
+						protected void onManagedUpdate(float pSecondsElapsed) {
+							if (this.collidesWith(dome)) {
+								if (this.getX() > 0 && this.getX() < 1280 && this.getY() > 0 && this.getY() < 720) {
+									final Shot ref = this;
+									engine.runOnUpdateThread(new Runnable() {
+										
+										@Override
+										public void run() {
+											ref.setVisible(false);
+											ref.getShotBody().setActive(false);
+										}
+									});
+								}
+							} 
+						};
+					};
 					largeSensor.setPosition(10000, 10000);
 					GameScene.this.attachChild(shot);
 				}
@@ -471,6 +559,21 @@ public class GameScene extends BaseScene{
 							}
 						});
 					}
+				}
+				if (this.collidesWith(dome) && this.getLargeRockBody().isActive()) {
+					final LargeRock ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							addScore(LARGE_ROCK_SCORE);
+							ref.setVisible(false);
+							ref.getLargeRockBody().setActive(false);
+							largeRocksCounter--;
+							GameScene.this.unregisterTouchArea(ref);
+							createExplosion(ref.getX(), ref.getY());
+						}
+					});
 				}
 			}
 			
@@ -583,6 +686,21 @@ public class GameScene extends BaseScene{
 						});
 					}
 				}
+				if (this.collidesWith(dome) && this.getRockBody().isActive()) {
+					final Rock ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							addScore(ROCK_SCORE);
+							ref.setVisible(false);
+							ref.getRockBody().setActive(false);
+							rocksCounter--;
+							GameScene.this.unregisterTouchArea(ref);
+							createExplosion(ref.getX(), ref.getY());
+						}
+					});
+				}
 			}
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -693,6 +811,21 @@ public class GameScene extends BaseScene{
 						});
 					}
 				}
+				if (this.collidesWith(dome) && this.getSmallRockBody().isActive()) {
+					final SmallRock ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							addScore(SMALL_ROCK_SCORE);
+							ref.setVisible(false);
+							ref.getSmallRockBody().setActive(false);
+							smallRocksCounter--;
+							GameScene.this.unregisterTouchArea(ref);
+							createExplosion(ref.getX(), ref.getY());
+						}
+					});
+				}
 			}
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -777,7 +910,7 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(600, housesInitialHeight, vbom, camera, physicsWorld) {
+		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -838,7 +971,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		largeHouse = new LargeHouse(1040, housesInitialHeight, vbom, camera, physicsWorld) {
+		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1212,8 +1345,78 @@ public class GameScene extends BaseScene{
 	private void createShieldBox() {
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Shield shield = new Shield(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld);
+		Shield shield = new Shield(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					final Shield ref = this;
+					engine.runOnUpdateThread(new Runnable() {
+						@Override
+						public void run() {
+							if (ref.getShieldBody().isActive() && availablePause && !gameOver) {
+								ref.setVisible(false);
+								ref.getShieldBody().setActive(false);
+								GameScene.this.unregisterTouchArea(ref);
+								registerEntityModifier(new DelayModifier(SHIELD_DURATION, new IEntityModifierListener() {
+									
+									@Override
+									public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+										dome.setPosition(screenWidth/2, 100);
+										shieldBarBackground.setWidth(400);
+										shieldBar.setWidth(400);
+										shieldBarBackground.setVisible(true);
+										shieldBar.setVisible(true);
+										shieldBarFrame.setVisible(true);
+										shieldBarLogo.setVisible(true);
+										domeActivated = true;
+									}
+									
+									@Override
+									public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+										dome.setPosition(-1500, -1500);
+										shieldBarBackground.setVisible(false);
+										shieldBar.setVisible(false);
+										shieldBarFrame.setVisible(false);
+										shieldBarLogo.setVisible(false);
+										domeActivated = true;
+									}
+								}));
+							}
+						}
+					});
+				}
+				
+				return true;
+			}
+		};
 		GameScene.this.attachChild(shield);
+		GameScene.this.registerTouchArea(shield);
+	}
+	
+	private void createDome() {
+		float shieldBarWidth = 400;
+		float shieldBarHeight = 25;
+		
+		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 + 50, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 + 50, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 + 50, 665, resourcesManager.game_shield_bar_frame_region, vbom);
+		shieldBarLogo = new Sprite(screenWidth/2 + 130, 670, resourcesManager.game_shield_bar_logo_region, vbom);
+		
+		dome = new Sprite(-1500, 1500, resourcesManager.game_dome_region, vbom);
+		
+		shieldBarBackground.setColor(Color.WHITE);
+		shieldBar.setColor(0.259f, 0.541f, 0.78f);
+		
+		shieldBarBackground.setVisible(false);
+		shieldBar.setVisible(false);
+		shieldBarFrame.setVisible(false);
+		shieldBarLogo.setVisible(false);
+		
+		gameHud.attachChild(shieldBarBackground);
+		gameHud.attachChild(shieldBar);
+		gameHud.attachChild(shieldBarFrame);
+		gameHud.attachChild(shieldBarLogo);
+		GameScene.this.attachChild(dome);
 	}
 	
 	private ContactListener contactListener() {

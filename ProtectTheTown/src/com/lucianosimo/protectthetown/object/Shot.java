@@ -39,4 +39,8 @@ public class Shot extends Sprite{
 		});
 	}
 	
+	public Body getShotBody() {
+		return body;
+	}
+	
 }
