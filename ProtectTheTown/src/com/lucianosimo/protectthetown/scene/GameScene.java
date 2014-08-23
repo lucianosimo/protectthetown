@@ -182,7 +182,6 @@ public class GameScene extends BaseScene{
 			public void onUpdate(float pSecondsElapsed) {
 				Random rand = new Random();
 				int box;
-				float timeElapsed = 0;
 				updates++;
 				
 				if (updates == 50) {
@@ -235,8 +234,9 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (domeActivated && availablePause) {
-					timeElapsed++;
-					shieldBar.setSize(shieldBar.getWidth() - timeElapsed, shieldBar.getHeight());
+					if (shieldBar.getWidth() > 0) {
+						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
+					}
 					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 150) + shieldBar.getWidth() / 2, shieldBar.getY());
 				}
 			}
