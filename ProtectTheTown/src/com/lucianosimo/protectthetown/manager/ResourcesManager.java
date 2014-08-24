@@ -105,6 +105,12 @@ public class ResourcesManager {
 	
 	//Windows
 	public ITextureRegion game_window_region;
+	public ITextureRegion game_pause_window_region;
+	
+	//Buttons
+	public ITextureRegion game_resume_button_region;
+	public ITextureRegion game_retry_button_region;
+	public ITextureRegion game_quit_button_region;
 	
 	//Game Textures
 	private BuildableBitmapTextureAtlas gameTextureAtlas;
@@ -264,6 +270,11 @@ public class ResourcesManager {
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		
 		game_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_window.png");
+		game_pause_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_window.png");
+		
+		game_resume_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_resume_button.png");
+		game_retry_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_retry_button.png");
+		game_quit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_quit_button.png");
 		
 		game_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_explosion.png", 6, 1);
 		game_small_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_small_explosion.png", 6, 1);

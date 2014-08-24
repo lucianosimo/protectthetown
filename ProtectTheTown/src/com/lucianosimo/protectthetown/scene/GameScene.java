@@ -67,7 +67,7 @@ public class GameScene extends BaseScene{
 	private Text countdownText;
 	private Text gameOverText;
 	private Text finalScoreText;
-	private Text pauseText;
+	//private Text pauseText;
 	
 	//Constants	
 	private float screenWidth;
@@ -89,6 +89,7 @@ public class GameScene extends BaseScene{
 	
 	//Windows
 	private Sprite window;
+	private Sprite pauseWindow;
 	
 	//Dome
 	private Sprite dome;
@@ -158,7 +159,7 @@ public class GameScene extends BaseScene{
 		createBackground();
 		createPhysics();
 		createHud();
-		createWindow();
+		createWindows();
 		initializeGame();		
 		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
         //GameScene.this.attachChild(debug);
@@ -183,6 +184,10 @@ public class GameScene extends BaseScene{
 				Random rand = new Random();
 				int box;
 				updates++;
+				
+				if (updates < START_GAME_UPDATES) {
+					availablePause = false;
+				}
 				
 				if (updates == 50) {
 					countdownText.setText("2");
@@ -1160,8 +1165,9 @@ public class GameScene extends BaseScene{
 		this.setBackground(background);
 	}
 	
-	private void createWindow() {
+	private void createWindows() {
 		window = new Sprite(0, 0, resourcesManager.game_window_region, vbom);
+		pauseWindow = new Sprite(0, 0, resourcesManager.game_pause_window_region, vbom);
 		fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		fade.setColor(Color.BLACK);
 		fade.setAlpha(0.75f);
@@ -1179,7 +1185,7 @@ public class GameScene extends BaseScene{
 		scoreText.setText("Score: " + score);
 		countdownText.setText("3");
 		
-		scoreText.setColor(Color.WHITE_ARGB_PACKED_INT);
+		scoreText.setColor(0.906f, 0.906f, 0.91f);
 		countdownText.setColor(Color.RED_ARGB_PACKED_INT);
 
 		gameHud.attachChild(scoreText);
@@ -1200,22 +1206,59 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void displayPauseWindow() {
-		GameScene.this.setIgnoreUpdate(true);
+		availablePause = false;	
+		GameScene.this.setIgnoreUpdate(true);		
 		
-		pauseText = new Text(screenWidth/2 - 75, screenHeight/2 + 100, resourcesManager.pauseFont, "Pause", new TextOptions(HorizontalAlign.LEFT), vbom);
-		availablePause = false;		
+		pauseWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		
-		pauseText.setAnchorCenter(0, 0);
-		
-		window.setPosition(camera.getCenterX(), camera.getCenterY());
-		
-		pauseText.setColor(Color.RED_ARGB_PACKED_INT);
-		
-		pauseText.setText("Pause");
+	    final Sprite retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			gameHud.dispose();
+					gameHud.setVisible(false);
+					detachChild(gameHud);
+					myGarbageCollection();
+					SceneManager.getInstance().loadGameScene(engine, GameScene.this);
+				}
+	    		return true;
+	    	};
+	    };
+	    final Sprite quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			gameHud.dispose();
+					gameHud.setVisible(false);
+					detachChild(gameHud);
+					myGarbageCollection();
+					SceneManager.getInstance().loadMenuScene(engine, GameScene.this);
+	    		}
+	    		return true;
+	    	};
+	    };
+	    final Sprite resumeButton = new Sprite(550, 50, resourcesManager.game_resume_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			availablePause = true;
+					gameHud.setVisible(true);
+					GameScene.this.detachChild(fade);
+					GameScene.this.detachChild(pauseWindow);
+	    			GameScene.this.setIgnoreUpdate(false);
+	    			GameScene.this.unregisterTouchArea(this);
+	    		    GameScene.this.unregisterTouchArea(retryButton);
+	    		    GameScene.this.unregisterTouchArea(quitButton);
+	    		}
+	    		return true;
+	    	};
+	    };
+	    GameScene.this.registerTouchArea(resumeButton);
+	    GameScene.this.registerTouchArea(retryButton);
+	    GameScene.this.registerTouchArea(quitButton);
+	    pauseWindow.attachChild(resumeButton);
+	    pauseWindow.attachChild(retryButton);	    
+	    pauseWindow.attachChild(quitButton);
 		
 		GameScene.this.attachChild(fade);
-		GameScene.this.attachChild(window);
-		GameScene.this.attachChild(pauseText);
+		GameScene.this.attachChild(pauseWindow);
 		
 		gameHud.setVisible(false);
 	}
@@ -2159,10 +2202,8 @@ public class GameScene extends BaseScene{
 					availablePause = true;
 					gameHud.setVisible(true);
 					GameScene.this.detachChild(fade);
-					GameScene.this.detachChild(window);
-					GameScene.this.detachChild(pauseText);
+					GameScene.this.detachChild(pauseWindow);
 	    			GameScene.this.setIgnoreUpdate(false);
-	    			//camera.setChaseEntity(player);
 				} else {
 					gameHud.dispose();
 					gameHud.setVisible(false);
