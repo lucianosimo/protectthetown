@@ -104,7 +104,7 @@ public class ResourcesManager {
 	public ITiledTextureRegion game_small_explosion_region;
 	
 	//Windows
-	public ITextureRegion game_window_region;
+	public ITextureRegion game_over_window_region;
 	public ITextureRegion game_pause_window_region;
 	
 	//Buttons
@@ -221,7 +221,7 @@ public class ResourcesManager {
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
 		
 		gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 2000, 2000, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		gameWindowsTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
+		gameWindowsTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 2000, 2000, TextureOptions.BILINEAR);
 		gameAnimatedTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR);
 		gameBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		
@@ -269,7 +269,7 @@ public class ResourcesManager {
 		game_earth_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_earth.png");
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		
-		game_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_window.png");
+		game_over_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_over_window.png");
 		game_pause_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_window.png");
 		
 		game_resume_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_resume_button.png");

@@ -14,6 +14,7 @@ import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import android.annotation.SuppressLint;
 import android.view.KeyEvent;
 
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
@@ -38,6 +39,15 @@ public class GameActivity extends BaseGameActivity {
 		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);
 	}*/
 	
+	@SuppressLint("NewApi")
+	  private void dimSoftButtonsIfPossible() {
+	    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+	    if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+	      //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+	    	getWindow().getDecorView().setSystemUiVisibility(8);
+	    }
+	  }
+	
 	@Override
 	public EngineOptions onCreateEngineOptions() {
 		camera = new BoundCamera(0, 0, 1280, 720);
@@ -61,6 +71,13 @@ public class GameActivity extends BaseGameActivity {
 		super.onResume();
 		mEngine.getSoundManager().setMasterVolume(1);
 		mEngine.getMusicManager().setMasterVolume(1);
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				dimSoftButtonsIfPossible();
+			}
+		});
 	}
 
 	@Override
@@ -84,6 +101,13 @@ public class GameActivity extends BaseGameActivity {
 				SceneManager.getInstance().createMenuScene();
 			}
 		}));
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				dimSoftButtonsIfPossible();
+			}
+		});
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 	}
 	
@@ -103,6 +127,7 @@ public class GameActivity extends BaseGameActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			SceneManager.getInstance().getCurrentScene().onBackKeyPressed();
+			dimSoftButtonsIfPossible();
 		}
 		return false;
 	}

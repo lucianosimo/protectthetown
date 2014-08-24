@@ -65,7 +65,7 @@ public class GameScene extends BaseScene{
 	//Texts
 	private Text scoreText;
 	private Text countdownText;
-	private Text gameOverText;
+	//private Text gameOverText;
 	private Text finalScoreText;
 	//private Text pauseText;
 	
@@ -88,7 +88,7 @@ public class GameScene extends BaseScene{
 	private int score = 0;
 	
 	//Windows
-	private Sprite window;
+	private Sprite gameOverWindow;
 	private Sprite pauseWindow;
 	
 	//Dome
@@ -1166,7 +1166,7 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createWindows() {
-		window = new Sprite(0, 0, resourcesManager.game_window_region, vbom);
+		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		pauseWindow = new Sprite(0, 0, resourcesManager.game_pause_window_region, vbom);
 		fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		fade.setColor(Color.BLACK);
@@ -1264,7 +1264,7 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void gameOver() {
-		Sprite gameOverWindow = new Sprite(0, 0, resourcesManager.game_window_region, vbom);
+		Sprite gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
 		fade.setColor(Color.BLACK);
@@ -1275,24 +1275,46 @@ public class GameScene extends BaseScene{
 		
 		GameScene.this.setIgnoreUpdate(true);
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
-		        
-		gameOverText = new Text(screenWidth/2 - 200, screenHeight/2 + 100, resourcesManager.gameOverFont, "GameOver!!! ", new TextOptions(HorizontalAlign.LEFT), vbom);
-		finalScoreText = new Text(screenWidth/2 - 275, screenHeight/2, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		
-		gameOverText.setAnchorCenter(0, 0);
-		finalScoreText.setAnchorCenter(0, 0);
+		finalScoreText = new Text(275, 256, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		
-		gameOverText.setColor(Color.RED_ARGB_PACKED_INT);
 		finalScoreText.setColor(Color.RED_ARGB_PACKED_INT);
-		
-		gameOverText.setText("Game Over!!!");
+
 		finalScoreText.setText("Your score: " + score);
+		
+		final Sprite retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			gameHud.dispose();
+					gameHud.setVisible(false);
+					detachChild(gameHud);
+					myGarbageCollection();
+					SceneManager.getInstance().loadGameScene(engine, GameScene.this);
+				}
+	    		return true;
+	    	};
+	    };
+	    final Sprite quitButton = new Sprite(150, 50, resourcesManager.game_quit_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			gameHud.dispose();
+					gameHud.setVisible(false);
+					detachChild(gameHud);
+					myGarbageCollection();
+					SceneManager.getInstance().loadMenuScene(engine, GameScene.this);
+	    		}
+	    		return true;
+	    	};
+	    };
 		
 		gameHud.setVisible(false);
 		GameScene.this.attachChild(fade);
 		GameScene.this.attachChild(gameOverWindow);
-		GameScene.this.attachChild(gameOverText);
-		GameScene.this.attachChild(finalScoreText);
+		GameScene.this.registerTouchArea(retryButton);
+	    GameScene.this.registerTouchArea(quitButton);
+		gameOverWindow.attachChild(retryButton);
+		gameOverWindow.attachChild(quitButton);
+		gameOverWindow.attachChild(finalScoreText);
 	}
 	
 	private void createExplosion(float x, float y) {
