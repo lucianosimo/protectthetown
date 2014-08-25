@@ -91,6 +91,12 @@ public class GameScene extends BaseScene{
 	private Sprite gameOverWindow;
 	private Sprite pauseWindow;
 	
+	//Buttons
+	private Sprite resumeButton;
+	private Sprite retryButton;
+	private Sprite quitButton;
+	private Sprite pauseButton;
+	
 	//Dome
 	private Sprite dome;
 	private Sprite shieldBarFrame;
@@ -242,7 +248,7 @@ public class GameScene extends BaseScene{
 					if (shieldBar.getWidth() > 0) {
 						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
 					}
-					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 150) + shieldBar.getWidth() / 2, shieldBar.getY());
+					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 450) + shieldBar.getWidth() / 2, shieldBar.getY());
 				}
 			}
 		});
@@ -1178,6 +1184,16 @@ public class GameScene extends BaseScene{
 		
 		scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		countdownText = new Text(screenWidth/2, screenHeight/2, resourcesManager.countdownFont, "321Protect!", new TextOptions(HorizontalAlign.CENTER), vbom);
+		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				GameScene.this.unregisterTouchArea(pauseButton);
+				if (availablePause) {
+					displayPauseWindow();
+				}
+				return true;
+			}
+		};
 		
 		scoreText.setAnchorCenter(0, 0);
 		countdownText.setAnchorCenter(0, 0);
@@ -1185,11 +1201,15 @@ public class GameScene extends BaseScene{
 		scoreText.setText("Score: " + score);
 		countdownText.setText("3");
 		
-		scoreText.setColor(0.906f, 0.906f, 0.91f);
+		//scoreText.setColor(0.596f, 0.596f, 0.6f);
+		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		countdownText.setColor(Color.RED_ARGB_PACKED_INT);
 
 		gameHud.attachChild(scoreText);
 		gameHud.attachChild(countdownText);
+		gameHud.attachChild(pauseButton);
+		
+		GameScene.this.registerTouchArea(pauseButton);
 
 		camera.setHUD(gameHud);
 	}
@@ -1211,7 +1231,7 @@ public class GameScene extends BaseScene{
 		
 		pauseWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		
-	    final Sprite retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
+	    retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1223,7 +1243,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    final Sprite quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
+	    quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1235,7 +1255,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    final Sprite resumeButton = new Sprite(550, 50, resourcesManager.game_resume_button_region, vbom){
+	    resumeButton = new Sprite(550, 50, resourcesManager.game_resume_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			availablePause = true;
@@ -1246,6 +1266,7 @@ public class GameScene extends BaseScene{
 	    			GameScene.this.unregisterTouchArea(this);
 	    		    GameScene.this.unregisterTouchArea(retryButton);
 	    		    GameScene.this.unregisterTouchArea(quitButton);
+	    		    GameScene.this.registerTouchArea(pauseButton);
 	    		}
 	    		return true;
 	    	};
@@ -1264,7 +1285,7 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void gameOver() {
-		Sprite gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
+		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
 		fade.setColor(Color.BLACK);
@@ -1282,7 +1303,7 @@ public class GameScene extends BaseScene{
 
 		finalScoreText.setText("Your score: " + score);
 		
-		final Sprite retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
+		retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1294,7 +1315,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    final Sprite quitButton = new Sprite(150, 50, resourcesManager.game_quit_button_region, vbom){
+	    quitButton = new Sprite(150, 50, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1346,7 +1367,7 @@ public class GameScene extends BaseScene{
 								ref.setVisible(false);
 								ref.getBombBody().setActive(false);
 								GameScene.this.unregisterTouchArea(ref);
-								registerEntityModifier(new DelayModifier(1f, new IEntityModifierListener() {
+								registerEntityModifier(new DelayModifier(0.1f, new IEntityModifierListener() {
 									
 									@Override
 									public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
@@ -1462,10 +1483,10 @@ public class GameScene extends BaseScene{
 		float shieldBarWidth = 400;
 		float shieldBarHeight = 25;
 		
-		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 + 50, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 + 50, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 + 50, 665, resourcesManager.game_shield_bar_frame_region, vbom);
-		shieldBarLogo = new Sprite(screenWidth/2 + 130, 670, resourcesManager.game_shield_bar_logo_region, vbom);
+		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 250, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 250, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 250, 665, resourcesManager.game_shield_bar_frame_region, vbom);
+		shieldBarLogo = new Sprite(screenWidth/2 - 170, 670, resourcesManager.game_shield_bar_logo_region, vbom);
 		
 		dome = new Sprite(-1500, 1500, resourcesManager.game_dome_region, vbom);
 		
@@ -2226,6 +2247,10 @@ public class GameScene extends BaseScene{
 					GameScene.this.detachChild(fade);
 					GameScene.this.detachChild(pauseWindow);
 	    			GameScene.this.setIgnoreUpdate(false);
+	    			GameScene.this.unregisterTouchArea(resumeButton);
+	    		    GameScene.this.unregisterTouchArea(retryButton);
+	    		    GameScene.this.unregisterTouchArea(quitButton);
+	    		    GameScene.this.registerTouchArea(pauseButton);
 				} else {
 					gameHud.dispose();
 					gameHud.setVisible(false);
