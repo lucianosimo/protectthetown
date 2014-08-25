@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
+   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,14 +24,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.61595628"
-     inkscape:cx="-108.32657"
-     inkscape:cy="540.14717"
+     inkscape:zoom="0.5"
+     inkscape:cx="1764.9143"
+     inkscape:cy="-355.946"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1018"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -2910,7 +2910,8 @@
      transform="translate(0,-332.36218)"
      id="layer1"
      inkscape:groupmode="layer"
-     inkscape:label="Capa 1">
+     inkscape:label="Capa 1"
+     style="display:inline">
     <g
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
@@ -4729,7 +4730,7 @@
         <polygon
            style="opacity:0.33999999;fill:#ffffff"
            id="polygon15"
-           points="36.8,267.7 215.7,252 95.3,385.2 217.9,255.3 196.3,432.6 221.8,255.7 309.6,411.4 225.2,253.9 387.2,329.3 227.7,250.8 404.4,231.4 225.5,247.1 345.9,113.9 223.3,243.7 244.9,66.5 219.5,243.4 131.7,87.7 216,245.2 54.1,169.7 213.5,248.3 "
+           points="95.3,385.2 217.9,255.3 196.3,432.6 221.8,255.7 309.6,411.4 225.2,253.9 387.2,329.3 227.7,250.8 404.4,231.4 225.5,247.1 345.9,113.9 223.3,243.7 244.9,66.5 219.5,243.4 131.7,87.7 216,245.2 54.1,169.7 213.5,248.3 36.8,267.7 215.7,252 "
            enable-background="new    " />
         <circle
            style="fill:#f9f05a"
@@ -19501,100 +19502,7 @@
        id="rect7056-0"
        style="fill:#b3b3b3;fill-opacity:1;stroke:none" />
     <g
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_floor_1.png"
-       id="g7200">
-      <g
-         transform="matrix(0.76190476,0,0,0.71428571,-618.79739,531.05277)"
-         id="g7094-8">
-        <path
-           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
-           id="path93-5-6"
-           inkscape:connector-curvature="0"
-           style="fill:#93db24;stroke:none" />
-        <path
-           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
-           id="path95-5-7"
-           inkscape:connector-curvature="0"
-           style="fill:#80be1f;stroke:none" />
-        <path
-           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
-           id="path97-5-7"
-           inkscape:connector-curvature="0"
-           style="fill:#bb8044;stroke:none" />
-        <path
-           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
-           id="path99-6-2"
-           inkscape:connector-curvature="0"
-           style="fill:#c99869;stroke:none" />
-        <path
-           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
-           id="path101-29"
-           inkscape:connector-curvature="0"
-           style="fill:#c58f5c;stroke:none" />
-      </g>
-      <g
-         transform="matrix(0.76190476,0,0,0.71428571,-565.46409,531.05277)"
-         id="g7094-8-4">
-        <path
-           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
-           id="path93-5-6-1"
-           inkscape:connector-curvature="0"
-           style="fill:#93db24;stroke:none" />
-        <path
-           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
-           id="path95-5-7-9"
-           inkscape:connector-curvature="0"
-           style="fill:#80be1f;stroke:none" />
-        <path
-           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
-           id="path97-5-7-6"
-           inkscape:connector-curvature="0"
-           style="fill:#bb8044;stroke:none" />
-        <path
-           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
-           id="path99-6-2-9"
-           inkscape:connector-curvature="0"
-           style="fill:#c99869;stroke:none" />
-        <path
-           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
-           id="path101-29-8"
-           inkscape:connector-curvature="0"
-           style="fill:#c58f5c;stroke:none" />
-      </g>
-      <g
-         transform="matrix(0.76190476,0,0,0.71428571,-512.13069,531.05277)"
-         id="g7094-8-2">
-        <path
-           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
-           id="path93-5-6-5"
-           inkscape:connector-curvature="0"
-           style="fill:#93db24;stroke:none" />
-        <path
-           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
-           id="path95-5-7-5"
-           inkscape:connector-curvature="0"
-           style="fill:#80be1f;stroke:none" />
-        <path
-           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
-           id="path97-5-7-4"
-           inkscape:connector-curvature="0"
-           style="fill:#bb8044;stroke:none" />
-        <path
-           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
-           id="path99-6-2-91"
-           inkscape:connector-curvature="0"
-           style="fill:#c99869;stroke:none" />
-        <path
-           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
-           id="path101-29-2"
-           inkscape:connector-curvature="0"
-           style="fill:#c58f5c;stroke:none" />
-      </g>
-    </g>
-    <g
-       transform="translate(-2459.663,-1763.3565)"
+       transform="translate(-2376.3229,-286.99553)"
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_background.png"
@@ -19629,7 +19537,9 @@
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
        xml:space="preserve"><tspan
          id="tspan6642"
-         sodipodi:role="line" /></text>
+         sodipodi:role="line"
+         x="-894.99518"
+         y="-247.72614" /></text>
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
@@ -19991,24 +19901,24 @@
       <polygon
          style="fill:#00c764"
          id="polygon96"
-         points="930.444,86.955 944.707,134.047 821.548,134.047 835.811,86.955 " />
+         points="821.548,134.047 835.811,86.955 930.444,86.955 944.707,134.047 " />
       <polygon
          style="fill:#17a85f"
          id="polygon98"
-         points="930.444,86.955 920.951,86.955 928.528,124.864 941.998,123.854 " />
+         points="928.528,124.864 941.998,123.854 930.444,86.955 920.951,86.955 " />
       <polygon
          style="fill:none;stroke:#1e5732;stroke-width:3.4921;stroke-miterlimit:10"
          id="polygon100"
-         points="930.444,86.955 944.707,134.047 821.548,134.047 835.811,86.955 "
+         points="821.548,134.047 835.811,86.955 930.444,86.955 944.707,134.047 "
          stroke-miterlimit="10" />
       <polygon
          style="fill:#00c764"
          id="polygon102"
-         points="851.121,86.955 841.473,63.409 924.782,63.409 915.134,86.955 " />
+         points="924.782,63.409 915.134,86.955 851.121,86.955 841.473,63.409 " />
       <polygon
          style="fill:#c7c7c7"
          id="polygon104"
-         points="861.228,63.409 850.739,63.409 856.63,86.955 867.518,86.92 " />
+         points="856.63,86.955 867.518,86.92 861.228,63.409 850.739,63.409 " />
       <polyline
          style="fill:#c7c7c7"
          id="polyline106"
@@ -20016,11 +19926,11 @@
       <polygon
          style="fill:#17a85f"
          id="polygon108"
-         points="924.782,63.409 908.368,63.409 899.616,86.955 915.134,86.955 " />
+         points="899.616,86.955 915.134,86.955 924.782,63.409 908.368,63.409 " />
       <polygon
          style="fill:none;stroke:#1e5732;stroke-width:3.4921;stroke-miterlimit:10"
          id="polygon110"
-         points="851.121,86.955 841.473,63.409 924.782,63.409 915.134,86.955 "
+         points="924.782,63.409 915.134,86.955 851.121,86.955 841.473,63.409 "
          stroke-miterlimit="10" />
       <path
          style="fill:#00c764"
@@ -20353,7 +20263,7 @@
         <polygon
            style="fill:#e70012"
            id="polygon204"
-           points="466.302,764.685 453.313,702.912 409.151,728.278 411.457,815.057 " />
+           points="409.151,728.278 411.457,815.057 466.302,764.685 453.313,702.912 " />
         <path
            style="fill:#ba000f"
            inkscape:connector-curvature="0"
@@ -20362,21 +20272,21 @@
         <polygon
            style="fill:none;stroke:#691119;stroke-width:5.0447998;stroke-miterlimit:10"
            id="polygon208"
-           points="466.302,764.685 453.313,702.912 409.151,728.278 411.457,815.057 "
+           points="409.151,728.278 411.457,815.057 466.302,764.685 453.313,702.912 "
            stroke-miterlimit="10" />
       </g>
       <polygon
          style="fill:#a6b9d5"
          id="polygon210"
-         points="579.779,962.736 564.307,900.089 480.319,900.089 464.848,962.736 " />
+         points="480.319,900.089 464.848,962.736 579.779,962.736 564.307,900.089 " />
       <polygon
          style="fill:#8190a6"
          id="polygon212"
-         points="564.307,900.089 568.481,910.717 476.1,910.717 480.319,900.089 " />
+         points="476.1,910.717 480.319,900.089 564.307,900.089 568.481,910.717 " />
       <polygon
          style="fill:none;stroke:#515457;stroke-width:5.27710009;stroke-miterlimit:10"
          id="polygon214"
-         points="579.779,962.736 564.307,900.089 480.319,900.089 464.848,962.736 "
+         points="480.319,900.089 464.848,962.736 579.779,962.736 564.307,900.089 "
          stroke-miterlimit="10" />
       <line
          style="fill:none;stroke:#515457;stroke-width:5.27710009;stroke-miterlimit:10"
@@ -20415,7 +20325,7 @@
         <polygon
            style="fill:#e70012"
            id="polygon226"
-           points="403.638,798.611 302.498,925.716 303.059,962.736 463.953,856.054 463.953,770.235 " />
+           points="303.059,962.736 463.953,856.054 463.953,770.235 403.638,798.611 302.498,925.716 " />
         <path
            style="fill:#ba000f"
            inkscape:connector-curvature="0"
@@ -20424,7 +20334,7 @@
         <polygon
            style="fill:none;stroke:#691119;stroke-width:4.52390003;stroke-miterlimit:10"
            id="polygon230"
-           points="403.638,798.611 302.498,925.716 303.059,962.736 463.953,856.054 463.953,770.235 "
+           points="303.059,962.736 463.953,856.054 463.953,770.235 403.638,798.611 302.498,925.716 "
            stroke-miterlimit="10" />
       </g>
       <g
@@ -20432,7 +20342,7 @@
         <polygon
            style="fill:#e70012"
            id="polygon234"
-           points="578.325,764.685 591.314,702.912 635.475,728.278 633.17,815.057 " />
+           points="635.475,728.278 633.17,815.057 578.325,764.685 591.314,702.912 " />
         <path
            style="fill:#ba000f"
            inkscape:connector-curvature="0"
@@ -20441,7 +20351,7 @@
         <polygon
            style="fill:none;stroke:#691119;stroke-width:5.0447998;stroke-miterlimit:10"
            id="polygon238"
-           points="578.325,764.685 591.314,702.912 635.475,728.278 633.17,815.057 "
+           points="635.475,728.278 633.17,815.057 578.325,764.685 591.314,702.912 "
            stroke-miterlimit="10" />
       </g>
       <g
@@ -20449,7 +20359,7 @@
         <polygon
            style="fill:#e70012"
            id="polygon242"
-           points="640.988,798.611 742.128,925.716 741.567,962.736 580.674,856.054 580.674,770.235 " />
+           points="741.567,962.736 580.674,856.054 580.674,770.235 640.988,798.611 742.128,925.716 " />
         <path
            style="fill:#ba000f"
            inkscape:connector-curvature="0"
@@ -20458,7 +20368,7 @@
         <polygon
            style="fill:none;stroke:#691119;stroke-width:4.52390003;stroke-miterlimit:10"
            id="polygon246"
-           points="640.988,798.611 742.128,925.716 741.567,962.736 580.674,856.054 580.674,770.235 "
+           points="741.567,962.736 580.674,856.054 580.674,770.235 640.988,798.611 742.128,925.716 "
            stroke-miterlimit="10" />
       </g>
       <path
@@ -20519,15 +20429,15 @@
       <polygon
          style="fill:#a6b9d5"
          id="polygon265"
-         points="1008.728,961.736 1123.659,961.736 1108.187,899.089 1024.199,899.089 " />
+         points="1108.187,899.089 1024.199,899.089 1008.728,961.736 1123.659,961.736 " />
       <polygon
          style="fill:#8190a6"
          id="polygon267"
-         points="1024.199,899.089 1108.187,899.089 1112.361,909.717 1019.98,909.717 " />
+         points="1112.361,909.717 1019.98,909.717 1024.199,899.089 1108.187,899.089 " />
       <polygon
          style="fill:none;stroke:#515457;stroke-width:5.27710009;stroke-miterlimit:10"
          id="polygon269"
-         points="1008.728,961.736 1123.659,961.736 1108.187,899.089 1024.199,899.089 "
+         points="1108.187,899.089 1024.199,899.089 1008.728,961.736 1123.659,961.736 "
          stroke-miterlimit="10" />
       <line
          style="fill:none;stroke:#515457;stroke-width:5.27710009;stroke-miterlimit:10"
@@ -20581,7 +20491,7 @@
         <polygon
            style="fill:#2880bf"
            id="polygon285"
-           points="934.697,784.413 981.629,775.786 981.629,746.726 934.697,760.942 " />
+           points="981.629,746.726 934.697,760.942 934.697,784.413 981.629,775.786 " />
         <rect
            style="fill:none;stroke:#22394c;stroke-width:5.13999987;stroke-miterlimit:10"
            id="rect287"
@@ -20604,7 +20514,7 @@
         <polygon
            style="fill:#309ae7"
            id="polygon293"
-           points="917.728,879.695 1013.037,872.257 1005.888,746.726 928.025,775.102 843.552,913.504 870.264,922.838 " />
+           points="1005.888,746.726 928.025,775.102 843.552,913.504 870.264,922.838 917.728,879.695 1013.037,872.257 " />
         <path
            style="fill:#2880bf"
            inkscape:connector-curvature="0"
@@ -20613,7 +20523,7 @@
         <polygon
            style="fill:none;stroke:#22394c;stroke-width:5.13999987;stroke-miterlimit:10"
            id="polygon297"
-           points="917.728,879.695 1013.037,872.257 1005.888,746.726 928.025,775.102 843.552,913.504 870.264,922.838 "
+           points="1005.888,746.726 928.025,775.102 843.552,913.504 870.264,922.838 917.728,879.695 1013.037,872.257 "
            stroke-miterlimit="10" />
       </g>
       <rect
@@ -20636,7 +20546,7 @@
         <polygon
            style="fill:#2880bf"
            id="polygon305"
-           points="1197.644,784.413 1150.713,775.786 1150.713,746.726 1197.644,760.942 " />
+           points="1150.713,746.726 1197.644,760.942 1197.644,784.413 1150.713,775.786 " />
         <rect
            style="fill:none;stroke:#22394c;stroke-width:5.13999987;stroke-miterlimit:10"
            id="rect307"
@@ -20659,7 +20569,7 @@
         <polygon
            style="fill:#309ae7"
            id="polygon313"
-           points="1214.613,879.695 1119.304,872.257 1126.453,746.726 1204.316,775.102 1288.79,913.504 1262.077,922.838 " />
+           points="1126.453,746.726 1204.316,775.102 1288.79,913.504 1262.077,922.838 1214.613,879.695 1119.304,872.257 " />
         <path
            style="fill:#2880bf"
            inkscape:connector-curvature="0"
@@ -20668,7 +20578,7 @@
         <polygon
            style="fill:none;stroke:#22394c;stroke-width:5.13999987;stroke-miterlimit:10"
            id="polygon317"
-           points="1214.613,879.695 1119.304,872.257 1126.453,746.726 1204.316,775.102 1288.79,913.504 1262.077,922.838 "
+           points="1126.453,746.726 1204.316,775.102 1288.79,913.504 1262.077,922.838 1214.613,879.695 1119.304,872.257 "
            stroke-miterlimit="10" />
       </g>
       <path
@@ -20734,7 +20644,7 @@
          id="rect337"
          style="fill:#00ff21" />
       <polygon
-         points="127.32,652.913 127.32,679.015 133.322,679.015 133.322,647.911 115.551,647.137 116.491,652.913 "
+         points="133.322,679.015 133.322,647.911 115.551,647.137 116.491,652.913 127.32,652.913 127.32,679.015 "
          id="polygon339"
          style="fill:#00d11b" />
       <rect
@@ -20793,16 +20703,16 @@
        transform="matrix(0.5,0,0,0.5,-1018.1522,1446.9073)"
        id="Shell">
       <polygon
-         points="124.589,369.586 133.322,382.26 133.322,414.86 115.551,414.86 115.551,382.26 "
+         points="133.322,414.86 115.551,414.86 115.551,382.26 124.589,369.586 133.322,382.26 "
          id="polygon358"
          style="fill:#c9aa30" />
       <polygon
-         points="127.001,384.147 126.464,415.321 133.322,415.321 133.72,382.355 124.589,369.586 120.788,374.916 "
+         points="133.322,415.321 133.72,382.355 124.589,369.586 120.788,374.916 127.001,384.147 126.464,415.321 "
          id="polygon360"
          style="fill:#a38200" />
       <polygon
          stroke-miterlimit="10"
-         points="124.589,369.586 133.322,382.26 133.322,414.86 115.551,414.86 115.551,382.26 "
+         points="133.322,414.86 115.551,414.86 115.551,382.26 124.589,369.586 133.322,382.26 "
          id="polygon362"
          style="fill:none;stroke:#423810;stroke-width:5.13999987;stroke-miterlimit:10" />
       <line
@@ -20818,11 +20728,11 @@
        transform="matrix(0.5,0,0,0.5,-1018.1522,1446.9073)"
        id="Missile">
       <polygon
-         points="124.589,270.074 133.322,282.749 133.322,315.349 115.551,315.349 115.551,282.749 "
+         points="133.322,315.349 115.551,315.349 115.551,282.749 124.589,270.074 133.322,282.749 "
          id="polygon367"
          style="fill:#ffffff" />
       <polygon
-         points="127.001,283.407 126.464,314.582 133.322,314.582 133.72,281.615 124.589,268.846 120.788,274.176 "
+         points="133.322,314.582 133.72,281.615 124.589,268.846 120.788,274.176 127.001,283.407 126.464,314.582 "
          id="polygon369"
          style="fill:#bababa" />
       <rect
@@ -20834,22 +20744,22 @@
          style="fill:#ff000a" />
       <polygon
          stroke-miterlimit="10"
-         points="124.589,270.074 133.322,282.749 133.322,315.349 115.551,315.349 115.551,282.749 "
+         points="133.322,315.349 115.551,315.349 115.551,282.749 124.589,270.074 133.322,282.749 "
          id="polygon373"
          style="fill:none;stroke:#4f3f3f;stroke-width:5.13999987;stroke-miterlimit:10" />
       <polygon
          stroke-miterlimit="10"
-         points="104.144,310.825 104.144,302.332 115.551,297.808 115.551,310.825 "
+         points="115.551,297.808 115.551,310.825 104.144,310.825 104.144,302.332 "
          id="polygon375"
          style="fill:#ffffff;stroke:#4f3f3f;stroke-width:5.13999987;stroke-miterlimit:10" />
       <polygon
          stroke-miterlimit="10"
-         points="144.729,310.825 144.729,302.332 133.322,297.808 133.322,310.825 "
+         points="133.322,297.808 133.322,310.825 144.729,310.825 144.729,302.332 "
          id="polygon377"
          style="fill:#ffffff;stroke:#4f3f3f;stroke-width:5.13999987;stroke-miterlimit:10" />
       <polygon
          stroke-miterlimit="10"
-         points="117.625,323.68 119.887,314.582 128.986,314.582 131.248,323.68 "
+         points="128.986,314.582 131.248,323.68 117.625,323.68 119.887,314.582 "
          id="polygon379"
          style="fill:#ffffff;stroke:#4f3f3f;stroke-width:5.13999987;stroke-miterlimit:10" />
     </g>
@@ -20933,19 +20843,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon404"
-             points="297.2,1004.5 286.4,1001.5 298.8,1003.4 " />
+             points="298.8,1003.4 297.2,1004.5 286.4,1001.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon406"
-             points="281.6,985.9 298.9,989.9 279.1,987.8 " />
+             points="279.1,987.8 281.6,985.9 298.9,989.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon408"
-             points="277.5,988.7 291.9,992.1 275.4,990.3 " />
+             points="275.4,990.3 277.5,988.7 291.9,992.1 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon410"
-             points="301.2,1001.7 293.6,999.6 302.3,1001 " />
+             points="302.3,1001 301.2,1001.7 293.6,999.6 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -20960,19 +20870,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon416"
-             points="320.9,988.2 310,985.2 322.4,987 " />
+             points="322.4,987 320.9,988.2 310,985.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon418"
-             points="305.2,969.7 322.7,973.5 302.7,971.4 " />
+             points="302.7,971.4 305.2,969.7 322.7,973.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon420"
-             points="301.2,972.6 315.5,975.8 299.1,974 " />
+             points="299.1,974 301.2,972.6 315.5,975.8 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon422"
-             points="324.8,985.5 317.2,983.4 325.9,984.7 " />
+             points="325.9,984.7 324.8,985.5 317.2,983.4 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -20987,19 +20897,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon428"
-             points="344.5,972 333.7,969 346,970.9 " />
+             points="346,970.9 344.5,972 333.7,969 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon430"
-             points="328.9,953.4 346.2,957.4 326.2,955.3 " />
+             points="326.2,955.3 328.9,953.4 346.2,957.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon432"
-             points="324.8,956.2 339.1,959.6 322.5,957.8 " />
+             points="322.5,957.8 324.8,956.2 339.1,959.6 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon434"
-             points="348.4,969.2 340.8,967.1 349.5,968.5 " />
+             points="349.5,968.5 348.4,969.2 340.8,967.1 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21014,19 +20924,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon440"
-             points="368.2,955.5 357.4,952.6 369.8,954.6 " />
+             points="369.8,954.6 368.2,955.5 357.4,952.6 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon442"
-             points="352.6,937.1 369.9,941.1 350.1,938.8 " />
+             points="350.1,938.8 352.6,937.1 369.9,941.1 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon444"
-             points="348.6,939.9 362.9,943.2 346.3,941.5 " />
+             points="346.3,941.5 348.6,939.9 362.9,943.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon446"
-             points="372.2,952.9 364.6,950.8 373.3,952 " />
+             points="373.3,952 372.2,952.9 364.6,950.8 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21041,19 +20951,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon452"
-             points="391.7,939.4 381,936.4 393.3,938.2 " />
+             points="393.3,938.2 391.7,939.4 381,936.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon454"
-             points="376.3,920.8 393.6,924.7 373.6,922.6 " />
+             points="373.6,922.6 376.3,920.8 393.6,924.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon456"
-             points="372,923.8 386.5,927 369.9,925.2 " />
+             points="369.9,925.2 372,923.8 386.5,927 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon458"
-             points="395.8,936.6 388.1,934.6 396.8,935.9 " />
+             points="396.8,935.9 395.8,936.6 388.1,934.6 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21068,19 +20978,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon464"
-             points="593,800.9 594.1,789.7 591.4,802 " />
+             points="591.4,802 593,800.9 594.1,789.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon466"
-             points="581.3,779.8 578.8,797.3 583.8,777.9 " />
+             points="583.8,777.9 581.3,779.8 578.8,797.3 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon468"
-             points="585.4,776.8 583.3,791.4 587.5,775.4 " />
+             points="587.5,775.4 585.4,776.8 583.3,791.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon470"
-             points="589,803.5 589.7,795.7 587.9,804.4 " />
+             points="587.9,804.4 589,803.5 589.7,795.7 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21095,19 +21005,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon476"
-             points="569.3,817.2 570.5,805.9 567.8,818.2 " />
+             points="567.8,818.2 569.3,817.2 570.5,805.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon478"
-             points="557.7,795.9 555.1,813.5 560.2,794.2 " />
+             points="560.2,794.2 557.7,795.9 555.1,813.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon480"
-             points="561.8,793.1 559.6,807.8 563.9,791.7 " />
+             points="563.9,791.7 561.8,793.1 559.6,807.8 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon482"
-             points="565.4,819.8 566.1,812 564.3,820.5 " />
+             points="564.3,820.5 565.4,819.8 566.1,812 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21122,19 +21032,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon488"
-             points="545.7,833.3 546.8,822.2 544.2,834.5 " />
+             points="544.2,834.5 545.7,833.3 546.8,822.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon490"
-             points="534,812.2 531.5,829.8 536.7,810.4 " />
+             points="536.7,810.4 534,812.2 531.5,829.8 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon492"
-             points="538.1,809.3 536.2,823.9 540.4,807.9 " />
+             points="540.4,807.9 538.1,809.3 536.2,823.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon494"
-             points="541.8,836 542.6,828.1 540.7,836.9 " />
+             points="540.7,836.9 541.8,836 542.6,828.1 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21149,19 +21059,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon500"
-             points="522,849.7 523.1,838.5 520.4,850.8 " />
+             points="520.4,850.8 522,849.7 523.1,838.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon502"
-             points="510.3,828.6 507.8,846.1 513,826.7 " />
+             points="513,826.7 510.3,828.6 507.8,846.1 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon504"
-             points="514.4,825.8 512.4,840.4 516.6,824.2 " />
+             points="516.6,824.2 514.4,825.8 512.4,840.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon506"
-             points="518,852.5 518.9,844.6 516.9,853.2 " />
+             points="516.9,853.2 518,852.5 518.9,844.6 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21176,19 +21086,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon512"
-             points="498.5,866 499.6,854.9 496.9,867 " />
+             points="496.9,867 498.5,866 499.6,854.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon514"
-             points="486.8,844.7 484.3,862.3 489.3,843 " />
+             points="489.3,843 486.8,844.7 484.3,862.3 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon516"
-             points="490.9,841.9 488.8,856.5 493,840.5 " />
+             points="493,840.5 490.9,841.9 488.8,856.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon518"
-             points="494.5,868.6 495.2,860.8 493.4,869.5 " />
+             points="493.4,869.5 494.5,868.6 495.2,860.8 " />
         </g>
       </g>
       <g
@@ -21206,19 +21116,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon525"
-             points="313.5,1028.1 302.7,1025.2 315.1,1027 " />
+             points="315.1,1027 313.5,1028.1 302.7,1025.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon527"
-             points="297.9,1009.7 315.2,1013.6 295.4,1011.4 " />
+             points="295.4,1011.4 297.9,1009.7 315.2,1013.6 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon529"
-             points="293.9,1012.5 308.2,1015.7 291.8,1013.9 " />
+             points="291.8,1013.9 293.9,1012.5 308.2,1015.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon531"
-             points="317.5,1025.4 309.9,1023.3 318.6,1024.6 " />
+             points="318.6,1024.6 317.5,1025.4 309.9,1023.3 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21233,19 +21143,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon537"
-             points="337.2,1011.8 326.3,1008.8 338.7,1010.8 " />
+             points="338.7,1010.8 337.2,1011.8 326.3,1008.8 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon539"
-             points="321.6,993.4 338.9,997.3 319,995.2 " />
+             points="319,995.2 321.6,993.4 338.9,997.3 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon541"
-             points="317.5,996.2 331.8,999.4 315.4,997.7 " />
+             points="315.4,997.7 317.5,996.2 331.8,999.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon543"
-             points="341.1,1009.1 333.5,1007 342.2,1008.3 " />
+             points="342.2,1008.3 341.1,1009.1 333.5,1007 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21260,19 +21170,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon549"
-             points="360.8,995.6 350,992.7 362.3,994.5 " />
+             points="362.3,994.5 360.8,995.6 350,992.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon551"
-             points="345.2,977.2 362.5,981 342.5,978.9 " />
+             points="342.5,978.9 345.2,977.2 362.5,981 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon553"
-             points="341,980 355.5,983.2 338.9,981.4 " />
+             points="338.9,981.4 341,980 355.5,983.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon555"
-             points="364.7,992.8 357,990.8 365.9,992.1 " />
+             points="365.9,992.1 364.7,992.8 357,990.8 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21287,19 +21197,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon561"
-             points="384.6,979.3 373.7,976.4 386.1,978.2 " />
+             points="386.1,978.2 384.6,979.3 373.7,976.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon563"
-             points="369,960.8 386.2,964.7 366.3,962.6 " />
+             points="366.3,962.6 369,960.8 386.2,964.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon565"
-             points="364.9,963.6 379.2,966.9 362.6,965.1 " />
+             points="362.6,965.1 364.9,963.6 379.2,966.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon567"
-             points="388.5,976.5 380.9,974.4 389.6,975.8 " />
+             points="389.6,975.8 388.5,976.5 380.9,974.4 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21314,19 +21224,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon573"
-             points="408,963 397.2,960 409.6,962 " />
+             points="409.6,962 408,963 397.2,960 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon575"
-             points="392.4,944.6 409.9,948.5 389.9,946.3 " />
+             points="389.9,946.3 392.4,944.6 409.9,948.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon577"
-             points="388.4,947.4 402.8,950.6 386.2,948.9 " />
+             points="386.2,948.9 388.4,947.4 402.8,950.6 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon579"
-             points="412,960.3 404.4,958.2 413.1,959.5 " />
+             points="413.1,959.5 412,960.3 404.4,958.2 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21341,19 +21251,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon585"
-             points="609.3,824.5 610.4,813.4 607.7,825.6 " />
+             points="607.7,825.6 609.3,824.5 610.4,813.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon587"
-             points="597.6,803.4 595.1,821 600.1,801.6 " />
+             points="600.1,801.6 597.6,803.4 595.1,821 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon589"
-             points="601.7,800.6 599.6,815.2 603.8,799 " />
+             points="603.8,799 601.7,800.6 599.6,815.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon591"
-             points="605.3,827.3 606,819.4 604.2,828 " />
+             points="604.2,828 605.3,827.3 606,819.4 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21368,19 +21278,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon597"
-             points="585.7,840.8 586.8,829.7 584.1,841.9 " />
+             points="584.1,841.9 585.7,840.8 586.8,829.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon599"
-             points="574,819.7 571.5,837.3 576.5,817.9 " />
+             points="576.5,817.9 574,819.7 571.5,837.3 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon601"
-             points="578.1,816.8 576,831.4 580.2,815.3 " />
+             points="580.2,815.3 578.1,816.8 576,831.4 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon603"
-             points="581.7,843.5 582.4,835.6 580.6,844.3 " />
+             points="580.6,844.3 581.7,843.5 582.4,835.6 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21395,19 +21305,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon609"
-             points="562,857 563.2,845.9 560.5,858.1 " />
+             points="560.5,858.1 562,857 563.2,845.9 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon611"
-             points="550.4,835.9 547.8,853.5 552.9,834 " />
+             points="552.9,834 550.4,835.9 547.8,853.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon613"
-             points="554.4,833.1 552.5,847.7 556.7,831.5 " />
+             points="556.7,831.5 554.4,833.1 552.5,847.7 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon615"
-             points="558.1,859.8 558.9,851.9 557,860.5 " />
+             points="557,860.5 558.1,859.8 558.9,851.9 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21422,19 +21332,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon621"
-             points="538.3,873.4 539.4,862.3 536.7,874.4 " />
+             points="536.7,874.4 538.3,873.4 539.4,862.3 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon623"
-             points="526.6,852.2 524.1,869.8 529.1,850.5 " />
+             points="529.1,850.5 526.6,852.2 524.1,869.8 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon625"
-             points="530.7,849.4 528.6,864 532.9,848 " />
+             points="532.9,848 530.7,849.4 528.6,864 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon627"
-             points="534.3,876.1 535.2,868.2 533.2,876.9 " />
+             points="533.2,876.9 534.3,876.1 535.2,868.2 " />
         </g>
         <rect
            style="fill:#bfeeff"
@@ -21449,19 +21359,19 @@
           <polygon
              style="fill:#e0f6ff"
              id="polygon633"
-             points="514.8,889.6 515.9,878.5 513.2,890.7 " />
+             points="513.2,890.7 514.8,889.6 515.9,878.5 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon635"
-             points="503,868.5 500.6,886.1 505.6,866.7 " />
+             points="505.6,866.7 503,868.5 500.6,886.1 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon637"
-             points="507.2,865.5 505.1,880.2 509.3,864.1 " />
+             points="509.3,864.1 507.2,865.5 505.1,880.2 " />
           <polygon
              style="fill:#e0f6ff"
              id="polygon639"
-             points="510.7,892.3 511.5,884.4 509.7,893.1 " />
+             points="509.7,893.1 510.7,892.3 511.5,884.4 " />
         </g>
       </g>
       <path
@@ -21764,7 +21674,7 @@
        d="m -304.5,1888.2622 0,-1.5 0,-0.25 q 0,-1.05 0.15,-1.95 l 0.1,-0.45 0.05,-0.4501 0.05,-0.1 q 1.4,-6.45 9.3,-6.45 l 50.7,0 q 9.65,0 9.65,9.65 l 0,1.5 q -0.25,-9.15 -9.65,-9.15 l -50.7,0 q -7.25,0 -9.05,5.45 -0.55,1.5999 -0.6,3.7"
        id="path1125-2"
        inkscape:connector-curvature="0"
-       style="fill:#acc0c1;stroke:none;fill-opacity:1" />
+       style="fill:#acc0c1;fill-opacity:1;stroke:none" />
     <path
        d="m -304.5,1888.2622 q 0.05,-2.1 0.6,-3.7 l 14.05,0 q 4,0 4,4 l 0,15.25 q 0,4 -4,4 l -14.65,0 0,-19.55 m 70,41.9 0,7.8 0,0.65 -0.1,1 -0.5,0 -3.65,0 q -2.9,0 -2.9,-2.95 l 0,-3.65 q 0,-2.9 2.9,-2.9 l 3.65,0 0.6,0.05 m -32.85,-42.5999 0,5.75 q 0,4 -4,4 l -5.75,0 q -4,0 -4,-4 l 0,-5.75 q 0,-4 4,-4 l 5.75,0 q 4,0 4,4 m -0.45,39.2 q 3.3,0 3.3,3.35 l 0,6.15 q 0,3.35 -3.3,3.35 l -6.2,0 q -3.35,0 -3.35,-3.35 l 0,-6.15 q 0,-3.35 3.35,-3.35 l 6.2,0"
        id="path1127-4"
@@ -33257,11 +33167,11 @@
       <g
          id="Highlights_12_">
         <polygon
-           points="377.618,501.78 371.962,496.124 469.854,496.197 464.271,501.78 "
+           points="469.854,496.197 464.271,501.78 377.618,501.78 371.962,496.124 "
            id="polygon125"
            style="fill:#ccbf89" />
         <polygon
-           points="388.281,578.029 382.772,583.599 459.144,583.599 454.188,578.711 "
+           points="459.144,583.599 454.188,578.711 388.281,578.029 382.772,583.599 "
            id="polygon127"
            style="fill:#ccbf89" />
       </g>
@@ -33298,17 +33208,17 @@
          style="display:none">
         <polygon
            display="inline"
-           points="447.793,545.779 453.543,557.33 453.791,536.705 437.793,543.305 "
+           points="453.791,536.705 437.793,543.305 447.793,545.779 453.543,557.33 "
            id="polygon144"
            style="fill:#704926;display:inline" />
         <polygon
            display="inline"
-           points="405.792,571.697 414.667,570.947 387.917,569.697 387.917,575.572 "
+           points="387.917,569.697 387.917,575.572 405.792,571.697 414.667,570.947 "
            id="polygon146"
            style="fill:#704926;display:inline" />
         <polygon
            display="inline"
-           points="397.042,515.906 387.917,515.906 387.917,531.49 397.042,519.49 414.667,521.74 "
+           points="387.917,531.49 397.042,519.49 414.667,521.74 397.042,515.906 387.917,515.906 "
            id="polygon148"
            style="fill:#704926;display:inline" />
       </g>
@@ -33468,7 +33378,7 @@
        d="m 1539.2001,175.2 c 0,64.0098 -51.8902,115.9 -115.9001,115.9 -64.0098,0 -115.9,-51.8902 -115.9,-115.9 0,-64.00981 51.8902,-115.900005 115.9,-115.900005 64.0099,0 115.9001,51.890195 115.9001,115.900005 z"
        transform="translate(2150.3758,146.35893)" />
     <polygon
-       points="1402.4,108.8 1402.4,154.3 1356.9,154.3 1356.9,196 1402.4,196 1402.4,241.5 1444.1,241.5 1444.1,196 1489.6,196 1489.6,154.3 1444.1,154.3 1444.1,108.8 "
+       points="1356.9,154.3 1356.9,196 1402.4,196 1402.4,241.5 1444.1,241.5 1444.1,196 1489.6,196 1489.6,154.3 1444.1,154.3 1444.1,108.8 1402.4,108.8 1402.4,154.3 "
        id="polygon73"
        style="fill:#2bb673"
        transform="translate(2150.3758,146.35893)" />
@@ -33523,11 +33433,11 @@
           <polygon
              style="fill:#ccbf89"
              id="polygon125-27"
-             points="469.854,496.197 464.271,501.78 377.618,501.78 371.962,496.124 " />
+             points="377.618,501.78 371.962,496.124 469.854,496.197 464.271,501.78 " />
           <polygon
              style="fill:#ccbf89"
              id="polygon127-7"
-             points="459.144,583.599 454.188,578.711 388.281,578.029 382.772,583.599 " />
+             points="388.281,578.029 382.772,583.599 459.144,583.599 454.188,578.711 " />
         </g>
         <g
            id="g129-9">
@@ -33563,17 +33473,17 @@
           <polygon
              style="fill:#704926;display:inline"
              id="polygon144-28"
-             points="453.791,536.705 437.793,543.305 447.793,545.779 453.543,557.33 "
+             points="447.793,545.779 453.543,557.33 453.791,536.705 437.793,543.305 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon146-6"
-             points="387.917,569.697 387.917,575.572 405.792,571.697 414.667,570.947 "
+             points="405.792,571.697 414.667,570.947 387.917,569.697 387.917,575.572 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon148-0"
-             points="397.042,515.906 387.917,515.906 387.917,531.49 397.042,519.49 414.667,521.74 "
+             points="387.917,531.49 397.042,519.49 414.667,521.74 397.042,515.906 387.917,515.906 "
              display="inline" />
         </g>
         <rect
@@ -33679,11 +33589,11 @@
           <polygon
              style="fill:#ccbf89"
              id="polygon125-2"
-             points="371.962,496.124 469.854,496.197 464.271,501.78 377.618,501.78 " />
+             points="464.271,501.78 377.618,501.78 371.962,496.124 469.854,496.197 " />
           <polygon
              style="fill:#ccbf89"
              id="polygon127-1"
-             points="382.772,583.599 459.144,583.599 454.188,578.711 388.281,578.029 " />
+             points="454.188,578.711 388.281,578.029 382.772,583.599 459.144,583.599 " />
         </g>
         <g
            id="g129-6">
@@ -33719,17 +33629,17 @@
           <polygon
              style="fill:#704926;display:inline"
              id="polygon144-2"
-             points="453.543,557.33 453.791,536.705 437.793,543.305 447.793,545.779 "
+             points="437.793,543.305 447.793,545.779 453.543,557.33 453.791,536.705 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon146-7"
-             points="414.667,570.947 387.917,569.697 387.917,575.572 405.792,571.697 "
+             points="387.917,575.572 405.792,571.697 414.667,570.947 387.917,569.697 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon148-9"
-             points="414.667,521.74 397.042,515.906 387.917,515.906 387.917,531.49 397.042,519.49 "
+             points="387.917,515.906 387.917,531.49 397.042,519.49 414.667,521.74 397.042,515.906 "
              display="inline" />
         </g>
         <rect
@@ -33823,11 +33733,11 @@
           <polygon
              style="fill:#ccbf89"
              id="polygon125-3"
-             points="469.854,496.197 464.271,501.78 377.618,501.78 371.962,496.124 " />
+             points="377.618,501.78 371.962,496.124 469.854,496.197 464.271,501.78 " />
           <polygon
              style="fill:#ccbf89"
              id="polygon127-4"
-             points="459.144,583.599 454.188,578.711 388.281,578.029 382.772,583.599 " />
+             points="388.281,578.029 382.772,583.599 459.144,583.599 454.188,578.711 " />
         </g>
         <g
            id="g129-4">
@@ -33863,17 +33773,17 @@
           <polygon
              style="fill:#704926;display:inline"
              id="polygon144-3"
-             points="453.791,536.705 437.793,543.305 447.793,545.779 453.543,557.33 "
+             points="447.793,545.779 453.543,557.33 453.791,536.705 437.793,543.305 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon146-78"
-             points="387.917,569.697 387.917,575.572 405.792,571.697 414.667,570.947 "
+             points="405.792,571.697 414.667,570.947 387.917,569.697 387.917,575.572 "
              display="inline" />
           <polygon
              style="fill:#704926;display:inline"
              id="polygon148-8"
-             points="397.042,515.906 387.917,515.906 387.917,531.49 397.042,519.49 414.667,521.74 "
+             points="387.917,531.49 397.042,519.49 414.667,521.74 397.042,515.906 387.917,515.906 "
              display="inline" />
         </g>
         <rect
@@ -33931,7 +33841,7 @@
          transform="matrix(0.295245,0,0,0.295245,683.61225,682.74687)"
          style="fill:#2bb673"
          id="polygon73-7"
-         points="1489.6,154.3 1444.1,154.3 1444.1,108.8 1402.4,108.8 1402.4,154.3 1356.9,154.3 1356.9,196 1402.4,196 1402.4,241.5 1444.1,241.5 1444.1,196 1489.6,196 " />
+         points="1444.1,108.8 1402.4,108.8 1402.4,154.3 1356.9,154.3 1356.9,196 1402.4,196 1402.4,241.5 1444.1,241.5 1444.1,196 1489.6,196 1489.6,154.3 1444.1,154.3 " />
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -34700,14 +34610,17 @@
        height="50"
        width="1280" />
     <image
-       y="943.2688"
-       x="-2414.1323"
+       y="740.36664"
+       x="-2376.323"
        id="image9976-4"
        xlink:href="data:image/png;base64,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 "
        height="50"
-       width="1280" />
+       width="1280"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_background.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
-       style="opacity:1;fill:#4c92ca;fill-opacity:1;stroke:none"
+       style="fill:#4c92ca;fill-opacity:1;stroke:none"
        id="rect9997"
        width="400"
        height="25"
@@ -34751,7 +34664,7 @@
       </g>
     </g>
     <rect
-       style="fill:#ff2a2a;fill-opacity:1;stroke:none;stroke-width:4;stroke-opacity:1"
+       style="fill:#ff2a2a;fill-opacity:1;stroke:none"
        id="rect9608"
        width="132.01794"
        height="36.735428"
@@ -34761,7 +34674,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot8826"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Agent Orange;font-style:normal;font-weight:normal;font-size:30px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Agent Orange;font-stretch:normal;font-variant:normal"><flowRegion
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"><flowRegion
          id="flowRegion8828"><rect
            id="rect8830"
            width="615.30341"
@@ -34786,63 +34699,15 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot8873"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Baveuse 3D;font-style:normal;font-weight:normal;font-size:30px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Baveuse 3D;font-stretch:normal;font-variant:normal"><flowRegion
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Baveuse;-inkscape-font-specification:Baveuse"><flowRegion
          id="flowRegion8875"><rect
            id="rect8877"
            width="500.03549"
            height="173.71362"
            x="-253.26472"
            y="64.109291"
-           style="-inkscape-font-specification:Baveuse 3D;font-family:Baveuse 3D;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal" /></flowRegion><flowPara
-         id="flowPara8879" /></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-1"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(-2.7635794,399.07706)"><flowRegion
-         id="flowRegion8883-7"><rect
-           id="rect8885-4"
-           width="426.97836"
-           height="160.72569"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-0"
-         style="font-size:64px;-inkscape-font-specification:Baveuse 3D;font-family:Baveuse 3D;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">Pause</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-9"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(-3.9115615,477.13985)"><flowRegion
-         id="flowRegion8883-4"><rect
-           id="rect8885-8"
-           width="426.97836"
-           height="160.72569"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-8"
-         style="font-size:64px;-inkscape-font-specification:Day Poster Shadow NF;font-family:Day Poster Shadow NF;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">Pause</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-2"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(-7.3555078,564.38649)"><flowRegion
-         id="flowRegion8883-45"><rect
-           id="rect8885-5"
-           width="426.97836"
-           height="160.72569"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-1"
-         style="font-size:64px;font-family:Planet Benson 2;-inkscape-font-specification:Planet Benson 2">Pause</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-7"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(-8.5034902,629.82147)"><flowRegion
-         id="flowRegion8883-1"><rect
-           id="rect8885-1"
-           width="426.97836"
-           height="160.72569"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-5"
-         style="font-size:64px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tooney Noodle NF;-inkscape-font-specification:Tooney Noodle NF">Pause</flowPara></flowRoot>    <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Baveuse;-inkscape-font-specification:Baveuse" /></flowRegion><flowPara
+         id="flowPara8879" /></flowRoot>    <path
        inkscape:connector-curvature="0"
        style="fill:#81c9f9;fill-opacity:1"
        id="path72-1"
@@ -34899,7 +34764,7 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2546.8073,199.43747 c -5.6863,-1.59394 -8.786,-6.48542 -8.7918,-13.87403 l -0,-5.45291 6.3423,0 c 5.6404,0 6.4583,0.30525 7.3911,2.75844 1.3534,3.55978 2.3385,4.07673 5.4953,2.88367 4.1197,-1.557 3.3686,-6.09546 -1.638,-9.89811 -2.3216,-1.76324 -6.5835,-5.36676 -9.4709,-8.00784 -4.8642,-4.44913 -5.2499,-5.21441 -5.2499,-10.41567 0,-11.25732 8.7031,-19.03554 21.4369,-19.1588 7.3156,-0.0708 11.162,2.03557 15.5855,8.53515 3.6334,5.33856 3.2647,6.63495 -2.2959,8.07163 -2.6834,0.69331 -5.7788,1.52159 -6.8786,1.84063 -1.3564,0.39345 -2.4313,-0.36718 -3.3412,-2.36429 -1.4427,-3.1663 -5.2501,-3.948 -7.6313,-1.56679 -2.903,2.90298 -1.3369,5.48836 6.4204,10.59886 8.928,5.8818 11.7177,10.37863 11.7177,18.88826 0,6.03605 -2.8573,11.41204 -8.1471,15.32895 -3.5992,2.66505 -14.5515,3.62367 -20.9402,1.83285 l 0,0 z"
+       d="m 2546.8073,199.43747 c -5.6863,-1.59394 -8.786,-6.48542 -8.7918,-13.87403 l 0,-5.45291 6.3423,0 c 5.6404,0 6.4583,0.30525 7.3911,2.75844 1.3534,3.55978 2.3385,4.07673 5.4953,2.88367 4.1197,-1.557 3.3686,-6.09546 -1.638,-9.89811 -2.3216,-1.76324 -6.5835,-5.36676 -9.4709,-8.00784 -4.8642,-4.44913 -5.2499,-5.21441 -5.2499,-10.41567 0,-11.25732 8.7031,-19.03554 21.4369,-19.1588 7.3156,-0.0708 11.162,2.03557 15.5855,8.53515 3.6334,5.33856 3.2647,6.63495 -2.2959,8.07163 -2.6834,0.69331 -5.7788,1.52159 -6.8786,1.84063 -1.3564,0.39345 -2.4313,-0.36718 -3.3412,-2.36429 -1.4427,-3.1663 -5.2501,-3.948 -7.6313,-1.56679 -2.903,2.90298 -1.3369,5.48836 6.4204,10.59886 8.928,5.8818 11.7177,10.37863 11.7177,18.88826 0,6.03605 -2.8573,11.41204 -8.1471,15.32895 -3.5992,2.66505 -14.5515,3.62367 -20.9402,1.83285 l 0,0 z"
        id="path8903"
        inkscape:connector-curvature="0"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_pause_window.png"
@@ -34913,70 +34778,11 @@
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_pause_window.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -270.01632,245.77958 0,-22.95964 12.66467,0 c 14.70844,0 19.46028,1.47491 22.89334,7.10581 6.08246,9.97642 -0.63629,21.59374 -12.4885,21.59374 l -4.7018,0 0,8.60987 0,8.60986 -9.18386,0 -9.18385,0 0,-22.95964 z m 25.2556,-8.03587 c 0,-6.8879 0,-6.8879 -3.44394,-6.8879 -3.44395,0 -3.44395,0 -3.44395,6.8879 0,6.88789 0,6.88789 3.44395,6.88789 3.44394,0 3.44394,0 3.44394,-6.88789 z"
-       id="path8907"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -224.09704,267.91237 c 0,-0.45478 2.91381,-8.97854 6.47512,-18.94171 l 6.47512,-18.11485 5.42364,0 5.42363,0 6.07719,17.50673 c 3.34245,9.6287 6.30876,18.15247 6.59178,18.94171 0.38036,1.06067 -1.58978,1.43497 -7.55289,1.43497 -8.03046,0 -8.07096,-0.0158 -8.8239,-3.44394 -0.69741,-3.17527 -1.14145,-3.44395 -5.69185,-3.44395 -4.40149,0 -5.08977,0.37259 -6.36196,3.44395 -1.11783,2.69866 -2.14168,3.44394 -4.73121,3.44394 -1.81757,0 -3.30467,-0.37208 -3.30467,-0.82685 z m 16.05417,-13.23593 c -0.0222,-1.81565 -1.99028,-4.99122 -2.64734,-4.27168 -0.27159,0.29741 -0.85109,1.70307 -1.28777,3.1237 -0.64604,2.10173 -0.35179,2.58296 1.57937,2.58296 1.30533,0 2.36541,-0.64574 2.35574,-1.43498 z"
-       id="path8909"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -172.3212,266.25857 c -6.59763,-4.54117 -8.15252,-8.93623 -8.15252,-23.04404 l 0,-12.35872 8.03588,0 8.03587,0 0,15.49776 0,15.49776 3.44395,0 3.44394,0 0,-15.49776 0,-15.49776 4.68556,0 4.68555,0 -0.38062,14.33386 -0.38062,14.33387 -4.19503,4.1918 c -5.60181,5.59752 -13.30399,6.61658 -19.22196,2.54323 z"
-       id="path8911"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -138.4965,265.44199 -1.85681,-3.59066 5.1954,0 c 2.85747,0 5.1954,-0.39434 5.1954,-0.87631 0,-0.48197 -1.85165,-3.62585 -4.11477,-6.9864 -8.05663,-11.9634 -8.48517,-17.86337 -1.55769,-21.44571 3.60321,-1.86329 19.44825,-2.37902 19.44825,-0.633 0,0.57975 0.30261,1.84269 0.67248,2.80654 0.53879,1.40407 -0.47989,1.82212 -5.12414,2.10286 l -5.79662,0.35041 5.69813,8.92066 c 6.62554,10.37255 7.31963,14.98539 2.88213,19.15421 -2.20659,2.07299 -4.54389,2.76912 -10.80048,3.21677 l -7.98448,0.57129 -1.8568,-3.59066 z"
-       id="path8913"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -108.15085,249.75992 0,-18.9793 12.914801,0.32459 c 12.405751,0.3118 12.929258,0.42641 13.281638,2.90756 0.334507,2.3553 -0.0955,2.58295 -4.878924,2.58295 l -5.245763,0 0,5.73992 0,5.73991 4.017937,0 c 3.520479,0 4.017938,0.35532 4.017938,2.86995 0,2.51463 -0.497459,2.86996 -4.017938,2.86996 -3.826606,0 -4.017937,0.19133 -4.017937,4.01793 0,3.99668 0.02733,4.01794 5.165919,4.01794 5.272823,0 6.068783,0.90334 4.469107,5.07203 -0.57639,1.50205 -2.857888,1.81586 -13.201794,1.81586 l -12.504984,0 0,-18.9793 z"
-       id="path8915"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -270.59031,397.21218 0,-17.32076 10.70849,0.38803 10.70849,0.38803 4.06194,4.43392 c 3.78047,4.12668 4.02312,4.83795 3.50172,10.26429 -0.6687,6.95929 -3.98479,10.44107 -11.82426,12.41507 -3.6697,0.92404 -5.10257,1.86445 -5.10257,3.34886 0,1.13521 0.64574,2.32458 1.43498,2.64304 0.78923,0.31847 -1.92287,0.61981 -6.02691,0.66966 l -7.46188,0.0906 0,-17.32077 z m 17.30593,-1.55569 c 0.87584,-3.48961 -0.13088,-5.23116 -3.02391,-5.23116 -1.68134,0 -2.22821,0.79828 -2.22821,3.25261 0,5.42078 4.00912,6.93107 5.25212,1.97855 z"
-       id="path8917"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -227.82668,413.36186 c -5.19653,-3.26325 -5.35768,-3.51806 -3.44395,-5.44577 1.10422,-1.11228 5.62382,-8.34345 10.04355,-16.06927 4.41973,-7.72581 8.30568,-14.04747 8.63545,-14.04812 0.32977,-6.5e-4 4.7208,6.94952 9.75785,15.44483 5.03705,8.4953 9.93105,15.60511 10.87556,15.79957 0.99475,0.20481 -0.82377,1.9171 -4.32218,4.06969 -3.32171,2.04387 -6.22976,3.71612 -6.46232,3.71612 -0.23258,0 -0.69304,-1.03318 -1.02327,-2.29596 -0.52922,-2.02376 -1.56586,-2.29596 -8.74375,-2.29596 -7.37803,0 -8.14335,0.21577 -8.14335,2.29596 0,3.00903 -0.69861,2.89498 -7.17359,-1.17109 z m 18.65341,-10.3842 c 0,-0.6729 -0.5576,-2.26533 -1.23911,-3.53874 -1.19366,-2.23037 -1.29758,-2.23813 -2.83344,-0.21153 -2.41553,3.18734 -1.9836,4.97372 1.20259,4.97372 1.57848,0 2.86996,-0.55055 2.86996,-1.22345 z"
-       id="path8919"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -172.45576,413.54213 c -6.50632,-3.47891 -8.48874,-8.17296 -9.15745,-21.68331 l -0.58248,-11.7683 7.46188,0.0921 c 4.10404,0.0507 6.81614,0.35268 6.02691,0.67114 -2.26258,0.91297 -1.94892,19.22546 0.36899,21.54337 2.13486,2.13485 7.4958,2.37684 9.44625,0.42639 1.93272,-1.93271 1.88241,-21.18703 -0.0574,-21.96976 -0.78923,-0.31846 2.43947,-0.57902 7.17489,-0.57902 4.73543,0 7.96413,0.26056 7.17489,0.57902 -1.00865,0.407 -1.43625,3.87598 -1.43927,11.67619 -0.003,9.04755 -0.42562,11.78819 -2.28547,14.83859 -4.82599,7.91526 -15.68085,10.69224 -24.13174,6.17358 l 0,0 z"
-       id="path8921"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -133.8385,416.79674 c -1.3482,-4.10069 -2.57256,-14.89159 -1.68964,-14.89159 0.53554,0 0.9737,0.51659 0.9737,1.14798 0,0.63139 1.32276,1.14798 2.93947,1.14798 l 2.93947,0 -0.77893,-7.90495 c -0.77072,-7.82151 -0.73812,-7.9495 3.08812,-12.12465 2.92356,-3.19015 5.05728,-4.37934 8.7453,-4.874 2.68303,-0.35987 4.93117,-1.23203 4.99587,-1.93814 0.13521,-1.47562 3.20051,11.68625 3.27622,14.06751 0.0396,1.24415 -0.2988,1.28598 -1.6087,0.19887 -0.91233,-0.75717 -2.84955,-1.20787 -4.30493,-1.00155 -2.52256,0.3576 -2.62765,0.75461 -2.25007,8.5006 0.37949,7.78528 0.24747,8.27409 -3.15323,11.67479 -1.95211,1.95211 -5.2299,3.91391 -7.28396,4.35954 -2.05407,0.44564 -4.09432,1.37661 -4.5339,2.06883 -0.53268,0.83883 -0.98452,0.69501 -1.35479,-0.43122 l 0,0 z"
-       id="path8923"
-       inkscape:connector-curvature="0"
-       transform="translate(0,332.36218)" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m -88.0486,748.33196 c -6.3071,-0.20824 -11.9637,-0.87501 -12.5704,-1.48171 -0.7055,-0.70548 -0.6066,-1.1031 0.2744,-1.1031 2.0095,0 1.9535,-31.71978 -0.057,-32.5312 -0.7892,-0.31846 4.0754,-0.61981 10.8102,-0.66965 8.6507,-0.064 12.4151,-0.51185 12.8242,-1.52561 0.3184,-0.78924 0.579,2.18117 0.579,6.6009 0,4.41973 -0.2606,7.39013 -0.579,6.60089 -0.3406,-0.84398 -2.6672,-1.43497 -5.6493,-1.43497 -3.9001,0 -5.0703,0.42748 -5.0703,1.85226 0,1.40508 0.8315,1.73024 3.444,1.34681 3.2904,-0.48293 3.4439,-0.3185 3.4439,3.68882 0,4.00732 -0.1535,4.17175 -3.4439,3.68882 -2.8997,-0.42559 -3.444,-0.12205 -3.444,1.92079 0,2.04404 0.6873,2.42626 4.3624,2.42626 2.3992,0 4.9822,-0.61991 5.7399,-1.37758 1.0714,-1.07145 1.3776,0.20409 1.3776,5.73991 0,3.91462 -0.1292,7.00938 -0.287,6.87723 -0.1579,-0.13214 -5.4473,-0.41063 -11.7543,-0.61887 l 0,0 z"
-       id="path8925"
-       inkscape:connector-curvature="0" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot8881-17"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(-48.181772,697.79476)"><flowRegion
+       transform="translate(-44.181772,474.79476)"><flowRegion
          id="flowRegion8883-40"><rect
            id="rect8885-9"
            width="426.97836"
@@ -34986,7 +34792,7 @@
          id="flowPara8887-4"
          style="font-size:64px">Pause</flowPara></flowRoot>    <path
        style="fill:#008080;fill-opacity:1;stroke:none"
-       d="m -314.70337,810.28404 c 0.5806,-11.38473 1.0587,-24.46002 1.0623,-29.05619 l 0.01,-8.35667 10.8301,-1.88599 c 13.5506,-2.35974 22.2476,-0.95718 28.3031,4.56442 6.1229,5.58311 7.3779,12.54883 3.4073,18.912 -3.0168,4.83458 -8.3645,8.23193 -20.3367,12.91991 l -6.2074,2.43061 0.434,9.36794 c 0.4255,9.18564 0.3409,9.38791 -4.3454,10.39364 -2.6286,0.56413 -6.9011,1.11213 -9.4944,1.21777 l -4.7152,0.19208 1.0557,-20.69952 z m 28.332,-20.29847 c 0.7361,-3.59631 -3.9744,-6.57578 -8.5719,-5.42188 -4.0533,1.01731 -5.1546,4.38958 -3.1444,9.62816 0.8053,2.09845 1.6524,2.13703 6.0881,0.27725 2.834,-1.18822 5.3667,-3.20581 5.6282,-4.48353 l 0,0 z"
+       d="m -310.70337,587.28404 c 0.5806,-11.38473 1.0587,-24.46002 1.0623,-29.05619 l 0.01,-8.35667 10.8301,-1.88599 c 13.5506,-2.35974 22.2476,-0.95718 28.3031,4.56442 6.1229,5.58311 7.3779,12.54883 3.4073,18.912 -3.0168,4.83458 -8.3645,8.23193 -20.3367,12.91991 l -6.2074,2.43061 0.434,9.36794 c 0.4255,9.18564 0.3409,9.38791 -4.3454,10.39364 -2.6286,0.56413 -6.9011,1.11213 -9.4944,1.21777 l -4.7152,0.19208 1.0557,-20.69952 z m 28.332,-20.29847 c 0.7361,-3.59631 -3.9744,-6.57578 -8.5719,-5.42188 -4.0533,1.01731 -5.1546,4.38958 -3.1444,9.62816 0.8053,2.09845 1.6524,2.13703 6.0881,0.27725 2.834,-1.18822 5.3667,-3.20581 5.6282,-4.48353 l 0,0 z"
        id="path8971"
        inkscape:connector-curvature="0" />
     <path
@@ -34997,22 +34803,22 @@
        transform="translate(0,332.36218)" />
     <path
        style="fill:#008080;fill-opacity:1;stroke:none"
-       d="m -255.68717,829.09581 c -3.7958,-1.40892 -4.4174,-2.40956 -3.7205,-5.98996 0.4601,-2.36416 1.6531,-10.14304 2.6512,-17.28641 0.998,-7.14336 2.9134,-17.91929 4.2565,-23.9465 l 2.4419,-10.95857 6.1609,0 c 3.3885,0 8.2613,-0.41545 10.8285,-0.92322 4.4172,-0.87372 4.9169,-0.37319 9.3182,9.33508 2.558,5.64206 7.8376,17.92313 11.7325,27.29127 l 7.0817,17.03298 -6.862,3.59318 c -3.774,1.97625 -7.2529,3.62619 -7.7306,3.66654 -0.4778,0.0403 -3.0348,-3.94222 -5.6823,-8.85016 -4.2841,-7.94221 -5.3832,-8.92416 -9.994,-8.92921 -6.0459,-0.007 -6.7607,0.86111 -8.3326,10.11621 -1.2976,7.63957 -3.9215,8.90274 -12.1494,5.84877 l 0,0 z m 23.1592,-28.55272 c -0.037,-1.56261 -1.4408,-5.39811 -3.1186,-8.52333 -3.2951,-6.13748 -4.0072,-5.45455 -5.5021,5.27635 -0.8143,5.84576 -0.6582,6.08809 3.9204,6.08809 3.4849,0 4.7501,-0.76472 4.7003,-2.84111 z"
+       d="m -251.68717,606.09581 c -3.7958,-1.40892 -4.4174,-2.40956 -3.7205,-5.98996 0.4601,-2.36416 1.6531,-10.14304 2.6512,-17.28641 0.998,-7.14336 2.9134,-17.91929 4.2565,-23.9465 l 2.4419,-10.95857 6.1609,0 c 3.3885,0 8.2613,-0.41545 10.8285,-0.92322 4.4172,-0.87372 4.9169,-0.37319 9.3182,9.33508 2.558,5.64206 7.8376,17.92313 11.7325,27.29127 l 7.0817,17.03298 -6.862,3.59318 c -3.774,1.97625 -7.2529,3.62619 -7.7306,3.66654 -0.4778,0.0403 -3.0348,-3.94222 -5.6823,-8.85016 -4.2841,-7.94221 -5.3832,-8.92416 -9.994,-8.92921 -6.0459,-0.007 -6.7607,0.86111 -8.3326,10.11621 -1.2976,7.63957 -3.9215,8.90274 -12.1494,5.84877 l 0,0 z m 23.1592,-28.55272 c -0.037,-1.56261 -1.4408,-5.39811 -3.1186,-8.52333 -3.2951,-6.13748 -4.0072,-5.45455 -5.5021,5.27635 -0.8143,5.84576 -0.6582,6.08809 3.9204,6.08809 3.4849,0 4.7501,-0.76472 4.7003,-2.84111 z"
        id="path8975"
        inkscape:connector-curvature="0" />
     <path
        style="fill:#008080;fill-opacity:1;stroke:none"
-       d="m -179.69637,830.31526 c -12.1442,-5.3975 -15.5542,-13.49065 -16.6486,-39.51312 -0.804,-19.11588 -0.7098,-19.88777 2.4268,-19.88777 1.7947,0 5.5462,-0.45661 8.3366,-1.01469 l 5.0734,-1.01468 0,18.7967 c 0,20.9711 1.6956,27.06695 7.5289,27.06695 6.8234,0 9.42,-6.76607 10.0881,-26.28726 l 0.6006,-17.54702 7.907,0 c 7.1027,0 8.0116,0.41729 8.9366,4.10277 0.5664,2.25653 0.7407,11.20603 0.3874,19.88778 -0.8084,19.86464 -4.8242,28.46164 -15.9048,34.04928 -8.2575,4.16403 -11.8399,4.42432 -18.732,1.36106 z"
+       d="m -175.69637,607.31526 c -12.1442,-5.3975 -15.5542,-13.49065 -16.6486,-39.51312 -0.804,-19.11588 -0.7098,-19.88777 2.4268,-19.88777 1.7947,0 5.5462,-0.45661 8.3366,-1.01469 l 5.0734,-1.01468 0,18.7967 c 0,20.9711 1.6956,27.06695 7.5289,27.06695 6.8234,0 9.42,-6.76607 10.0881,-26.28726 l 0.6006,-17.54702 7.907,0 c 7.1027,0 8.0116,0.41729 8.9366,4.10277 0.5664,2.25653 0.7407,11.20603 0.3874,19.88778 -0.8084,19.86464 -4.8242,28.46164 -15.9048,34.04928 -8.2575,4.16403 -11.8399,4.42432 -18.732,1.36106 z"
        id="path8977"
        inkscape:connector-curvature="0" />
     <path
        style="fill:#008080;fill-opacity:1;stroke:none"
-       d="m -123.24767,831.54319 c -5.2157,-1.11931 -10.1792,-8.22784 -10.1792,-14.57825 0,-5.27589 0.219,-5.46328 6.3845,-5.46328 5.019,0 6.6115,0.71473 7.4452,3.34163 0.7189,2.26504 2.1872,3.18037 4.5574,2.84111 5.1696,-0.73994 5.18,-5.50391 0.021,-9.75613 -13.8612,-11.42552 -15.629,-13.98605 -14.6576,-21.23019 2.3795,-17.74397 28.1823,-22.90336 36.770498,-7.35243 2.8424,5.14693 2.2221,6.0358 -5.4141,7.75805 -4.761598,1.07393 -6.094898,0.75574 -7.840198,-1.87099 -2.2188,-3.33948 -6.8754,-2.7957 -8.3211,0.97171 -1.1064,2.88332 0.2835,4.49379 8.9917,10.41856 5.538998,3.76852 8.084898,6.79734 9.244898,10.99877 2.0523,7.43262 -0.7255,16.21828 -6.476698,20.48454 -4.2986,3.18878 -14.0638,4.82383 -20.5266,3.4369 z"
+       d="m -119.24767,608.54319 c -5.2157,-1.11931 -10.1792,-8.22784 -10.1792,-14.57825 0,-5.27589 0.219,-5.46328 6.3845,-5.46328 5.019,0 6.6115,0.71473 7.4452,3.34163 0.7189,2.26504 2.1872,3.18037 4.5574,2.84111 5.1696,-0.73994 5.18,-5.50391 0.021,-9.75613 -13.8612,-11.42552 -15.629,-13.98605 -14.6576,-21.23019 2.3795,-17.74397 28.1823,-22.90336 36.770498,-7.35243 2.8424,5.14693 2.2221,6.0358 -5.4141,7.75805 -4.761598,1.07393 -6.094898,0.75574 -7.840198,-1.87099 -2.2188,-3.33948 -6.8754,-2.7957 -8.3211,0.97171 -1.1064,2.88332 0.2835,4.49379 8.9917,10.41856 5.538998,3.76852 8.084898,6.79734 9.244898,10.99877 2.0523,7.43262 -0.7255,16.21828 -6.476698,20.48454 -4.2986,3.18878 -14.0638,4.82383 -20.5266,3.4369 z"
        id="path8979"
        inkscape:connector-curvature="0" />
     <path
        style="fill:#008080;fill-opacity:1;stroke:none"
-       d="m -79.851672,816.73542 c 0,-13.49582 2.3653,-38.43556 4.2302,-44.60343 0.7075,-2.3398 2.7734,-2.8372 11.7083,-2.81895 16.5242,0.0338 18.4218,0.87442 17.8343,7.9011 l -0.4912,5.87642 -8.6196,0.49405 -8.6196,0.49406 0.5021,5.18816 c 0.4164,4.30209 1.2647,5.2759 4.9668,5.70188 3.724,0.4285 4.4646,1.29329 4.4646,5.21377 0,4.10964 -0.8158,4.91973 -6.494,6.44871 -5.2766,1.42084 -6.494,2.47585 -6.494,5.62797 0,3.48467 0.9085,3.99284 8.9292,4.99497 l 8.9293,1.11563 0,6.3069 0,6.3069 -15.4232,0 -15.4232,0 0,-14.24814 z"
+       d="m -75.851672,593.73542 c 0,-13.49582 2.3653,-38.43556 4.2302,-44.60343 0.7075,-2.3398 2.7734,-2.8372 11.7083,-2.81895 16.5242,0.0338 18.4218,0.87442 17.8343,7.9011 l -0.4912,5.87642 -8.6196,0.49405 -8.6196,0.49406 0.5021,5.18816 c 0.4164,4.30209 1.2647,5.2759 4.9668,5.70188 3.724,0.4285 4.4646,1.29329 4.4646,5.21377 0,4.10964 -0.8158,4.91973 -6.494,6.44871 -5.2766,1.42084 -6.494,2.47585 -6.494,5.62797 0,3.48467 0.9085,3.99284 8.9292,4.99497 l 8.9293,1.11563 0,6.3069 0,6.3069 -15.4232,0 -15.4232,0 0,-14.24814 z"
        id="path8981"
        inkscape:connector-curvature="0" />
     <path
@@ -35400,11 +35206,496 @@
          id="flowPara9844"
          style="font-size:72px">=</flowPara></flowRoot>    <path
        style="opacity:0.5;fill:#85cbf9;fill-opacity:1;stroke:none"
-       d="M 43.131867,1010.4102 C 43.915457,913.07321 -41.031253,734.75304 18.718747,692.34214 145.00532,602.7032 477.26368,614.04535 708.7297,614.40161 c 233.99301,0.36015 454.0369,-12.314 667.0909,87.32862 48.4563,22.66238 -51.7536,242.10895 -51.7536,308.67997 z"
+       d="m -2477.8368,188.45502 c 0.7836,-97.336986 -84.1632,-275.65716 -24.4132,-318.06806 126.2866,-89.63894 458.545,-78.29679 690.011,-77.94053 233.993,0.36015 454.0369,-12.314 667.0909,87.32862 48.4563,22.66238 -51.7536,242.10895 -51.7536,308.67997 z"
        id="path8660-5"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cssscc"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_dome.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       y="689.36664"
+       x="-2376.323"
+       id="image9976-4-4"
+       xlink:href="data:image/png;base64,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 "
+       height="52"
+       width="1280"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_background.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_floor_1.png"
+       id="g7200-2"
+       transform="translate(-587.94292,-250.53344)">
+      <g
+         transform="matrix(0.76190476,0,0,0.71428571,-618.79739,531.05277)"
+         id="g7094-8-7">
+        <path
+           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
+           id="path93-5-6-7"
+           inkscape:connector-curvature="0"
+           style="fill:#93db24;stroke:none" />
+        <path
+           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
+           id="path95-5-7-93"
+           inkscape:connector-curvature="0"
+           style="fill:#80be1f;stroke:none" />
+        <path
+           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
+           id="path97-5-7-1"
+           inkscape:connector-curvature="0"
+           style="fill:#bb8044;stroke:none" />
+        <path
+           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
+           id="path99-6-2-98"
+           inkscape:connector-curvature="0"
+           style="fill:#c99869;stroke:none" />
+        <path
+           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
+           id="path101-29-6"
+           inkscape:connector-curvature="0"
+           style="fill:#c58f5c;stroke:none" />
+      </g>
+      <g
+         transform="matrix(0.76190476,0,0,0.71428571,-565.46409,531.05277)"
+         id="g7094-8-4-5">
+        <path
+           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
+           id="path93-5-6-1-0"
+           inkscape:connector-curvature="0"
+           style="fill:#93db24;stroke:none" />
+        <path
+           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
+           id="path95-5-7-9-2"
+           inkscape:connector-curvature="0"
+           style="fill:#80be1f;stroke:none" />
+        <path
+           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
+           id="path97-5-7-6-8"
+           inkscape:connector-curvature="0"
+           style="fill:#bb8044;stroke:none" />
+        <path
+           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
+           id="path99-6-2-9-6"
+           inkscape:connector-curvature="0"
+           style="fill:#c99869;stroke:none" />
+        <path
+           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
+           id="path101-29-8-0"
+           inkscape:connector-curvature="0"
+           style="fill:#c58f5c;stroke:none" />
+      </g>
+      <g
+         transform="matrix(0.76190476,0,0,0.71428571,-512.13069,531.05277)"
+         id="g7094-8-2-2">
+        <path
+           d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0"
+           id="path93-5-6-5-4"
+           inkscape:connector-curvature="0"
+           style="fill:#93db24;stroke:none" />
+        <path
+           d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5"
+           id="path95-5-7-5-8"
+           inkscape:connector-curvature="0"
+           style="fill:#80be1f;stroke:none" />
+        <path
+           d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5"
+           id="path97-5-7-4-6"
+           inkscape:connector-curvature="0"
+           style="fill:#bb8044;stroke:none" />
+        <path
+           d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3"
+           id="path99-6-2-91-5"
+           inkscape:connector-curvature="0"
+           style="fill:#c99869;stroke:none" />
+        <path
+           d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10"
+           id="path101-29-2-0"
+           inkscape:connector-curvature="0"
+           style="fill:#c58f5c;stroke:none" />
+      </g>
+    </g>
+    <g
+       id="g9277"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_floor_back.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         transform="matrix(1.0124998,0,0,1.04,-593.97775,-233.40177)"
+         id="g7200"
+         inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_floor_1.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <g
+           id="g7094-8"
+           transform="matrix(0.76190476,0,0,0.71428571,-618.79739,531.05277)">
+          <path
+             style="fill:#93db24;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path93-5-6"
+             d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0" />
+          <path
+             style="fill:#80be1f;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path95-5-7"
+             d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5" />
+          <path
+             style="fill:#bb8044;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path97-5-7"
+             d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5" />
+          <path
+             style="fill:#c99869;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path99-6-2"
+             d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3" />
+          <path
+             style="fill:#c58f5c;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path101-29"
+             d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10" />
+        </g>
+        <g
+           id="g7094-8-4"
+           transform="matrix(0.76190476,0,0,0.71428571,-565.46409,531.05277)">
+          <path
+             style="fill:#93db24;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path93-5-6-1"
+             d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0" />
+          <path
+             style="fill:#80be1f;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path95-5-7-9"
+             d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5" />
+          <path
+             style="fill:#bb8044;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path97-5-7-6"
+             d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5" />
+          <path
+             style="fill:#c99869;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path99-6-2-9"
+             d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3" />
+          <path
+             style="fill:#c58f5c;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path101-29-8"
+             d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10" />
+        </g>
+        <g
+           id="g7094-8-2"
+           transform="matrix(0.76190476,0,0,0.71428571,-512.13069,531.05277)">
+          <path
+             style="fill:#93db24;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path93-5-6-5"
+             d="m 1582.1429,919.36218 0,-2 70,0 0,2 -70,0" />
+          <path
+             style="fill:#80be1f;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path95-5-7-5"
+             d="m 1582.1429,919.36218 70,0 0,21.5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-21.5" />
+          <path
+             style="fill:#bb8044;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path97-5-7-4"
+             d="m 1582.1429,945.86218 0,-5 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,5 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5" />
+          <path
+             style="fill:#c99869;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path99-6-2-91"
+             d="m 1582.1429,970.86218 0,-15 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -1.45,1.45 -10.15,10.05 -0.05,0 m 0,15.2 1.8,-1.8 -0.05,-0.05 9.95,-9.85 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 9.9,9.8 -0.05,0.05 1.75,1.75 0,1.4 -70,0 0,-1.3" />
+          <path
+             style="fill:#c58f5c;stroke:none"
+             inkscape:connector-curvature="0"
+             id="path101-29-2"
+             d="m 1582.1429,986.06218 0,-15.2 0.05,0 10.15,-10.05 1.45,-1.45 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,15.1 -1.75,-1.75 0.05,-0.05 -9.9,-9.8 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -9.95,9.85 0.05,0.05 -1.8,1.8 m 0,-40.2 11.65,-11.5 11.7,11.5 11.7,-11.5 11.6,11.5 11.7,-11.5 11.65,11.5 0,10 -11.65,-11.5 -11.7,11.5 -11.6,-11.5 -11.7,11.5 -11.7,-11.5 -11.65,11.5 0,-10" />
+        </g>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path9124"
+         d="m 5.1861e-4,1002.3499 3.94618849,0"
+         style="fill:none;stroke:#93db24;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9124-9"
+         d="m 158.04684,1002.3359 3.94618,0"
+         style="fill:none;stroke:#93db24;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9236"
+         d="m -1.0521889e-7,1021.4925 0,1.3038 L 1.546796,1021.2495 l 0,-1.3922 z"
+         style="fill:#bb8044;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9236-0"
+         d="m -2.8350216e-8,1017.7912 0,1.3038 L 1.5467961,1017.5482 l 0,-1.3922 z"
+         style="fill:#80be1f;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9236-6"
+         d="m 161.99887,1021.5118 0,1.3038 -1.54679,-1.5468 0,-1.3922 z"
+         style="fill:#bb8044;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9236-0-1"
+         d="m 161.99887,1017.8105 0,1.3038 -1.54679,-1.5468 0,-1.3922 z"
+         style="fill:#80be1f;fill-opacity:1;stroke:none" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2451.0876,1026.3323)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8"><rect
+           id="rect8885-6-9"
+           width="566.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309" /></flowRegion><flowPara
+         id="flowPara8887-40-3"
+         style="font-size:64px">3!</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3-9"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2580.9744,1027.9913)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8-8"><rect
+           id="rect8885-6-9-4"
+           width="566.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309" /></flowRegion><flowPara
+         id="flowPara8887-40-3-0"
+         style="font-size:64px">2!</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3-7"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2720.8811,1031.6725)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8-6"><rect
+           id="rect8885-6-9-3"
+           width="566.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309" /></flowRegion><flowPara
+         id="flowPara8887-40-3-6"
+         style="font-size:64px">1!</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3-1"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2448.0384,1247.1944)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8-5"><rect
+           id="rect8885-6-9-42"
+           width="566.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309"
+           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         id="flowPara8887-40-3-09"
+         style="font-size:64px;text-align:center;text-anchor:middle">Save your town!</flowPara></flowRoot>    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2191.2403,1155.7713 c -5.6215,-3.4853 -7.5009,-10.2421 -3,-10.7853 1.375,-0.1659 6.438,-0.3909 11.2512,-0.5 5.8159,-0.1318 9.4666,-1.316 10.884,-3.5306 2.9981,-4.6844 -1.5792,-9.6677 -8.8801,-9.6677 -4.6481,0 -5.7466,-0.8656 -5.7107,-4.5 0.024,-2.475 1.8045,-6.75 3.9556,-9.5 5.5129,-7.0479 5.058,-7.7613 -4.1604,-6.5248 -8.027,1.0766 -8.1495,1 -7.5,-4.6903 0.6534,-5.7239 0.8131,-5.7911 15.1604,-6.3725 13.9591,-0.5657 14.4996,-0.4165 14.4894,4 -0.01,2.5232 -1.6831,7.2876 -3.7274,10.5876 l -3.7168,6 6.7274,6.2698 c 18.2232,16.9835 -4.3073,42.5223 -25.7726,29.2138 z"
+       id="path9531"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2237.7403,1118.2877 c 0,-18.8944 0.028,-19 4.9618,-19 5.3094,0 5.8022,1.1239 8.0199,18.2894 1.8258,14.1317 -0.2117,19.7106 -7.1986,19.7106 l -5.7831,0 0,-19 z"
+       id="path9533"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2236.5725,1156.5717 c -2.0731,-5.4024 2.9168,-11.5838 8.8023,-10.9038 4.4905,0.5187 5.3655,1.5982 5.3655,6.6198 0,5.31 -0.7491,6.0722 -6.5138,6.6278 -4.3589,0.42 -6.891,-0.3553 -7.654,-2.3438 z"
+       id="path9535"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2315.8111,1153.7877 c 0.098,-10.3439 4.0389,-16.6079 14.2393,-22.6318 7.1127,-4.2004 8.6899,-6.1969 8.6899,-11 0,-5.1869 -0.6967,-5.8682 -6,-5.8682 -4.7453,0 -6.1369,0.9657 -6.6546,4.618 -0.5244,3.6995 -1.7142,4.495 -5.9829,4 -6.9553,-0.8067 -7.5843,-5.222 -1.9323,-13.5645 5.8025,-8.5647 12.7759,-10.96 23.5004,-8.0722 6.3474,1.7092 8.9645,3.7603 11.4507,8.9738 4.3347,9.0899 1.2721,16.3192 -10.7053,25.2696 l -9.0668,6.7753 10.1834,0.6041 c 8.9581,0.5314 10.3341,1.2044 11.4356,5.5932 0.6887,2.7439 0.7051,5.5361 0.037,6.2047 -1.5837,1.5837 -26.6616,6.4296 -33.7647,6.5245 -5.0476,0.068 -5.4942,-0.5434 -5.4291,-7.4265 z"
+       id="path9537"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2369.7403,1120.2877 c 0,-18.8108 0.049,-19 4.8819,-19 2.6851,0 5.3716,0.7922 5.9699,1.7603 0.5984,0.9682 1.6843,9.5182 2.4131,19 l 1.3252,17.2397 -7.2951,0 -7.295,0 0,-19 z"
+       id="path9539"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2369.8464,1158.4156 c -2.6618,-3.2072 -0.088,-10.0853 4.3709,-11.6833 3.8886,-1.3934 9.523,2.2902 9.523,6.2258 0,7.4999 -9.1998,11.1135 -13.8939,5.4575 z"
+       id="path9541"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2467.0236,1148.2877 1.3068,-17 -6.2951,0 c -5.4836,0 -6.295,-0.6863 -6.295,-5.3243 0,-2.9283 2.2879,-9.2283 5.0843,-14 4.5671,-7.7931 5.8488,-8.6757 12.6,-8.6757 4.1336,0 8.5957,1.08 9.9157,2.4 1.6428,1.6429 2.4,11.4222 2.4,31 l 0,28.6 -10.0117,0 -10.0117,0 1.3067,-17 0,0 z"
+       id="path9543"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2501.0736,1141.9544 c -1.6689,-1.6689 -1.6987,-19.1901 -0.05,-29.1667 1.0034,-6.0704 2.0952,-7.5 5.728,-7.5 5.3502,0 6.9883,5.9187 6.9883,25.25 0,12.6667 -0.037,12.75 -5.6667,12.75 -3.1166,0 -6.2666,-0.6 -7,-1.3333 l 0,0 z"
+       id="path9545"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d=""
+       id="path9547"
+       inkscape:connector-curvature="0"
+       transform="translate(0,332.36218)" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2500.3592,1162.0159 c -1.8057,-4.7054 1.9598,-9.629 7.9111,-10.3445 5.9991,-0.7211 9.3509,5.94 5.3903,10.7123 -3.2535,3.9202 -11.7461,3.6854 -13.3014,-0.3678 z"
+       id="path9549"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2213.7403,1378.7123 c -3.7558,-1.8903 -5.1545,-4.3714 -5.6208,-9.9706 -0.5881,-7.0628 -0.3108,-7.454 5.286,-7.454 3.4055,0 6.3943,1.2704 7.058,3 1.4951,3.8963 6.5171,3.8645 8.0195,-0.051 0.7142,-1.861 -0.9151,-4.786 -4.1777,-7.5 -15.6347,-13.006 -17.1732,-16.6041 -11.6594,-27.2668 5.6857,-10.9949 25.3269,-13.2373 32.0369,-3.6575 4.3592,6.2236 3.8061,8.8536 -2.1777,10.3555 -3.6012,0.9038 -6.4297,0.2329 -9.0623,-2.1495 -3.6314,-3.2864 -4.0028,-3.2816 -7.2648,0.094 -3.2613,3.3747 -3.1347,3.7785 2.4678,7.8663 12.2933,8.9697 15.0969,12.8342 15.0308,20.7181 -0.035,4.175 -1.1599,9.0189 -2.5,10.7642 -5.8834,7.663 -18.0266,9.9871 -27.4363,5.2512 z"
+       id="path9551"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2262.1471,1377.6302 c -2.1112,-1.3789 -1.9924,-5.5632 0.6394,-22.5181 1.7779,-11.4534 4.1045,-24.1994 5.1702,-28.3244 1.9325,-7.4797 1.9664,-7.5 12.5396,-7.5 9.6066,0 10.8442,0.5163 13.183,5.5 3.7148,7.9156 20.061,46.7297 20.061,47.6348 0,1.094 -11.4521,6.8652 -13.6228,6.8652 -1.0018,0 -3.9699,-4.05 -6.5959,-9 -5.2155,-9.8312 -5.2633,-9.8583 -12.5169,-7.1005 -3.6988,1.4062 -5.1607,3.6134 -5.6302,8.5 -0.5156,5.3657 -1.5696,6.6974 -5.6342,7.1186 -2.75,0.285 -6.167,-0.244 -7.5932,-1.1756 z m 25.5932,-26.4418 c 0,-1.1546 -1.4409,-4.8857 -3.202,-8.2912 -2.4719,-4.7802 -3.605,-5.5555 -4.9694,-3.4007 -0.9721,1.5352 -1.7812,5.2662 -1.798,8.2912 -0.025,4.5415 0.8407,5.5 4.9694,5.5 2.75,0 5,-0.9447 5,-2.0993 z"
+       id="path9553"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2340.8354,1378.7877 c -0.4286,-1.375 -4.4504,-13.7513 -8.9372,-27.5029 -4.4869,-13.7516 -8.1579,-25.7337 -8.1579,-26.6267 0,-0.8931 2.8556,-1.3418 6.3459,-0.9971 5.5951,0.5526 6.6754,1.6917 9.1295,9.6267 5.7674,18.6479 8.9218,25.9906 10.6948,24.8948 1.0064,-0.622 1.8298,-3.2173 1.8298,-5.7675 0,-2.5501 1.4476,-11.047 3.217,-18.8819 2.9964,-13.2685 3.5792,-14.2433 8.5,-14.2148 9.9519,0.058 10.4082,1.5848 6.2117,20.7887 -2.1283,9.7393 -5.3516,22.9892 -7.1628,29.4442 l -3.2931,11.7365 -8.7992,0 c -5.2904,0 -9.1099,-0.9969 -9.5785,-2.5 z"
+       id="path9555"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2382.6798,1367.7877 c 0.5321,-7.425 1.4377,-19.9495 2.0123,-27.8321 1.5419,-21.1498 1.1161,-20.6679 18.2621,-20.6679 13.2426,0 14.7861,0.4005 14.7861,3.8364 0,7.9871 -2.2158,10.1636 -10.3469,10.1636 -7.4588,0 -7.8821,0.3195 -7.286,5.5 0.4602,3.9994 1.9024,5.6799 5.2858,6.1592 3.1886,0.4517 4.2901,1.6046 3.5,3.6635 -0.6341,1.6525 -1.1529,3.7184 -1.1529,4.5909 0,0.8725 -2.7639,2.1392 -6.142,2.8148 -4.9634,0.9927 -6.0187,2.096 -5.5,5.75 0.5346,3.7658 2.0628,4.6244 9.142,5.1366 8.2348,0.5958 8.5,0.8298 8.5,7.5 l 0,6.885 -16.014,0 -16.014,0 0.9675,-13.5 z"
+       id="path9557"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2483.7403,1366.542 0,-14.7457 -11.2794,-13.7543 -11.2794,-13.7543 5.7794,-1.2633 c 10.549,-2.3061 11.9396,-1.7944 16.8773,6.2095 2.6961,4.3704 5.6495,7.9704 6.5629,8 0.9135,0.03 3.0409,-3.4593 4.7276,-7.7532 2.7732,-7.0599 3.9238,-7.9356 12.0224,-9.1501 4.9257,-0.7386 9.4441,-0.8546 10.041,-0.2577 0.5969,0.5969 -2.6355,7.2436 -7.1833,14.7703 -7.9044,13.0822 -8.2685,14.4064 -8.2685,30.0647 l 0,16.3798 -9,0 -9,0 0,-14.7457 z"
+       id="path9559"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2545.8824,1377.7846 c -14.6017,-7.4456 -19.5026,-22.2922 -12.2823,-37.2075 8.6168,-17.7998 28.027,-25.9761 41.5315,-17.4945 8.7365,5.4871 12.5372,11.928 13.8387,23.4522 2.7872,24.68 -21.4702,42.2729 -43.0879,31.2498 l 0,0 z m 20.1235,-16.4969 c 3.2546,0 7.8971,-13.6553 6.5148,-19.1627 -2.4582,-9.7942 -17.6861,-10.3562 -22.7787,-0.8406 -3.6874,6.89 -1.6983,16.5603 3.9983,19.4375 2.75,1.389 6.1986,2.0845 7.6635,1.5456 1.465,-0.5389 3.5359,-0.9798 4.6021,-0.9798 z"
+       id="path9561"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2614.5428,1377.4936 c -9.2002,-5.6101 -12.8025,-16.6532 -12.8025,-39.2464 l 0,-18.9595 6.8125,0 6.8126,0 0.6874,20.164 c 0.5855,17.1749 1.263,20.5844 4.5697,23 5.3517,3.9094 6.5066,3.628 10.5716,-2.576 2.6749,-4.0824 3.5461,-9.4882 3.5461,-22.0032 l 0,-16.5911 6.6494,-1.2475 c 9.7209,-1.8236 11.3559,1.0451 11.315,19.8538 -0.028,12.9527 -0.9926,18.3578 -4.5884,25.7141 -7.1215,14.5692 -21.0767,19.5122 -33.5734,11.8918 l 0,0 z"
+       id="path9563"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2664.4763,1378.321 c -0.6261,-1.6316 -0.097,-14.0066 1.1753,-27.5 2.5205,-26.7263 3.4037,-28.4731 15.5479,-30.7514 9.2202,-1.7297 20.2186,0.3066 24.9931,4.6275 6.2629,5.6678 3.8739,19.9219 -4.5123,26.9229 l -6.4439,5.3797 7.5345,9.1948 c 4.1439,5.0571 7.0286,9.7006 6.4103,10.3189 -0.6182,0.6183 -4.3466,1.8509 -8.2852,2.7392 -7.0269,1.5848 -7.2639,1.4323 -12.6446,-8.1398 -5.9135,-10.5198 -8.0842,-9.5668 -8.3706,3.6749 -0.1315,6.0797 -0.5972,6.5 -7.2033,6.5 -4.3978,0 -7.4923,-1.1194 -8.2012,-2.9667 z m 25.3954,-33.1036 c 5.2726,-2.8218 5.0888,-11.2728 -0.2822,-12.9775 -5.0779,-1.6117 -5.0158,-1.6846 -6.4404,7.5478 -1.2194,7.9022 0.1046,8.9715 6.7226,5.4297 l 0,0 z"
+       id="path9565"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2590.1678,1419.7877 c 0.5361,-18.2609 0.8475,-19.5392 4.9007,-20.1166 5.0103,-0.7137 5.8094,1.2534 7.7077,18.9745 1.7616,16.4448 0.2888,20.6421 -7.2431,20.6421 l -5.9377,0 0.5724,-19.5 z"
+       id="path9567"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2589.6011,1458.1201 c -2.8819,-3.4725 -1.0841,-7.994 4.6052,-11.5827 3.8622,-2.4363 9.534,1.4872 9.534,6.5952 0,7.5564 -9.2881,10.8327 -14.1392,4.9875 z"
+       id="path9569"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2528.6481,1431.9249 c 0.8027,-16.3005 1.6018,-29.7819 1.7758,-29.9588 0.174,-0.1769 3.5246,-0.9208 7.4459,-1.6531 l 7.1295,-1.3314 3.267,11.7507 c 1.7969,6.4629 4.3127,14.4068 5.5908,17.6531 2.1201,5.3853 2.4547,5.5519 3.8197,1.9023 0.8229,-2.2 1.0505,-9.625 0.506,-16.5 l -0.9902,-12.5 8.7738,10e-4 8.7739,10e-4 0.5143,28.9988 0.5143,28.9987 -6.8508,0 c -3.7679,0 -8.2534,0.5383 -9.9678,1.1961 -2.0558,0.7889 -3.7888,-0.4027 -5.09,-3.5 -1.0851,-2.5828 -3.5417,-8.2961 -5.459,-12.6961 l -3.486,-8 -1.0875,12 -1.0875,12 -7.7758,0.6372 -7.7758,0.6372 1.4594,-29.6372 z"
+       id="path9571"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2481.7492,1449.3301 c -3.7807,-17.8159 -5.9052,-17.7093 -9.1249,0.4576 -1.2851,7.2512 -1.6038,7.499 -9.6066,7.4694 -4.5526,-0.017 -9.2941,-0.6918 -10.5366,-1.5 -2.622,-1.7053 -13.3745,-47.9334 -11.989,-51.5439 0.5118,-1.3337 3.6141,-2.8187 6.894,-3.3001 5.8314,-0.8559 6.0402,-0.5845 9.4264,12.2497 1.9045,7.2187 4.1703,13.9078 5.0351,14.8647 1.5666,1.7335 5.8603,-10.7327 5.8815,-17.0762 0.024,-7.1281 2.4296,-9.6636 9.1693,-9.6636 6.4897,0 6.8442,0.4109 9.9229,11.5 4.9747,17.918 5.082,18.1162 7.0479,13.0187 0.9506,-2.4647 2.3161,-8.9124 3.0346,-14.3281 1.0294,-7.7603 2.21,-10.0894 5.5713,-10.9914 7.3809,-1.9807 15.2643,-1.3098 15.2854,1.3008 0.011,1.375 -1.9056,14.875 -4.2593,30 l -4.2796,27.5 -9.5771,0 c -5.2674,0 -10.8681,0.4954 -12.446,1.1009 -2.1513,0.8256 -3.5143,-1.9404 -5.4493,-11.0585 z"
+       id="path9573"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2388.7403,1459.852 c -14.2384,-3.4591 -23.5164,-20.2787 -19.1765,-34.7639 2.7594,-9.2103 16.405,-23.0935 24.4307,-24.8562 15.9626,-3.506 30.2833,6.9382 32.8338,23.9458 3.723,24.8267 -14.0845,41.5056 -38.088,35.6743 z m 18.3714,-20.9473 c 3.1656,-2.5275 5.2404,-12.5386 3.6421,-17.5742 -4.7334,-14.9139 -26.5402,-5.1175 -24.6777,11.0862 1.0777,9.3759 12.8651,13.0116 21.0356,6.488 z"
+       id="path9575"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 2324.6129,1438.2877 1.4163,-23 -6.7429,0 c -6.5103,0 -6.7151,-0.238 -5.937,-6.9027 0.7913,-6.7778 0.992,-6.9134 11.0984,-7.5 5.6609,-0.3285 15.4317,-0.2941 21.7129,0.076 12.1964,0.7194 15.2987,3.7593 12.5797,12.3264 -1.0264,3.2337 -3.0261,4 -10.4388,4 l -9.1691,0 1.27,20.7568 1.27,20.7568 -6.2161,1.2432 c -12.8592,2.5718 -12.3985,3.4961 -10.8434,-21.7568 z"
+       id="path9577"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>

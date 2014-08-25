@@ -64,10 +64,7 @@ public class GameScene extends BaseScene{
 	
 	//Texts
 	private Text scoreText;
-	private Text countdownText;
-	//private Text gameOverText;
 	private Text finalScoreText;
-	//private Text pauseText;
 	
 	//Constants	
 	private float screenWidth;
@@ -83,6 +80,9 @@ public class GameScene extends BaseScene{
 	private boolean gameOver = false;
 	private boolean destroyAllEnemies = false;
 	private boolean domeActivated = false;
+	private boolean bombCreated = false;
+	private boolean shieldCreated = false;
+	private boolean repairCreated = false;
 	
 	//Integers
 	private int score = 0;
@@ -107,6 +107,12 @@ public class GameScene extends BaseScene{
 	private Rectangle shieldBarBackground;
 	private Rectangle shieldBar;
 	
+	//Countdown
+	private Sprite countdownFrame1;
+	private Sprite countdownFrame2;
+	private Sprite countdownFrame3;
+	private Sprite countdownFrame4;
+	
 	//Counters
 	private int largeRocksCounter = 0;
 	private int rocksCounter = 0;
@@ -121,7 +127,7 @@ public class GameScene extends BaseScene{
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
 	private static final int ROCK_NEGATIVE_VEL_X = -2;
-	private static final int ROCK_INITIAL_Y = 800;
+	private static final int ROCK_INITIAL_Y = 900;
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
@@ -143,11 +149,11 @@ public class GameScene extends BaseScene{
 	private static final int UFO_SCORE = 1000;
 	private static final int SATELITE_SCORE = 1000;
 	
-	private static final int START_GAME_UPDATES = 200;
-	private static final int LARGE_ROCK_CREATION_UPDATES = 250;
-	private static final int UFO_CREATION_UPDATES = 500;
-	private static final int SATELITE_CREATION_UPDATES = 750;
-	private static final int HELP_BOXES_CREATION_UPDATES = 500;
+	private static final int START_GAME_UPDATES = 280;
+	private static final int LARGE_ROCK_CREATION_UPDATES = 500;
+	private static final int UFO_CREATION_UPDATES = 600;
+	private static final int SATELITE_CREATION_UPDATES = 800;
+	private static final int HELP_BOXES_CREATION_UPDATES = 1000;
 	
 	private static final float SHIELD_DURATION = 10f;
 
@@ -166,7 +172,7 @@ public class GameScene extends BaseScene{
 		createPhysics();
 		createHud();
 		createWindows();
-		initializeGame();		
+		initializeGame();
 		//DebugRenderer debug = new DebugRenderer(physicsWorld, vbom);
         //GameScene.this.attachChild(debug);
 	}
@@ -176,6 +182,7 @@ public class GameScene extends BaseScene{
 		createHouses();
 		createDecoration();
 		createDome();
+		createCountdown();
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
 			private int difficulty = 0;
@@ -195,29 +202,32 @@ public class GameScene extends BaseScene{
 					availablePause = false;
 				}
 				
-				if (updates == 50) {
-					countdownText.setText("2");
+				if (difficulty > (LARGE_ROCK_CREATION_UPDATES + 50) && (updates % 1500) == 0) {
+					difficulty += 50;
 				}
-				if (updates == 100) {
-					countdownText.setText("1");
+				
+				if (updates == 70) {
+					countdownFrame1.setVisible(false);
+					countdownFrame2.setVisible(true);
 				}
-				if (updates == 150) {
-					countdownText.setPosition(screenWidth/2 - 250, screenHeight/2);
-					countdownText.setText("Protect!!!");
+				if (updates == 140) {
+					countdownFrame2.setVisible(false);
+					countdownFrame3.setVisible(true);
+				}
+				if (updates == 210) {
+					countdownFrame3.setVisible(false);
+					countdownFrame4.setVisible(true);
 				}
 				if (updates == START_GAME_UPDATES) {
-					createShieldBox();
-					gameHud.detachChild(countdownText);
+					countdownFrame4.setVisible(false);
 					availablePause = true;
 				}
 				
-				if ((((updates % LARGE_ROCK_CREATION_UPDATES) - difficulty) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
-					createLargeRock();
-					if (difficulty > (LARGE_ROCK_CREATION_UPDATES + 50)) {
-						difficulty += 50;
-					}					
+				if (((updates % (LARGE_ROCK_CREATION_UPDATES - difficulty)) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
+					createLargeRock();			
 				}
-				if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
+				
+				/*if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
 					createUfo();
 				}
 				
@@ -242,13 +252,13 @@ public class GameScene extends BaseScene{
 						default:
 							break;
 					}
-				}
+				}*/
 				
 				if (domeActivated && availablePause) {
 					if (shieldBar.getWidth() > 0) {
 						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
 					}
-					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 450) + shieldBar.getWidth() / 2, shieldBar.getY());
+					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
 				}
 			}
 		});
@@ -289,6 +299,7 @@ public class GameScene extends BaseScene{
 								addScore(SATELITE_SCORE);
 								ref.setVisible(false);
 								ref.getSateliteBody().setActive(false);
+								ref.setIgnoreUpdate(true);
 								sateliteCounter--;
 								GameScene.this.unregisterTouchArea(ref);
 								createExplosion(ref.getX(), ref.getY());
@@ -305,6 +316,7 @@ public class GameScene extends BaseScene{
 							addScore(SATELITE_SCORE);
 							ref.setVisible(false);
 							ref.getSateliteBody().setActive(false);
+							ref.setIgnoreUpdate(true);
 							sateliteCounter--;
 							GameScene.this.unregisterTouchArea(ref);
 							createExplosion(ref.getX(), ref.getY());
@@ -324,6 +336,7 @@ public class GameScene extends BaseScene{
 								addScore(SATELITE_SCORE);
 								satRef.setVisible(false);
 								satRef.getSateliteBody().setActive(false);
+								satRef.setIgnoreUpdate(true);
 								sateliteCounter--;
 								GameScene.this.unregisterTouchArea(satRef);
 								createExplosion(satRef.getX(), satRef.getY());
@@ -394,6 +407,7 @@ public class GameScene extends BaseScene{
 								addScore(UFO_SCORE);
 								ufoRef.setVisible(false);
 								ufoRef.getUfoBody().setActive(false);
+								ufoRef.setIgnoreUpdate(true);
 								ufoCounter--;
 								GameScene.this.unregisterTouchArea(ufoRef);
 								createExplosion(ufoRef.getX(), ufoRef.getY());
@@ -419,6 +433,7 @@ public class GameScene extends BaseScene{
 								addScore(UFO_SCORE);
 								ref.setVisible(false);
 								ref.getUfoBody().setActive(false);
+								ref.setIgnoreUpdate(true);
 								sateliteCounter--;
 								GameScene.this.unregisterTouchArea(ref);
 								createExplosion(ref.getX(), ref.getY());
@@ -436,6 +451,7 @@ public class GameScene extends BaseScene{
 							addScore(UFO_SCORE);
 							ref.setVisible(false);
 							ref.getUfoBody().setActive(false);
+							ref.setIgnoreUpdate(true);
 							sateliteCounter--;
 							GameScene.this.unregisterTouchArea(ref);
 							createExplosion(ref.getX(), ref.getY());
@@ -473,6 +489,7 @@ public class GameScene extends BaseScene{
 										public void run() {
 											ref.setVisible(false);
 											ref.getShotBody().setActive(false);
+											ref.setIgnoreUpdate(true);
 										}
 									});
 								}
@@ -495,6 +512,7 @@ public class GameScene extends BaseScene{
 										public void run() {
 											ref.setVisible(false);
 											ref.getShotBody().setActive(false);
+											ref.setIgnoreUpdate(true);
 										}
 									});
 								}
@@ -517,6 +535,7 @@ public class GameScene extends BaseScene{
 										public void run() {
 											ref.setVisible(false);
 											ref.getShotBody().setActive(false);
+											ref.setIgnoreUpdate(true);
 										}
 									});
 								}
@@ -564,6 +583,7 @@ public class GameScene extends BaseScene{
 								addScore(LARGE_ROCK_SCORE);
 								ref.setVisible(false);
 								ref.getLargeRockBody().setActive(false);
+								ref.setIgnoreUpdate(true);
 								largeRocksCounter--;
 								GameScene.this.unregisterTouchArea(ref);
 								createExplosion(ref.getX(), ref.getY());
@@ -580,6 +600,7 @@ public class GameScene extends BaseScene{
 							addScore(LARGE_ROCK_SCORE);
 							ref.setVisible(false);
 							ref.getLargeRockBody().setActive(false);
+							ref.setIgnoreUpdate(true);
 							largeRocksCounter--;
 							GameScene.this.unregisterTouchArea(ref);
 							createExplosion(ref.getX(), ref.getY());
@@ -603,6 +624,7 @@ public class GameScene extends BaseScene{
 								largeRocksCounter--;
 								largeRockRef.setVisible(false);
 								largeRockRef.getLargeRockBody().setActive(false);
+								largeRockRef.setIgnoreUpdate(true);
 								GameScene.this.unregisterTouchArea(largeRockRef);
 								createExplosion(largeRockRef.getX(), largeRockRef.getY());
 							}						
@@ -690,6 +712,7 @@ public class GameScene extends BaseScene{
 								addScore(ROCK_SCORE);
 								ref.setVisible(false);
 								ref.getRockBody().setActive(false);
+								ref.setIgnoreUpdate(true);
 								rocksCounter--;
 								GameScene.this.unregisterTouchArea(ref);
 								createExplosion(ref.getX(), ref.getY());
@@ -706,6 +729,7 @@ public class GameScene extends BaseScene{
 							addScore(ROCK_SCORE);
 							ref.setVisible(false);
 							ref.getRockBody().setActive(false);
+							ref.setIgnoreUpdate(true);
 							rocksCounter--;
 							GameScene.this.unregisterTouchArea(ref);
 							createExplosion(ref.getX(), ref.getY());
@@ -728,6 +752,7 @@ public class GameScene extends BaseScene{
 								rocksCounter--;
 								rockRef.setVisible(false);
 								rockRef.getRockBody().setActive(false);
+								rockRef.setIgnoreUpdate(true);
 								GameScene.this.unregisterTouchArea(rockRef);
 								createExplosion(rockRef.getX(), rockRef.getY());
 							}										
@@ -815,6 +840,7 @@ public class GameScene extends BaseScene{
 								addScore(SMALL_ROCK_SCORE);
 								ref.setVisible(false);
 								ref.getSmallRockBody().setActive(false);
+								ref.setIgnoreUpdate(true);
 								smallRocksCounter--;
 								GameScene.this.unregisterTouchArea(ref);
 								createExplosion(ref.getX(), ref.getY());
@@ -831,6 +857,7 @@ public class GameScene extends BaseScene{
 							addScore(SMALL_ROCK_SCORE);
 							ref.setVisible(false);
 							ref.getSmallRockBody().setActive(false);
+							ref.setIgnoreUpdate(true);
 							smallRocksCounter--;
 							GameScene.this.unregisterTouchArea(ref);
 							createExplosion(ref.getX(), ref.getY());
@@ -851,6 +878,7 @@ public class GameScene extends BaseScene{
 								smallRocksCounter--;
 								smallRockRef.setVisible(false);
 								smallRockRef.getSmallRockBody().setActive(false);
+								smallRockRef.setIgnoreUpdate(true);
 								GameScene.this.unregisterTouchArea(smallRockRef);
 								createExplosion(smallRockRef.getX(), smallRockRef.getY());
 							}
@@ -1185,7 +1213,7 @@ public class GameScene extends BaseScene{
 		gameHud = new HUD();	
 		
 		scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-		countdownText = new Text(screenWidth/2, screenHeight/2, resourcesManager.countdownFont, "321Protect!", new TextOptions(HorizontalAlign.CENTER), vbom);
+		//countdownText = new Text(screenWidth/2, screenHeight/2, resourcesManager.countdownFont, "321Protect!", new TextOptions(HorizontalAlign.CENTER), vbom);
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1198,22 +1226,38 @@ public class GameScene extends BaseScene{
 		};
 		
 		scoreText.setAnchorCenter(0, 0);
-		countdownText.setAnchorCenter(0, 0);
+		//countdownText.setAnchorCenter(0, 0);
 		
 		scoreText.setText("Score: " + score);
-		countdownText.setText("3");
+		//countdownText.setText("3");
 		
 		//scoreText.setColor(0.596f, 0.596f, 0.6f);
 		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		countdownText.setColor(Color.RED_ARGB_PACKED_INT);
+		//countdownText.setColor(Color.RED_ARGB_PACKED_INT);
 
 		gameHud.attachChild(scoreText);
-		gameHud.attachChild(countdownText);
+		//gameHud.attachChild(countdownText);
 		gameHud.attachChild(pauseButton);
 		
 		GameScene.this.registerTouchArea(pauseButton);
 
 		camera.setHUD(gameHud);
+	}
+	
+	private void createCountdown() {
+		countdownFrame1 = new Sprite(screenWidth/2, screenHeight/2, resourcesManager.game_countdown_frame_1_region, vbom);
+		countdownFrame2 = new Sprite(screenWidth/2, screenHeight/2, resourcesManager.game_countdown_frame_2_region, vbom);
+		countdownFrame3 = new Sprite(screenWidth/2, screenHeight/2, resourcesManager.game_countdown_frame_3_region, vbom);
+		countdownFrame4 = new Sprite(screenWidth/2, screenHeight/2, resourcesManager.game_countdown_frame_4_region, vbom);
+		
+		countdownFrame2.setVisible(false);
+		countdownFrame3.setVisible(false);
+		countdownFrame4.setVisible(false);
+		
+		GameScene.this.attachChild(countdownFrame1);
+		GameScene.this.attachChild(countdownFrame2);
+		GameScene.this.attachChild(countdownFrame3);
+		GameScene.this.attachChild(countdownFrame4);
 	}
 		
 	private void createPhysics() {
@@ -1485,10 +1529,10 @@ public class GameScene extends BaseScene{
 		float shieldBarWidth = 400;
 		float shieldBarHeight = 25;
 		
-		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 250, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 250, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 250, 665, resourcesManager.game_shield_bar_frame_region, vbom);
-		shieldBarLogo = new Sprite(screenWidth/2 - 170, 670, resourcesManager.game_shield_bar_logo_region, vbom);
+		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 150, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 150, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 150, 665, resourcesManager.game_shield_bar_frame_region, vbom);
+		shieldBarLogo = new Sprite(screenWidth/2 - 70, 670, resourcesManager.game_shield_bar_logo_region, vbom);
 		
 		dome = new Sprite(-1500, 1500, resourcesManager.game_dome_region, vbom);
 		

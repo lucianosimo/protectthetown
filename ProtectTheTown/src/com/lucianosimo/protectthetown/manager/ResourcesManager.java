@@ -104,6 +104,12 @@ public class ResourcesManager {
 	public ITiledTextureRegion game_explosion_region;
 	public ITiledTextureRegion game_small_explosion_region;
 	
+	//Countdown
+	public ITextureRegion game_countdown_frame_1_region;
+	public ITextureRegion game_countdown_frame_2_region;
+	public ITextureRegion game_countdown_frame_3_region;
+	public ITextureRegion game_countdown_frame_4_region;
+	
 	//Windows
 	public ITextureRegion game_over_window_region;
 	public ITextureRegion game_pause_window_region;
@@ -279,6 +285,11 @@ public class ResourcesManager {
 		game_retry_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_retry_button.png");
 		game_quit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_quit_button.png");
 		game_pause_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_button.png");
+		
+		game_countdown_frame_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_1.png");
+		game_countdown_frame_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_2.png");
+		game_countdown_frame_3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_3.png");
+		game_countdown_frame_4_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_4.png");
 		
 		game_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_explosion.png", 6, 1);
 		game_small_explosion_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameAnimatedTextureAtlas, activity, "game_small_explosion.png", 6, 1);
