@@ -131,14 +131,14 @@ public class GameScene extends BaseScene{
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
-	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 5;
-	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 3;
+	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 4;
+	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 2;
 	
-	private static final int ROCK_MAX_RANDOM_Y_VEL = 6;
-	private static final int ROCK_MIN_RANDOM_Y_VEL = 4;
+	private static final int ROCK_MAX_RANDOM_Y_VEL = 5;
+	private static final int ROCK_MIN_RANDOM_Y_VEL = 3;
 	
-	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 7;
-	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 5;
+	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 6;
+	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 4;
 	
 	private static final int ROCK_MAX_RANDOM_X = 1000;
 	private static final int ROCK_MIN_RANDOM_X = 100;
@@ -202,9 +202,10 @@ public class GameScene extends BaseScene{
 					availablePause = false;
 				}
 				
-				if (difficulty > (LARGE_ROCK_CREATION_UPDATES + 50) && (updates % 1500) == 0) {
+				if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
 					difficulty += 50;
 				}
+				
 				
 				if (updates == 70) {
 					countdownFrame1.setVisible(false);
@@ -224,7 +225,7 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (((updates % (LARGE_ROCK_CREATION_UPDATES - difficulty)) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
-					createLargeRock();			
+					createLargeRock();		
 				}
 				
 				/*if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
@@ -607,6 +608,10 @@ public class GameScene extends BaseScene{
 						}
 					});
 				}
+				
+				if (this.getX() < 0) {
+					regenerateRocks(this.getLargeRockBody());
+				}
 			}
 			
 			@Override
@@ -720,6 +725,11 @@ public class GameScene extends BaseScene{
 						});
 					}
 				}
+				
+				if (this.getX() < 0) {
+					regenerateRocks(this.getRockBody());
+				}
+				
 				if (this.collidesWith(dome) && this.getRockBody().isActive()) {
 					final Rock ref = this;
 					engine.runOnUpdateThread(new Runnable() {
@@ -848,6 +858,11 @@ public class GameScene extends BaseScene{
 						});
 					}
 				}
+				
+				if (this.getX() < 0) {
+					regenerateRocks(this.getSmallRockBody());
+				}
+				
 				if (this.collidesWith(dome) && this.getSmallRockBody().isActive()) {
 					final SmallRock ref = this;
 					engine.runOnUpdateThread(new Runnable() {
