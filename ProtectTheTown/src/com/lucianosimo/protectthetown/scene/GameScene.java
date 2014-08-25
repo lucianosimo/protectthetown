@@ -1044,7 +1044,9 @@ public class GameScene extends BaseScene{
 		for (int i = 0; i < 8; i++) {
 			elevation = rand.nextInt(5) + 1;
 			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
+			Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
 			floor[i].setCullingEnabled(true);
+			floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
 			if (elevation == 2) {
 				Earth earth = new Earth(floor_positions[i], 50, vbom, camera, physicsWorld);
