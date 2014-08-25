@@ -120,6 +120,18 @@ public class GameScene extends BaseScene{
 	private int ufoCounter = 0;
 	private int sateliteCounter = 0;
 	
+	//Rocks
+	private LargeRock largeRock1;
+	private LargeRock largeRock2;
+	private LargeRock largeRock3;
+	
+	//Satelite
+	private Satelite satelite;
+	
+	//Ufos
+	private Ufo ufo1;
+	private Ufo ufo2;
+	
 	//Explosions
 	private AnimatedSprite explosion;
 	private AnimatedSprite small_explosion;
@@ -131,13 +143,13 @@ public class GameScene extends BaseScene{
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
-	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 4;
+	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 3;
 	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 2;
 	
-	private static final int ROCK_MAX_RANDOM_Y_VEL = 5;
+	private static final int ROCK_MAX_RANDOM_Y_VEL = 4;
 	private static final int ROCK_MIN_RANDOM_Y_VEL = 3;
 	
-	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 6;
+	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 5;
 	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 4;
 	
 	private static final int ROCK_MAX_RANDOM_X = 1000;
@@ -182,6 +194,9 @@ public class GameScene extends BaseScene{
 		createHouses();
 		createDecoration();
 		createDome();
+		createUfos();
+		createRocks();
+		createSatelite();
 		createCountdown();
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
@@ -222,19 +237,56 @@ public class GameScene extends BaseScene{
 				if (updates == START_GAME_UPDATES) {
 					countdownFrame4.setVisible(false);
 					availablePause = true;
+					largeRock1.getLargeRockBody().setActive(true);
 				}
 				
-				if (((updates % (LARGE_ROCK_CREATION_UPDATES - difficulty)) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
+				if ((updates % 250) == 0 && availablePause) {
+					if (!largeRock1.getLargeRockBody().isActive()) {
+						largeRock1.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 2500) && (updates % 250) == 0 && availablePause) {
+					if (!largeRock2.getLargeRockBody().isActive()) {
+						largeRock2.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 5000) && (updates % 250) == 0 && availablePause) {
+					if (!largeRock3.getLargeRockBody().isActive()) {
+						largeRock3.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
+					if (!ufo1.getUfoBody().isActive()) {
+						ufo1.getUfoBody().setActive(true);
+					}
+				}
+				
+				if ((updates > 4000) && (updates % 500) == 0 && availablePause) {
+					if (!ufo2.getUfoBody().isActive()) {
+						ufo2.getUfoBody().setActive(true);
+					}
+				}
+				
+				if ((updates > 4000) && (updates % 2500) == 0 && availablePause) {
+					if (!satelite.getSateliteBody().isActive()) {
+						satelite.getSateliteBody().setActive(true);
+					}
+				}
+				
+				/*if (((updates % (LARGE_ROCK_CREATION_UPDATES - difficulty)) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
 					createLargeRock();		
 				}
 				
-				/*if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
+				if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
 					createUfo();
 				}
 				
 				if (((updates % SATELITE_CREATION_UPDATES) - difficulty) == 0 && (sateliteCounter <= SATELITE_MAX) && availablePause) {
 					createSatelite();
-				}
+				}*/
 				
 				if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
 					//n = rand.nextInt(max - min + 1) + min;
@@ -253,7 +305,7 @@ public class GameScene extends BaseScene{
 						default:
 							break;
 					}
-				}*/
+				}
 				
 				if (domeActivated && availablePause) {
 					if (shieldBar.getWidth() > 0) {
@@ -265,6 +317,17 @@ public class GameScene extends BaseScene{
 		});
 	}
 	
+	private void createRocks() {
+		largeRock1 = createLargeRock();
+		largeRock2 = createLargeRock();
+		largeRock3 = createLargeRock();
+	}
+	
+	private void createUfos() {
+		ufo1 = createUfo();
+		ufo2 = createUfo();
+	}
+	
 	private void createSatelite() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
@@ -273,20 +336,38 @@ public class GameScene extends BaseScene{
 		
 		switch (whichHouse) {
 			case 1:
-				initialX = smallHouse.getX();
+				if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else if (!house.isHouseDestroyed()) {
+					initialX = house.getX();
+				} else {
+					initialX = largeHouse.getX();
+				}				
 				break;
 			case 2:
-				initialX = house.getX();
+				if (!house.isHouseDestroyed()) {
+					initialX = house.getX();
+				} else if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else {
+					initialX = largeHouse.getX();
+				}
 				break;
 			case 3:
-				initialX = largeHouse.getX();
+				if (!largeHouse.isLargeHouseDestroyed()) {
+					initialX = largeHouse.getX();
+				} else if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else {
+					initialX = house.getX();
+				}
 				break;
 			default:
 				initialX = screenWidth/2;
 				break;
 		}
 		
-		Satelite satelite = new Satelite(initialX, SATELITE_INITIAL_Y, vbom, camera, physicsWorld) {
+		satelite = new Satelite(initialX, SATELITE_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -298,11 +379,13 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(SATELITE_SCORE);
-								ref.setVisible(false);
+								/*ref.setVisible(false);
 								ref.getSateliteBody().setActive(false);
 								ref.setIgnoreUpdate(true);
 								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(ref);
+								GameScene.this.unregisterTouchArea(ref);*/
+								regenerateSatelite(ref.getSateliteBody());
+								ref.getSateliteBody().setActive(false);
 								createExplosion(ref.getX(), ref.getY());
 							}
 						});
@@ -315,11 +398,13 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(SATELITE_SCORE);
-							ref.setVisible(false);
+							/*ref.setVisible(false);
 							ref.getSateliteBody().setActive(false);
 							ref.setIgnoreUpdate(true);
 							sateliteCounter--;
-							GameScene.this.unregisterTouchArea(ref);
+							GameScene.this.unregisterTouchArea(ref);*/
+							regenerateSatelite(ref.getSateliteBody());
+							ref.getSateliteBody().setActive(false);
 							createExplosion(ref.getX(), ref.getY());
 						}
 					});
@@ -335,11 +420,13 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (satRef.getSateliteBody().isActive() && availablePause && !gameOver) {
 								addScore(SATELITE_SCORE);
-								satRef.setVisible(false);
+								/*satRef.setVisible(false);
 								satRef.getSateliteBody().setActive(false);
 								satRef.setIgnoreUpdate(true);
 								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(satRef);
+								GameScene.this.unregisterTouchArea(satRef);*/
+								regenerateSatelite(satRef.getSateliteBody());
+								satRef.getSateliteBody().setActive(false);
 								createExplosion(satRef.getX(), satRef.getY());
 							}						
 						}
@@ -351,12 +438,13 @@ public class GameScene extends BaseScene{
 		
 		sateliteCounter++;
 		
+		satelite.getSateliteBody().setActive(false);
 		satelite.setCullingEnabled(true);
 		GameScene.this.attachChild(satelite);
 		GameScene.this.registerTouchArea(satelite);
 	}
 	
-	private void createUfo() {
+	private Ufo createUfo() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
 		final int ufoSpeed = rand.nextInt(3) + 5;
@@ -406,11 +494,13 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (ufoRef.getUfoBody().isActive() && availablePause && !gameOver) {
 								addScore(UFO_SCORE);
-								ufoRef.setVisible(false);
+								/*ufoRef.setVisible(false);
 								ufoRef.getUfoBody().setActive(false);
 								ufoRef.setIgnoreUpdate(true);
 								ufoCounter--;
-								GameScene.this.unregisterTouchArea(ufoRef);
+								GameScene.this.unregisterTouchArea(ufoRef);*/
+								regenerateUfo(ufoRef.getUfoBody());
+								ufoRef.getUfoBody().setActive(false);
 								createExplosion(ufoRef.getX(), ufoRef.getY());
 							}
 							
@@ -432,11 +522,13 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(UFO_SCORE);
-								ref.setVisible(false);
+								/*ref.setVisible(false);
 								ref.getUfoBody().setActive(false);
 								ref.setIgnoreUpdate(true);
 								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(ref);
+								GameScene.this.unregisterTouchArea(ref);*/
+								regenerateUfo(ref.getUfoBody());
+								ref.getUfoBody().setActive(false);
 								createExplosion(ref.getX(), ref.getY());
 							}
 						});
@@ -450,11 +542,13 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(UFO_SCORE);
-							ref.setVisible(false);
+							/*ref.setVisible(false);
 							ref.getUfoBody().setActive(false);
 							ref.setIgnoreUpdate(true);
 							sateliteCounter--;
-							GameScene.this.unregisterTouchArea(ref);
+							GameScene.this.unregisterTouchArea(ref);*/
+							regenerateUfo(ref.getUfoBody());
+							ref.getUfoBody().setActive(false);
 							createExplosion(ref.getX(), ref.getY());
 						}
 					});
@@ -554,17 +648,21 @@ public class GameScene extends BaseScene{
 		
 		ufoCounter++;
 		
+		ufo.getUfoBody().setActive(false);
+		
 		GameScene.this.attachChild(smallSensor);
 		GameScene.this.attachChild(sensor);
 		GameScene.this.attachChild(largeSensor);
 		GameScene.this.attachChild(ufo);
 		GameScene.this.registerTouchArea(ufo);
+		
+		return ufo;
 	}
 	
 	/*
 	 * Creates a new large rock
 	 */
-	private void createLargeRock() {
+	private LargeRock createLargeRock() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
@@ -582,11 +680,13 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(LARGE_ROCK_SCORE);
-								ref.setVisible(false);
+								/*ref.setVisible(false);
 								ref.getLargeRockBody().setActive(false);
 								ref.setIgnoreUpdate(true);
 								largeRocksCounter--;
-								GameScene.this.unregisterTouchArea(ref);
+								GameScene.this.unregisterTouchArea(ref);*/
+								regenerateRocks(ref.getLargeRockBody());
+								ref.getLargeRockBody().setActive(false);
 								createExplosion(ref.getX(), ref.getY());
 							}
 						});
@@ -599,11 +699,13 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(LARGE_ROCK_SCORE);
-							ref.setVisible(false);
+							/*ref.setVisible(false);
 							ref.getLargeRockBody().setActive(false);
 							ref.setIgnoreUpdate(true);
 							largeRocksCounter--;
-							GameScene.this.unregisterTouchArea(ref);
+							GameScene.this.unregisterTouchArea(ref);*/
+							regenerateRocks(ref.getLargeRockBody());
+							ref.getLargeRockBody().setActive(false);
 							createExplosion(ref.getX(), ref.getY());
 						}
 					});
@@ -626,11 +728,13 @@ public class GameScene extends BaseScene{
 								createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
 								createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(LARGE_ROCK_SCORE);
-								largeRocksCounter--;
+								/*largeRocksCounter--;
 								largeRockRef.setVisible(false);
 								largeRockRef.getLargeRockBody().setActive(false);
 								largeRockRef.setIgnoreUpdate(true);
-								GameScene.this.unregisterTouchArea(largeRockRef);
+								GameScene.this.unregisterTouchArea(largeRockRef);*/
+								regenerateRocks(largeRockRef.getLargeRockBody());
+								largeRockRef.getLargeRockBody().setActive(false);
 								createExplosion(largeRockRef.getX(), largeRockRef.getY());
 							}						
 						}
@@ -645,9 +749,12 @@ public class GameScene extends BaseScene{
 
 		largeRocksCounter++;
 		
+		largeRock.getLargeRockBody().setActive(false);
 		largeRock.setCullingEnabled(true);
 		GameScene.this.attachChild(largeRock);
 		GameScene.this.registerTouchArea(largeRock);
+		
+		return largeRock;
 	}
 	
 	/*
@@ -923,12 +1030,73 @@ public class GameScene extends BaseScene{
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(ROCK_MAX_RANDOM_Y_VEL) + ROCK_MIN_RANDOM_Y_VEL);
 		
-		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, ROCK_INITIAL_Y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
+		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
 		if (x > screenWidth/2) {
 			rockBody.setLinearVelocity(ROCK_POSITIVE_VEL_X, yVel);
 		} else {
 			rockBody.setLinearVelocity(ROCK_NEGATIVE_VEL_X, yVel);
 		}
+	}
+	
+	private void regenerateUfo(Body ufoBody) {
+		Random rand = new Random();
+		final int side = rand.nextInt(2) + 1;
+		int x = 1580;
+		
+		switch (side) {
+		case 1:
+			x = 1580;
+			break;
+		case 2:
+			x = -300;
+			break;
+		default:
+			break;
+		}
+		
+		ufoBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, UFO_INITIAL_Y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, ufoBody.getAngle());
+	}
+	
+	private void regenerateSatelite(Body sateliteBody) {
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int whichHouse = rand.nextInt(3) + 1;
+		final float initialX;
+		
+		switch (whichHouse) {
+			case 1:
+				if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else if (!house.isHouseDestroyed()) {
+					initialX = house.getX();
+				} else {
+					initialX = largeHouse.getX();
+				}				
+				break;
+			case 2:
+				if (!house.isHouseDestroyed()) {
+					initialX = house.getX();
+				} else if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else {
+					initialX = largeHouse.getX();
+				}
+				break;
+			case 3:
+				if (!largeHouse.isLargeHouseDestroyed()) {
+					initialX = largeHouse.getX();
+				} else if (!smallHouse.isSmallHouseDestroyed()) {
+					initialX = smallHouse.getX();
+				} else {
+					initialX = house.getX();
+				}
+				break;
+			default:
+				initialX = screenWidth/2;
+				break;
+		}
+		
+		sateliteBody.setTransform(initialX / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, SATELITE_INITIAL_Y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, sateliteBody.getAngle());
 	}
 	
 	/*
@@ -1360,7 +1528,7 @@ public class GameScene extends BaseScene{
 		
 		finalScoreText = new Text(275, 256, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		
-		finalScoreText.setColor(Color.RED_ARGB_PACKED_INT);
+		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 
 		finalScoreText.setText("Your score: " + score);
 		
