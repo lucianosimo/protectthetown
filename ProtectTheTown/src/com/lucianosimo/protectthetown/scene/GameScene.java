@@ -27,6 +27,10 @@ import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.IModifier;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -86,10 +90,12 @@ public class GameScene extends BaseScene{
 	
 	//Integers
 	private int score = 0;
+	private int previousHighScore = 0;
 	
 	//Windows
 	private Sprite gameOverWindow;
 	private Sprite pauseWindow;
+	private Sprite newRecord;
 	
 	//Buttons
 	private Sprite resumeButton;
@@ -1517,6 +1523,17 @@ public class GameScene extends BaseScene{
 		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
+		//newRecord = new Sprite(screenWidth/2 + 300, screenHeight/2 + 50, resourcesManager.game_new_record_region, vbom);
+		newRecord = new Sprite(580, 280, resourcesManager.game_new_record_region, vbom);
+		
+		loadHighScore();
+		
+		if (score > previousHighScore) {
+			saveHighScore("highScore", score);
+		} else {
+			newRecord.setVisible(false);
+		}			
+		
 		fade.setColor(Color.BLACK);
 		fade.setAlpha(0.35f);
 		
@@ -1526,11 +1543,12 @@ public class GameScene extends BaseScene{
 		GameScene.this.setIgnoreUpdate(true);
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		
-		finalScoreText = new Text(275, 256, resourcesManager.finalScoreFont, " Yourscore:123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		//291 256
+		finalScoreText = new Text(291, 300, resourcesManager.finalScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 
-		finalScoreText.setText("Your score: " + score);
+		finalScoreText.setText(""+score);
 		
 		retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1565,6 +1583,8 @@ public class GameScene extends BaseScene{
 		gameOverWindow.attachChild(retryButton);
 		gameOverWindow.attachChild(quitButton);
 		gameOverWindow.attachChild(finalScoreText);
+		gameOverWindow.attachChild(newRecord);
+				
 	}
 	
 	private void createExplosion(float x, float y) {
@@ -2491,4 +2511,15 @@ public class GameScene extends BaseScene{
 		});
 	}
 	
+	private void saveHighScore(String key, int score) {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		Editor editor = sharedPreferences.edit();
+		editor.putInt(key, score);
+		editor.commit();
+	}
+	
+	private void loadHighScore() {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		previousHighScore = sharedPreferences.getInt("highScore", 0);
+	}
 }

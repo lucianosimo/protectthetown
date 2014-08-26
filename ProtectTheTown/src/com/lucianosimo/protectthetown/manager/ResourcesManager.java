@@ -113,6 +113,7 @@ public class ResourcesManager {
 	//Windows
 	public ITextureRegion game_over_window_region;
 	public ITextureRegion game_pause_window_region;
+	public ITextureRegion game_new_record_region;
 	
 	//Buttons
 	public ITextureRegion game_resume_button_region;
@@ -280,6 +281,7 @@ public class ResourcesManager {
 		
 		game_over_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_over_window.png");
 		game_pause_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_window.png");
+		game_new_record_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_new_record.png");
 		
 		game_resume_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_resume_button.png");
 		game_retry_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_retry_button.png");
