@@ -211,7 +211,7 @@ public class GameScene extends BaseScene{
 		createRocks();
 		createSatelite();
 		createCountdown();
-		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom);
+		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
 			private int difficulty = 0;
@@ -234,8 +234,7 @@ public class GameScene extends BaseScene{
 				if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
 					difficulty += 50;
 				}
-				
-				
+
 				if (updates == 70) {
 					countdownFrame1.setVisible(false);
 					countdownFrame2.setVisible(true);
@@ -1602,12 +1601,13 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createExplosion(float x, float y) {
-		explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
-		/*explosion = explosionPool.obtainPoolItem();
-		explosion.setPosition(x, y);*/
+		//explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
+		explosion = explosionPool.obtainPoolItem();
+		explosion.setPosition(x, y);
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
 		explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-		/*explosion.registerUpdateHandler(new IUpdateHandler() {
+		explosion.registerUpdateHandler(new IUpdateHandler() {
+			final AnimatedSprite expRef = explosion;
 			
 			@Override
 			public void reset() {
@@ -1616,23 +1616,26 @@ public class GameScene extends BaseScene{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
-				if (explosion.getCurrentTileIndex() == 5) {
-					Log.d("protect", "tile 5, recycled");
-					engine.runOnUpdateThread(new Runnable() {
-						
-						@Override
-						public void run() {
-							explosionPool.recyclePoolItem(explosion);
-						}
-					});
+				final IUpdateHandler upd = this;
+				engine.runOnUpdateThread(new Runnable() {
 					
-					explosion.unregisterUpdateHandler(this);
-				}
+					@Override
+					public void run() {
+						if (!expRef.isAnimationRunning()) {
+							explosionPool.recyclePoolItem(expRef);
+							expRef.unregisterUpdateHandler(upd);
+							expRef.setIgnoreUpdate(true);
+						}						
+					}
+				});
+				
 			}
-		});*/
+		});
 		
 		explosion.setCullingEnabled(true);
-		GameScene.this.attachChild(explosion);
+		/*if (!explosion.hasParent()) {
+			GameScene.this.attachChild(explosion);
+		}*/		
 	}
 	
 	private void createSmallExplosion(float x, float y) {
