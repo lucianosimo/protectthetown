@@ -30,6 +30,7 @@ import org.andengine.util.modifier.IModifier;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -1161,7 +1162,9 @@ public class GameScene extends BaseScene{
 				if (this.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
 					engine.runOnUpdateThread(new Runnable() {
 						public void run() {
-							gameOver();
+							if (!gameOver) {
+								gameOver();
+							}
 						}
 					});					
 				}
@@ -1192,7 +1195,9 @@ public class GameScene extends BaseScene{
 				if (this.isSmallHouseDestroyed() && house.isHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
 					engine.runOnUpdateThread(new Runnable() {
 						public void run() {
-							gameOver();
+							if (!gameOver) {
+								gameOver();
+							}
 						}
 					});
 				}
@@ -1222,7 +1227,9 @@ public class GameScene extends BaseScene{
 				if (this.isLargeHouseDestroyed() && house.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed()) {
 					engine.runOnUpdateThread(new Runnable() {
 						public void run() {
-							gameOver();
+							if (!gameOver) {
+								gameOver();
+							}							
 						}
 					});
 				}
@@ -1524,30 +1531,28 @@ public class GameScene extends BaseScene{
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
 		//newRecord = new Sprite(screenWidth/2 + 300, screenHeight/2 + 50, resourcesManager.game_new_record_region, vbom);
-		newRecord = new Sprite(580, 280, resourcesManager.game_new_record_region, vbom);
+		newRecord = new Sprite(580, 300, resourcesManager.game_new_record_region, vbom);
 		
 		loadHighScore();
+		saveHighScore("highScore", score);
 		
-		if (score > previousHighScore) {
-			saveHighScore("highScore", score);
-		} else {
+		if (score <= previousHighScore) {
 			newRecord.setVisible(false);
-		}			
+			Log.d("protect", "1");
+		}
+		
+		Log.d("protect", "2");
 		
 		fade.setColor(Color.BLACK);
 		fade.setAlpha(0.35f);
 		
 		availablePause = false;
 		gameOver = true;
-		
-		GameScene.this.setIgnoreUpdate(true);
+
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		
-		//291 256
 		finalScoreText = new Text(291, 300, resourcesManager.finalScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-		
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-
 		finalScoreText.setText(""+score);
 		
 		retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
@@ -1584,6 +1589,8 @@ public class GameScene extends BaseScene{
 		gameOverWindow.attachChild(quitButton);
 		gameOverWindow.attachChild(finalScoreText);
 		gameOverWindow.attachChild(newRecord);
+		
+		GameScene.this.setIgnoreUpdate(true);
 				
 	}
 	
