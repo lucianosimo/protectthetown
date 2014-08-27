@@ -30,7 +30,6 @@ import org.andengine.util.modifier.IModifier;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -59,6 +58,7 @@ import com.lucianosimo.protectthetown.object.SmallRock;
 import com.lucianosimo.protectthetown.object.Tree;
 import com.lucianosimo.protectthetown.object.Ufo;
 import com.lucianosimo.protectthetown.pools.ExplosionPool;
+import com.lucianosimo.protectthetown.pools.SmallExplosionPool;
 
 public class GameScene extends BaseScene{
 	
@@ -142,6 +142,7 @@ public class GameScene extends BaseScene{
 	
 	//Pools
 	private ExplosionPool explosionPool;
+	private SmallExplosionPool smallExplosionPool;
 	
 	//Explosions
 	private AnimatedSprite explosion;
@@ -211,7 +212,10 @@ public class GameScene extends BaseScene{
 		createRocks();
 		createSatelite();
 		createCountdown();
+		
 		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
+		smallExplosionPool = new SmallExplosionPool(resourcesManager.game_small_explosion_region, vbom, GameScene.this);
+		
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
 			private int difficulty = 0;
@@ -1544,10 +1548,7 @@ public class GameScene extends BaseScene{
 		
 		if (score <= previousHighScore) {
 			newRecord.setVisible(false);
-			Log.d("protect", "1");
 		}
-		
-		Log.d("protect", "2");
 		
 		fade.setColor(Color.BLACK);
 		fade.setAlpha(0.35f);
@@ -1639,10 +1640,38 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createSmallExplosion(float x, float y) {
-		small_explosion = new AnimatedSprite(x, y, resourcesManager.game_small_explosion_region.deepCopy(), vbom);
+		//small_explosion = new AnimatedSprite(x, y, resourcesManager.game_small_explosion_region.deepCopy(), vbom);
+		small_explosion = smallExplosionPool.obtainPoolItem();
+		small_explosion.setPosition(x, y);
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
 		small_explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-		GameScene.this.attachChild(small_explosion);
+		small_explosion.registerUpdateHandler(new IUpdateHandler() {
+			final AnimatedSprite smallExpRef = small_explosion;
+			
+			@Override
+			public void reset() {
+				
+			}
+			
+			@Override
+			public void onUpdate(float pSecondsElapsed) {
+				final IUpdateHandler upd = this;
+				engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						if (!smallExpRef.isAnimationRunning()) {
+							smallExplosionPool.recyclePoolItem(smallExpRef);
+							smallExpRef.unregisterUpdateHandler(upd);
+							smallExpRef.setIgnoreUpdate(true);
+						}						
+					}
+				});
+				
+			}
+		});
+		small_explosion.setCullingEnabled(true);
+		//GameScene.this.attachChild(small_explosion);
 	}
 	
 	private void createBombBox() {
