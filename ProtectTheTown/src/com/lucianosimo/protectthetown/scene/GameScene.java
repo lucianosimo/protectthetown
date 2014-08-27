@@ -58,6 +58,7 @@ import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
 import com.lucianosimo.protectthetown.object.Tree;
 import com.lucianosimo.protectthetown.object.Ufo;
+import com.lucianosimo.protectthetown.pools.ExplosionPool;
 
 public class GameScene extends BaseScene{
 	
@@ -139,6 +140,9 @@ public class GameScene extends BaseScene{
 	private Ufo ufo1;
 	private Ufo ufo2;
 	
+	//Pools
+	private ExplosionPool explosionPool;
+	
 	//Explosions
 	private AnimatedSprite explosion;
 	private AnimatedSprite small_explosion;
@@ -159,8 +163,10 @@ public class GameScene extends BaseScene{
 	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 5;
 	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 4;
 	
-	private static final int ROCK_MAX_RANDOM_X = 1000;
-	private static final int ROCK_MIN_RANDOM_X = 100;
+	/*private static final int ROCK_MAX_RANDOM_X = 1000;
+	private static final int ROCK_MIN_RANDOM_X = 100;*/
+	private static final int ROCK_MAX_RANDOM_X = 500;
+	private static final int ROCK_MIN_RANDOM_X = 400;
 	
 	private static final int LARGE_ROCK_SCORE = 100;
 	private static final int ROCK_SCORE = 250;
@@ -205,6 +211,7 @@ public class GameScene extends BaseScene{
 		createRocks();
 		createSatelite();
 		createCountdown();
+		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom);
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			private int updates = 0;
 			private int difficulty = 0;
@@ -1596,8 +1603,34 @@ public class GameScene extends BaseScene{
 	
 	private void createExplosion(float x, float y) {
 		explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
+		/*explosion = explosionPool.obtainPoolItem();
+		explosion.setPosition(x, y);*/
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
 		explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+		/*explosion.registerUpdateHandler(new IUpdateHandler() {
+			
+			@Override
+			public void reset() {
+				
+			}
+			
+			@Override
+			public void onUpdate(float pSecondsElapsed) {
+				if (explosion.getCurrentTileIndex() == 5) {
+					Log.d("protect", "tile 5, recycled");
+					engine.runOnUpdateThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							explosionPool.recyclePoolItem(explosion);
+						}
+					});
+					
+					explosion.unregisterUpdateHandler(this);
+				}
+			}
+		});*/
+		
 		GameScene.this.attachChild(explosion);
 	}
 	
