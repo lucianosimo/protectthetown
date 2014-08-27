@@ -1631,6 +1631,7 @@ public class GameScene extends BaseScene{
 			}
 		});*/
 		
+		explosion.setCullingEnabled(true);
 		GameScene.this.attachChild(explosion);
 	}
 	
