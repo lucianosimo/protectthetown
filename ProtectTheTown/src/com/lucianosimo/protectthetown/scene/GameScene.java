@@ -140,6 +140,11 @@ public class GameScene extends BaseScene{
 	private Ufo ufo1;
 	private Ufo ufo2;
 	
+	//Boxes
+	private Bomb bombBox;
+	private Repair repairBox;
+	private Shield shieldBox;
+	
 	//Pools
 	private ExplosionPool explosionPool;
 	private SmallExplosionPool smallExplosionPool;
@@ -151,7 +156,9 @@ public class GameScene extends BaseScene{
 	//Variables	
 	private static final int ROCK_POSITIVE_VEL_X = 2;
 	private static final int ROCK_NEGATIVE_VEL_X = -2;
+	
 	private static final int ROCK_INITIAL_Y = 900;
+	private static final int BOX_INITIAL_Y = 900;
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
@@ -168,6 +175,8 @@ public class GameScene extends BaseScene{
 	private static final int ROCK_MIN_RANDOM_X = 100;*/
 	private static final int ROCK_MAX_RANDOM_X = 500;
 	private static final int ROCK_MIN_RANDOM_X = 400;
+	private static final int BOX_MAX_RANDOM_X = 1000;
+	private static final int BOX_MIN_RANDOM_X = 100;
 	
 	private static final int LARGE_ROCK_SCORE = 100;
 	private static final int ROCK_SCORE = 250;
@@ -211,6 +220,7 @@ public class GameScene extends BaseScene{
 		createUfos();
 		createRocks();
 		createSatelite();
+		createBoxes();
 		createCountdown();
 		
 		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
@@ -281,7 +291,7 @@ public class GameScene extends BaseScene{
 					}
 				}
 				
-				if ((updates > 4000) && (updates % 500) == 0 && availablePause) {
+				if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
 					if (!ufo2.getUfoBody().isActive()) {
 						ufo2.getUfoBody().setActive(true);
 					}
@@ -293,31 +303,28 @@ public class GameScene extends BaseScene{
 					}
 				}
 				
-				/*if (((updates % (LARGE_ROCK_CREATION_UPDATES - difficulty)) == 0) && (largeRocksCounter <= LARGE_ROCK_MAX) && availablePause) {
-					createLargeRock();		
-				}
-				
-				if ((((updates % UFO_CREATION_UPDATES) - difficulty) == 0) && (ufoCounter <= UFO_MAX) && availablePause) {
-					createUfo();
-				}
-				
-				if (((updates % SATELITE_CREATION_UPDATES) - difficulty) == 0 && (sateliteCounter <= SATELITE_MAX) && availablePause) {
-					createSatelite();
-				}*/
-				
 				if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
 					//n = rand.nextInt(max - min + 1) + min;
 					box = rand.nextInt(3) + 1;
 					
 					switch (box) {
 						case 1:
-							createBombBox();
+							//createBombBox();
+							if (!bombBox.getBombBody().isActive()) {
+								bombBox.getBombBody().setActive(true);
+							}
 							break;
 						case 2:
-							createRepairBox();
+							//createRepairBox();
+							if (!repairBox.getRepairBody().isActive()) {
+								repairBox.getRepairBody().setActive(true);
+							}
 							break;
 						case 3:
-							createShieldBox();
+							//createShieldBox();
+							if (!shieldBox.getShieldBody().isActive()) {
+								shieldBox.getShieldBody().setActive(true);
+							}
 							break;
 						default:
 							break;
@@ -332,6 +339,12 @@ public class GameScene extends BaseScene{
 				}
 			}
 		});
+	}
+	
+	private void createBoxes() {
+		createBombBox();
+		createRepairBox();
+		createShieldBox();
 	}
 	
 	private void createRocks() {
@@ -1042,6 +1055,16 @@ public class GameScene extends BaseScene{
 	/*
 	 * Used to regenerate the rocks when they touch the floor.
 	 */
+	private void regenerateBoxes(Body boxBody) {
+		Random rand = new Random();
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		
+		boxBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, boxBody.getAngle());
+	}
+	
+	/*
+	 * Used to regenerate the rocks when they touch the floor.
+	 */
 	private void regenerateRocks(Body rockBody) {
 		Random rand = new Random();
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
@@ -1676,8 +1699,8 @@ public class GameScene extends BaseScene{
 	
 	private void createBombBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Bomb bomb = new Bomb(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		bombBox = new Bomb(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1686,6 +1709,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							if (ref.getBombBody().isActive() && availablePause && !gameOver) {
+								regenerateBoxes(ref.getBombBody());
 								ref.setVisible(false);
 								ref.getBombBody().setActive(false);
 								GameScene.this.unregisterTouchArea(ref);
@@ -1710,14 +1734,16 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
-		GameScene.this.attachChild(bomb);
-		GameScene.this.registerTouchArea(bomb);
+		bombBox.getBombBody().setActive(false);
+		bombBox.setCullingEnabled(true);
+		GameScene.this.attachChild(bombBox);
+		GameScene.this.registerTouchArea(bombBox);
 	}
 	
 	private void createRepairBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Repair repair = new Repair(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		repairBox = new Repair(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1726,6 +1752,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							if (ref.getRepairBody().isActive() && availablePause && !gameOver) {
+								regenerateBoxes(ref.getRepairBody());
 								ref.setVisible(false);
 								ref.getRepairBody().setActive(false);
 								GameScene.this.unregisterTouchArea(ref);
@@ -1746,14 +1773,16 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
-		GameScene.this.attachChild(repair);
-		GameScene.this.registerTouchArea(repair);
+		repairBox.getRepairBody().setActive(false);
+		repairBox.setCullingEnabled(true);
+		GameScene.this.attachChild(repairBox);
+		GameScene.this.registerTouchArea(repairBox);
 	}
 	
 	private void createShieldBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		Shield shield = new Shield(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		shieldBox = new Shield(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1762,6 +1791,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							if (ref.getShieldBody().isActive() && availablePause && !gameOver) {
+								regenerateBoxes(ref.getShieldBody());
 								ref.setVisible(false);
 								ref.getShieldBody().setActive(false);
 								GameScene.this.unregisterTouchArea(ref);
@@ -1797,8 +1827,10 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
-		GameScene.this.attachChild(shield);
-		GameScene.this.registerTouchArea(shield);
+		shieldBox.getShieldBody().setActive(false);
+		shieldBox.setCullingEnabled(true);
+		GameScene.this.attachChild(shieldBox);
+		GameScene.this.registerTouchArea(shieldBox);
 	}
 	
 	private void createDome() {
