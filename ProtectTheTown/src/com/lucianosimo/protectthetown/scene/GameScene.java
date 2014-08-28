@@ -1616,6 +1616,7 @@ public class GameScene extends BaseScene{
 	    			Intent shareIntent = new Intent();
 	    		    shareIntent.setAction(Intent.ACTION_SEND);
 	    		    shareIntent.setType("text/plain");
+	    		    shareIntent.setPackage("com.twitter.android");
 	    		    shareIntent.putExtra(Intent.EXTRA_TEXT, "My score in #ProtectTheTown is " + score + " points. And yours?");
 	    		    activity.tweetScore(shareIntent);
 	    		}
