@@ -27,6 +27,7 @@ import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.IModifier;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
@@ -104,6 +105,7 @@ public class GameScene extends BaseScene{
 	private Sprite retryButton;
 	private Sprite quitButton;
 	private Sprite pauseButton;
+	private Sprite twitterButton;
 	
 	//Dome
 	private Sprite dome;
@@ -1608,16 +1610,30 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
+	    twitterButton = new Sprite(380 + 47, 155 + 46, resourcesManager.game_twitter_button_region, vbom) {
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			Intent shareIntent = new Intent();
+	    		    shareIntent.setAction(Intent.ACTION_SEND);
+	    		    shareIntent.setType("text/plain");
+	    		    shareIntent.putExtra(Intent.EXTRA_TEXT, "My score in #ProtectTheTown is " + score + " points. And yours?");
+	    		    activity.tweetScore(shareIntent);
+	    		}
+	    		return true;
+	    	}
+	    };
 		
 		gameHud.setVisible(false);
 		GameScene.this.attachChild(fade);
 		GameScene.this.attachChild(gameOverWindow);
 		GameScene.this.registerTouchArea(retryButton);
 	    GameScene.this.registerTouchArea(quitButton);
+	    GameScene.this.registerTouchArea(twitterButton);
 		gameOverWindow.attachChild(retryButton);
 		gameOverWindow.attachChild(quitButton);
 		gameOverWindow.attachChild(finalScoreText);
 		gameOverWindow.attachChild(newRecord);
+		gameOverWindow.attachChild(twitterButton);
 		
 		GameScene.this.setIgnoreUpdate(true);
 				

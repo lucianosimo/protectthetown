@@ -14,6 +14,7 @@ import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import android.content.Intent;
 import android.view.KeyEvent;
 
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
@@ -129,6 +130,10 @@ public class GameActivity extends BaseGameActivity {
 			//dimSoftButtonsIfPossible();
 		}
 		return false;
+	}
+	
+	public void tweetScore(Intent intent) {
+		startActivity(Intent.createChooser(intent, "Protect the town"));
 	}
 	
 	/*@Override
