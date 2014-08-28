@@ -33,11 +33,17 @@ public class ResourcesManager {
 	public ITextureRegion splash_region;
 	private BitmapTextureAtlas splashTextureAtlas;
 	
+	//Menu fonts
+	public Font highScoreFont;
+	
 	//Menu items
 	public ITextureRegion loading_background_region;
 	public ITextureRegion menu_background_region;
 	public ITextureRegion menu_play_button_region;
 	public ITextureRegion menu_play_button_background_region;
+	public ITextureRegion menu_rateus_button_region;
+	public ITextureRegion menu_rateus_button_background_region;
+	public ITextureRegion menu_quit_button_region;
 	
 	private BuildableBitmapTextureAtlas loadingBackgroundTextureAtlas;
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
@@ -145,13 +151,13 @@ public class ResourcesManager {
 	public void loadMenuResources() {
 		//loadLoadingGraphics();
 		loadMenuGraphics();
-		//loadMenuAudio();
-		//loadMenuFonts();
+		loadMenuFonts();
+		//loadMenuAudio();		
 	}
 	
 	public void unloadMenuResources() {
 		unloadMenuTextures();
-		//unloadMenuFonts();
+		unloadMenuFonts();
 		//unloadMenuAudio();
 	}
 	
@@ -172,13 +178,16 @@ public class ResourcesManager {
 	private void loadMenuGraphics() {
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
 		menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
-		menuBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR);
+		menuBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		loadingBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR);
 		
 		loading_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadingBackgroundTextureAtlas, activity, "loading_background.png");
 		menu_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuBackgroundTextureAtlas, activity, "menu_background.png");
 		menu_play_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_play_button.png");
 		menu_play_button_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_play_button_background.png");
+		menu_rateus_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_rateus_button.png");
+		menu_rateus_button_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_rateus_button_background.png");
+		menu_quit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_quit_button.png");
 		
 		try {
 			this.menuTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
@@ -190,6 +199,13 @@ public class ResourcesManager {
 		} catch (final TextureAtlasBuilderException e) {
 			org.andengine.util.debug.Debug.e(e);
 		}
+	}
+	
+	private void loadMenuFonts() {
+		FontFactory.setAssetBasePath("fonts/menu/");
+		final ITexture highScoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		highScoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), highScoreTexture, activity.getAssets(), "font.ttf", 40, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
+		highScoreFont.load();
 	}
 	
 	/*private void loadMenuAudio() {
@@ -207,11 +223,11 @@ public class ResourcesManager {
 		this.menuBackgroundTextureAtlas.unload();
 	}
 	
-	/*private void unloadMenuFonts() {
+	private void unloadMenuFonts() {
 		
 	}
 	
-	private void unloadMenuAudio() {
+	/*private void unloadMenuAudio() {
 		
 	}*/
 	
@@ -333,11 +349,11 @@ public class ResourcesManager {
 		final ITexture gameOverTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		final ITexture finalScoreTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		final ITexture pauseTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		scoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), scoreTexture, activity.getAssets(), "AgentOrange.ttf", 35, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
-		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "AgentOrange.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
-		gameOverFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), gameOverTexture, activity.getAssets(), "AgentOrange.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
-		finalScoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), finalScoreTexture, activity.getAssets(), "AgentOrange.ttf", 40, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
-		pauseFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), pauseTexture, activity.getAssets(), "AgentOrange.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		scoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), scoreTexture, activity.getAssets(), "font.ttf", 35, true, Color.WHITE_ARGB_PACKED_INT, 1f, Color.WHITE_ARGB_PACKED_INT);
+		countdownFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), countdownTexture, activity.getAssets(), "font.ttf", 70, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		gameOverFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), gameOverTexture, activity.getAssets(), "font.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		finalScoreFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), finalScoreTexture, activity.getAssets(), "font.ttf", 40, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
+		pauseFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), pauseTexture, activity.getAssets(), "font.ttf", 45, true, Color.RED_ARGB_PACKED_INT, 2f, Color.RED_ARGB_PACKED_INT);
 		scoreFont.load();
 		countdownFont.load();
 		gameOverFont.load();

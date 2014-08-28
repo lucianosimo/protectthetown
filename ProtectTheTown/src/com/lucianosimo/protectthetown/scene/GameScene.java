@@ -1563,7 +1563,6 @@ public class GameScene extends BaseScene{
 		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
-		//newRecord = new Sprite(screenWidth/2 + 300, screenHeight/2 + 50, resourcesManager.game_new_record_region, vbom);
 		newRecord = new Sprite(580, 300, resourcesManager.game_new_record_region, vbom);
 		
 		loadHighScore();
@@ -2616,10 +2615,12 @@ public class GameScene extends BaseScene{
 		});
 	}
 	
-	private void saveHighScore(String key, int score) {
+	private void saveHighScore(String key, int localScore) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 		Editor editor = sharedPreferences.edit();
-		editor.putInt(key, score);
+		if (sharedPreferences.getInt("highScore", 0) < localScore) {
+			editor.putInt("highScore", localScore);
+		}		
 		editor.commit();
 	}
 	

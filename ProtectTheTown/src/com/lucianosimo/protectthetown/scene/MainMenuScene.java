@@ -10,6 +10,15 @@ import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.decorator.ScaleMenuItemDecorator;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
+import org.andengine.util.adt.align.HorizontalAlign;
+import org.andengine.util.adt.color.Color;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
@@ -21,7 +30,12 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	private float screenWidth;
 	private float screenHeight;
 	
+	private Text highScoreText;
+	private int highScore;
+	
 	private final int MENU_PLAY = 0;
+	private final int MENU_RATEUS = 1;
+	private final int MENU_QUIT = 2;
 
 	@Override
 	public void createScene() {
@@ -56,19 +70,36 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		menuChildScene = new MenuScene(camera);
 		menuChildScene.setPosition(screenWidth/2, screenHeight/2);
 		
+		loadHighScore();
+		
+		highScoreText = new Text(0, -300, resourcesManager.highScoreFont, "High Score: 123456789", new TextOptions(HorizontalAlign.CENTER), vbom);
+		highScoreText.setText("High Score: " + highScore);
+		highScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
+		
 		Sprite play_button_background = new Sprite(0, -10, resourcesManager.menu_play_button_background_region, vbom);
-		//play_button_background.setRotation(2);
 		play_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, -(4 * 180))));
+		
+		Sprite rateus_button_background = new Sprite(-500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
+		rateus_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
+		
 		menuChildScene.attachChild(play_button_background);
+		menuChildScene.attachChild(rateus_button_background);
+		menuChildScene.attachChild(highScoreText);
 		
 		final IMenuItem playMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_PLAY, resourcesManager.menu_play_button_region, vbom), 1.2f, 1);
+		final IMenuItem rateusMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_RATEUS, resourcesManager.menu_rateus_button_region, vbom), 1.2f, 1);
+		final IMenuItem quitMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_QUIT, resourcesManager.menu_quit_button_region, vbom), 1.2f, 1);
 
 		menuChildScene.addMenuItem(playMenuItem);
+		menuChildScene.addMenuItem(rateusMenuItem);
+		menuChildScene.addMenuItem(quitMenuItem);
 		
 		menuChildScene.buildAnimations();
 		menuChildScene.setBackgroundEnabled(false);
 		
 		playMenuItem.setPosition(0, -10);
+		rateusMenuItem.setPosition(-500, -225);
+		quitMenuItem.setPosition(570, 290);
 		
 		menuChildScene.setOnMenuItemClickListener(this);
 		setChildScene(menuChildScene);
@@ -80,6 +111,12 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 			case MENU_PLAY:
 				SceneManager.getInstance().loadGameScene(engine, this);
 				return true;
+			case MENU_RATEUS:
+				activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.lucianosimo.parachuteaction")));
+				return true;
+			case MENU_QUIT:
+				System.exit(0);
+				return true;
 			default:
 				return false;
 		}
@@ -89,6 +126,11 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	public void handleOnPause() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void loadHighScore() {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		highScore = sharedPreferences.getInt("highScore", 0);
 	}
 
 }

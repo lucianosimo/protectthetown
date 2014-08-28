@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
+   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,14 +24,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="2340.7969"
-     inkscape:cy="445.04993"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="803.64758"
+     inkscape:cy="-27.916743"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1018"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -5536,7 +5536,7 @@
        transform="translate(0,-2.6171874e-6)"
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\menu_background.png"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_background.png"
        id="g8056">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke:none"
@@ -10891,7 +10891,7 @@
     <g
        id="g9396"
        transform="translate(-1268,7.9999974)"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\menu_background.png"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_background.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <flowRoot
@@ -11129,7 +11129,7 @@
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\menu_rateus_button_background.png"
-       transform="matrix(1.9546534,0,0,1.9546534,-1374.1931,-406.7178)"
+       transform="matrix(1.9546534,0,0,1.9546534,-1377.0215,-392.57566)"
        id="Aster-0-7">
       <g
          id="Planet_copy_2-9-0">
@@ -11271,7 +11271,7 @@
            height="92"
            x="2460"
            y="1166" /></flowRegion><flowPara
-         id="flowPara5923"></flowPara></flowRoot>    <g
+         id="flowPara5923" /></flowRoot>    <g
        id="g5964"
        transform="translate(-107,26)"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\menu_rateus_button.png"
@@ -11342,23 +11342,7 @@
          d="m 2075.7757,1397.4855 c -7.2474,-1.6299 -10.9444,-8.1643 -12.353,-21.8334 -0.5465,-5.3034 -0.7172,-11.5079 -0.3793,-13.7878 0.6499,-4.3849 1.9997,-5.3124 7.7732,-5.3411 l 2.75,-0.014 0,11.5322 c 0,13.6443 1.4172,18.4678 5.4259,18.4678 4.5668,0 6.029,-3.9129 6.4294,-17.2053 l 0.3554,-11.7947 5.2876,0 c 3.8992,0 5.4471,0.4154 5.8947,1.5818 0.9838,2.5636 0.683,20.6045 -0.409,24.5359 -2.8262,10.1745 -11.4818,15.9483 -20.7749,13.8583 l 0,0 z"
          style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-opacity:1" />
     </g>
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-22-3-1-8-5"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(587.1628,1113.055)"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_countdown_frame_4.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><flowRegion
-         id="flowRegion8883-2-8-5-2-5"><rect
-           id="rect8885-6-9-42-5-6"
-           width="682.56415"
-           height="250.03043"
-           x="-267.87616"
-           y="60.862309"
-           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
-         id="flowPara8887-40-3-09-5-6"
-         style="font-size:56px;text-align:center;text-anchor:middle">High score:</flowPara></flowRoot>    <path
+    <path
        style="fill:#ff0000;stroke:#ff0000;stroke-width:0.70710677000000000;stroke-opacity:1"
        d="m 1486.8399,-612.19197 c -7.1713,-3.25523 -12.7342,-8.53719 -11.8674,-11.26819 0.2356,-0.74223 2.13,-2.66233 4.2098,-4.26688 l 3.7815,-2.91737 2.5499,1.50451 c 1.4465,0.85347 4.3118,1.65833 6.6214,1.85997 6.777,0.59167 10.4944,-3.00253 9.0515,-8.75146 -0.6241,-2.4865 -5.322,-4.43014 -10.7547,-4.44948 -2.8342,-0.0101 -4.4725,-0.32492 -4.6806,-0.89942 -0.176,-0.48613 -0.1531,-2.63397 0.051,-4.77297 0.3309,-3.4704 0.8271,-4.44233 4.6092,-9.02805 2.3311,-2.82643 4.0345,-5.34283 3.7853,-5.592 -0.2492,-0.24917 -3.7968,-0.16398 -7.8836,0.18932 l -7.4305,0.64234 0.011,-5.65695 c 0.01,-3.11132 0.3125,-6.13425 0.6812,-6.71761 0.549,-0.86849 3.1577,-1.10599 14.3984,-1.31087 l 13.7279,-0.25021 1.1014,3.07864 c 0.6058,1.69325 1.2369,3.55593 1.4026,4.13929 0.3504,1.23404 -1.4225,4.95243 -5.2621,11.03657 -1.4992,2.37548 -2.7257,4.49015 -2.7257,4.69926 0,0.20911 1.599,1.40626 3.5533,2.66033 7.1143,4.56524 9.8817,9.46365 9.8817,17.49081 0,8.42522 -5.9838,15.61626 -15.454,18.57193 -5.622,1.75461 -9.5059,1.75708 -13.3581,0.008 z"
        id="path6142"
@@ -11569,6 +11553,59 @@
        inkscape:connector-curvature="0"
        transform="translate(0,332.36218)"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_countdown_frame_4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3-1-8-5"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(456.72924,1418.8166)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_background.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8-5-2-5"><rect
+           id="rect8885-6-9-42-5-6"
+           width="682.56415"
+           height="250.03043"
+           x="-267.87616"
+           y="60.862309"
+           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         id="flowPara8887-40-3-09-5-6"
+         style="font-size:48px;text-align:center;text-anchor:middle">High score:</flowPara></flowRoot>    <path
+       sodipodi:type="arc"
+       style="fill:#4a91c9;fill-opacity:1;stroke:none"
+       id="path4930"
+       sodipodi:cx="1173.7972"
+       sodipodi:cy="-71.959595"
+       sodipodi:rx="50.91169"
+       sodipodi:ry="50.91169"
+       d="m 1224.7089,-71.959595 a 50.91169,50.91169 0 1 1 -101.8233,0 50.91169,50.91169 0 1 1 101.8233,0 z"
+       transform="translate(-82.024387,1359.0812)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4932"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(497.80317,388.93072)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion4934"><rect
+           id="rect4936"
+           width="291.328"
+           height="135.7645"
+           x="571.34229"
+           y="864.24976"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Agent Orange;-inkscape-font-specification:Agent Orange" /></flowRegion><flowPara
+         id="flowPara4938"
+         style="font-size:48px">x</flowPara></flowRoot>    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none"
+       d="m 1074.823,1307.0241 c -3.1547,-0.8648 -3.1187,-1.0908 1.6411,-10.2859 l 3.9824,-7.6935 -5.3977,-12.1055 -5.3978,-12.1054 3.5166,-1.1941 c 5.1687,-1.7551 6.7352,-0.6299 11.3089,8.123 2.2743,4.3525 4.5426,7.9151 5.0405,7.917 0.498,0 2.3347,-4.0452 4.0816,-8.9934 l 3.1761,-8.9968 6.5251,1.7237 c 7.4484,1.9677 7.4302,1.7598 1.3223,15.1165 l -4.323,9.4533 6.7512,8.5931 c 3.7131,4.7262 6.4928,8.8318 6.177,9.1235 -0.3157,0.2917 -3.1467,0.9549 -6.2911,1.4738 -5.5603,0.9175 -5.8459,0.7638 -10.4224,-5.6088 -5.1532,-7.1757 -6.681,-6.9876 -9.4336,1.1617 -1.2233,3.6219 -2.3612,4.5784 -5.6568,4.755 -2.269,0.1217 -5.2392,-0.084 -6.6004,-0.4572 z"
+       id="path4940"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\menu_quit_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
