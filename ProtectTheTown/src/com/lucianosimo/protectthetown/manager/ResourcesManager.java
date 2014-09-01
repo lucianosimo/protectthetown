@@ -120,6 +120,7 @@ public class ResourcesManager {
 	public ITextureRegion game_countdown_frame_4_region;
 	
 	//Windows
+	public ITextureRegion game_help_window_region;
 	public ITextureRegion game_over_window_region;
 	public ITextureRegion game_pause_window_region;
 	public ITextureRegion game_new_record_region;
@@ -135,6 +136,7 @@ public class ResourcesManager {
 	//Game Textures
 	private BuildableBitmapTextureAtlas gameTextureAtlas;
 	private BuildableBitmapTextureAtlas gameWindowsTextureAtlas;
+	private BuildableBitmapTextureAtlas gameHelpWindowTextureAtlas;
 	private BuildableBitmapTextureAtlas gameAnimatedTextureAtlas;
 	private BuildableBitmapTextureAtlas gameBackgroundTextureAtlas;
 	
@@ -254,6 +256,7 @@ public class ResourcesManager {
 		
 		gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 2000, 2000, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		gameWindowsTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 2000, 2000, TextureOptions.BILINEAR);
+		gameHelpWindowTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR);
 		gameAnimatedTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1500, 1500, TextureOptions.BILINEAR);
 		gameBackgroundTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1280, 720, TextureOptions.BILINEAR);
 		
@@ -302,6 +305,7 @@ public class ResourcesManager {
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
 		game_floor_back_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor_back.png");
 		
+		game_help_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameHelpWindowTextureAtlas, activity, "game_help_window.png");
 		game_over_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_over_window.png");
 		game_pause_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_window.png");
 		game_new_record_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_new_record.png");
@@ -323,10 +327,12 @@ public class ResourcesManager {
 		
 		try {
 			this.gameTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
+			this.gameHelpWindowTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameWindowsTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameAnimatedTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameBackgroundTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
 			this.gameTextureAtlas.load();
+			this.gameHelpWindowTextureAtlas.load();
 			this.gameWindowsTextureAtlas.load();
 			this.gameAnimatedTextureAtlas.load();
 			this.gameBackgroundTextureAtlas.load();
@@ -373,6 +379,7 @@ public class ResourcesManager {
 	
 	private void unloadGameTextures() {
 		this.gameTextureAtlas.unload();
+		this.gameHelpWindowTextureAtlas.unload();
 		this.gameWindowsTextureAtlas.unload();
 		this.gameAnimatedTextureAtlas.unload();
 		this.gameBackgroundTextureAtlas.unload();

@@ -22,7 +22,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
@@ -50,8 +49,6 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		int played = sharedPreferences.getInt("played", 0);
 		//Rated: 0 = no, 1 = yes, 2 = no and don't want to rate
 		int rated = sharedPreferences.getInt("rated", 0);
-		Log.i("protect", "played: " + played);
-		Log.i("protect", "rated: " + rated);
 		if (rated == 0) {
 			if (played == 5 || played == 20 || played == 50) {
 				displayRateUsWindow();

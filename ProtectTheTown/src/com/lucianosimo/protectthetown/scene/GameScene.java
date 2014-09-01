@@ -97,6 +97,7 @@ public class GameScene extends BaseScene{
 	private int previousHighScore = 0;
 	
 	//Windows
+	private Sprite helpWindow;
 	private Sprite gameOverWindow;
 	private Sprite pauseWindow;
 	private Sprite newRecord;
@@ -131,6 +132,7 @@ public class GameScene extends BaseScene{
 	private int smallRocksCounter = 0;
 	private int ufoCounter = 0;
 	private int sateliteCounter = 0;
+	private int firstGame = 0;
 	
 	//Rocks
 	private LargeRock largeRock1;
@@ -226,123 +228,158 @@ public class GameScene extends BaseScene{
 		createSatelite();
 		createBoxes();
 		createCountdown();
+		firstGame();
 		
 		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
 		smallExplosionPool = new SmallExplosionPool(resourcesManager.game_small_explosion_region, vbom, GameScene.this);
 		
-		engine.registerUpdateHandler(new IUpdateHandler() {
-			private int updates = 0;
-			private int difficulty = 0;
-			
-			@Override
-			public void reset() {
+		//if (!helpWindow.isVisible()) {
+			engine.registerUpdateHandler(new IUpdateHandler() {
+				private int updates = 0;
+				private int difficulty = 0;
+				
+				@Override
+				public void reset() {
 
-			}
-			
-			@Override
-			public void onUpdate(float pSecondsElapsed) {
-				Random rand = new Random();
-				int box;
-				updates++;
-				
-				if (updates < START_GAME_UPDATES) {
-					availablePause = false;
 				}
 				
-				if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
-					difficulty += 50;
-				}
-
-				if (updates == 70) {
-					countdownFrame1.setVisible(false);
-					countdownFrame2.setVisible(true);
-				}
-				if (updates == 140) {
-					countdownFrame2.setVisible(false);
-					countdownFrame3.setVisible(true);
-				}
-				if (updates == 210) {
-					countdownFrame3.setVisible(false);
-					countdownFrame4.setVisible(true);
-				}
-				if (updates == START_GAME_UPDATES) {
-					countdownFrame4.setVisible(false);
-					availablePause = true;
-					largeRock1.getLargeRockBody().setActive(true);
-				}
-				
-				if ((updates % 250) == 0 && availablePause) {
-					if (!largeRock1.getLargeRockBody().isActive()) {
-						largeRock1.getLargeRockBody().setActive(true);
-					}					
-				}
-				
-				if ((updates > 2500) && (updates % 250) == 0 && availablePause) {
-					if (!largeRock2.getLargeRockBody().isActive()) {
-						largeRock2.getLargeRockBody().setActive(true);
-					}					
-				}
-				
-				if ((updates > 5000) && (updates % 250) == 0 && availablePause) {
-					if (!largeRock3.getLargeRockBody().isActive()) {
-						largeRock3.getLargeRockBody().setActive(true);
-					}					
-				}
-				
-				if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
-					if (!ufo1.getUfoBody().isActive()) {
-						ufo1.getUfoBody().setActive(true);
+				@Override
+				public void onUpdate(float pSecondsElapsed) {
+					if (helpWindow.isVisible()) {
+						updates = 0;
 					}
-				}
-				
-				if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
-					if (!ufo2.getUfoBody().isActive()) {
-						ufo2.getUfoBody().setActive(true);
-					}
-				}
-				
-				if ((updates > 4000) && (updates % 2500) == 0 && availablePause) {
-					if (!satelite.getSateliteBody().isActive()) {
-						satelite.getSateliteBody().setActive(true);
-					}
-				}
-				
-				if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
-					//n = rand.nextInt(max - min + 1) + min;
-					box = rand.nextInt(3) + 1;
+					Random rand = new Random();
+					int box;
+					updates++;
 					
-					switch (box) {
-						case 1:
-							//createBombBox();
-							if (!bombBox.getBombBody().isActive()) {
-								bombBox.getBombBody().setActive(true);
-							}
-							break;
-						case 2:
-							//createRepairBox();
-							if (!repairBox.getRepairBody().isActive()) {
-								repairBox.getRepairBody().setActive(true);
-							}
-							break;
-						case 3:
-							//createShieldBox();
-							if (!shieldBox.getShieldBody().isActive()) {
-								shieldBox.getShieldBody().setActive(true);
-							}
-							break;
-						default:
-							break;
+					if (updates < START_GAME_UPDATES) {
+						availablePause = false;
+					}
+					
+					if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
+						difficulty += 50;
+					}
+
+					if (updates == 70) {
+						countdownFrame1.setVisible(false);
+						countdownFrame2.setVisible(true);
+					}
+					if (updates == 140) {
+						countdownFrame2.setVisible(false);
+						countdownFrame3.setVisible(true);
+					}
+					if (updates == 210) {
+						countdownFrame3.setVisible(false);
+						countdownFrame4.setVisible(true);
+					}
+					if (updates == START_GAME_UPDATES) {
+						countdownFrame4.setVisible(false);
+						availablePause = true;
+						largeRock1.getLargeRockBody().setActive(true);
+					}
+					
+					if ((updates % 250) == 0 && availablePause) {
+						if (!largeRock1.getLargeRockBody().isActive()) {
+							largeRock1.getLargeRockBody().setActive(true);
+						}					
+					}
+					
+					if ((updates > 2500) && (updates % 250) == 0 && availablePause) {
+						if (!largeRock2.getLargeRockBody().isActive()) {
+							largeRock2.getLargeRockBody().setActive(true);
+						}					
+					}
+					
+					if ((updates > 5000) && (updates % 250) == 0 && availablePause) {
+						if (!largeRock3.getLargeRockBody().isActive()) {
+							largeRock3.getLargeRockBody().setActive(true);
+						}					
+					}
+					
+					if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
+						if (!ufo1.getUfoBody().isActive()) {
+							ufo1.getUfoBody().setActive(true);
+						}
+					}
+					
+					if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
+						if (!ufo2.getUfoBody().isActive()) {
+							ufo2.getUfoBody().setActive(true);
+						}
+					}
+					
+					if ((updates > 4000) && (updates % 2500) == 0 && availablePause) {
+						if (!satelite.getSateliteBody().isActive()) {
+							satelite.getSateliteBody().setActive(true);
+						}
+					}
+					
+					if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
+						//n = rand.nextInt(max - min + 1) + min;
+						box = rand.nextInt(3) + 1;
+						
+						switch (box) {
+							case 1:
+								//createBombBox();
+								if (!bombBox.getBombBody().isActive()) {
+									bombBox.getBombBody().setActive(true);
+								}
+								break;
+							case 2:
+								//createRepairBox();
+								if (!repairBox.getRepairBody().isActive()) {
+									repairBox.getRepairBody().setActive(true);
+								}
+								break;
+							case 3:
+								//createShieldBox();
+								if (!shieldBox.getShieldBody().isActive()) {
+									shieldBox.getShieldBody().setActive(true);
+								}
+								break;
+							default:
+								break;
+						}
+					}
+					
+					if (domeActivated && availablePause) {
+						if (shieldBar.getWidth() > 0) {
+							shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
+						}
+						shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
 					}
 				}
-				
-				if (domeActivated && availablePause) {
-					if (shieldBar.getWidth() > 0) {
-						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
-					}
-					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
-				}
-			}
-		});
+			});
+		//}
+	}
+	
+	public void firstGame() {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		firstGame = sharedPreferences.getInt("firstGame", 0);
+		if (firstGame == 0) {
+			Editor editor = sharedPreferences.edit();
+			firstGame++;
+			editor.putInt("firstGame", firstGame);
+			editor.commit();
+			displayHelpWindow();			
+		}
+	}
+	
+	private void displayHelpWindow() {
+		GameScene.this.setIgnoreUpdate(true);
+		fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
+		
+		camera.setChaseEntity(null);
+        availablePause = false;
+		gameHud.setVisible(false);
+		helpWindow.setPosition(camera.getCenterX(), camera.getCenterY());
+		helpWindow.setVisible(true);
+		
+		fade.setColor(Color.BLACK);
+		fade.setAlpha(0.35f);
+		GameScene.this.attachChild(fade);
+		GameScene.this.attachChild(helpWindow);
+        GameScene.this.registerTouchArea(helpWindow);
 	}
 	
 	private void createBoxes() {
@@ -1435,6 +1472,21 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createWindows() {
+		helpWindow = new Sprite(0, 0, resourcesManager.game_help_window_region, vbom) {
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+        		if (pSceneTouchEvent.isActionDown()) {
+        			gameHud.setVisible(true);
+	    			availablePause = true;
+	    			helpWindow.setVisible(false);
+	    			GameScene.this.detachChild(this);
+	    			GameScene.this.detachChild(fade);
+	    			GameScene.this.setIgnoreUpdate(false);
+	    			GameScene.this.unregisterTouchArea(this);
+        		}
+        		return true;
+        	};
+		};
+		helpWindow.setVisible(false);
 		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		pauseWindow = new Sprite(0, 0, resourcesManager.game_pause_window_region, vbom);
 		fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
