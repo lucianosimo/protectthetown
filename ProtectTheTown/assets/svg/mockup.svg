@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
+   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,14 +24,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="1864.7669"
-     inkscape:cy="111.88652"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="2398.7353"
+     inkscape:cy="158.46364"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="962"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -2890,6 +2890,36 @@
          offset="5.447905e-02" />
       <stop
          id="stop79-8-3"
+         style="stop-color:#FFFFFF;stop-opacity:0"
+         offset="0.3935" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#SVGID_5_-4-2-1-5-7"
+       id="linearGradient9208-6-1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.77861612,0,0,0.52174779,2630.5238,955.92257)"
+       x1="201.5"
+       y1="319.18439"
+       x2="201.5"
+       y2="55.9585" />
+    <linearGradient
+       y2="55.9585"
+       x2="201.5"
+       y1="319.18439"
+       x1="201.5"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_5_-4-2-1-5-7">
+      <stop
+         id="stop75-7-9-3-4"
+         style="stop-color:#FFFFFF"
+         offset="0" />
+      <stop
+         id="stop77-8-6-8-9-0"
+         style="stop-color:#FFFFFF;stop-opacity:0.8616"
+         offset="5.447905e-02" />
+      <stop
+         id="stop79-8-1-9-2-9"
          style="stop-color:#FFFFFF;stop-opacity:0"
          offset="0.3935" />
     </linearGradient>
@@ -34889,22 +34919,7 @@
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-21-6"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="matrix(1.0104603,0,0,1.0104603,2971.8236,773.92503)"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><flowRegion
-         id="flowRegion8883-6-1"><rect
-           id="rect8885-85-2"
-           width="426.97836"
-           height="160.72569"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-7-4"
-         style="font-size:36px">Resume</flowPara></flowRoot>    <path
+    <path
        inkscape:connector-curvature="0"
        style="fill:#3fc3ff;fill-opacity:1"
        id="path72-1-4-2-4"
@@ -34940,7 +34955,7 @@
        xml:space="preserve"
        id="flowRoot8881-21-6-6"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(2719.1111,774.84572)"
+       transform="translate(2718.955,774.93989)"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><flowRegion
@@ -34955,7 +34970,7 @@
        xml:space="preserve"
        id="flowRoot8881-21-6-2"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(2475.5874,773.26259)"
+       transform="translate(2468.955,773.35676)"
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><flowRegion
@@ -34967,134 +34982,6 @@
            y="60.862309" /></flowRegion><flowPara
          id="flowPara8887-7-4-3"
          style="font-size:36px">quit</flowPara></flowRoot>    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2735.4357,862.38713 c 1.4996,-19.86518 1.4385,-19.75567 11.0203,-19.75567 6.9332,0 8.0268,0.44703 8.0268,3.28096 0,2.55184 -1.0936,3.28094 -4.9213,3.28094 -3.7351,0 -4.9215,0.7486 -4.9215,3.10544 0,1.70799 1.1073,3.53036 2.4607,4.04969 3.6397,1.39667 3.0114,5.96864 -0.8202,5.96864 -5.3753,0 -4.2582,6.2316 1.2304,6.8631 3.2445,0.3733 4.5113,1.4403 4.5113,3.8 0,2.8135 -1.2618,3.3528 -8.855,3.7852 l -8.855,0.5043 1.1235,-14.8826 0,0 z"
-       id="path10130"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2702.5656,874.58103 c -0.5276,-1.3752 -0.4441,-8.687 0.1858,-16.24849 1.2633,-15.16654 1.6806,-15.63097 14.0825,-15.67868 7.2343,-0.0278 9.7609,2.37707 9.7609,9.29049 0,3.92097 -1.1076,6.10147 -4.0929,8.05748 l -4.0928,2.6817 4.0928,4.8641 c 5.2883,6.2847 5.16,7.8933 -0.6295,7.8933 -3.7005,0 -5.1635,-1.065 -6.761,-4.9214 -2.7285,-6.5874 -4.9213,-6.2219 -4.9213,0.8202 0,4.6776 -0.6176,5.7417 -3.3325,5.7417 -1.8328,0 -3.7642,-1.1252 -4.292,-2.5004 z m 15.5308,-21.71336 c 0.3981,-2.79068 -0.2923,-3.67431 -2.8709,-3.67431 -2.5534,0 -3.395,1.04636 -3.395,4.22147 0,5.38459 5.488,4.90536 6.2659,-0.54716 z"
-       id="path10132"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2763.9156,875.30953 c -4.0084,-2.3347 -3.8302,-9.7114 0.2346,-9.7114 1.708,0 3.5624,1.1904 4.1207,2.6454 0.8364,2.1798 1.4582,2.2778 3.532,0.5567 2.2053,-1.8302 1.7966,-2.8264 -3.3003,-8.04617 -6.6327,-6.79239 -7.2097,-10.16841 -2.5364,-14.84164 4.099,-4.099 11.7482,-4.23917 15.3303,-0.28095 4.1935,4.63375 3.2855,5.71293 -3.8469,4.57241 -8.1938,-1.31024 -8.7194,1.34147 -1.4502,7.31696 3.5803,2.94313 5.1413,5.65239 5.1413,8.92349 0,8.1673 -9.7807,13.2012 -17.2251,8.8652 z"
-       id="path10134"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2797.9611,873.39033 c -4.6113,-3.9782 -7.286,-12.63574 -7.3486,-23.78685 -0.035,-6.35361 0.3247,-6.97202 4.0621,-6.97202 3.8833,0 4.1012,0.48495 4.1012,9.13046 0,9.92571 2.0593,15.47671 5.7416,15.47671 3.6935,0 5.7417,-5.5598 5.7417,-15.58568 0,-9.11155 0.063,-9.23223 4.5113,-8.72033 4.464,0.51365 4.5113,0.645 4.5113,12.54837 0,11.51284 -0.2301,12.23474 -5.3574,16.81484 -6.4341,5.7474 -10.2653,6.01 -15.9632,1.0945 z"
-       id="path10136"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2828.5556,861.34263 c 0.633,-8.65632 1.3891,-15.96627 1.6801,-16.24433 0.2911,-0.27805 2.291,-0.76228 4.4442,-1.07607 3.4165,-0.49788 4.2082,0.42881 6.2178,7.27776 2.7255,9.28868 4.6598,8.89255 6.1833,-1.26622 1.0642,-7.09699 1.3387,-7.40231 6.6544,-7.40231 3.0494,0 5.8734,0.55366 6.2758,1.23036 0.4023,0.67669 1.2624,8.05883 1.9114,16.40474 l 1.18,15.17437 -4.0999,0 c -4.1825,0 -6.0913,-2.6427 -6.0913,-8.4333 0,-4.7347 -2.6924,-2.3014 -3.8483,3.4778 -1.5722,7.8613 -6.9995,6.7127 -9.5281,-2.0165 -1.7024,-5.8773 -2.1064,-6.3281 -2.573,-2.8708 -1.3297,9.851 -2.1623,11.4833 -5.8578,11.4833 -3.6618,0 -3.6878,-0.1599 -2.5486,-15.7388 z"
-       id="path10138"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2870.9747,866.09813 c 0.01,-6.13972 0.4756,-13.93141 1.0349,-17.31488 1.0128,-6.12723 1.0486,-6.15179 9.0045,-6.15179 6.8941,0 7.9878,0.44922 7.9878,3.28096 0,2.55184 -1.0937,3.28094 -4.9215,3.28094 -3.735,0 -4.9214,0.7486 -4.9214,3.10544 0,1.70799 1.1073,3.53036 2.4608,4.04969 3.6395,1.39667 3.0112,5.96864 -0.8203,5.96864 -2.1873,0 -3.281,1.0937 -3.281,3.281 0,2.5683 1.0937,3.2809 5.0355,3.2809 4.2838,0 4.9572,0.5511 4.5113,3.6911 -0.4473,3.1498 -1.6667,3.7644 -8.3165,4.1911 l -7.7921,0.5 0.018,-11.1631 z"
-       id="path10140"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2453.234,875.73423 c -2.1212,-1.31099 0.1369,-28.84539 2.5647,-31.27325 2.3946,-2.39454 16.0482,-2.25512 18.9992,0.19399 3.6905,3.06283 3.0525,8.89768 -1.5741,14.39613 l -4.0785,4.84701 4.0332,4.7932 c 4.3972,5.22574 3.9699,6.86731 -1.7874,6.86731 -2.5539,0 -4.6628,-1.67951 -6.6252,-5.27634 l -2.8788,-5.27635 -0.5004,5.11066 c -0.5003,5.10931 -4.5075,7.87051 -8.1527,5.61764 z m 14.3273,-20.46925 c 1.6051,-1.93404 1.6081,-2.93277 0.015,-4.8526 -2.5391,-3.05946 -4.2829,-2.00052 -5.2781,3.20511 -0.8837,4.62283 2.0356,5.53661 5.2633,1.64749 z"
-       id="path10142"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2485.4197,866.04427 c 0,-5.2329 0.4646,-12.9039 1.0324,-17.04667 0.9898,-7.22116 1.2525,-7.5323 6.3612,-7.5323 7.4329,0 10.4648,1.46143 10.4648,5.04417 0,2.33243 -1.1741,3.07328 -4.8705,3.07328 -3.7881,0 -4.8704,0.72156 -4.8704,3.24699 0,1.80388 1.0823,3.24698 2.4352,3.24698 3.6255,0 2.9462,5.04083 -0.8118,6.02356 -1.797,0.46995 -3.2469,2.21447 -3.2469,3.90674 0,2.31505 1.1828,3.05764 4.8704,3.05764 3.7882,0 4.8705,0.72155 4.8705,3.24698 0,2.81405 -1.0823,3.24698 -8.1174,3.24698 l -8.1175,0 0,-9.51435 z"
-       id="path10144"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2516.2992,871.74959 c 0.042,-2.79038 0.3159,-8.45192 0.6088,-12.58122 l 0.5326,-7.5078 -3.8454,-0.50991 c -4.1494,-0.55024 -3.9663,-0.128 -2.6841,-6.18869 l 0.4723,-2.2323 11.2826,0 c 6.2054,0 11.8604,0.22173 12.5666,0.49272 0.9288,0.35641 1.284,1.5916 1.284,4.46461 l 0,3.97188 -5.7012,0 -5.7012,0 0.4429,6.6969 c 0.2436,3.6833 0.6154,9.11321 0.8262,12.06648 l 0.3833,5.36957 -3.7616,0.51558 c -7.0192,0.96209 -6.7911,1.11717 -6.7058,-4.55782 z"
-       id="path10148"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2541.9657,876.31926 c -0.8703,-0.8703 -0.7137,-10.05275 0.3625,-21.26133 0.9564,-9.96029 0.9683,-9.99921 3.4528,-11.28395 3.658,-1.89162 12.3883,-2.32752 16.0418,-0.80095 4.3439,1.81499 5.8588,4.54338 5.1493,9.27441 -0.4587,3.05878 -1.3019,4.56479 -4.1511,7.414 -1.9665,1.96652 -3.5755,3.74286 -3.5755,3.94741 0,0.20455 1.8309,2.42613 4.0686,4.93684 2.2378,2.51071 3.9491,4.92369 3.8029,5.36218 -0.267,0.80113 -2.0128,1.40281 -6.8042,2.34504 -2.4964,0.49092 -2.6879,0.32542 -5.5533,-4.79837 -1.6322,-2.91875 -3.1638,-5.11071 -3.4035,-4.87102 -0.2397,0.23969 -0.663,2.5503 -0.9407,5.1347 l -0.5049,4.69891 -3.6831,0.24036 c -2.0257,0.13219 -3.9434,-0.02 -4.2616,-0.33823 z m 13.8522,-20.24181 c 2.1429,-1.50095 2.4788,-5.60946 0.5201,-6.36109 -3.5387,-1.35793 -4.3982,-0.66107 -4.3982,3.56601 0,4.4152 0.7713,4.97114 3.8781,2.79508 z"
-       id="path10150"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2586.8449,868.42259 0,-8.4004 -6.1445,-7.56775 c -6.7595,-8.32512 -6.7581,-8.59663 0.046,-9.01462 4.033,-0.24776 4.0586,-0.23353 6.8999,3.83335 1.5685,2.24512 3.2171,4.10605 3.6636,4.13539 0.4464,0.0294 1.5637,-1.81736 2.4828,-4.1038 1.5256,-3.79504 1.9498,-4.20663 4.8705,-4.72521 4.4538,-0.79079 8.4757,-0.78839 8.4757,0.005 0,0.36667 -2.1608,4.03664 -4.8018,8.1555 l -4.8019,7.48882 0.4579,9.29704 0.4579,9.29703 -5.8029,0 -5.8028,0 0,-8.40041 z"
-       id="path10152"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2230.2483,872.57539 c -2.66,-2.2015 -3.3004,-2.4132 -4.6852,-1.5484 -2.9756,1.8583 -8.2201,2.0127 -11.2686,0.3317 -7.4708,-4.1194 -8.0286,-18.2309 -1.0126,-25.6171 3.3712,-3.549 6.0741,-4.5951 11.8735,-4.5951 13.0816,0 17.3834,6.7864 11.7189,18.4876 l -1.7177,3.5483 2.5143,2.1729 2.5143,2.173 -3.4278,3.7986 -3.4278,3.7986 -3.0813,-2.5501 z m -8.356,-10.5264 c -0.316,-0.5581 -1.2587,-1.7773 -2.0949,-2.7093 -1.4887,-1.6593 -1.485,-1.7395 0.1797,-3.8558 2.0691,-2.6305 2.9461,-2.688 5.4284,-0.356 1.633,1.5341 2.0383,1.6255 2.6993,0.6088 0.4279,-0.658 0.6826,-2.6575 0.5661,-4.4434 -0.1993,-3.055 -0.3761,-3.2626 -2.9906,-3.5118 -3.5169,-0.3352 -6.1748,1.0795 -8.2075,4.3685 -1.7758,2.8733 -2.1238,8.4374 -0.6217,9.9396 1.3442,1.3441 5.8049,1.3082 5.0412,-0.041 z"
-       id="path10154"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2254.8408,873.86419 c -2.0364,-1.0504 -3.516,-2.8162 -5.2238,-6.2343 -2.2135,-4.43 -2.4084,-5.5693 -2.7423,-16.032 l -0.3594,-11.2631 4.5686,0 4.5687,0 0,9.767 c 0,11.3603 1.1267,15.3971 4.2974,15.3971 1.0697,0 2.5505,-0.6692 3.2907,-1.4871 1.9666,-2.173 3.2156,-10.2151 2.6207,-16.8738 l -0.5163,-5.7789 2.5609,-0.5121 c 7.2597,-1.452 8.1061,-0.3361 8.1455,10.739 0.041,11.5664 -1.9984,17.3458 -7.5803,21.4803 -3.0997,2.296 -9.9489,2.697 -13.6304,0.7979 z"
-       id="path10156"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2286.9048,851.11309 c -2.3585,-0.5713 -4.4646,-2.6768 -4.4646,-4.4635 0,-1.8017 1.4685,-4.8315 2.7597,-5.6936 3.2579,-2.1753 9.4165,1.1353 9.4165,5.0619 0,2.2087 -1.7697,4.8696 -3.2386,4.8696 -0.378,0 -1.1738,0.1392 -1.7684,0.3094 -0.5946,0.1701 -1.8117,0.1324 -2.7046,-0.084 z"
-       id="path10158"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2283.2987,869.46829 c 0.026,-4.1923 0.3044,-9.0834 0.6191,-10.8692 l 0.5723,-3.247 4.1825,-0.243 4.1825,-0.243 0.5792,5.4083 c 0.5544,5.1767 0.1313,14.6634 -0.6907,15.4853 -0.2153,0.2153 -2.4391,0.6029 -4.9416,0.8612 l -4.5501,0.4696 0.047,-7.6222 0,0 z"
-       id="path10160"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2307.1238,866.51359 c 0.2889,-4.7995 0.7284,-10.4344 0.9767,-12.5222 l 0.4514,-3.7958 -3.7208,-0.558 c -3.9874,-0.598 -4.2043,-0.9998 -3.2134,-5.9544 l 0.5073,-2.5367 11.1966,0 c 6.1581,0 11.7744,0.2217 12.4806,0.4927 0.9288,0.3564 1.284,1.5916 1.284,4.4646 l 0,3.9719 -5.4025,0 -5.4026,0 0.4955,12.0709 0.4955,12.0709 -3.7296,0.5112 c -7.4976,1.0276 -7.0123,1.6487 -6.4187,-8.2151 z"
-       id="path10162"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
        inkscape:connector-curvature="0"
        style="fill:#81c9f9;fill-opacity:1"
        id="path72-1-5"
@@ -35914,6 +35801,273 @@
        inkscape:connector-curvature="0"
        transform="translate(0,332.36218)"
        inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_new_record.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#3fc3ff;fill-opacity:1;display:inline"
+       id="path72-1-4-2-4-4"
+       d="m 2896.8104,1103.4207 c 0,13.0437 -15.8058,23.6352 -35.2713,23.6352 h -148.2484 c -19.4654,0 -35.2713,-10.5915 -35.2713,-23.6352 v -99.2886 c 0,-13.04372 15.8059,-23.63521 35.2713,-23.63521 h 148.2484 c 19.4655,0 35.2713,10.59149 35.2713,23.63521 v 99.2886 z"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:0.5;fill:url(#linearGradient9208-6-1);display:inline"
+       id="path81-7-23-2-6-8"
+       d="m 2889.8807,1100.2902 c 0,12.2089 -14.7935,22.1744 -33.0911,22.1744 h -138.8272 c -18.2196,0 -33.0912,-9.9132 -33.0912,-22.1744 v -93.0277 c 0,-12.20885 14.7937,-22.17423 33.0912,-22.17423 h 138.8271 c 18.2198,0 33.0912,9.91322 33.0912,22.17423 v 93.0277 z"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-21-6-6-8"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2964.0678,943.29907)"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-6-1-2-2"><rect
+           id="rect8885-85-2-9-4"
+           width="426.97836"
+           height="160.72569"
+           x="-267.87616"
+           y="60.862309" /></flowRegion><flowPara
+         id="flowPara8887-7-4-5-5"
+         style="font-size:36px">submit</flowPara><flowPara
+         style="font-size:36px"
+         id="flowPara9149">score</flowPara></flowRoot>    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2702.6622,1044.954 c -4.4022,-1.1051 -6.0928,-3.9399 -5.8189,-9.757 0.067,-1.4204 0.4418,-1.591 3.497,-1.591 2.9882,0 3.5269,0.2302 4.2495,1.8161 1.1281,2.4758 3.9046,2.1524 4.211,-0.4906 0.1806,-1.5579 -0.4709,-2.354 -4.0512,-4.9497 -5.162,-3.7426 -7.3148,-7.3825 -6.355,-10.745 1.4296,-5.0085 5.3597,-8.3073 10.4836,-8.7997 4.2878,-0.412 7.2167,0.6583 9.6212,3.5159 2.4456,2.9065 2.3307,5.2187 -0.2854,5.7419 -1.1214,0.2243 -2.8715,0.6167 -3.8891,0.8721 -1.4029,0.3521 -1.8503,0.1979 -1.8503,-0.6378 0,-2.3803 -4.3858,-2.9548 -5.2555,-0.6884 -0.6098,1.589 0.3898,2.864 4.2103,5.3703 6.3645,4.1752 8.3218,9.6689 5.4635,15.3348 -2.1433,4.2488 -8.4351,6.463 -14.2307,5.0081 l 0,0 z"
+       id="path9152"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2736.1627,1044.5688 c -3.5073,-1.235 -6.3166,-4.4803 -7.9246,-9.1544 -0.951,-2.7643 -1.2346,-5.984 -1.2491,-14.1827 l -0.019,-10.6066 4.3703,-0.2093 4.3703,-0.2092 0.2259,11.3284 c 0.2117,10.6163 0.325,11.4274 1.8016,12.9023 1.3098,1.3081 1.9066,1.4588 3.5356,0.8929 3.1985,-1.1114 4.4848,-5.9432 4.2633,-16.0143 l -0.1822,-8.2798 3.8336,-0.4789 c 6.1714,-0.771 6.8917,0.3352 7.0429,10.8164 0.1871,12.9693 -4.0016,21.3544 -11.7411,23.5036 -3.4516,0.9585 -4.88,0.9056 -8.3278,-0.3084 z"
+       id="path9154"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2764.8928,1044.3049 c -1.6176,-1.6176 -2.1132,-6.1623 -2.3591,-21.6305 l -0.1794,-11.2852 1.7535,-0.4884 c 5.738,-1.5981 15.5306,-0.042 18.5142,2.9413 2.7311,2.7311 2.5956,5.3523 -0.4614,8.9237 l -2.4389,2.8493 2.0528,1.5177 c 4.166,3.08 3.4135,10.3056 -1.5123,14.5219 -4.3971,3.7638 -12.8058,5.2138 -15.3694,2.6502 l 0,0 z m 9.3815,-8.6733 c 2.124,-0.9678 2.5453,-1.8841 1.7944,-3.9035 -0.7025,-1.8897 -4.7722,-3.0031 -5.6888,-1.5564 -0.7136,1.1262 -0.8084,3.5598 -0.2004,5.1443 0.5077,1.3231 1.6845,1.4138 4.0948,0.3156 l 0,0 z m 0.9914,-14.1878 c 2.1531,-2.1532 0.3186,-4.0658 -3.9244,-4.0916 -1.3487,-0.01 -1.591,0.3673 -1.591,2.4652 0,2.3285 0.138,2.4749 2.3334,2.4749 1.2834,0 2.7153,-0.3818 3.182,-0.8485 z"
+       id="path9156"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2791.2617,1042.2681 c 0.2324,-1.4584 0.7118,-7.9019 1.0653,-14.3189 0.8639,-15.6777 0.8123,-15.5698 7.891,-16.5082 l 2.537,-0.3363 2.338,7.7151 c 1.2858,4.2434 2.5952,7.7152 2.9098,7.7152 0.7614,0 1.8432,-4.0592 2.871,-10.7731 l 0.8405,-5.4904 6.1854,0 c 7.3937,0 6.5377,-1.8391 8.0595,17.3171 1.4837,18.6771 1.9563,16.624 -3.8267,16.624 l -4.8935,0 -0.505,-4.7729 c -0.8335,-7.8788 -1.3649,-8.2801 -2.8157,-2.1262 -0.7073,3.0002 -1.469,5.7509 -1.6927,6.1128 -0.2236,0.3619 -1.9796,0.7548 -3.902,0.873 l -3.4954,0.2149 -1.5691,-6.2427 c -2.2885,-9.1045 -3.1032,-9.2526 -3.1032,-0.5643 l 0,7.2125 -4.6584,0 -4.6583,0 0.4225,-2.6516 z"
+       id="path9158"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2834.102,1040.8539 c 0,-3.403 0.2079,-8.335 0.4558,-10.9602 l 0.4508,-4.773 4.3978,0 4.3979,0 0.4496,3.2807 c 0.5741,4.1881 0.5792,12.1587 0.01,15.0064 -0.3564,1.7822 -0.9275,2.3357 -3.0052,2.9129 -1.4108,0.3918 -3.5993,0.7142 -4.8632,0.7164 l -2.2981,0 0.01,-6.1872 z"
+       id="path9160"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2836.2183,1020.3467 c -2.0765,-1.0373 -2.5101,-1.6616 -2.6937,-3.8781 -0.4287,-5.1743 4.6806,-7.7829 9.4945,-4.8475 4.0162,2.449 3.5306,7.6142 -0.8734,9.2886 -2.4292,0.9235 -3.0743,0.8623 -5.9274,-0.563 z"
+       id="path9162"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2857.6828,1041.4489 c 0.2248,-2.1746 0.6236,-7.7254 0.8864,-12.3352 0.5364,-9.4109 0.445,-9.6204 -4.2092,-9.639 l -2.718,-0.011 0.5007,-3.7123 c 0.2754,-2.0418 0.6423,-3.951 0.8152,-4.2426 0.3774,-0.6366 18.563,-0.6988 22.3281,-0.077 l 2.6516,0.4382 0,4.1502 0,4.1501 -5.4102,0 -5.4101,0 0.4898,10.9788 c 0.2693,6.0384 0.6646,11.4344 0.8782,11.9912 0.4504,1.1738 -0.9774,1.5746 -7.0666,1.9834 l -4.1445,0.2783 0.4086,-3.9538 0,0 z"
+       id="path9164"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2826.7374,1087.1694 c 0.1347,-1.6529 0.3923,-7.1418 0.5725,-12.1976 0.1802,-5.0558 0.7139,-11.4994 1.1861,-14.3189 l 0.8585,-5.1266 8.8155,0 8.8155,0 -0.5027,3.3588 c -0.2765,1.8473 -0.6496,3.5974 -0.8291,3.8891 -0.1796,0.2917 -2.376,0.5303 -4.8809,0.5303 l -4.5545,0 0,2.8201 c 0,2.7433 0.077,2.8324 2.8284,3.2723 2.519,0.4028 2.8285,0.669 2.8285,2.4328 0,2.5282 -1.3997,3.91 -4.5615,4.5031 -2.2748,0.4268 -2.5096,0.6899 -2.5096,2.8129 l 0,2.3421 4.3028,0.4498 c 2.3665,0.2473 4.5939,0.6296 4.9497,0.8495 0.3559,0.2199 0.647,1.9721 0.647,3.8937 l 0,3.4938 -9.1055,0 -9.1056,0 0.2449,-3.0052 z"
+       id="path9166"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2794.0263,1089.0585 c -0.5062,-1.3192 0.2902,-14.8318 1.4334,-24.3219 l 0.8071,-6.6997 3.182,-1.2168 c 4.2151,-1.6119 12.746,-1.6871 16.0042,-0.1409 3.2531,1.5437 4.5019,3.5104 4.5019,7.0902 0,5.0981 -2.0988,8.7812 -6.5911,11.5668 l -1.9949,1.237 3.9966,4.4791 c 5.7457,6.4394 5.8699,6.7968 2.6538,7.6352 -1.4633,0.3815 -3.8011,0.8976 -5.1949,1.147 l -2.5343,0.4534 -2.6169,-4.9799 c -1.4392,-2.7389 -2.924,-5.1697 -3.2993,-5.4017 -0.3994,-0.2468 -0.6825,0.8788 -0.6825,2.7135 0,1.7245 -0.1989,4.1297 -0.4419,5.3451 -0.4352,2.1755 -0.5065,2.2097 -4.6184,2.2097 -3.1523,0 -4.2815,-0.2737 -4.6048,-1.1161 z m 13.8572,-19.0103 c 4.2415,-2.1934 3.4931,-7.4508 -1.0606,-7.4508 -1.3072,0 -1.7191,0.38 -1.7251,1.591 0,0.875 -0.205,2.7842 -0.446,4.2426 -0.493,2.9826 0.058,3.2583 3.2317,1.6172 z"
+       id="path9168"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2763.7399,1088.8312 c -5.6113,-2.6035 -9.546,-8.7435 -9.546,-14.896 0,-3.6472 3.7398,-10.7971 7.1938,-13.7537 4.079,-3.4914 6.9546,-4.6552 11.5028,-4.6552 7.0596,0 12.1082,3.8377 14.1665,10.7685 2.8339,9.5429 -0.434,18.5474 -8.1621,22.4899 -3.6317,1.8528 -11.212,1.876 -15.155,0.046 z m 10.6263,-10.108 c 2.4846,-1.132 3.8694,-4.0274 3.8694,-8.0902 0,-4.44 -1.935,-6.6214 -5.8734,-6.6214 -5.2527,0 -9.7151,7.0439 -7.4523,11.7632 1.6292,3.3978 5.6907,4.6641 9.4563,2.9484 z"
+       id="path9170"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2732.8675,1088.1334 c -7.7459,-4.9122 -8.6611,-16.5455 -2.0256,-25.7472 3.2163,-4.4601 6.4667,-6.3711 11.4499,-6.7315 5.4249,-0.3924 6.1212,0.2622 4.5779,4.3034 -1.0754,2.8158 -1.4799,3.1608 -4.663,3.9766 -6.0499,1.5505 -8.9016,6.2995 -7.0861,11.8005 0.9548,2.8931 3.5534,4.4433 8.413,5.0189 3.1627,0.3746 3.461,0.5833 4.1797,2.925 0.899,2.9292 0.4547,3.7171 -3.0279,5.3697 -3.7628,1.7855 -8.0872,1.4506 -11.8179,-0.9154 l 0,0 z"
+       id="path9172"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2700.6718,1089.4607 c -2.7671,-1.1146 -4.0695,-4.1767 -3.8318,-9.0088 0.07,-1.42 0.4461,-1.591 3.5003,-1.591 2.9882,0 3.5269,0.2302 4.2495,1.816 1.1302,2.4805 3.9047,2.1519 4.2118,-0.4988 0.1791,-1.5457 -0.4751,-2.3924 -3.8237,-4.9497 -7.0796,-5.4065 -8.2549,-8.3698 -5.4633,-13.7749 3.7246,-7.2116 15.3483,-8.0374 19.6977,-1.3995 1.52,2.3198 1.109,4.0981 -1.0808,4.6759 -5.3244,1.4048 -5.6569,1.4309 -5.6569,0.4424 0,-2.5578 -4.2875,-3.1992 -5.2158,-0.7802 -0.6634,1.7289 0.1152,2.6877 4.4584,5.4902 5.0502,3.2586 6.7229,6.2248 6.2553,11.0919 -0.593,6.1706 -4.4779,9.2329 -11.6151,9.1555 -2.2747,-0.025 -4.8332,-0.3257 -5.6856,-0.669 l 0,0 z"
+       id="path9174"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_submit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g9188"
+       transform="translate(-284.31219,-16.169289)"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <flowRoot
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_resume_button.png"
+         transform="matrix(1.0104603,0,0,1.0104603,3256.0805,790.18849)"
+         style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+         id="flowRoot8881-21-6"
+         xml:space="preserve"><flowRegion
+           id="flowRegion8883-6-1"><rect
+             y="60.862309"
+             x="-267.87616"
+             height="160.72569"
+             width="426.97836"
+             id="rect8885-85-2" /></flowRegion><flowPara
+           style="font-size:36px"
+           id="flowPara8887-7-4">Resume</flowPara></flowRoot>      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9176"
+         d="m 2987.4377,560.76378 c -2.093,-0.55629 -2.1096,-3.11207 -0.1708,-26.30289 l 0.4946,-5.91616 2.4719,-1.0328 c 10.1069,-4.22294 22.0619,-1.21534 22.0506,5.54742 -0.01,5.34778 -3.0463,10.76932 -7.3523,13.12341 -1.2379,0.67677 -0.9969,1.15014 3.0052,5.90473 2.3931,2.84295 4.351,5.54331 4.351,6.00082 0,0.75224 -6.3807,2.45241 -9.1335,2.43366 -0.6705,-0.005 -2.2347,-2.13163 -3.8999,-5.3033 -1.5293,-2.91262 -3.0407,-5.29567 -3.3588,-5.29567 -0.3181,0 -0.5783,2.04226 -0.5783,4.53836 0,6.28995 -0.2838,6.79143 -3.788,6.69332 -1.6112,-0.0451 -3.4525,-0.22102 -4.0917,-0.3909 z m 13.0876,-20.7916 c 3.2972,-2.59353 2.0249,-7.44092 -1.8102,-6.89725 -1.4562,0.20642 -1.6526,0.66449 -1.842,4.29692 -0.2395,4.5911 0.4748,5.09967 3.6522,2.60033 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9178"
+         d="m 3019.0091,552.57465 c 0.5815,-12.09928 1.021,-17.36416 1.8877,-22.6118 l 0.7908,-4.78859 3.3252,0 c 1.8289,0 5.7885,0.20822 8.7991,0.46271 l 5.4739,0.46272 -0.4868,3.24959 c -0.2677,1.78728 -0.8533,3.48338 -1.3013,3.7691 -0.448,0.28573 -2.6442,0.52438 -4.8804,0.53033 l -4.0659,0.0108 0,2.75277 c 0,2.92114 0.7624,3.61119 3.9896,3.61119 1.5929,0 1.7326,0.24171 1.5332,2.65165 -0.2064,2.49373 -0.4195,2.71172 -3.5783,3.6602 -3.099,0.93055 -3.3587,1.18391 -3.3587,3.27607 0,2.26746 10e-5,2.26754 4.773,2.88054 l 4.7729,0.61302 0.2138,3.71231 0.2137,3.71231 -9.2419,0 -9.2419,0 0.3823,-7.95495 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9180"
+         d="m 3050.4829,560.51266 c -3.7027,-0.87061 -5.668,-3.57546 -5.668,-7.80067 l 0,-3.4961 3.553,0 c 3.1393,0 3.6313,0.20586 4.2251,1.76777 0.8578,2.25603 3.9249,2.46882 4.607,0.31962 0.5643,-1.77787 -0.341,-2.91739 -5.1257,-6.45209 -6.767,-4.99901 -7.6504,-9.91891 -2.7517,-15.3247 3.4317,-3.78685 9.9542,-4.99014 14.4386,-2.66363 2.4964,1.29513 5.2324,5.067 4.9191,6.78165 -0.1156,0.63328 -1.6843,1.37725 -3.9778,1.88656 -3.5024,0.77776 -3.8131,0.7408 -4.1355,-0.49188 -0.448,-1.71338 -2.7854,-2.4581 -4.1529,-1.32317 -1.6534,1.37218 -0.8774,3.63331 1.8358,5.34913 5.005,3.16522 7.0438,5.30231 7.8246,8.20194 1.0466,3.88667 0.316,7.14368 -2.2608,10.07847 -3.0645,3.49023 -7.4875,4.54104 -13.3308,3.1671 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9182"
+         d="m 3084.0593,559.94875 c -3.4964,-1.65739 -4.8361,-3.13286 -6.7283,-7.41041 -1.6922,-3.82558 -3.1128,-17.72844 -2.3777,-23.26997 l 0.4493,-3.387 3.0909,-0.11786 c 1.7,-0.0648 3.6477,-0.14436 4.3283,-0.17677 1.1268,-0.0537 1.2375,0.90098 1.2375,10.67108 0,9.79529 0.1294,10.90405 1.4851,12.72792 4.9268,6.62771 9.222,-1.04404 8.6439,-15.43865 -0.3159,-7.86402 -0.4569,-7.66572 5.4519,-7.66572 3.7865,0 3.8003,0.008 4.5344,2.65165 0.9685,3.48729 0.947,13.28024 -0.039,17.99641 -1.1888,5.68318 -3.9614,10.2851 -7.4167,12.31007 -4.0823,2.39234 -9.0366,2.82646 -12.6592,1.10925 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9184"
+         d="m 3111.5362,557.52439 c 0.2276,-1.65286 0.6041,-7.30087 0.8365,-12.55114 0.4927,-11.12801 1.4055,-16.69143 2.8281,-17.23732 0.558,-0.21415 2.5763,-0.59652 4.4849,-0.84971 l 3.4704,-0.46036 1.18,4.14717 c 3.3746,11.8602 4.019,13.17925 4.9716,10.1777 0.2434,-0.76676 0.9879,-4.34649 1.6545,-7.95496 l 1.2121,-6.56085 5.9945,-0.38486 c 3.297,-0.21167 6.2046,-0.21167 6.4613,0 0.493,0.40657 2.7207,25.82032 2.7172,30.99953 l 0,3.03752 -4.7693,-0.20909 -4.7693,-0.20908 -0.7536,-5.464 c -0.4145,-3.0052 -0.9158,-5.62617 -1.114,-5.82438 -0.1982,-0.1982 -0.9046,1.9424 -1.5699,4.7569 -0.6652,2.81449 -1.4383,5.48071 -1.7181,5.92492 -0.2797,0.44422 -2.0779,0.92151 -3.9959,1.06066 l -3.4874,0.253 -1.5792,-6.26867 c -2.3001,-9.12999 -3.1133,-9.28418 -3.1133,-0.59026 l 0,7.21249 -4.6765,0 -4.6765,0 0.4139,-3.00521 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+      <path
+         transform="translate(0,332.36218)"
+         inkscape:connector-curvature="0"
+         id="path9186"
+         d="m 3154.1279,557.52439 c 0.1347,-1.65286 0.3963,-7.14177 0.5813,-12.19759 0.185,-5.05581 0.7292,-11.65842 1.2092,-14.67246 l 0.8729,-5.48008 3.302,0 c 1.8162,0 5.7366,0.20579 8.7121,0.45731 l 5.41,0.45731 0,2.9368 c 0,1.61524 -0.3818,3.31864 -0.8485,3.78533 -0.4804,0.48039 -2.7813,0.84853 -5.3033,0.84853 l -4.4548,0 0,2.82007 c 0,2.7433 0.077,2.83238 2.8284,3.27236 2.6268,0.42004 2.8284,0.61608 2.8284,2.7502 0,2.74153 -0.8854,3.59385 -4.4194,4.25426 -2.4228,0.45277 -2.6516,0.69515 -2.6516,2.80902 l 0,2.31349 4.7729,0.61302 4.773,0.61302 0.2137,3.71231 0.2138,3.71231 -9.1425,0 -9.1425,0 0.2449,-3.00521 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2451.8676,876.25105 c -0.7933,-0.7933 -0.5279,-9.41485 0.629,-20.42865 0.6053,-5.76198 1.242,-10.70541 1.4151,-10.98539 0.755,-1.22168 7.3263,-2.76275 11.7808,-2.76275 5.281,0 9.801,1.70412 11.1359,4.19846 1.1223,2.09703 0.8425,6.44714 -0.622,9.67221 -1.0739,2.36464 -3.1031,4.41218 -7.0627,7.12626 -0.1561,0.10696 1.142,1.71868 2.8845,3.58158 4.1365,4.42223 5.9044,7.16098 5.1057,7.90918 -0.5744,0.5382 -7.1764,2.1605 -8.7918,2.1605 -0.3641,0 -1.5955,-1.8296 -2.7364,-4.06582 -1.1409,-2.23623 -2.5672,-4.70226 -3.1697,-5.48008 -1.0579,-1.36586 -1.0961,-1.33902 -1.1178,0.78519 -0.012,1.20968 -0.2249,3.67571 -0.4722,5.48011 l -0.4496,3.2806 -4.0287,0 c -2.2158,0 -4.2408,-0.2121 -4.5001,-0.4714 z m 13.2059,-19.40552 c 1.5596,-0.71057 3.2933,-3.2662 3.2933,-4.85454 0,-1.19367 -2.2334,-2.84566 -3.8471,-2.84566 -1.3282,0 -1.7048,0.48404 -2.0631,2.65165 -0.9675,5.85389 -0.6204,6.52358 2.6169,5.04855 l 0,0 z"
+       id="path9200"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2484.2969,870.18175 c 0.1971,-3.5974 0.5124,-9.38162 0.7006,-12.85381 0.1883,-3.47219 0.6926,-8.32471 1.1207,-10.78338 l 0.7785,-4.4703 8.7746,0 8.7746,0 -0.4208,3.0052 c -0.6813,4.86438 -0.5743,4.77297 -5.5841,4.77297 l -4.6184,0 0,2.82008 c 0,2.74329 0.077,2.83238 2.8284,3.27235 2.5189,0.40279 2.8285,0.669 2.8285,2.43272 0,2.52826 -1.3997,3.91 -4.5615,4.50317 -2.2749,0.42676 -2.5096,0.68988 -2.5096,2.8129 l 0,2.3421 4.3028,0.44973 c 2.3665,0.24735 4.5939,0.62966 4.9497,0.84957 0.3559,0.21991 0.647,1.97205 0.647,3.8936 l 0,3.4938 -9.1847,0 -9.1847,0 0.3584,-6.5407 z"
+       id="path9202"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2516.226,868.06043 c 0.3126,-4.76413 0.5704,-10.41123 0.5729,-12.54911 l 0,-3.88706 -2.9921,-0.40137 c -1.6456,-0.22076 -3.1897,-0.59905 -3.4313,-0.84065 -0.2416,-0.24159 -0.2213,-2.02425 0.045,-3.96145 l 0.4844,-3.52218 5.7754,-0.41739 c 3.1764,-0.22956 8.7982,-0.17639 12.4928,0.11816 l 6.7176,0.53554 0.2105,4.41942 0.2105,4.41941 -5.4484,0 -5.4483,0 0.4506,11.93528 0.4506,11.93522 -2.1954,0.4391 c -1.2075,0.2415 -3.6068,0.4391 -5.3317,0.4391 l -3.1362,0 0.5683,-8.66202 z"
+       id="path9204"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2541.701,876.28195 c -0.7337,-0.7337 -0.509,-12.02141 0.4408,-22.14744 l 0.8254,-8.79941 2.3963,-1.39951 c 1.6367,-0.95586 4.162,-1.50172 7.9665,-1.72196 7.1246,-0.41244 11.1309,0.948 12.9972,4.41359 1.1466,2.12901 1.1915,2.82224 0.4094,6.31692 -0.8806,3.93507 -2.8614,6.71777 -6.4034,8.99608 l -1.7253,1.10969 4.3769,5.19973 c 2.4073,2.85985 4.3769,5.44661 4.3769,5.74841 0,0.6572 -4.3655,1.8911 -7.6796,2.1705 -2.2739,0.1918 -2.5008,-0.021 -5.2642,-4.92614 -1.5884,-2.81958 -3.1303,-5.12652 -3.4264,-5.12652 -0.2961,0 -0.6319,2.30694 -0.7462,5.12652 l -0.2077,5.12654 -3.9172,0.2076 c -2.1544,0.1142 -4.1432,-0.018 -4.4194,-0.2946 l 0,0 z m 13.8981,-20.11688 c 3.123,-2.45656 2.2229,-7.01974 -1.3846,-7.01974 -1.8636,0 -2.4091,1.21396 -2.4091,5.36113 0,3.57155 0.8753,3.95424 3.7937,1.65861 l 0,0 z"
+       id="path9206"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2587.691,876.94015 c -1.0914,-0.2834 -1.2374,-1.3172 -1.2374,-8.76287 l 0,-8.44152 -5.8336,-7.0931 c -3.2085,-3.90121 -5.9337,-7.3795 -6.0559,-7.72953 -0.2314,-0.66306 2.4871,-1.25713 7.257,-1.58581 2.6938,-0.18562 2.9012,-0.0367 5.8861,4.22702 1.7017,2.43068 3.3145,4.41941 3.584,4.41941 0.2696,0 1.2607,-1.93991 2.2025,-4.31091 1.188,-2.9911 2.2267,-4.5065 3.3925,-4.94975 2.2929,-0.87175 10.0735,-0.81403 10.0735,0.0747 0,0.39246 -1.7192,3.37854 -3.8205,6.63573 -5.8306,9.03827 -5.5986,8.2587 -5.4337,18.25712 l 0.1491,9.04181 -3.5214,0 c -1.9367,0 -3.9451,0.1213 -4.463,0.2695 -0.518,0.1482 -1.4986,0.1249 -2.1792,-0.052 l 0,0 z"
+       id="path9208"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_retry_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2223.7533,872.68865 c -3.0076,-2.4983 -3.0909,-2.5209 -5.0457,-1.3661 -2.7981,1.6528 -8.937,1.5411 -11.8172,-0.215 -3.3283,-2.0294 -5.1551,-6.118 -5.1551,-11.5382 0,-12.4564 7.8975,-20.01236 19.4131,-18.57358 4.724,0.59022 9.6347,3.00728 10.8451,5.33798 1.3048,2.5125 0.5034,8.7456 -1.7104,13.3024 -1.0037,2.0661 -1.7123,3.8397 -1.5746,3.9413 0.1378,0.1017 1.2846,0.8989 2.5486,1.7717 1.2639,0.8728 2.2836,1.8039 2.266,2.0691 -0.018,0.2652 -1.535,2.1311 -3.3719,4.1464 l -3.3397,3.6643 -3.0582,-2.5403 0,0 z m -8.5829,-10.2015 c 0,-0.4494 -0.7786,-1.838 -1.7303,-3.0856 l -1.7302,-2.2685 1.9457,-1.8641 c 2.3902,-2.29 2.4643,-2.2906 5.4092,-0.044 l 2.3859,1.8198 0.4531,-2.4153 c 0.2492,-1.3284 0.3476,-3.3405 0.2186,-4.4714 -0.2185,-1.9155 -0.4666,-2.0711 -3.624,-2.273 -3.0427,-0.1946 -3.633,0.027 -5.7703,2.164 -3.1841,3.1841 -4.3243,7.3875 -2.9174,10.7548 0.8725,2.0882 1.4008,2.5007 3.2023,2.5007 1.1865,0 2.1574,-0.3677 2.1574,-0.8171 z"
+       id="path9210"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2248.6725,874.30925 c -2.8392,-1.2356 -5.758,-5.0849 -7.1144,-9.3821 -0.6465,-2.0483 -1.2208,-7.5196 -1.4507,-13.8205 l -0.3804,-10.42979 2.4825,0 c 1.3654,0 3.4546,-0.1944 4.6426,-0.432 l 2.1599,-0.43199 0.2265,11.32008 c 0.1991,9.9474 0.3899,11.5003 1.5736,12.8064 0.7409,0.8174 2.0705,1.4862 2.9547,1.4862 3.8204,0 5.2814,-4.3177 5.468,-16.1601 l 0.1297,-8.23504 4.5644,0 c 5.501,0 5.5169,0.0301 5.6098,10.60664 0.1096,12.4815 -2.6894,19.0487 -9.6087,22.5447 -2.7328,1.3807 -8.2349,1.4431 -11.2575,0.1275 l 0,0 z"
+       id="path9212"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2276.8143,866.86235 c 0.1654,-5.8212 0.4978,-10.7812 0.7388,-11.0221 0.2409,-0.241 2.3224,-0.609 4.6255,-0.8178 l 4.1874,-0.3797 0.4548,5.9217 c 0.2502,3.257 0.2565,8.0446 0.014,10.6391 l -0.4408,4.7173 -4.3803,0.7628 c -2.4092,0.4195 -4.6323,0.7628 -4.9402,0.7628 -0.308,0 -0.4246,-4.7629 -0.2593,-10.5841 z"
+       id="path9214"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2278.4564,850.43855 c -1.9195,-1.0885 -2.4513,-2 -2.464,-4.2238 -0.016,-2.8584 0.6638,-4.0705 2.9466,-5.25104 1.651,-0.85377 2.5618,-0.91568 4.425,-0.30078 7.046,2.32542 6.3226,10.65952 -0.92,10.59902 -1.4154,-0.012 -3.2097,-0.3824 -3.9876,-0.8235 z"
+       id="path9216"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.70710677;stroke-opacity:1"
+       d="m 2300.2629,869.49145 c 0.2389,-3.2085 0.641,-8.8897 0.8937,-12.625 l 0.4594,-6.7913 -3.7112,-0.4923 -3.7112,-0.4923 0.486,-3.6637 c 0.2673,-2.015 0.5993,-3.77691 0.7376,-3.91528 0.6936,-0.69352 9.5925,-0.9578 16.8927,-0.50166 l 8.2194,0.51356 0,4.17288 0,4.1729 -3.7123,0.01 c -2.0418,0 -4.4761,0.214 -5.4095,0.4638 l -1.6972,0.4541 0.4643,11.8116 0.4644,11.8115 -3.7169,0.4464 c -7.605,0.9135 -7.1543,1.2772 -6.6592,-5.3748 z"
+       id="path9218"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>

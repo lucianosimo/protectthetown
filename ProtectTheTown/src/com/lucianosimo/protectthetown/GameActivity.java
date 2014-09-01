@@ -15,38 +15,72 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 import com.lucianosimo.protectthetown.manager.SceneManager;
+import com.swarmconnect.Swarm;
+import com.swarmconnect.SwarmLeaderboard;
 
 public class GameActivity extends BaseGameActivity {
 
 	private BoundCamera camera;
+	//private ScoreNinjaAdapter scoreNinjaAdapter;
 	public static float mGravityX = 0;
-	private final static float SPLASH_DURATION = 5f;
+	private int score = 0;
 	
+	private final static float SPLASH_DURATION = 5f;	
+	//private final static String APP_ID = "protectthetownscoreboard";
+	//private final static String PRIVATE_KEY = "36DC8F51102932FAC652EFE2BDE14DF5";
 	//private Chartboost cb;
 	
-	/*@Override
+	private final static int SWARM_APP_ID = 12987;
+	private final static String SWARM_APP_KEY = "27b45b3507f2daea1c39203e523c00cf";
+	private final static int SWARM_LEADERBOARD_ID = 17629;
+	
+	@Override
 	protected void onCreate(Bundle pSavedInstanceState) {
 		super.onCreate(pSavedInstanceState);
-		this.cb = Chartboost.sharedChartboost();
+		/*this.cb = Chartboost.sharedChartboost();
 		String appId = "53c57c8289b0bb3697c25124";
 		String appSignature = "3f0a28521b32648044a33f149570570df81c89c6";
 		this.cb.onCreate(this, appId, appSignature, this.chartBoostDelegate);
 		CBPreferences.getInstance().setAnimationsOff(true);
-		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);
-	}*/
+		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);*/
+		//scoreNinjaAdapter = new ScoreNinjaAdapter(this, APP_ID, PRIVATE_KEY);
+		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+		Swarm.setActive(this);		
+	}
 	
-	/*@SuppressLint("NewApi")
-	  private void dimSoftButtonsIfPossible() {
-	    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-	    if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-	      //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-	      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-	    }
-	  }*/
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      super.onActivityResult(requestCode, resultCode, data);
+      scoreNinjaAdapter.onActivityResult(requestCode, resultCode, data);
+    }
+    
+    public void onGameOver() {
+      this.runOnUiThread(new Runnable() {
+		
+		@Override
+		public void run() {
+			//scoreNinjaAdapter.show(score);
+			scoreNinjaAdapter.show();
+			
+		}
+	});
+      
+    }*/
+    
+    public void submitScore(int submitScore) {
+    	score = submitScore;
+    	this.runOnUiThread(new Runnable() {
+    		@Override
+    		public void run() {
+    			SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
+    		}
+    	});
+    }
 	
 	@Override
 	public EngineOptions onCreateEngineOptions() {
@@ -61,7 +95,8 @@ public class GameActivity extends BaseGameActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		SceneManager.getInstance().getCurrentScene().handleOnPause();
+		//SceneManager.getInstance().getCurrentScene().handleOnPause();
+		Swarm.setInactive(this);
 		mEngine.getSoundManager().setMasterVolume(0);
 		mEngine.getMusicManager().setMasterVolume(0);
 	}
@@ -69,15 +104,9 @@ public class GameActivity extends BaseGameActivity {
 	@Override
 	protected synchronized void onResume() {
 		super.onResume();
+		Swarm.setActive(this);
 		mEngine.getSoundManager().setMasterVolume(1);
 		mEngine.getMusicManager().setMasterVolume(1);
-		/*runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				dimSoftButtonsIfPossible();
-			}
-		});*/
 	}
 
 	@Override
@@ -101,13 +130,6 @@ public class GameActivity extends BaseGameActivity {
 				SceneManager.getInstance().createMenuScene();
 			}
 		}));
-		/*runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				dimSoftButtonsIfPossible();
-			}
-		});*/
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 	}
 	

@@ -105,6 +105,7 @@ public class GameScene extends BaseScene{
 	private Sprite retryButton;
 	private Sprite quitButton;
 	private Sprite pauseButton;
+	private Sprite submitScoreButton;
 	private Sprite twitterButton;
 	
 	//Dome
@@ -1586,7 +1587,8 @@ public class GameScene extends BaseScene{
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		finalScoreText.setText(""+score);
 		
-		retryButton = new Sprite(450, 50, resourcesManager.game_retry_button_region, vbom){
+		//450
+		retryButton = new Sprite(550, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1598,7 +1600,18 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    quitButton = new Sprite(150, 50, resourcesManager.game_quit_button_region, vbom){
+	    submitScoreButton = new Sprite(270, 50, resourcesManager.game_submit_button_region, vbom){
+	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	    		if (pSceneTouchEvent.isActionDown()) {
+	    			//activity.setSubmitScore(score);
+	    			//activity.onGameOver();
+	    			activity.submitScore(score);
+	    		}
+	    		return true;
+	    	};
+	    };
+	    //150
+	    quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1628,9 +1641,11 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(fade);
 		GameScene.this.attachChild(gameOverWindow);
 		GameScene.this.registerTouchArea(retryButton);
+		GameScene.this.registerTouchArea(submitScoreButton);
 	    GameScene.this.registerTouchArea(quitButton);
 	    GameScene.this.registerTouchArea(twitterButton);
 		gameOverWindow.attachChild(retryButton);
+		gameOverWindow.attachChild(submitScoreButton);
 		gameOverWindow.attachChild(quitButton);
 		gameOverWindow.attachChild(finalScoreText);
 		gameOverWindow.attachChild(newRecord);
