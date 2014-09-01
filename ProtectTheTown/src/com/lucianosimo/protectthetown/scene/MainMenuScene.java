@@ -36,6 +36,7 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	private final int MENU_PLAY = 0;
 	private final int MENU_RATEUS = 1;
 	private final int MENU_QUIT = 2;
+	private final int MENU_GLOBAL_SCORES = 3;
 
 	@Override
 	public void createScene() {
@@ -82,16 +83,22 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		Sprite rateus_button_background = new Sprite(-500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
 		rateus_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
 		
+		Sprite global_scores_button_background = new Sprite(500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
+		global_scores_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
+		
 		menuChildScene.attachChild(play_button_background);
 		menuChildScene.attachChild(rateus_button_background);
+		menuChildScene.attachChild(global_scores_button_background);
 		menuChildScene.attachChild(highScoreText);
 		
 		final IMenuItem playMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_PLAY, resourcesManager.menu_play_button_region, vbom), 1.2f, 1);
 		final IMenuItem rateusMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_RATEUS, resourcesManager.menu_rateus_button_region, vbom), 1.2f, 1);
+		final IMenuItem globalScoresMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_GLOBAL_SCORES, resourcesManager.menu_global_scores_button_region, vbom), 1.2f, 1);
 		final IMenuItem quitMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_QUIT, resourcesManager.menu_quit_button_region, vbom), 1.2f, 1);
 
 		menuChildScene.addMenuItem(playMenuItem);
 		menuChildScene.addMenuItem(rateusMenuItem);
+		menuChildScene.addMenuItem(globalScoresMenuItem);
 		menuChildScene.addMenuItem(quitMenuItem);
 		
 		menuChildScene.buildAnimations();
@@ -99,6 +106,7 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		
 		playMenuItem.setPosition(0, -10);
 		rateusMenuItem.setPosition(-500, -225);
+		globalScoresMenuItem.setPosition(500, -225);
 		quitMenuItem.setPosition(570, 290);
 		
 		menuChildScene.setOnMenuItemClickListener(this);
@@ -113,6 +121,9 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 				return true;
 			case MENU_RATEUS:
 				activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.lucianosimo.parachuteaction")));
+				return true;
+			case MENU_GLOBAL_SCORES:
+				activity.showLeaderboard();
 				return true;
 			case MENU_QUIT:
 				System.exit(0);

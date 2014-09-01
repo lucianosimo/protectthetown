@@ -49,7 +49,6 @@ public class GameActivity extends BaseGameActivity {
 		CBPreferences.getInstance().setAnimationsOff(true);
 		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);*/
 		//scoreNinjaAdapter = new ScoreNinjaAdapter(this, APP_ID, PRIVATE_KEY);
-		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
 		Swarm.setActive(this);		
 	}
 	
@@ -72,12 +71,25 @@ public class GameActivity extends BaseGameActivity {
       
     }*/
     
+	public void showLeaderboard() {
+		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+		this.runOnUiThread(new Runnable() {
+    		@Override
+    		public void run() {
+    			//SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
+    			SwarmLeaderboard.showLeaderboard(SWARM_LEADERBOARD_ID);
+    		}
+    	});
+	}
+	
     public void submitScore(int submitScore) {
     	score = submitScore;
+    	Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
     	this.runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
-    			SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
+    			//SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
+    			SwarmLeaderboard.submitScore(SWARM_LEADERBOARD_ID, score);
     		}
     	});
     }
@@ -95,7 +107,7 @@ public class GameActivity extends BaseGameActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		//SceneManager.getInstance().getCurrentScene().handleOnPause();
+		SceneManager.getInstance().getCurrentScene().handleOnPause();
 		Swarm.setInactive(this);
 		mEngine.getSoundManager().setMasterVolume(0);
 		mEngine.getMusicManager().setMasterVolume(0);

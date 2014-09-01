@@ -43,6 +43,7 @@ public class ResourcesManager {
 	public ITextureRegion menu_play_button_background_region;
 	public ITextureRegion menu_rateus_button_region;
 	public ITextureRegion menu_rateus_button_background_region;
+	public ITextureRegion menu_global_scores_button_region;
 	public ITextureRegion menu_quit_button_region;
 	
 	private BuildableBitmapTextureAtlas loadingBackgroundTextureAtlas;
@@ -189,6 +190,7 @@ public class ResourcesManager {
 		menu_play_button_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_play_button_background.png");
 		menu_rateus_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_rateus_button.png");
 		menu_rateus_button_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_rateus_button_background.png");
+		menu_global_scores_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_global_scores_button.png");
 		menu_quit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_quit_button.png");
 		
 		try {
