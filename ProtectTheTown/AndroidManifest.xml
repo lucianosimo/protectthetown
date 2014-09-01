@@ -33,9 +33,7 @@
         </activity>
         <activity 
             android:name="com.swarmconnect.SwarmMainActivity"
-            android:label="@string/app_name"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|mcc|mnc"
-            android:screenOrientation="landscape">
+            android:label="@string/app_name">
         </activity>
     </application>
 
