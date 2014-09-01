@@ -16,8 +16,16 @@ import org.andengine.ui.activity.BaseGameActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
+import com.chartboost.sdk.CBPreferences;
+import com.chartboost.sdk.Chartboost;
+import com.chartboost.sdk.Chartboost.CBAgeGateConfirmation;
+import com.chartboost.sdk.ChartboostDelegate;
+import com.chartboost.sdk.Libraries.CBOrientation;
+import com.chartboost.sdk.Model.CBError.CBClickError;
+import com.chartboost.sdk.Model.CBError.CBImpressionError;
 import com.lucianosimo.protectthetown.manager.ResourcesManager;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.swarmconnect.Swarm;
@@ -26,51 +34,29 @@ import com.swarmconnect.SwarmLeaderboard;
 public class GameActivity extends BaseGameActivity {
 
 	private BoundCamera camera;
-	//private ScoreNinjaAdapter scoreNinjaAdapter;
 	public static float mGravityX = 0;
 	private int score = 0;
 	
 	private final static float SPLASH_DURATION = 5f;	
-	//private final static String APP_ID = "protectthetownscoreboard";
-	//private final static String PRIVATE_KEY = "36DC8F51102932FAC652EFE2BDE14DF5";
-	//private Chartboost cb;
+	private Chartboost cb;
 	
 	private final static int SWARM_APP_ID = 12987;
 	private final static String SWARM_APP_KEY = "27b45b3507f2daea1c39203e523c00cf";
 	private final static int SWARM_LEADERBOARD_ID = 17629;
 	
+	private final static String CHARTBOOST_APP_ID = "5404aa5cc26ee42f745be480";
+	private final static String CHARTBOOST_APP_SIGNATURE = "91043a4b46e9cbb87172ca5e675c8d0183825734";
+	
 	@Override
 	protected void onCreate(Bundle pSavedInstanceState) {
 		super.onCreate(pSavedInstanceState);
-		/*this.cb = Chartboost.sharedChartboost();
-		String appId = "53c57c8289b0bb3697c25124";
-		String appSignature = "3f0a28521b32648044a33f149570570df81c89c6";
-		this.cb.onCreate(this, appId, appSignature, this.chartBoostDelegate);
-		CBPreferences.getInstance().setAnimationsOff(true);
-		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);*/
-		//scoreNinjaAdapter = new ScoreNinjaAdapter(this, APP_ID, PRIVATE_KEY);
+		this.cb = Chartboost.sharedChartboost();
+		
+		this.cb.onCreate(this, CHARTBOOST_APP_ID, CHARTBOOST_APP_SIGNATURE, this.chartBoostDelegate);
+		CBPreferences.getInstance().setOrientation(CBOrientation.LANDSCAPE);
 		Swarm.setActive(this);
 		Swarm.preload(this, SWARM_APP_ID, SWARM_APP_KEY);
 	}
-	
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-      super.onActivityResult(requestCode, resultCode, data);
-      scoreNinjaAdapter.onActivityResult(requestCode, resultCode, data);
-    }
-    
-    public void onGameOver() {
-      this.runOnUiThread(new Runnable() {
-		
-		@Override
-		public void run() {
-			//scoreNinjaAdapter.show(score);
-			scoreNinjaAdapter.show();
-			
-		}
-	});
-      
-    }*/
     
 	public void showLeaderboard() {
 		Swarm.setAllowGuests(true);
@@ -80,7 +66,6 @@ public class GameActivity extends BaseGameActivity {
 		this.runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
-    			//SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
     			SwarmLeaderboard.showLeaderboard(SWARM_LEADERBOARD_ID);
     		}
     	});
@@ -89,13 +74,12 @@ public class GameActivity extends BaseGameActivity {
     public void submitScore(int submitScore) {
     	score = submitScore;
     	Swarm.setAllowGuests(true);
-    	if (!Swarm.isInitialized() ) {
+    	//if (!Swarm.isInitialized() ) {
     		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
-        }
+        //}
     	this.runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
-    			//SwarmLeaderboard.submitScoreAndShowLeaderboard(SWARM_LEADERBOARD_ID, score);
     			SwarmLeaderboard.submitScore(SWARM_LEADERBOARD_ID, score);
     		}
     	});
@@ -161,24 +145,23 @@ public class GameActivity extends BaseGameActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		//this.cb.onDestroy(this);
+		this.cb.onDestroy(this);
 		System.exit(0);
 	}
 	
-	@Override
+	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			SceneManager.getInstance().getCurrentScene().onBackKeyPressed();
-			//dimSoftButtonsIfPossible();
 		}
 		return false;
-	}
+	}*/
 	
 	public void tweetScore(Intent intent) {
 		startActivity(Intent.createChooser(intent, "Protect the town"));
 	}
 	
-	/*@Override
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (this.cb.onBackPressed())
@@ -187,26 +170,26 @@ public class GameActivity extends BaseGameActivity {
 			SceneManager.getInstance().getCurrentScene().onBackKeyPressed();
 		}
 		return false;
-	}*/
+	}
 
-    /*@Override
+    @Override
 	protected void onStart() {
 		super.onStart();
 		this.cb.onStart(this);
 		this.cb.cacheInterstitial();
-	}*/
+	}
 
-	/*@Override
+	@Override
 	protected void onStop() {
 		super.onStop();
 		this.cb.onStop(this);
-	}*/
+	}	
 	
-	/*public void showAd() {
+	public void showAd() {
 		this.cb.showInterstitial(); 
-	}*/
+	}
 	
-	/*private ChartboostDelegate chartBoostDelegate = new ChartboostDelegate() {
+	private ChartboostDelegate chartBoostDelegate = new ChartboostDelegate() {
 
 		@Override
 		public boolean shouldDisplayInterstitial(String location) {
@@ -334,6 +317,6 @@ public class GameActivity extends BaseGameActivity {
 				CBAgeGateConfirmation callback) {
 			return false;
 		}
-	};*/
+	};
 
 }

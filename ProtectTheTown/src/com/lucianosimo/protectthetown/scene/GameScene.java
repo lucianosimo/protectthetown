@@ -1626,6 +1626,8 @@ public class GameScene extends BaseScene{
 		
 		newRecord = new Sprite(580, 300, resourcesManager.game_new_record_region, vbom);
 		
+		activity.showAd();
+		
 		loadHighScore();
 		saveHighScore("highScore", score);
 		

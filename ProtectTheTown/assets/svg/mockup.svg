@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
+   xmlns:i="&amp;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;#38;ns_ai;"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.50000001"
-     inkscape:cx="863.61316"
-     inkscape:cy="285.60464"
+     inkscape:zoom="0.3535534"
+     inkscape:cx="2220.4665"
+     inkscape:cy="-1188.9819"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -2868,7 +2868,7 @@
        xlink:href="#SVGID_5_-4-13"
        id="linearGradient9990-1"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(2.0763097,0,0,1.7081851,1983.9618,1487.0687)"
+       gradientTransform="matrix(2.0763097,0,0,1.7081851,2091.9618,1527.0687)"
        x1="201.5"
        y1="319.18439"
        x2="201.5"
@@ -2940,6 +2940,36 @@
          offset="5.447905e-02" />
       <stop
          id="stop79-8-8"
+         style="stop-color:#FFFFFF;stop-opacity:0"
+         offset="0.3935" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#SVGID_5_-4-13-7"
+       id="linearGradient9990-1-1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0763097,0,0,1.7081851,2090.4384,1621.8226)"
+       x1="201.5"
+       y1="319.18439"
+       x2="201.5"
+       y2="55.9585" />
+    <linearGradient
+       y2="55.9585"
+       x2="201.5"
+       y1="319.18439"
+       x1="201.5"
+       gradientUnits="userSpaceOnUse"
+       id="SVGID_5_-4-13-7">
+      <stop
+         id="stop75-2-4"
+         style="stop-color:#FFFFFF"
+         offset="0" />
+      <stop
+         id="stop77-8-5-0"
+         style="stop-color:#FFFFFF;stop-opacity:0.8616"
+         offset="5.447905e-02" />
+      <stop
+         id="stop79-8-3-9"
          style="stop-color:#FFFFFF;stop-opacity:0"
          offset="0.3935" />
     </linearGradient>
@@ -35001,102 +35031,7 @@
            x="-267.87616"
            y="60.862309" /></flowRegion><flowPara
          id="flowPara8887-7-4-3"
-         style="font-size:36px">quit</flowPara></flowRoot>    <path
-       inkscape:connector-curvature="0"
-       style="fill:#81c9f9;fill-opacity:1"
-       id="path72-1-5"
-       d="m 2694.0597,1969.9726 c 0,42.7046 -42.1491,77.3808 -94.0569,77.3808 h -395.3293 c -51.9078,0 -94.0568,-34.6762 -94.0568,-77.3808 V 1644.905 c 0,-42.7047 42.149,-77.3808 94.0568,-77.3808 h 395.3293 c 51.9078,0 94.0569,34.6761 94.0569,77.3808 v 325.0676 z"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       inkscape:connector-curvature="0"
-       style="opacity:0.5;fill:url(#linearGradient9990-1)"
-       id="path81-7-1"
-       d="m 2675.5806,1959.7235 c 0,39.9715 -39.4499,72.5978 -88.2433,72.5978 h -370.206 c -48.5856,0 -88.2431,-32.4554 -88.2431,-72.5978 v -304.5694 c 0,-39.9716 39.4499,-72.5979 88.2431,-72.5979 h 370.206 c 48.5857,0 88.2433,32.4555 88.2433,72.5979 v 304.5694 z"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8881-22"
-       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(2429.2566,1467.0063)"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><flowRegion
-         id="flowRegion8883-2"><rect
-           id="rect8885-6"
-           width="566.59863"
-           height="162.34918"
-           x="-267.87616"
-           y="60.862309" /></flowRegion><flowPara
-         id="flowPara8887-40"
-         style="font-size:64px">game over</flowPara></flowRoot>    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2176.1426,1597.1391 c -11.5937,-6.7228 -16.5834,-22.1863 -12.1167,-37.551 2.9618,-10.1882 8.9109,-16.2851 18.4849,-18.9441 12.677,-3.5207 19.3235,-1.4666 17.591,5.4366 -0.9122,3.6342 -1.9366,4.2329 -7.2425,4.2329 -9.9215,0 -16.5131,9.3058 -16.4621,23.2405 0.028,7.7125 0.945,9.5955 5.9565,12.2333 6.0856,3.2032 7.0066,2.2749 7.0066,-7.0627 0,-7.8468 -0.3936,-8.9292 -3.247,-8.9292 -2.3424,0 -3.247,-1.0823 -3.247,-3.885 0,-4.4762 2.6543,-5.8559 11.2661,-5.8559 l 6.1302,0 1.152,18.2062 c 1.0317,16.3042 0.8538,18.4243 -1.7027,20.2936 -4.426,3.2364 -16.8321,2.4914 -23.5693,-1.4152 l 0,0 z"
-       id="path10227"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2220.5301,1599.0314 c -2.9473,-0.6931 -5.6559,-1.5574 -6.0191,-1.9205 -0.8758,-0.8759 3.3995,-29.7454 6.75,-45.5797 l 2.6623,-12.5821 10.9211,0 10.9212,0 7.792,17.4525 c 12.8187,28.7112 15.3028,35.776 13.1746,37.4689 -1.9411,1.5439 -11.8425,6.7713 -12.826,6.7713 -0.3052,0 -2.7158,-4.3064 -5.3569,-9.5699 -4.5185,-9.0046 -5.0897,-9.5193 -9.6725,-8.7145 -6.5127,1.1437 -7.1776,1.9306 -8.5818,10.1558 -1.339,7.844 -2.0654,8.3288 -9.7649,6.5182 l 0,0 z m 20.7819,-28.3691 c 0,-3.2962 -5.1782,-13.8548 -6.7947,-13.8548 -0.7275,0 -1.3228,2.4973 -1.3228,5.5494 0,3.0522 -0.4434,6.7051 -0.9854,8.1175 -0.7683,2.0021 0.1261,2.568 4.0587,2.568 3.3495,0 5.0442,-0.7996 5.0442,-2.3801 z"
-       id="path10229"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2278.1053,1584.8127 c 1.1118,-21.5628 3.2469,-39.4982 4.878,-40.9767 0.7432,-0.6736 4.3392,-1.6734 7.9911,-2.2217 l 6.6399,-0.9969 2.6112,9.3919 c 1.4362,5.1656 3.431,11.5481 4.4329,14.1832 1.6272,4.2798 1.9955,4.4804 3.451,1.8797 0.8962,-1.6013 2.5085,-8.1765 3.5829,-14.6114 l 1.9536,-11.7 10.8272,-0.478 10.8272,-0.4781 0.8987,5.3486 c 1.1254,6.698 4.1067,42.5013 4.1292,49.5886 0.017,5.2489 -0.025,5.2764 -8.0697,5.2764 -7.0904,0 -8.1752,-0.45 -8.8064,-3.6529 -0.396,-2.009 -1.3693,-6.9404 -2.163,-10.9585 l -1.4431,-7.3057 -2.1557,9.2039 c -2.7484,11.7346 -2.9734,12.0283 -10.0769,13.1484 l -5.9439,0.9374 -2.7578,-11.2535 c -1.5168,-6.1894 -3.4081,-11.6553 -4.2029,-12.1465 -0.7957,-0.4918 -1.4451,4.6211 -1.4451,11.3789 l 0,12.272 -7.9873,0 -7.9874,0 0.8163,-15.8291 z"
-       id="path10231"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2352.6925,1583.1892 c 0.4406,-9.5988 1.571,-23.4797 2.512,-30.8463 l 1.7108,-13.3938 12.6875,0 c 16.1903,0 17.8235,0.668 17.8235,7.2901 0,5.8058 -2.5012,7.2568 -12.5821,7.2992 -4.7851,0.02 -5.2763,0.4794 -5.2763,4.9332 0,4.1579 0.7468,5.0604 4.8704,5.8851 7.9014,1.5803 6.0463,9.6369 -2.592,11.2575 -4.7705,0.8949 -5.5254,1.6773 -5.5254,5.7264 0,3.8543 0.6869,4.6898 3.8558,4.6898 2.1206,0 6.1388,0.4566 8.9292,1.0146 4.6348,0.927 5.0734,1.5586 5.0734,7.3058 l 0,6.291 -16.1439,0 -16.1439,0 0.801,-17.4526 z"
-       id="path10233"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2444.1836,1596.9033 c -12.8763,-6.8091 -17.7914,-22.2426 -11.4969,-36.0999 3.798,-8.361 16.7615,-19.8409 23.9222,-21.1842 11.6863,-2.1924 23.658,3.5364 29.0073,13.8808 3.5036,6.7752 4.7429,19.9507 2.5123,26.7095 -2.3917,7.247 -8.6404,14.8857 -14.7699,18.0554 -7.1039,3.6735 -20.8682,3.0312 -29.175,-1.3616 z m 23.9745,-17.6731 c 1.1059,-0.9178 2.6698,-4.0559 3.4754,-6.9735 4.4177,-15.9997 -9.2223,-24.5755 -20.2177,-12.7112 -6.8905,7.435 -4.7521,18.7052 4.1971,22.1199 2.9954,1.1429 9.8332,-0.1845 12.5452,-2.4352 z"
-       id="path10235"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2514.2163,1584.001 c -2.831,-9.1524 -6.9045,-21.7363 -9.0522,-27.9642 -2.1477,-6.2278 -3.6067,-11.6216 -3.2422,-11.9861 0.3645,-0.3646 3.3295,-0.7483 6.5887,-0.8528 l 5.9259,-0.1901 5.3551,16.8274 c 2.9453,9.255 5.9904,17.4625 6.7669,18.239 0.7999,0.7999 3.0683,-7.3715 5.2347,-18.8567 l 3.8229,-20.2684 5.3234,0 c 7.1993,0 10.4584,1.4446 10.4646,4.6383 0,1.4671 -2.9902,14.9045 -6.651,29.8609 l -6.656,27.1935 -9.3668,0 -9.3667,0 -5.1473,-16.6408 z"
-       id="path10237"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2561.2418,1582.3775 c 0.056,-10.0454 0.9692,-23.7436 2.0293,-30.4405 l 1.9275,-12.1762 14.6114,0 14.6115,0 0.4912,5.8765 c 0.5405,6.4655 -1.6178,7.8563 -12.2615,7.9011 -4.7851,0.02 -5.2764,0.4794 -5.2764,4.9332 0,4.1579 0.7469,5.0604 4.8705,5.8851 9.0734,1.8147 5.0342,11.9327 -4.7638,11.9327 -2.644,0 -3.3537,1.0307 -3.3537,4.8705 0,4.0445 0.6539,4.8705 3.8558,4.8705 2.1207,0 6.1388,0.4566 8.9292,1.0146 4.6348,0.927 5.0734,1.5586 5.0734,7.3058 l 0,6.291 -15.4231,0 -15.4232,0 0.1019,-18.2643 z"
-       id="path10239"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#ff0000;fill-opacity:1;stroke:none"
-       d="m 2605.8406,1599.1067 c -0.9563,-1.5473 1.7422,-42.7207 3.3163,-50.5983 1.0799,-5.4047 6.8525,-8.1028 19.3579,-9.048 11.4314,-0.8639 20.1603,2.8937 22.6059,9.7315 2.2675,6.3396 -1.5404,16.815 -8.3951,23.0948 l -5.8349,5.3454 7.5824,8.4335 c 4.1703,4.6383 7.5823,9.0357 7.5823,9.7719 0,1.5 -2.9093,2.5171 -11.5962,4.054 -5.9013,1.0441 -5.9257,1.0243 -11.3644,-9.2169 -5.1005,-9.6042 -5.478,-9.9525 -5.8792,-5.4244 -1.3297,15.0089 -1.5606,15.3916 -9.29,15.3916 -3.925,0 -7.5632,-0.6908 -8.085,-1.5351 z m 27.8014,-36.7809 c 3.3852,-5.1665 1.3163,-9.577 -4.4924,-9.577 -3.4062,0 -3.9429,0.8454 -4.381,6.8998 -0.4356,6.0201 -0.078,6.8999 2.8037,6.8999 1.8166,0 4.548,-1.9003 6.0697,-4.2227 l 0,0 z"
-       id="path10241"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <flowRoot
+         style="font-size:36px">quit</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot9838"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
@@ -35608,22 +35543,6 @@
        inkscape:export-ydpi="90" />
     <flowRoot
        xml:space="preserve"
-       id="flowRoot8881-22-1"
-       style="font-size:38px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
-       transform="translate(2516.3008,1599.8125)"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><flowRegion
-         id="flowRegion8883-2-7"><rect
-           id="rect8885-6-4"
-           width="628.59863"
-           height="162.34918"
-           x="-267.87616"
-           y="60.862309"
-           style="font-size:38px" /></flowRegion><flowPara
-         id="flowPara8887-40-0"
-         style="font-size:38px">Your Score</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
        id="flowRoot9129"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
        transform="matrix(0.93969262,-0.34202015,0.34202015,0.93969262,-146.36529,1023.4506)"
@@ -36010,78 +35929,6 @@
        inkscape:export-filename="D:\Mate Devs\Juegos\Protect the town\Mockups\game_quit_button.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.70710677;stroke-opacity:1"
-       d="m 2262.3886,1694.9139 c 0,-8.7738 -0.3449,-9.7767 -5.6568,-16.4482 -3.1113,-3.9076 -5.6569,-7.658 -5.6569,-8.3342 0,-0.6762 2.1755,-1.2295 4.8344,-1.2295 4.0402,0 5.3602,0.8508 8.0348,5.1783 l 3.2003,5.1783 2.8505,-5.8854 c 2.6023,-5.373 3.3187,-5.8854 8.2287,-5.8854 2.958,0 5.3782,0.3433 5.3782,0.7629 0,0.4196 -2.2274,4.0704 -4.9497,8.1129 -4.5279,6.7236 -4.9498,8.2253 -4.9498,17.6219 l 0,10.2719 -5.6568,0 -5.6569,0 0,-9.3435 z"
-       id="path9111"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.70710677;stroke-opacity:1"
-       d="m 2299.8365,1701.6808 c -12.6497,-5.8985 -12.0502,-23.3687 1.0765,-31.3722 7.1201,-4.3411 13.2041,-3.7011 18.8927,1.9876 4.3264,4.3264 4.8083,5.604 4.8083,12.7486 0,6.9945 -0.5475,8.5334 -4.5962,12.9184 -5.7723,6.2518 -12.2052,7.4368 -20.1813,3.7176 l 0,0 z m 14.7872,-13.2371 c 3.1968,-5.7226 0.7267,-11.6274 -5.1021,-12.1965 -3.3167,-0.3239 -5.0039,0.3795 -6.692,2.7895 -2.6971,3.8507 -2.939,9.8311 -0.4964,12.2737 2.9849,2.9848 9.9262,1.3658 12.2905,-2.8667 z"
-       id="path9113"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.70710677;stroke-opacity:1"
-       d="m 2342.0206,1702.8831 c -4.827,-2.0276 -7.5698,-7.4615 -9.0531,-17.9356 -1.8761,-13.2481 -0.8071,-17.4597 4.4318,-17.4597 l 4.0752,0 0.4086,12.225 c 0.3263,9.7618 0.9019,12.5351 2.8569,13.7646 4.5646,2.8705 7.1279,-1.9123 7.8669,-14.6782 l 0.6636,-11.4628 4.4101,0.4293 c 4.3877,0.4271 4.4124,0.4759 4.8601,9.6216 0.5357,10.9449 -1.3323,18.1419 -5.7975,22.3368 -3.8374,3.605 -10.3396,5.0002 -14.7226,3.159 z"
-       id="path9115"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.70710677;stroke-opacity:1"
-       d="m 2370.5993,1702.8808 c -1.4799,-2.3944 0.8387,-29.4074 2.7482,-32.0188 2.5363,-3.4685 15.2997,-4.3682 19.8329,-1.398 5.5847,3.6593 4.331,12.5765 -2.5355,18.0338 -2.9332,2.3312 -2.9324,2.3349 1.7054,7.617 3.5939,4.0932 4.2131,5.5553 2.7466,6.4849 -4.1515,2.6314 -7.973,1.2518 -11.2458,-4.0598 l -3.2677,-5.3033 -0.7611,5.6568 c -0.6508,4.8373 -1.3052,5.7198 -4.5166,6.0915 -2.0655,0.239 -4.1834,-0.2578 -4.7064,-1.1041 z m 16.9902,-22.7346 c 1.137,-1.8397 -1.8537,-5.5873 -4.4588,-5.5873 -1.2873,0 -1.9481,1.6958 -1.9481,4.9995 0,4.5135 0.2672,4.8565 2.7496,3.5279 1.5123,-0.8093 3.1581,-2.1324 3.6573,-2.9401 l 0,0 z"
-       id="path9117"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.35355338;stroke-opacity:1"
-       d="m 2430.524,1704.0016 c -5.5493,-1.3727 -7.4247,-3.6646 -7.4247,-9.0742 l 0,-3.2171 3.82,0 c 3.6086,0 3.8608,0.1174 4.5594,2.1213 0.8094,2.3219 2.8688,2.8437 4.3204,1.0947 1.4484,-1.7453 0.5443,-3.3248 -3.8609,-6.746 -4.6531,-3.6137 -7.4246,-7.1623 -7.4246,-9.5062 0,-2.5532 3.0531,-7.7264 5.5318,-9.3732 6.7993,-4.517 16.3684,-1.5827 18.1636,5.5699 0.4161,1.6578 0.2239,1.8544 -2.2511,2.3032 -1.4883,0.2699 -3.392,0.6551 -4.2303,0.8559 -1.0949,0.2623 -1.6503,-0.032 -1.9715,-1.0436 -0.9596,-3.0234 -5.343,-2.2775 -5.343,0.9091 0,1.3127 0.9651,2.278 4.3085,4.309 5.3657,3.2595 6.999,5.7871 7.0025,10.8367 0,4.4227 -1.6114,7.5579 -4.8841,9.4842 -2.2107,1.3013 -7.7938,2.1002 -10.316,1.4763 z"
-       id="path9119"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.35355338;stroke-opacity:1"
-       d="m 2464.4651,1703.3751 c -4.3584,-1.5426 -8.5221,-6.3793 -9.4851,-11.0182 -1.5011,-7.2305 1.4447,-15.6212 7.4169,-21.1262 4.2221,-3.8918 11.0567,-5.5132 14.0411,-3.3309 1.2361,0.9039 1.2323,1.0531 -0.1058,4.078 -1.25,2.8257 -1.7765,3.262 -5.2637,4.3612 -5.0901,1.6046 -7.0683,3.7627 -7.4922,8.1741 -0.1884,1.9611 0.028,4.128 0.5003,5.0106 1.3441,2.5114 4.9692,4.3024 8.7145,4.3053 3.0101,0 3.4544,0.2082 4.0967,1.8977 1.5276,4.0178 1.2395,4.7074 -2.8268,6.767 -4.3253,2.1908 -5.5726,2.3054 -9.5959,0.8814 z"
-       id="path9121"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.35355338;stroke-opacity:1"
-       d="m 2498.0527,1703.7794 c -11.4668,-2.2992 -17.3001,-14.2816 -11.9277,-24.5016 3.9633,-7.5396 12.0758,-12.7907 18.7036,-12.1067 3.9248,0.4051 8.3911,2.3541 10.3444,4.514 4.4777,4.9515 5.9691,16.7814 2.8539,22.6371 -4.1319,7.7667 -11.3531,11.1857 -19.9742,9.4572 z m 8.2257,-12.6151 c 2.2732,-1.8414 3.088,-3.9323 3.088,-7.9249 0,-2.8945 -0.3457,-3.9598 -1.7357,-5.3498 -2.504,-2.5041 -6.0087,-2.343 -9.1567,0.421 -6.3375,5.5644 -4.2784,14.1325 3.3863,14.0911 1.683,-0.01 3.5458,-0.5309 4.4181,-1.2374 z"
-       id="path9123"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.35355338;stroke-opacity:1"
-       d="m 2527.7511,1703.7874 c -1.6712,-0.4593 -1.7669,-0.7539 -1.7531,-5.3976 0.01,-2.7014 0.4613,-10.1249 1.0072,-16.4965 l 0.9927,-11.5849 2.9927,-1.3238 c 6.8945,-3.0497 16.7812,-2.3154 20.4551,1.5193 1.5852,1.6545 1.9301,2.6379 1.8758,5.3466 -0.037,1.8256 -0.4134,4.3698 -0.8371,5.6538 -0.7409,2.2448 -5.0915,6.8355 -7.1322,7.5258 -0.6827,0.2309 0.2276,1.7209 2.9725,4.8653 4.2712,4.893 5.9036,7.4515 5.061,7.9322 -1.5084,0.8605 -10.3542,2.1394 -10.5669,1.5278 -0.131,-0.3767 -1.5808,-3.0714 -3.2217,-5.9882 l -2.9835,-5.3033 -0.4598,5.5155 c -0.2529,3.0336 -0.6728,5.7286 -0.9332,5.989 -0.6637,0.6637 -5.3512,0.8011 -7.4695,0.219 z m 14.6,-22.0631 c 0.6385,-0.5299 0.9474,-1.8087 0.8154,-3.3756 -0.1707,-2.026 -0.596,-2.6566 -2.1607,-3.2035 -2.5619,-0.8955 -3.0766,-0.2312 -3.6188,4.6718 l -0.4442,4.0166 2.1902,-0.6281 c 1.2046,-0.3455 2.6528,-1.012 3.2181,-1.4812 l 0,0 z"
-       id="path9125"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.35355338;stroke-opacity:1"
-       d="m 2560.7416,1693.3013 c 0.2041,-5.7364 0.8197,-13.5883 1.368,-17.4487 0.5483,-3.8603 0.9969,-7.44 0.9969,-7.9549 0,-0.7193 1.7606,-0.9339 7.6014,-0.9265 10.7714,0.014 10.8982,0.067 10.6404,4.5011 l -0.2106,3.621 -5.1265,0.2078 -5.1265,0.2077 0,3.0606 c 0,3.024 0.034,3.0661 2.8284,3.513 2.6664,0.4263 2.8284,0.5921 2.8284,2.8939 0,2.7157 -0.9239,3.4842 -5.1395,4.2751 -2.4102,0.4521 -2.6387,0.6959 -2.6387,2.8155 0,2.605 0.8618,3.1738 4.8308,3.1886 5.2513,0.02 5.7758,0.4435 5.7758,4.669 l 0,3.8066 -9.4997,0 -9.4997,0 0.3711,-10.4298 z"
-       id="path9127"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot8881-22-1-1"
@@ -36392,7 +36239,7 @@
            height="128"
            x="1372"
            y="380" /></flowRegion><flowPara
-         id="flowPara9520"></flowPara></flowRoot>    <flowRoot
+         id="flowPara9520" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot9446-4-0"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
@@ -37571,6 +37418,261 @@
        id="path9846"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_help_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#81c9f9;fill-opacity:1;display:inline"
+       id="path72-1-5-4"
+       d="m 2800.5363,2104.7265 c 0,42.7046 -42.1491,77.3808 -94.0569,77.3808 h -395.3293 c -51.9078,0 -94.0568,-34.6762 -94.0568,-77.3808 v -325.0676 c 0,-42.7046 42.149,-77.3808 94.0568,-77.3808 h 395.3293 c 51.9078,0 94.0569,34.6762 94.0569,77.3808 v 325.0676 z"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:0.5;fill:url(#linearGradient9990-1-1);display:inline"
+       id="path81-7-1-8"
+       d="m 2782.0572,2094.4774 c 0,39.9715 -39.4499,72.5978 -88.2433,72.5978 h -370.206 c -48.5856,0 -88.2431,-32.4554 -88.2431,-72.5978 V 1789.908 c 0,-39.9715 39.4499,-72.5979 88.2431,-72.5979 h 370.206 c 48.5857,0 88.2433,32.4555 88.2433,72.5979 v 304.5694 z"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-8"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2535.7332,1601.7471)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-2"><rect
+           id="rect8885-6-45"
+           width="566.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309" /></flowRegion><flowPara
+         id="flowPara8887-40-5"
+         style="font-size:64px">game over</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-1-17"
+       style="font-size:38px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2614.7986,1734.5665)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-7-1"><rect
+           id="rect8885-6-4-1"
+           width="628.59863"
+           height="162.34918"
+           x="-267.87616"
+           y="60.862309"
+           style="font-size:38px" /></flowRegion><flowPara
+         id="flowPara8887-40-0-5"
+         style="font-size:38px">Your Score</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8881-22-3-1-8-5-8"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Agent Orange;-inkscape-font-specification:Agent Orange"
+       transform="translate(2384.7428,1889.5495)"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion8883-2-8-5-2-5-5"><rect
+           id="rect8885-6-9-42-5-6-7"
+           width="682.56415"
+           height="250.03043"
+           x="-267.87616"
+           y="60.862309"
+           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         id="flowPara8887-40-3-09-5-6-7"
+         style="font-size:48px;text-align:center;text-anchor:middle">share:</flowPara></flowRoot>    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2352.0425,2003.5308 c -2.855,-1.5505 -5.1897,-6.921 -4.6528,-10.7031 0.2732,-1.9251 1.0114,-2.3123 4.8897,-2.5647 4.0626,-0.2645 4.6963,-0.016 5.7286,2.25 1.2057,2.6463 1.9585,2.9623 4.6217,1.9404 2.9068,-1.1155 1.8285,-5.1109 -2.1682,-8.0333 -6.612,-4.8347 -10.1418,-8.5904 -10.7724,-11.4618 -0.9113,-4.1491 2.5303,-11.1217 6.7886,-13.7535 7.4912,-4.6298 18.8706,-2.0569 21.7605,4.92 1.4959,3.6114 0.9126,4.3099 -4.7456,5.6831 -3.707,0.8997 -4.2879,0.8064 -4.7881,-0.7694 -0.7527,-2.3718 -3.1782,-3.217 -5.5655,-1.9394 -3.492,1.8689 -1.8538,5.3798 3.9172,8.3953 5.234,2.7348 8.4075,7.1354 8.9089,12.3536 0.9233,9.609 -4.7314,15.2322 -15.2536,15.1686 -3.3,-0.02 -7.2011,-0.6886 -8.669,-1.4858 z"
+       id="path5069"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2387.2197,1993.8103 c 0.01,-10.4092 1.2212,-25.467 2.5791,-32 0.5194,-2.499 0.975,-2.75 4.9921,-2.75 l 4.4206,0 0,9.5 c 0,9.1898 0.073,9.4995 2.25,9.4847 4.2949,-0.029 5.0276,-1.3512 5.1677,-9.3236 0.073,-4.1497 0.4217,-7.8338 0.7749,-8.187 0.3532,-0.3532 2.4214,-0.8809 4.596,-1.1725 l 3.9539,-0.5304 0.6278,6.3644 c 0.9112,9.2363 1.1299,37.6976 0.2961,38.5314 -0.3906,0.3905 -2.8202,0.7378 -5.3991,0.7716 l -4.6889,0.061 -0.3269,-7.9543 c -0.1797,-4.3749 -0.4889,-8.1164 -0.687,-8.3145 -0.1981,-0.1981 -2.0136,-0.05 -4.0346,0.3292 l -3.6744,0.6893 0.3223,7.8775 0.3222,7.8775 -5.75,0 -5.75,0 0.01,-11.25 0,0 z"
+       id="path5071"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2431.9453,2003.6433 c -2.6214,-0.7051 -4.9377,-1.4622 -5.1474,-1.6825 -1.0433,-1.0961 5.7792,-40.4151 7.2995,-42.068 0.3378,-0.3672 4.0957,-0.8056 8.351,-0.9742 l 7.7369,-0.3067 4.1169,8.4742 c 5.0856,10.4681 12.9093,29.3802 12.9093,31.2057 0,0.7435 -2.4563,2.5566 -5.4585,4.029 l -5.4585,2.6771 -3.7915,-7.0415 -3.7915,-7.0415 -3.8941,0.4969 c -4.6545,0.5939 -5.2142,1.358 -6.0818,8.3022 -0.3674,2.9405 -0.9732,5.316 -1.3461,5.2788 -0.3729,-0.037 -2.8228,-0.6444 -5.4442,-1.3495 z m 14.1758,-20.5059 c 1.194,-0.7559 1.205,-1.4034 0.072,-4.2347 -2.073,-5.18 -3.8174,-7.4843 -4.3643,-5.7651 -0.8306,2.6113 -1.4174,9.7892 -0.8469,10.3597 0.8411,0.8411 3.5407,0.6521 5.1393,-0.3599 l 0,0 z"
+       id="path5073"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2473.8781,2004.3937 c -1.0755,-1.0755 -0.735,-11.8333 0.8334,-26.3334 0.8031,-7.425 1.4692,-14.0136 1.4801,-14.6414 0.036,-2.0591 8.2019,-4.4938 15.4632,-4.6103 10.6534,-0.171 16.5567,3.7533 16.5567,11.0064 0,6.0221 -3.1066,11.4049 -8.9404,15.4911 l -2.319,1.6242 5.6374,6.7918 c 3.1006,3.7355 5.4922,7.2277 5.3146,7.7605 -0.3379,1.0135 -2.7019,1.8005 -8.8754,2.9546 l -3.6828,0.6885 -3.6483,-6.5238 c -2.0066,-3.588 -4.0618,-6.7793 -4.5672,-7.0917 -0.5158,-0.3188 -0.9189,1.8347 -0.9189,4.9093 0,8.1329 -0.3786,8.6408 -6.4403,8.6408 -2.8745,0 -5.5264,-0.3 -5.8931,-0.6666 z m 19.1109,-26.8901 c 3.8511,-2.6974 2.4807,-9.4433 -1.9185,-9.4433 -2.2068,0 -2.455,0.4711 -3.2929,6.25 -0.6081,4.1942 -0.4735,4.75 1.1501,4.75 1.0113,0 2.8389,-0.7005 4.0613,-1.5567 l 0,0 z"
+       id="path5075"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2517.5013,1989.8103 c 0.6034,-15.3408 2.3212,-29.5009 3.7758,-31.1245 0.432,-0.4822 5.5291,-0.5512 11.359,-0.1538 l 10.5754,0.7208 0,4.9038 0,4.9037 -6.5,0 -6.5,0 0,3.8888 c 0,3.6525 0.2126,3.9285 3.5,4.5453 3.0216,0.5668 3.5,1.0437 3.5,3.4888 0,3.468 -1.3701,4.687 -6.3043,5.6091 -3.5363,0.6609 -3.7829,0.9314 -3.5,3.8395 0.2715,2.7914 0.6815,3.1565 3.8043,3.3884 9.817,0.7289 10,0.8439 10,6.2855 l 0,4.9546 -12.155,0 -12.155,0 0.5998,-15.25 z"
+       id="path5077"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2552.9615,1981.0007 c -2.0092,-1.1937 -2.3176,-4.9728 -0.55,-6.7404 0.66,-0.66 2.4514,-1.2 3.9809,-1.2 2.1756,0 2.926,0.5779 3.4473,2.6548 1.1864,4.7271 -2.7399,7.7443 -6.8782,5.2856 z"
+       id="path5079"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4a91c9;fill-opacity:1;stroke:none;display:inline"
+       d="m 2553.4545,1992.9033 c -2.8638,-2.8638 -0.3108,-7.2869 3.8498,-6.6697 3.0362,0.4503 4.7249,3.303 3.3012,5.5767 -1.3453,2.1485 -5.4657,2.7783 -7.151,1.093 z"
+       id="path5081"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2289.9143,1735.284 c -8.0547,-1.9979 -14.9759,-7.7888 -18.951,-15.8561 -1.9016,-3.8593 -2.2519,-6.1294 -2.1757,-14.0999 0.1174,-12.298 2.6297,-19.2636 8.9558,-24.8321 6.855,-6.034 19.4045,-8.8239 27.3042,-6.0701 3.6255,1.2639 3.6859,1.5205 1.5895,6.7599 -1.5529,3.8809 -1.5837,3.8977 -6.9219,3.7703 -6.4532,-0.154 -9.8543,1.9646 -13.4285,8.365 -1.7202,3.0804 -2.5446,6.4124 -2.8801,11.6401 -0.6951,10.8299 1.2531,14.2503 9.5803,16.8203 2.2813,0.7041 2.289,0.6727 2,-8.1159 l -0.2901,-8.8227 -3,-0.5172 c -2.739,-0.4722 -3,-0.8605 -3,-4.4623 0,-4.6789 1.2842,-5.2799 11.6141,-5.4356 l 6.6141,-0.1 0.6359,4.6396 c 0.3497,2.5517 0.6359,11.2545 0.6359,19.3395 0,14.6453 -0.01,14.704 -2.4597,15.8206 -3.6266,1.6524 -11.5023,2.2279 -15.8228,1.1563 l 0,0 z"
+       id="path5136"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2327.3735,1733.8807 c -2.9278,-0.7146 -5.7517,-1.7277 -6.2752,-2.2512 -1.1476,-1.1476 4.1361,-38.2186 7.0979,-49.799 1.1003,-4.3023 2.0006,-7.9754 2.0006,-8.1625 0,-0.187 4.9727,-0.34 11.0504,-0.34 l 11.0505,0 6.0134,12.7422 c 5.9864,12.685 16.8955,39.0851 16.8749,40.8377 -0.01,0.8059 -13.68,8.5032 -14.9892,8.4397 -0.275,-0.013 -2.75,-4.2734 -5.5,-9.4668 l -5,-9.4427 -4.5,0.5698 c -2.475,0.3133 -5.0317,1.0761 -5.6816,1.6949 -0.6498,0.6189 -1.7773,4.4945 -2.5055,8.6126 -1.4931,8.4436 -1.6112,8.5241 -9.6362,6.5653 l 0,0 z m 20.8233,-28.68 c 0,-0.62 -1.4271,-4.0262 -3.1714,-7.5694 -3.5875,-7.2871 -4.2454,-6.9842 -5.3157,2.4467 l -0.7093,6.25 4.5982,0 c 2.7449,0 4.5982,-0.4543 4.5982,-1.1273 z"
+       id="path5138"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2383.5778,1730.578 c 0.359,-2.6125 1.1072,-13.4763 1.6627,-24.1418 1.0095,-19.3824 1.9545,-26.5063 3.7549,-28.3068 2.4434,-2.4434 14.9864,-3.6862 15.6565,-1.5514 0.2158,0.6875 2.0754,6.7625 4.1324,13.5 2.057,6.7375 4.1037,12.25 4.5483,12.25 1.1209,0 3.5123,-8.9414 4.9479,-18.5 0.6608,-4.4 1.6424,-8.5625 2.1813,-9.25 0.6705,-0.8553 4.2233,-1.25 11.2505,-1.25 8.2661,0 10.3843,0.2966 10.8537,1.5197 0.9732,2.536 4.963,56.1722 4.3059,57.8846 -0.4899,1.2766 -2.2093,1.5957 -8.5984,1.5957 l -7.9861,0 -0.5476,-3.25 c -0.3012,-1.7875 -1.0212,-6.387 -1.5999,-10.2212 -0.5787,-3.8341 -1.223,-7.1421 -1.4319,-7.3509 -0.2089,-0.2089 -0.8979,1.5781 -1.5311,3.9712 -4.678,17.678 -4.0006,16.8105 -13.148,16.8372 l -4.6679,0.014 -2.2031,-9.75 c -1.2116,-5.3625 -2.7532,-10.819 -3.4257,-12.1255 -1.1083,-2.153 -1.2835,-1.7316 -1.872,4.5 -0.357,3.7815 -0.6524,9.463 -0.6563,12.6255 l -0.01,5.75 -8.1359,0 -8.1359,0 0.6528,-4.75 z"
+       id="path5140"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2458.7741,1720.078 c 0.6111,-16.5347 1.8481,-30.6523 3.5487,-40.5 l 1.0793,-6.25 13.8156,0 c 7.5985,0 14.5273,0.2731 15.3973,0.607 1.6751,0.6428 1.9596,3.4755 0.9576,9.5342 l -0.6022,3.6411 -8.4377,0.7029 -8.4378,0.7028 0.301,4.633 c 0.3008,4.631 0.3029,4.6334 4.689,5.3774 2.4135,0.4095 4.5847,0.9411 4.825,1.1814 0.2403,0.2403 0.129,2.4902 -0.2473,4.9997 l -0.6842,4.5628 -5.8908,1.159 -5.8908,1.1589 0,4.2217 0,4.2217 8.0512,0.6208 c 4.4282,0.3415 8.4782,0.8848 9,1.2073 0.5219,0.3225 0.9488,3.4848 0.9488,7.0273 l 0,6.441 -16.4931,0 -16.4931,0 0.5635,-15.25 z"
+       id="path5142"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2559.3285,1735.3085 c -15.2028,-3.1899 -23.8534,-14.4221 -22.9617,-29.8141 0.4944,-8.535 3.6012,-15.0317 10.4947,-21.9458 9.2696,-9.2973 19.3806,-12.218 30.6039,-8.8403 9.289,2.7956 14.538,8.7997 17.3753,19.875 6.391,24.9466 -11.7208,45.7171 -35.5122,40.7252 z m 15.5081,-23.2845 c 8.5552,-9.3353 2.9569,-25.3437 -8.1353,-23.2628 -4.0271,0.7555 -8.9609,4.6148 -11.0404,8.6363 -1.8073,3.4949 -1.8588,11.827 -0.088,14.1592 2.4319,3.2022 6.876,4.8973 11.5891,4.4203 3.5139,-0.3556 5.1495,-1.1981 7.6742,-3.953 l 0,0 z"
+       id="path5144"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2629.1232,1735.61 -3.5736,-0.3817 -8.7196,-27.2001 c -4.7957,-14.9601 -8.9597,-27.9194 -9.2533,-28.7984 -0.4416,-1.3223 0.6338,-1.7072 6.23,-2.2298 3.7201,-0.3474 6.945,-0.4505 7.1664,-0.229 0.2215,0.2214 2.3797,6.931 4.7962,14.9102 4.5933,15.1673 7.2735,21.86 8.4606,21.1263 0.3869,-0.2391 1.0151,-3.2573 1.396,-6.7071 0.5697,-5.1601 3.1353,-18.025 6.1126,-30.6506 0.5418,-2.2979 0.813,-2.362 8.0271,-1.8991 4.1066,0.2636 7.7694,0.7822 8.1397,1.1525 0.3704,0.3703 0.091,4.1499 -0.6213,8.3991 -1.8643,11.1255 -11.7748,50.1443 -13.1603,51.8137 -1.1438,1.3783 -6.3432,1.6189 -15.0005,0.694 l 0,0 z"
+       id="path5146"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2666.6902,1726.578 c 0.2594,-4.8125 0.7102,-14.1027 1.0018,-20.6449 0.2916,-6.5422 1.2559,-16.5547 2.143,-22.25 l 1.6127,-10.3551 13.7928,0 c 7.586,0 14.5045,0.2731 15.3745,0.607 1.0937,0.4197 1.5776,1.8855 1.5681,4.75 -0.027,8.1857 -0.1898,8.3401 -9.6249,9.126 l -8.4633,0.705 0.301,4.633 c 0.3008,4.631 0.3029,4.6334 4.689,5.3774 2.4135,0.4095 4.6052,0.9615 4.8705,1.2268 0.2653,0.2653 0.1782,2.5105 -0.1935,4.9892 l -0.6758,4.5067 -5.9447,1.1696 -5.9446,1.1695 0,4.2217 0,4.2217 8.0512,0.6208 c 4.4282,0.3415 8.4782,0.8848 9,1.2073 0.5219,0.3225 0.9488,3.4848 0.9488,7.0273 l 0,6.441 -16.4891,0 -16.4891,0 0.4716,-8.75 z"
+       id="path5148"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2714.4468,1735.2703 c -2.1181,-0.8264 -2.2512,-1.4513 -2.2699,-10.6601 -0.011,-5.3802 0.7693,-17.9738 1.7338,-27.9858 l 1.7539,-18.2036 3.5161,-1.5036 c 5.8721,-2.5112 11.1997,-3.5778 17.9001,-3.5836 8.3142,-0.01 13.6105,1.652 17.7576,5.5632 3.1393,2.9607 3.3584,3.5898 3.3584,9.642 0,8.1002 -2.8203,13.8963 -9.0762,18.6526 -2.4331,1.8499 -4.5583,3.7161 -4.7228,4.147 -0.1644,0.431 2.4567,3.8674 5.8248,7.6366 5.5998,6.2665 9.6058,12.1073 8.7979,12.8274 -0.5924,0.5281 -14.6894,3.5258 -16.5211,3.5132 -1.2408,-0.01 -3.205,-2.6804 -6.3026,-8.5734 -6.3598,-12.0991 -6.9849,-12.3455 -7.0703,-2.7866 -0.099,11.0505 -0.4407,11.6341 -6.9979,11.9395 -2.9875,0.1392 -6.4443,-0.142 -7.6818,-0.6248 z m 23.75,-36.8741 c 3.6661,-2.591 3.9967,-8.3691 0.6059,-10.5907 -5.1042,-3.3445 -7.3078,-0.7493 -7.5062,8.8399 -0.094,4.5399 0.03,4.78 2.1503,4.1676 1.2375,-0.3574 3.375,-1.4449 4.75,-2.4168 l 0,0 z"
+       id="path5150"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2361.218,1830.2736 0,-9.1981 -6.6316,-8.1172 -6.6317,-8.1171 3.8817,-0.6924 c 6.5723,-1.1723 7.0673,-0.9725 10.3791,4.1885 1.7633,2.7479 3.5644,4.7747 4.0025,4.504 0.438,-0.2708 1.6061,-2.744 2.5957,-5.4962 l 1.7994,-5.0039 5.8025,0 c 3.1913,0 5.8024,0.3704 5.8024,0.823 0,0.4527 -2.1375,4.1652 -4.75,8.25 l -4.75,7.427 0,9.881 0,9.8811 -5.75,0.4342 -5.75,0.4343 0,-9.1982 z"
+       id="path5152"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2402.1306,1838.4072 c -7.286,-1.4183 -12.2372,-6.8346 -13.4479,-14.711 -0.7711,-5.0169 3.4617,-13.5057 8.8782,-17.8049 3.3697,-2.6746 4.6225,-3.0501 10.1766,-3.0501 4.8215,0 7.008,0.493 9.1572,2.0645 7.1011,5.1926 9.2179,18.6511 4.096,26.042 -4.4389,6.4054 -10.9817,8.9932 -18.8601,7.4595 z m 10.0984,-14.316 c 3.8919,-6.3831 1.5871,-12.75 -4.6154,-12.75 -4.6596,0 -8.3956,3.9236 -8.3956,8.8173 0,4.7955 2.3829,7.1827 7.1697,7.1827 3.2814,0 4.1566,-0.487 5.8413,-3.25 l 0,0 z"
+       id="path5154"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2440.6332,1837.9533 c -3.8976,-1.7394 -7.1452,-5.833 -8.3241,-10.4926 -1.4832,-5.8627 -2.3087,-16.8716 -1.586,-21.1496 0.6632,-3.9253 0.7202,-3.9699 5.0828,-3.9699 l 4.4121,0 0,10.4349 c 0,11.0144 0.8379,14.9052 3.4234,15.8973 4.6556,1.7866 7.0766,-3.6299 7.0766,-15.8322 0,-4.95 0.45,-9.3306 1,-9.7347 0.55,-0.4041 2.679,-0.7416 4.731,-0.75 3.2236,-0.013 3.835,0.3587 4.4965,2.7347 0.4211,1.5125 0.7102,6.4569 0.6425,10.9876 -0.099,6.6605 -0.6168,9.2465 -2.7016,13.5078 -3.8136,7.7948 -11.5691,11.3496 -18.2532,8.3667 l 0,0 z"
+       id="path5156"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+       d="m 2469.968,1838.6498 c -2.1504,-0.5594 -2.2429,-3.9134 -0.5845,-21.1835 l 1.1883,-12.375 3.291,-1.375 c 4.9678,-2.0757 14.2078,-1.7624 18.1052,0.6139 2.9871,1.8213 3.25,2.3968 3.25,7.1139 0,4.6545 -0.3725,5.5049 -4,9.1324 -2.2,2.2 -4,4.2342 -4,4.5205 0,0.2863 1.8,2.4733 4,4.86 5.565,6.0373 5.3914,6.8183 -1.7699,7.9634 l -4.0791,0.6523 -2.5565,-5.045 c -3.5171,-6.9408 -4.5913,-7.2893 -4.6098,-1.4955 -0.01,2.6449 -0.3459,5.259 -0.75,5.809 -0.8069,1.0983 -4.7382,1.523 -7.4847,0.8086 z m 14.4213,-21.9636 c 2.5693,-2.3252 2.2734,-5.1853 -0.6755,-6.5289 -3.1043,-1.4144 -3.5269,-1.0028 -4.2115,4.1013 -0.4654,3.4697 -0.2769,4.0826 1.2553,4.0826 0.9916,0 2.6259,-0.7447 3.6317,-1.655 z"
+       id="path5158"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1;display:inline"
+       d="m 2527.5938,1838.255 c -4.5347,-1.3147 -5.9976,-3.8916 -5.4865,-9.6638 0.192,-2.1679 6.8857,-1.5389 8.1175,0.7627 0.8697,1.6249 1.4545,1.8108 3.0352,0.9648 3.0675,-1.6417 2.342,-3.5931 -2.792,-7.5088 -7.2253,-5.5109 -8.3762,-8.2931 -5.7338,-13.8615 3.204,-6.7519 12.6958,-8.824 18.4071,-4.0183 4.0862,3.4383 4.0225,6.0986 -0.1733,7.2314 -2.6022,0.7026 -3.6002,0.5158 -5.0071,-0.9372 -1.8729,-1.9343 -4.2436,-1.6265 -5.1231,0.6653 -0.6234,1.6247 1.0048,3.4384 5.682,6.3291 8.1106,5.0126 7.6011,16.176 -0.9003,19.7281 -3.7437,1.5642 -5.5067,1.6184 -10.0257,0.3082 l 0,0 z"
+       id="path5162"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1;display:inline"
+       d="m 2563.8373,1838.306 c -9.2315,-2.7616 -13.1544,-13.776 -8.5352,-23.9648 3.6641,-8.0822 8.8249,-12 15.8073,-12 4.7836,0 5.2219,0.566 3.5394,4.5706 -0.9461,2.2519 -2.332,3.3829 -5.1976,4.2414 -2.1492,0.6439 -4.7172,2.0654 -5.7067,3.1588 -1.8453,2.039 -2.474,8.6871 -1.0408,11.0061 1.0149,1.642 6.8587,4.0231 9.8738,4.0231 3.6403,0 4.6062,4.7505 1.4584,7.1723 -1.2748,0.9808 -2.8436,1.7932 -3.4861,1.8055 -0.6425,0.012 -1.7675,0.2082 -2.5,0.4355 -0.7325,0.2273 -2.6281,0.026 -4.2125,-0.4485 l 0,0 z"
+       id="path5164"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1;display:inline"
+       d="m 2595.864,1838.2348 c -8.2055,-1.928 -12.646,-7.7564 -12.646,-16.5989 0,-9.8203 9.4231,-19.2947 19.19,-19.2947 18.9029,0 21.4997,30.8262 3.029,35.956 -4.2191,1.1718 -4.3231,1.1711 -9.573,-0.062 l 0,0 z m 10.2815,-13.5285 c 4.1973,-5.336 1.7939,-13.3651 -4.0007,-13.3651 -4.1238,0 -5.8433,0.938 -7.4638,4.0715 -3.3674,6.5119 -0.8156,11.9285 5.6194,11.9285 2.8844,0 4.2604,-0.6203 5.8451,-2.6349 l 0,0 z"
+       id="path5166"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1;display:inline"
+       d="m 2625.968,1838.6331 c -2.089,-0.5235 -2.1407,-3.0967 -0.4256,-21.2049 l 1.1756,-12.413 3.5,-1.2609 c 4.2356,-1.5259 12.9338,-1.769 16.3826,-0.4577 6.8052,2.5873 7.0199,10.8315 0.454,17.4263 l -3.8647,3.8817 4.5525,5.5299 c 2.5039,3.0414 4.1977,5.8701 3.7641,6.286 -0.4337,0.4159 -2.8135,1.0515 -5.2885,1.4124 l -4.5,0.6562 -3,-5.5705 c -1.65,-3.0637 -3.315,-5.572 -3.7001,-5.5739 -0.385,0 -0.835,2.5344 -1,5.6363 -0.2911,5.4748 -0.3876,5.6463 -3.2999,5.8651 -1.65,0.124 -3.7875,0.028 -4.75,-0.213 l 0,0 z m 14.6827,-22.2175 c 2.0425,-2.2569 1.7722,-4.9162 -0.6551,-6.4447 -2.234,-1.4068 -3.348,-0.1818 -4.2016,4.6203 -0.577,3.2459 -0.4125,3.75 1.2237,3.75 1.0397,0 2.6745,-0.8665 3.633,-1.9256 z"
+       id="path5168"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1;display:inline"
+       d="m 2659.2262,1831.0912 c 0.01,-7.311 1.5834,-23.7604 2.5853,-27 0.4626,-1.4957 1.8395,-1.75 9.4739,-1.75 4.913,0 8.9326,0.3938 8.9326,0.875 0,0.4813 -0.2812,2.2813 -0.625,4 -0.5987,2.9938 -0.8324,3.125 -5.5633,3.125 l -4.9384,0 0.3134,3.25 c 0.2611,2.7081 0.7719,3.3028 3.0633,3.5664 4.7257,0.5438 3.2905,5.804 -1.8465,6.7677 -2.9213,0.548 -3.4035,1.0403 -3.4035,3.4749 0,2.7167 0.2217,2.8492 5.25,3.1387 l 5.25,0.3023 0.3104,3.75 0.3104,3.75 -9.5604,0 -9.5604,0 0.01,-7.25 0,0 z"
+       id="path5170"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\luciano.simo\Desktop\Android\Apps\Protect the town\Preseleccion imagenes\game_over_window.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
