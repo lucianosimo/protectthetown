@@ -71,6 +71,7 @@ public class GameScene extends BaseScene{
 	
 	//Texts
 	private Text scoreText;
+	private Text currentScoreText;
 	private Text finalScoreText;
 	
 	//Constants	
@@ -1508,6 +1509,9 @@ public class GameScene extends BaseScene{
 		GameScene.this.setIgnoreUpdate(true);		
 		
 		pauseWindow.setPosition(camera.getCenterX(), camera.getCenterY());
+		currentScoreText = new Text(291, 300, resourcesManager.currentScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		currentScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
+		currentScoreText.setText(""+score);
 		
 	    retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1540,6 +1544,7 @@ public class GameScene extends BaseScene{
 					gameHud.setVisible(true);
 					GameScene.this.detachChild(fade);
 					GameScene.this.detachChild(pauseWindow);
+					pauseWindow.detachChild(currentScoreText);
 	    			GameScene.this.setIgnoreUpdate(false);
 	    			GameScene.this.unregisterTouchArea(this);
 	    		    GameScene.this.unregisterTouchArea(retryButton);
@@ -1552,6 +1557,7 @@ public class GameScene extends BaseScene{
 	    GameScene.this.registerTouchArea(resumeButton);
 	    GameScene.this.registerTouchArea(retryButton);
 	    GameScene.this.registerTouchArea(quitButton);
+	    pauseWindow.attachChild(currentScoreText);
 	    pauseWindow.attachChild(resumeButton);
 	    pauseWindow.attachChild(retryButton);	    
 	    pauseWindow.attachChild(quitButton);

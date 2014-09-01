@@ -49,7 +49,8 @@ public class GameActivity extends BaseGameActivity {
 		CBPreferences.getInstance().setAnimationsOff(true);
 		CBPreferences.getInstance().setOrientation(CBOrientation.PORTRAIT);*/
 		//scoreNinjaAdapter = new ScoreNinjaAdapter(this, APP_ID, PRIVATE_KEY);
-		Swarm.setActive(this);		
+		Swarm.setActive(this);
+		Swarm.preload(this, SWARM_APP_ID, SWARM_APP_KEY);
 	}
 	
     /*@Override
@@ -72,7 +73,10 @@ public class GameActivity extends BaseGameActivity {
     }*/
     
 	public void showLeaderboard() {
-		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+		Swarm.setAllowGuests(true);
+		if (!Swarm.isInitialized() ) {
+    		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+        }
 		this.runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
@@ -84,7 +88,10 @@ public class GameActivity extends BaseGameActivity {
 	
     public void submitScore(int submitScore) {
     	score = submitScore;
-    	Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+    	Swarm.setAllowGuests(true);
+    	if (!Swarm.isInitialized() ) {
+    		Swarm.init(this, SWARM_APP_ID, SWARM_APP_KEY);
+        }
     	this.runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
@@ -99,6 +106,7 @@ public class GameActivity extends BaseGameActivity {
 		camera = new BoundCamera(0, 0, 1280, 720);
 		EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), this.camera);
 		engineOptions.getAudioOptions().setNeedsMusic(true).setNeedsSound(true);
+		engineOptions.getRenderOptions().setDithering(true);
 		engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);
 		return engineOptions;
 	}

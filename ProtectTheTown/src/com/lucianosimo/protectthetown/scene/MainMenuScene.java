@@ -15,10 +15,14 @@ import org.andengine.entity.text.TextOptions;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
@@ -42,6 +46,17 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	public void createScene() {
 		screenWidth = resourcesManager.camera.getWidth();
 		screenHeight = resourcesManager.camera.getHeight();
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		int played = sharedPreferences.getInt("played", 0);
+		//Rated: 0 = no, 1 = yes, 2 = no and don't want to rate
+		int rated = sharedPreferences.getInt("rated", 0);
+		Log.i("protect", "played: " + played);
+		Log.i("protect", "rated: " + rated);
+		if (rated == 0) {
+			if (played == 5 || played == 20 || played == 50) {
+				displayRateUsWindow();
+			}
+		}
 		createBackground();
 		createMenuChildScene();
 	}
@@ -120,7 +135,13 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 				SceneManager.getInstance().loadGameScene(engine, this);
 				return true;
 			case MENU_RATEUS:
-				activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.lucianosimo.parachuteaction")));
+				activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.lucianosimo.protectthetown")));
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+				int rated = sharedPreferences.getInt("rated", 0);
+				Editor editor = sharedPreferences.edit();
+				rated = 1;
+				editor.putInt("rated", rated);
+				editor.commit();
 				return true;
 			case MENU_GLOBAL_SCORES:
 				activity.showLeaderboard();
@@ -142,6 +163,53 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	private void loadHighScore() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 		highScore = sharedPreferences.getInt("highScore", 0);
+	}
+	
+	private void displayRateUsWindow() {
+		MainMenuScene.this.activity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				new AlertDialog.Builder(MainMenuScene.this.activity)
+				.setMessage("Do you want to rate us")
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+				    public void onClick(DialogInterface dialog, int whichButton) {
+				    	activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.lucianosimo.protectthetown")));
+				    	SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+						int rated = sharedPreferences.getInt("rated", 0);
+						Editor editor = sharedPreferences.edit();
+						rated = 1;
+						editor.putInt("rated", rated);
+						editor.commit();
+				    }})
+				.setNegativeButton("Never", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+						int rated = sharedPreferences.getInt("rated", 0);
+						Editor editor = sharedPreferences.edit();
+						rated = 2;
+						editor.putInt("rated", rated);
+						editor.commit();						
+					}
+				})
+				.setNeutralButton("Maybe later", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+						int played = sharedPreferences.getInt("played", 0);
+						Editor editor = sharedPreferences.edit();
+						played++;
+						editor.putInt("played", played);
+						editor.commit();						
+					}
+				})
+				.show();
+			}
+		});
 	}
 
 }

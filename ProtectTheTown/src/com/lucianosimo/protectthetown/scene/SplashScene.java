@@ -9,6 +9,10 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.util.GLState;
 import org.andengine.util.adt.color.Color;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 
@@ -23,7 +27,14 @@ public class SplashScene extends BaseScene{
 	@Override
 	public void createScene() {
 		screenWidth = resourcesManager.camera.getWidth();
-		screenHeight = resourcesManager.camera.getHeight();		
+		screenHeight = resourcesManager.camera.getHeight();	
+		
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		int played = sharedPreferences.getInt("played", 0);
+		Editor editor = sharedPreferences.edit();
+		played++;
+		editor.putInt("played", played);
+		editor.commit();
 		
 		setBackground(new Background(Color.WHITE));
 			
