@@ -56,10 +56,13 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		}
 		createBackground();
 		createMenuChildScene();
+		resourcesManager.menuMusic.play();
+		resourcesManager.menuMusic.setLooping(true);
 	}
 
 	@Override
 	public void onBackKeyPressed() {
+		resourcesManager.menuMusic.stop();
 		System.exit(0);
 	}
 
@@ -129,6 +132,7 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem,	float pMenuItemLocalX, float pMenuItemLocalY) {
 		switch (pMenuItem.getID()) {
 			case MENU_PLAY:
+				resourcesManager.menuMusic.stop();
 				SceneManager.getInstance().loadGameScene(engine, this);
 				return true;
 			case MENU_RATEUS:

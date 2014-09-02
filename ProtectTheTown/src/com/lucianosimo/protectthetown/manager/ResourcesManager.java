@@ -1,5 +1,10 @@
 package com.lucianosimo.protectthetown.manager;
 
+import java.io.IOException;
+
+import org.andengine.audio.music.Music;
+import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.BoundCamera;
 import org.andengine.opengl.font.Font;
@@ -36,6 +41,9 @@ public class ResourcesManager {
 	//Menu fonts
 	public Font highScoreFont;
 	
+	//Menu audio
+	public Music menuMusic;
+	
 	//Menu items
 	public ITextureRegion loading_background_region;
 	public ITextureRegion menu_background_region;
@@ -50,6 +58,9 @@ public class ResourcesManager {
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
 	private BuildableBitmapTextureAtlas menuBackgroundTextureAtlas;
 	
+	
+	//Game audio
+	public Music gameMusic;
 	
 	//Game fonts
 	public Font scoreFont;
@@ -158,29 +169,15 @@ public class ResourcesManager {
 		//loadLoadingGraphics();
 		loadMenuGraphics();
 		loadMenuFonts();
-		//loadMenuAudio();		
+		loadMenuAudio();		
 	}
 	
 	public void unloadMenuResources() {
 		unloadMenuTextures();
 		unloadMenuFonts();
-		//unloadMenuAudio();
+		unloadMenuAudio();
 	}
 	
-	/*private void loadLoadingGraphics() {
-		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
-		backgroundLoadingTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 480, 854, TextureOptions.BILINEAR);
-		
-		loading_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(backgroundLoadingTextureAtlas, activity, "loading_background.png");
-		
-		try {
-			this.backgroundLoadingTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
-			this.backgroundLoadingTextureAtlas.load();
-		} catch (final TextureAtlasBuilderException e) {
-			org.andengine.util.debug.Debug.e(e);
-		}
-	}*/
-
 	private void loadMenuGraphics() {
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
 		menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 1000, TextureOptions.BILINEAR);
@@ -215,15 +212,15 @@ public class ResourcesManager {
 		highScoreFont.load();
 	}
 	
-	/*private void loadMenuAudio() {
+	private void loadMenuAudio() {
+		try {
+			MusicFactory.setAssetBasePath("music/menu/");
+			menuMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "menuMusic.wav");
+			menuMusic.setLooping(true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	private void loadMenuFonts() {
-		FontFactory.setAssetBasePath("font/menu/");
-		final ITexture loadingTexture = new BitmapTextureAtlas(activity.getTextureManager(), 64, 64, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		loadingFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), loadingTexture, activity.getAssets(), "simple.ttf", 35, true, Color.BLACK_ARGB_PACKED_INT, 0.1f, Color.BLACK_ARGB_PACKED_INT);
-		loadingFont.load();
-	}*/
 	
 	private void unloadMenuTextures() {
 		this.menuTextureAtlas.unload();
@@ -234,21 +231,23 @@ public class ResourcesManager {
 		
 	}
 	
-	/*private void unloadMenuAudio() {
-		
-	}*/
+	private void unloadMenuAudio() {
+		menuMusic.stop();
+		activity.getMusicManager().remove(menuMusic);
+		System.gc();
+	}
 	
 	//Game Methods
 	public void loadGameResources() {
 		loadGameGraphics();
-		//loadGameAudio();
+		loadGameAudio();
 		loadGameFonts();
 	}
 	
 	public void unloadGameResources() {
 		unloadGameTextures();
 		unloadGameFonts();	
-		//unloadGameAudio();
+		unloadGameAudio();
 	}
 	
 	private void loadGameGraphics() {
@@ -341,11 +340,14 @@ public class ResourcesManager {
 		}
 	}
 
-	/*private void loadGameAudio() {
-		MusicFactory.setAssetBasePath("music/");
-		SoundFactory.setAssetBasePath("sound/");
+	private void loadGameAudio() {
+		MusicFactory.setAssetBasePath("music/game/");
+		SoundFactory.setAssetBasePath("sound/game/");
 		try {
-		
+			gameMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "gameMusic.wav");
+			gameMusic.setLooping(true);
+			//grunt = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "grunt.mp3");
+			//enemiesDeath = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "enemiesDeath.mp3");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -353,7 +355,7 @@ public class ResourcesManager {
 	
 	public void unloadGameAudio() {
 		System.gc();
-	}*/
+	}
 	
 	private void loadGameFonts() {
 		FontFactory.setAssetBasePath("fonts/game/");

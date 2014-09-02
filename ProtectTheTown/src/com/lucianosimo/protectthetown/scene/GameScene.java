@@ -273,6 +273,7 @@ public class GameScene extends BaseScene{
 						countdownFrame4.setVisible(true);
 					}
 					if (updates == START_GAME_UPDATES) {
+						resourcesManager.gameMusic.play();
 						countdownFrame4.setVisible(false);
 						availablePause = true;
 						largeRock1.getLargeRockBody().setActive(true);
