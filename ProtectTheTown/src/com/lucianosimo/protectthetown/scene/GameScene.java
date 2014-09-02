@@ -310,6 +310,7 @@ public class GameScene extends BaseScene{
 					
 					if ((updates > 4000) && (updates % 2500) == 0 && availablePause) {
 						if (!satelite.getSateliteBody().isActive()) {
+							regenerateSatelite(satelite.getSateliteBody());
 							satelite.getSateliteBody().setActive(true);
 						}
 					}
@@ -525,9 +526,9 @@ public class GameScene extends BaseScene{
 		final int ufoRandomRegion = rand.nextInt(3) + 1;
 		final ITextureRegion ufoRegion;
 		
-		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
-		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
-		final Rectangle largeSensor = new Rectangle(largeHouse.getX(), screenHeight/2 , 0.1f, screenHeight, vbom);
+		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
+		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 1f, screenHeight, vbom);
+		final Rectangle largeSensor = new Rectangle(largeHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
 		
 		smallSensor.setVisible(false);
 		sensor.setVisible(false);
@@ -627,23 +628,29 @@ public class GameScene extends BaseScene{
 				
 				if (this.getX() > (screenWidth + ufoLimit)) {
 					this.setUfoVelocityX(-ufoSpeed);
+					smallSensor.setPosition(smallHouse.getX() - 50, screenHeight/2);
+					sensor.setPosition(house.getX() - 50, screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX() - 50, screenHeight/2);
 				} else if (this.getX() < (-ufoLimit)) {
 					this.setUfoVelocityX(ufoSpeed);
+					smallSensor.setPosition(smallHouse.getX() + 50, screenHeight/2);
+					sensor.setPosition(house.getX() + 50, screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX() + 50, screenHeight/2);
 				}
 				
 				if (this.getY() > UFO_INITIAL_Y + 100) {
 					this.setUfoVelocityY(-5);
-					smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
+					/*smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
 					sensor.setPosition(house.getX(), screenHeight/2);
-					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);*/
 				} else if (this.getY() < UFO_INITIAL_Y - 100) {
 					this.setUfoVelocityY(5);
-					smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
+					/*smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
 					sensor.setPosition(house.getX(), screenHeight/2);
-					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);
+					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);*/
 				}
 				
-				if (this.collidesWith(smallSensor)) {
+				if (this.collidesWith(smallSensor) && !smallHouse.isSmallHouseDestroyed()) {
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld){
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
@@ -666,7 +673,7 @@ public class GameScene extends BaseScene{
 					GameScene.this.attachChild(shot);
 				}
 				
-				if (this.collidesWith(sensor)) {
+				if (this.collidesWith(sensor) && !house.isHouseDestroyed()) {
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
@@ -689,7 +696,7 @@ public class GameScene extends BaseScene{
 					GameScene.this.attachChild(shot);
 				}
 				
-				if (this.collidesWith(largeSensor)) {
+				if (this.collidesWith(largeSensor) && !largeHouse.isLargeHouseDestroyed()) {
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
