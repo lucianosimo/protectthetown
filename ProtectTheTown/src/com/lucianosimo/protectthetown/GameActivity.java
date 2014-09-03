@@ -15,7 +15,9 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -109,8 +111,21 @@ public class GameActivity extends BaseGameActivity {
 	protected synchronized void onResume() {
 		super.onResume();
 		Swarm.setActive(this);
-		mEngine.getSoundManager().setMasterVolume(1);
-		mEngine.getMusicManager().setMasterVolume(1);
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+		int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+		if (soundEnabled == 1) {
+			enableSound(false);
+		} else if (soundEnabled == 0) {
+			enableSound(true);
+		}
+		if (musicEnabled == 1) {
+			enableMusic(false);
+		} else if (musicEnabled == 0) {
+			enableMusic(true);
+		}
+		/*mEngine.getSoundManager().setMasterVolume(1);
+		mEngine.getMusicManager().setMasterVolume(1);*/
 	}
 	
 	public void enableSound(boolean enable) {
