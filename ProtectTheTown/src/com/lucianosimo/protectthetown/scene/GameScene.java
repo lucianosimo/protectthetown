@@ -1562,7 +1562,7 @@ public class GameScene extends BaseScene{
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				GameScene.this.unregisterTouchArea(pauseButton);
+				//GameScene.this.unregisterTouchArea(pauseButton);
 				if (availablePause) {
 					displayPauseWindow();
 				}
@@ -1739,6 +1739,7 @@ public class GameScene extends BaseScene{
 	    GameScene.this.registerTouchArea(quitButton);
 	    GameScene.this.registerTouchArea(soundButton);
 		GameScene.this.registerTouchArea(musicButton);
+		GameScene.this.unregisterTouchArea(pauseButton);
 	    
 	    pauseWindow.attachChild(currentScoreText);
 	    pauseWindow.attachChild(resumeButton);
