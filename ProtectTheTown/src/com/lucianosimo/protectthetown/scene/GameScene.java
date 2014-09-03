@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -73,6 +74,12 @@ public class GameScene extends BaseScene{
 	private Text scoreText;
 	private Text currentScoreText;
 	private Text finalScoreText;
+	
+	//HUD sprites
+	private Sprite soundDisabled;
+	private Sprite musicDisabled;
+	private Sprite soundButton;
+	private Sprite musicButton;
 	
 	//Constants	
 	private float screenWidth;
@@ -160,8 +167,8 @@ public class GameScene extends BaseScene{
 	private AnimatedSprite small_explosion;
 
 	//Variables	
-	private static final int ROCK_POSITIVE_VEL_X = 2;
-	private static final int ROCK_NEGATIVE_VEL_X = -2;
+	private static final int ROCK_POSITIVE_VEL_X = 1;
+	private static final int ROCK_NEGATIVE_VEL_X = -1;
 	
 	private static final int ROCK_INITIAL_Y = 900;
 	private static final int BOX_INITIAL_Y = 900;
@@ -179,8 +186,8 @@ public class GameScene extends BaseScene{
 	
 	/*private static final int ROCK_MAX_RANDOM_X = 1000;
 	private static final int ROCK_MIN_RANDOM_X = 100;*/
-	private static final int ROCK_MAX_RANDOM_X = 550;
-	private static final int ROCK_MIN_RANDOM_X = 525;
+	private static final int ROCK_MAX_RANDOM_X = 650;
+	private static final int ROCK_MIN_RANDOM_X = 250;
 	private static final int BOX_MAX_RANDOM_X = 1000;
 	private static final int BOX_MIN_RANDOM_X = 100;
 	
@@ -229,6 +236,21 @@ public class GameScene extends BaseScene{
 		createBoxes();
 		createCountdown();
 		firstGame();
+		
+		//If soundEnabled = 0, enabled..if 1 disabled
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+		int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+		if (soundEnabled == 1) {
+			activity.enableSound(false);
+		} else if (soundEnabled == 0) {
+			activity.enableSound(true);
+		}
+		if (musicEnabled == 1) {
+			activity.enableMusic(false);
+		} else if (musicEnabled == 0) {
+			activity.enableMusic(true);
+		}
 		
 		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
 		smallExplosionPool = new SmallExplosionPool(resourcesManager.game_small_explosion_region, vbom, GameScene.this);
@@ -1237,40 +1259,16 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		
-		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld) {
-			@Override
-			protected void onManagedUpdate(float pSecondsElapsed) {
-				super.onManagedUpdate(pSecondsElapsed);
-				float energyWidthFactor = healthBarWidth / this.getMaxEnergy();
-				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
-					this.setVisible(false);
-					this.getHouseBody().setActive(false);
-					resourcesManager.explosion.play();
-					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-					explosion.setPosition(this.getX(), this.getY());
-					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-					GameScene.this.attachChild(explosion);
-				}
-				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
-				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
-			}
-
-			@Override
-			public void onDie() {
-				if (this.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
-					engine.runOnUpdateThread(new Runnable() {
-						public void run() {
-							if (!gameOver) {
-								gameOver();
-							}
-						}
-					});					
-				}
-				
-			}
-		};
+		//int[] house_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
+		int[] house_positions = {120, 240, 440, 600, 760, 920, 1060, 1180};
 		
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		/*int smallX = rand.nextInt(7) + 0;
+		int normalX = rand.nextInt(7) + 0;
+		int largeX = rand.nextInt(7) + 0;*/
+				
+		//smallHouse = new SmallHouse(house_positions[smallX], housesInitialHeight, vbom, camera, physicsWorld) {
 		smallHouse = new SmallHouse(240, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
@@ -1304,6 +1302,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
+		//largeHouse = new LargeHouse(house_positions[largeX], housesInitialHeight, vbom, camera, physicsWorld) {
 		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
@@ -1334,6 +1333,41 @@ public class GameScene extends BaseScene{
 						}
 					});
 				}
+			}
+		};
+		
+		//house = new House(house_positions[normalX], housesInitialHeight, vbom, camera, physicsWorld) {
+		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				super.onManagedUpdate(pSecondsElapsed);
+				float energyWidthFactor = healthBarWidth / this.getMaxEnergy();
+				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
+					this.setVisible(false);
+					this.getHouseBody().setActive(false);
+					resourcesManager.explosion.play();
+					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
+					explosion.setPosition(this.getX(), this.getY());
+					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
+					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
+					GameScene.this.attachChild(explosion);
+				}
+				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
+				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
+			}
+
+			@Override
+			public void onDie() {
+				if (this.isHouseDestroyed() && smallHouse.isSmallHouseDestroyed() && largeHouse.isLargeHouseDestroyed()) {
+					engine.runOnUpdateThread(new Runnable() {
+						public void run() {
+							if (!gameOver) {
+								gameOver();
+							}
+						}
+					});					
+				}
+				
 			}
 		};
 		
@@ -1523,9 +1557,8 @@ public class GameScene extends BaseScene{
 	
 	private void createHud() {
 		gameHud = new HUD();	
-		
+
 		scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-		//countdownText = new Text(screenWidth/2, screenHeight/2, resourcesManager.countdownFont, "321Protect!", new TextOptions(HorizontalAlign.CENTER), vbom);
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1538,17 +1571,10 @@ public class GameScene extends BaseScene{
 		};
 		
 		scoreText.setAnchorCenter(0, 0);
-		//countdownText.setAnchorCenter(0, 0);
-		
 		scoreText.setText("Score: " + score);
-		//countdownText.setText("3");
-		
-		//scoreText.setColor(0.596f, 0.596f, 0.6f);
 		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		//countdownText.setColor(Color.RED_ARGB_PACKED_INT);
 
 		gameHud.attachChild(scoreText);
-		//gameHud.attachChild(countdownText);
 		gameHud.attachChild(pauseButton);
 		
 		GameScene.this.registerTouchArea(pauseButton);
@@ -1592,6 +1618,79 @@ public class GameScene extends BaseScene{
 		currentScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		currentScoreText.setText(""+score);
 		
+		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_disabled_region, vbom);
+		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_disabled_region, vbom);
+		
+		//If soundEnabled = 0, enabled..if 1 disabled
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+		int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+		if (soundEnabled == 1) {
+			activity.enableSound(false);
+			soundDisabled.setPosition(51, 51);
+		} else if (soundEnabled == 0) {
+			activity.enableSound(true);
+			soundDisabled.setPosition(1500, 1500);
+		}
+		if (musicEnabled == 1) {
+			activity.enableMusic(false);
+			musicDisabled.setPosition(51, 51);
+		} else if (musicEnabled == 0) {
+			activity.enableMusic(true);
+			musicDisabled.setPosition(1500, 1500);
+		}
+		
+		soundButton = new Sprite(-275, 550, resourcesManager.game_sound_button_region, vbom) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					Log.i("protect", "soundButton touched");
+					//If soundEnabled = 0, enabled..if 1 disabled
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+					int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+					Log.i("protect", "soundEnabled " + soundEnabled);
+					Editor editor = sharedPreferences.edit();
+					if (soundEnabled == 1) {
+						soundEnabled = 0;
+						soundDisabled.setPosition(1500, 1500);
+						activity.enableSound(true);
+					} else if (soundEnabled == 0) {
+						soundEnabled = 1;
+						soundDisabled.setPosition(51, 51);
+						activity.enableSound(false);
+					}
+					editor.putInt("soundEnabled", soundEnabled);
+					editor.commit();	
+				}
+				return true;
+			}
+		};
+		musicButton = new Sprite(-275, 440, resourcesManager.game_music_button_region, vbom) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					Log.i("protect", "musicButton touched");
+					//If musicEnabled = 0, enabled..if 1 disabled
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+					int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+					Log.i("protect", "musicEnabled " + musicEnabled);
+					Editor editor = sharedPreferences.edit();
+					if (musicEnabled == 1) {
+						musicEnabled = 0;
+						musicDisabled.setPosition(1500, 1500);
+						activity.enableMusic(true);
+					} else if (musicEnabled == 0) {
+						musicEnabled = 1;
+						musicDisabled.setPosition(51, 51);
+						activity.enableMusic(false);
+					}
+					editor.putInt("musicEnabled", musicEnabled);
+					editor.commit();
+				}
+				return true;
+			}
+		};
+		
 	    retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
@@ -1628,6 +1727,8 @@ public class GameScene extends BaseScene{
 	    			GameScene.this.unregisterTouchArea(this);
 	    		    GameScene.this.unregisterTouchArea(retryButton);
 	    		    GameScene.this.unregisterTouchArea(quitButton);
+	    		    GameScene.this.unregisterTouchArea(soundButton);
+	    		    GameScene.this.unregisterTouchArea(musicButton);
 	    		    GameScene.this.registerTouchArea(pauseButton);
 	    		}
 	    		return true;
@@ -1636,14 +1737,22 @@ public class GameScene extends BaseScene{
 	    GameScene.this.registerTouchArea(resumeButton);
 	    GameScene.this.registerTouchArea(retryButton);
 	    GameScene.this.registerTouchArea(quitButton);
+	    GameScene.this.registerTouchArea(soundButton);
+		GameScene.this.registerTouchArea(musicButton);
+	    
 	    pauseWindow.attachChild(currentScoreText);
 	    pauseWindow.attachChild(resumeButton);
 	    pauseWindow.attachChild(retryButton);	    
 	    pauseWindow.attachChild(quitButton);
+	    pauseWindow.attachChild(soundButton);
+	    pauseWindow.attachChild(musicButton);
+	    
+		soundButton.attachChild(soundDisabled);
+		musicButton.attachChild(musicDisabled);
 		
 		GameScene.this.attachChild(fade);
 		GameScene.this.attachChild(pauseWindow);
-		
+
 		gameHud.setVisible(false);
 	}
 	

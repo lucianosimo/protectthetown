@@ -151,6 +151,9 @@ public class ResourcesManager {
 	public ITextureRegion game_pause_button_region;
 	public ITextureRegion game_submit_button_region;
 	public ITextureRegion game_twitter_button_region;
+	public ITextureRegion game_sound_button_region;
+	public ITextureRegion game_music_button_region;
+	public ITextureRegion game_disabled_region;
 	
 	//Game Textures
 	private BuildableBitmapTextureAtlas gameTextureAtlas;
@@ -326,6 +329,9 @@ public class ResourcesManager {
 		game_pause_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_pause_button.png");
 		game_submit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_submit_button.png");
 		game_twitter_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_twitter_button.png");
+		game_sound_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_sound_button.png");
+		game_music_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_music_button.png");
+		game_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_disabled.png");
 		
 		game_countdown_frame_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_1.png");
 		game_countdown_frame_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_2.png");
