@@ -12,6 +12,7 @@ import org.andengine.entity.scene.menu.item.decorator.ScaleMenuItemDecorator;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 
@@ -22,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
@@ -35,6 +37,9 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	
 	private Text highScoreText;
 	private int highScore;
+	
+	private Sprite soundDisabled;
+	private Sprite musicDisabled;
 	
 	private final int MENU_PLAY = 0;
 	private final int MENU_RATEUS = 1;
@@ -82,6 +87,27 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	}
 	
 	private void createMenuChildScene() {
+		soundDisabled = new Sprite(51, 51, resourcesManager.menu_disabled_region, vbom);
+		musicDisabled = new Sprite(51, 51, resourcesManager.menu_disabled_region, vbom);
+		
+		//If soundEnabled = 0, enabled..if 1 disabled
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+		int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+		int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+		if (soundEnabled == 1) {
+			activity.enableSound(false);
+			soundDisabled.setPosition(51, 51);
+		} else if (soundEnabled == 0) {
+			activity.enableSound(true);
+			soundDisabled.setPosition(1500, 1500);
+		}
+		if (musicEnabled == 1) {
+			activity.enableMusic(false);
+			musicDisabled.setPosition(51, 51);
+		} else if (musicEnabled == 0) {
+			activity.enableMusic(true);
+			musicDisabled.setPosition(1500, 1500);
+		}
 		
 		menuChildScene = new MenuScene(camera);
 		menuChildScene.setPosition(screenWidth/2, screenHeight/2);
@@ -100,6 +126,65 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		
 		Sprite global_scores_button_background = new Sprite(500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
 		global_scores_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
+		
+		Sprite soundButton = new Sprite(-570, 290, resourcesManager.menu_sound_button_region, vbom) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					Log.i("protect", "soundButton touched");
+					//If soundEnabled = 0, enabled..if 1 disabled
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+					int soundEnabled = sharedPreferences.getInt("soundEnabled", 0);
+					Log.i("protect", "soundEnabled " + soundEnabled);
+					Editor editor = sharedPreferences.edit();
+					if (soundEnabled == 1) {
+						soundEnabled = 0;
+						soundDisabled.setPosition(1500, 1500);
+						activity.enableSound(true);
+					} else if (soundEnabled == 0) {
+						soundEnabled = 1;
+						soundDisabled.setPosition(51, 51);
+						activity.enableSound(false);
+					}
+					editor.putInt("soundEnabled", soundEnabled);
+					editor.commit();	
+				}
+				return true;
+			}
+		};
+		Sprite musicButton = new Sprite(-570, 180, resourcesManager.menu_music_button_region, vbom) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (pSceneTouchEvent.isActionDown()) {
+					Log.i("protect", "musicButton touched");
+					//If musicEnabled = 0, enabled..if 1 disabled
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+					int musicEnabled = sharedPreferences.getInt("musicEnabled", 0);
+					Log.i("protect", "musicEnabled " + musicEnabled);
+					Editor editor = sharedPreferences.edit();
+					if (musicEnabled == 1) {
+						musicEnabled = 0;
+						musicDisabled.setPosition(1500, 1500);
+						activity.enableMusic(true);
+					} else if (musicEnabled == 0) {
+						musicEnabled = 1;
+						musicDisabled.setPosition(51, 51);
+						activity.enableMusic(false);
+					}
+					editor.putInt("musicEnabled", musicEnabled);
+					editor.commit();
+				}
+				return true;
+			}
+		};
+		
+		menuChildScene.attachChild(soundButton);
+		menuChildScene.attachChild(musicButton);
+		soundButton.attachChild(soundDisabled);
+		musicButton.attachChild(musicDisabled);
+		
+		menuChildScene.registerTouchArea(soundButton);
+		menuChildScene.registerTouchArea(musicButton);
 		
 		menuChildScene.attachChild(play_button_background);
 		menuChildScene.attachChild(rateus_button_background);

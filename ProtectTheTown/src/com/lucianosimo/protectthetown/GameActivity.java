@@ -112,6 +112,22 @@ public class GameActivity extends BaseGameActivity {
 		mEngine.getSoundManager().setMasterVolume(1);
 		mEngine.getMusicManager().setMasterVolume(1);
 	}
+	
+	public void enableSound(boolean enable) {
+		if (enable) {
+			mEngine.getSoundManager().setMasterVolume(1);
+		} else {
+			mEngine.getSoundManager().setMasterVolume(0);
+		}
+	}
+	
+	public void enableMusic(boolean enable) {
+		if (enable) {
+			mEngine.getMusicManager().setMasterVolume(1);
+		} else {
+			mEngine.getMusicManager().setMasterVolume(0);
+		}
+	}
 
 	@Override
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback)	throws IOException {
