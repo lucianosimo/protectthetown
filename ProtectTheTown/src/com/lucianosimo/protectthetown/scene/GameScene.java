@@ -179,8 +179,8 @@ public class GameScene extends BaseScene{
 	
 	/*private static final int ROCK_MAX_RANDOM_X = 1000;
 	private static final int ROCK_MIN_RANDOM_X = 100;*/
-	private static final int ROCK_MAX_RANDOM_X = 500;
-	private static final int ROCK_MIN_RANDOM_X = 400;
+	private static final int ROCK_MAX_RANDOM_X = 550;
+	private static final int ROCK_MIN_RANDOM_X = 525;
 	private static final int BOX_MAX_RANDOM_X = 1000;
 	private static final int BOX_MIN_RANDOM_X = 100;
 	
@@ -316,25 +316,22 @@ public class GameScene extends BaseScene{
 						}
 					}
 					
-					if (((updates % HELP_BOXES_CREATION_UPDATES) == 0) && availablePause) {
+					if (((updates > 2500 &&  updates % 500 == 0)) && availablePause) {
 						//n = rand.nextInt(max - min + 1) + min;
 						box = rand.nextInt(3) + 1;
 						
 						switch (box) {
 							case 1:
-								//createBombBox();
 								if (!bombBox.getBombBody().isActive()) {
 									bombBox.getBombBody().setActive(true);
 								}
 								break;
 							case 2:
-								//createRepairBox();
 								if (!repairBox.getRepairBody().isActive()) {
 									repairBox.getRepairBody().setActive(true);
 								}
 								break;
 							case 3:
-								//createShieldBox();
 								if (!shieldBox.getShieldBody().isActive()) {
 									shieldBox.getShieldBody().setActive(true);
 								}
@@ -530,10 +527,14 @@ public class GameScene extends BaseScene{
 		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
 		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 1f, screenHeight, vbom);
 		final Rectangle largeSensor = new Rectangle(largeHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
+		final Rectangle soundSensorStart = new Rectangle(1280, screenHeight/2 , 1f, screenHeight, vbom);
+		final Rectangle soundSensorStop = new Rectangle(1280, screenHeight/2 , 1f, screenHeight, vbom);
 		
 		smallSensor.setVisible(false);
 		sensor.setVisible(false);
 		largeSensor.setVisible(false);
+		soundSensorStart.setVisible(false);
+		soundSensorStop.setVisible(false);
 		
 		switch (ufoRandomRegion) {
 		case 1:
@@ -632,11 +633,23 @@ public class GameScene extends BaseScene{
 					smallSensor.setPosition(smallHouse.getX() - 50, screenHeight/2);
 					sensor.setPosition(house.getX() - 50, screenHeight/2);
 					largeSensor.setPosition(largeHouse.getX() - 50, screenHeight/2);
+					soundSensorStart.setPosition(screenWidth, screenHeight/2);
+					soundSensorStop.setPosition(0, screenHeight/2);
 				} else if (this.getX() < (-ufoLimit)) {
 					this.setUfoVelocityX(ufoSpeed);
 					smallSensor.setPosition(smallHouse.getX() + 50, screenHeight/2);
 					sensor.setPosition(house.getX() + 50, screenHeight/2);
 					largeSensor.setPosition(largeHouse.getX() + 50, screenHeight/2);
+					soundSensorStart.setPosition(0, screenHeight/2);
+					soundSensorStop.setPosition(screenWidth, screenHeight/2);
+				}
+				
+				if (this.collidesWith(soundSensorStart)) {
+					resourcesManager.ufoSound.play();
+				}
+				
+				if (this.collidesWith(soundSensorStop)) {
+					resourcesManager.ufoSound.stop();
 				}
 				
 				if (this.getY() > UFO_INITIAL_Y + 100) {
@@ -652,6 +665,7 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (this.collidesWith(smallSensor) && !smallHouse.isSmallHouseDestroyed()) {
+					resourcesManager.shotSound.play();
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld){
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
@@ -675,6 +689,7 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (this.collidesWith(sensor) && !house.isHouseDestroyed()) {
+					resourcesManager.shotSound.play();
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
@@ -698,6 +713,7 @@ public class GameScene extends BaseScene{
 				}
 				
 				if (this.collidesWith(largeSensor) && !largeHouse.isLargeHouseDestroyed()) {
+					resourcesManager.shotSound.play();
 					Shot shot = new Shot(this.getX(), this.getY(), vbom, camera, physicsWorld) {
 						protected void onManagedUpdate(float pSecondsElapsed) {
 							if (this.collidesWith(dome)) {
@@ -1229,6 +1245,7 @@ public class GameScene extends BaseScene{
 				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getHouseBody().setActive(false);
+					resourcesManager.explosion.play();
 					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
 					explosion.setPosition(this.getX(), this.getY());
 					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
@@ -1262,6 +1279,7 @@ public class GameScene extends BaseScene{
 				if (this.isSmallHouseDestroyed() && this.getSmallHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getSmallHouseBody().setActive(false);
+					resourcesManager.explosion.play();
 					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
 					explosion.setPosition(this.getX(), this.getY());
 					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
@@ -1294,6 +1312,7 @@ public class GameScene extends BaseScene{
 				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getLargeHouseBody().setActive(false);
+					resourcesManager.explosion.play();
 					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
 					explosion.setPosition(this.getX(), this.getY());
 					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
@@ -1725,6 +1744,7 @@ public class GameScene extends BaseScene{
 	
 	private void createExplosion(float x, float y) {
 		//explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
+		resourcesManager.explosion.play();
 		explosion = explosionPool.obtainPoolItem();
 		explosion.setPosition(x, y);
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
@@ -1763,6 +1783,7 @@ public class GameScene extends BaseScene{
 	
 	private void createSmallExplosion(float x, float y) {
 		//small_explosion = new AnimatedSprite(x, y, resourcesManager.game_small_explosion_region.deepCopy(), vbom);
+		resourcesManager.explosion.play();
 		small_explosion = smallExplosionPool.obtainPoolItem();
 		small_explosion.setPosition(x, y);
 		final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
@@ -1890,6 +1911,8 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							if (ref.getShieldBody().isActive() && availablePause && !gameOver) {
+								resourcesManager.shield.play();
+								resourcesManager.shield.setLooping(true);
 								regenerateBoxes(ref.getShieldBody());
 								ref.setVisible(false);
 								ref.getShieldBody().setActive(false);
@@ -1910,6 +1933,7 @@ public class GameScene extends BaseScene{
 									
 									@Override
 									public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+										resourcesManager.shield.stop();
 										dome.setPosition(-1500, -1500);
 										shieldBarBackground.setVisible(false);
 										shieldBar.setVisible(false);

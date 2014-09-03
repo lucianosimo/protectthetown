@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.BoundCamera;
@@ -61,6 +62,10 @@ public class ResourcesManager {
 	
 	//Game audio
 	public Music gameMusic;
+	public Sound explosion;
+	public Sound shield;
+	public Sound shotSound;
+	public Sound ufoSound;
 	
 	//Game fonts
 	public Font scoreFont;
@@ -215,7 +220,7 @@ public class ResourcesManager {
 	private void loadMenuAudio() {
 		try {
 			MusicFactory.setAssetBasePath("music/menu/");
-			menuMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "menuMusic.wav");
+			menuMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "menuMusic.mp3");
 			menuMusic.setLooping(true);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -344,16 +349,31 @@ public class ResourcesManager {
 		MusicFactory.setAssetBasePath("music/game/");
 		SoundFactory.setAssetBasePath("sound/game/");
 		try {
-			gameMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "gameMusic.wav");
+			gameMusic = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "gameMusic.mp3");
 			gameMusic.setLooping(true);
-			//grunt = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "grunt.mp3");
-			//enemiesDeath = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "enemiesDeath.mp3");
+			explosion = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "explosion.mp3");
+			shield = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "shield.mp3");
+			shotSound = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "shotSound.mp3");
+			ufoSound = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "ufoSound.mp3");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void unloadGameAudio() {
+		gameMusic.stop();
+		
+		explosion.stop();
+		shield.stop();
+		shotSound.stop();
+		ufoSound.stop();
+		
+		activity.getSoundManager().remove(explosion);
+		activity.getSoundManager().remove(shield);
+		activity.getSoundManager().remove(shotSound);
+		activity.getSoundManager().remove(ufoSound);
+		
+		activity.getMusicManager().remove(gameMusic);
 		System.gc();
 	}
 	
