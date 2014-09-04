@@ -186,8 +186,8 @@ public class GameScene extends BaseScene{
 	
 	/*private static final int ROCK_MAX_RANDOM_X = 1000;
 	private static final int ROCK_MIN_RANDOM_X = 100;*/
-	private static final int ROCK_MAX_RANDOM_X = 650;
-	private static final int ROCK_MIN_RANDOM_X = 250;
+	private static final int ROCK_MAX_RANDOM_X = 840;
+	private static final int ROCK_MIN_RANDOM_X = 400;
 	private static final int BOX_MAX_RANDOM_X = 1000;
 	private static final int BOX_MIN_RANDOM_X = 100;
 	
@@ -331,14 +331,14 @@ public class GameScene extends BaseScene{
 						}
 					}
 					
-					if ((updates > 4000) && (updates % 2500) == 0 && availablePause) {
+					if ((updates > 5000) && (updates % 1000) == 0 && availablePause) {
 						if (!satelite.getSateliteBody().isActive()) {
 							regenerateSatelite(satelite.getSateliteBody());
 							satelite.getSateliteBody().setActive(true);
 						}
 					}
 					
-					if (((updates > 2500 &&  updates % 500 == 0)) && availablePause) {
+					if ((updates > 2500) && (updates % 500) == 0 && availablePause) {
 						//n = rand.nextInt(max - min + 1) + min;
 						box = rand.nextInt(3) + 1;
 						
@@ -670,7 +670,7 @@ public class GameScene extends BaseScene{
 					resourcesManager.ufoSound.play();
 				}
 				
-				if (this.collidesWith(soundSensorStop)) {
+				if (this.collidesWith(soundSensorStop) || !this.getUfoBody().isActive()) {
 					resourcesManager.ufoSound.stop();
 				}
 				
@@ -782,7 +782,7 @@ public class GameScene extends BaseScene{
 	private LargeRock createLargeRock() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X - ROCK_MIN_RANDOM_X + 1) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(LARGE_ROCK_MAX_RANDOM_Y_VEL) + LARGE_ROCK_MIN_RANDOM_Y_VEL);
 		
 		LargeRock largeRock = new LargeRock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
@@ -1144,7 +1144,7 @@ public class GameScene extends BaseScene{
 	 */
 	private void regenerateBoxes(Body boxBody) {
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		
 		boxBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, boxBody.getAngle());
 	}
@@ -1154,7 +1154,7 @@ public class GameScene extends BaseScene{
 	 */
 	private void regenerateRocks(Body rockBody) {
 		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
+		final int x = rand.nextInt(ROCK_MAX_RANDOM_X - ROCK_MIN_RANDOM_X + 1) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(ROCK_MAX_RANDOM_Y_VEL) + ROCK_MIN_RANDOM_Y_VEL);
 		
 		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
@@ -1929,7 +1929,7 @@ public class GameScene extends BaseScene{
 	
 	private void createBombBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		bombBox = new Bomb(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1940,9 +1940,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (ref.getBombBody().isActive() && availablePause && !gameOver) {
 								regenerateBoxes(ref.getBombBody());
-								ref.setVisible(false);
+								//ref.setVisible(false);
 								ref.getBombBody().setActive(false);
-								GameScene.this.unregisterTouchArea(ref);
+								//GameScene.this.unregisterTouchArea(ref);
 								registerEntityModifier(new DelayModifier(0.1f, new IEntityModifierListener() {
 									
 									@Override
@@ -1972,7 +1972,7 @@ public class GameScene extends BaseScene{
 	
 	private void createRepairBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		repairBox = new Repair(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1983,9 +1983,9 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (ref.getRepairBody().isActive() && availablePause && !gameOver) {
 								regenerateBoxes(ref.getRepairBody());
-								ref.setVisible(false);
+								//ref.setVisible(false);
 								ref.getRepairBody().setActive(false);
-								GameScene.this.unregisterTouchArea(ref);
+								//GameScene.this.unregisterTouchArea(ref);
 								if (!smallHouse.isSmallHouseDestroyed()) {
 									smallHouse.repairCompleteSmallHouse();
 								}
@@ -2011,7 +2011,7 @@ public class GameScene extends BaseScene{
 	
 	private void createShieldBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X) + BOX_MIN_RANDOM_X;
+		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		shieldBox = new Shield(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -2024,9 +2024,9 @@ public class GameScene extends BaseScene{
 								resourcesManager.shield.play();
 								resourcesManager.shield.setLooping(true);
 								regenerateBoxes(ref.getShieldBody());
-								ref.setVisible(false);
+								//ref.setVisible(false);
 								ref.getShieldBody().setActive(false);
-								GameScene.this.unregisterTouchArea(ref);
+								//GameScene.this.unregisterTouchArea(ref);
 								registerEntityModifier(new DelayModifier(SHIELD_DURATION, new IEntityModifierListener() {
 									
 									@Override
