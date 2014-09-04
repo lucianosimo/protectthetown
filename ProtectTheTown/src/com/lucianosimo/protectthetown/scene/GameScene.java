@@ -666,13 +666,13 @@ public class GameScene extends BaseScene{
 					soundSensorStop.setPosition(screenWidth, screenHeight/2);
 				}
 				
-				if (this.collidesWith(soundSensorStart)) {
+				/*if (this.collidesWith(soundSensorStart)) {
 					resourcesManager.ufoSound.play();
 				}
 				
 				if (this.collidesWith(soundSensorStop) || !this.getUfoBody().isActive()) {
 					resourcesManager.ufoSound.stop();
-				}
+				}*/
 				
 				if (this.getY() > UFO_INITIAL_Y + 100) {
 					this.setUfoVelocityY(-5);
