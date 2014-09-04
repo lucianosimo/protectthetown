@@ -96,9 +96,6 @@ public class GameScene extends BaseScene{
 	private boolean gameOver = false;
 	private boolean destroyAllEnemies = false;
 	private boolean domeActivated = false;
-	private boolean bombCreated = false;
-	private boolean shieldCreated = false;
-	private boolean repairCreated = false;
 	
 	//Integers
 	private int score = 0;
@@ -135,17 +132,13 @@ public class GameScene extends BaseScene{
 	private Sprite countdownFrame4;
 	
 	//Counters
-	private int largeRocksCounter = 0;
-	private int rocksCounter = 0;
-	private int smallRocksCounter = 0;
-	private int ufoCounter = 0;
-	private int sateliteCounter = 0;
 	private int firstGame = 0;
 	
 	//Rocks
 	private LargeRock largeRock1;
 	private LargeRock largeRock2;
 	private LargeRock largeRock3;
+	private LargeRock largeRock4;
 	
 	//Satelite
 	private Satelite satelite;
@@ -185,8 +178,9 @@ public class GameScene extends BaseScene{
 	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 5;
 	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 4;
 	
-	/*private static final int ROCK_MAX_RANDOM_X = 1000;
-	private static final int ROCK_MIN_RANDOM_X = 100;*/
+	private static final int VELOCITY_MULTIPLIER_MAX_RANDOM = 5;
+	private static final int VELOCITY_MULTIPLIER_MIN_RANDOM = 4;
+	
 	private static final int ROCK_MAX_RANDOM_X = 840;
 	private static final int ROCK_MIN_RANDOM_X = 400;
 	private static final int BOX_MAX_RANDOM_X = 1000;
@@ -200,15 +194,8 @@ public class GameScene extends BaseScene{
 	
 	private static final int START_GAME_UPDATES = 280;
 	private static final int LARGE_ROCK_CREATION_UPDATES = 500;
-	private static final int UFO_CREATION_UPDATES = 600;
-	private static final int SATELITE_CREATION_UPDATES = 800;
-	private static final int HELP_BOXES_CREATION_UPDATES = 1000;
 	
 	private static final float SHIELD_DURATION = 10f;
-
-	private static final int LARGE_ROCK_MAX = 2;
-	private static final int UFO_MAX = 2;
-	private static final int SATELITE_MAX = 1;
 	
 	//If negative, never collides between groups, if positive yes
 	//private static final int GROUP_ENEMY = -1;
@@ -256,123 +243,127 @@ public class GameScene extends BaseScene{
 		explosionPool = new ExplosionPool(resourcesManager.game_explosion_region, vbom, GameScene.this);
 		smallExplosionPool = new SmallExplosionPool(resourcesManager.game_small_explosion_region, vbom, GameScene.this);
 		
-		//if (!helpWindow.isVisible()) {
-			engine.registerUpdateHandler(new IUpdateHandler() {
-				private int updates = 0;
-				private int difficulty = 0;
-				
-				@Override
-				public void reset() {
+		engine.registerUpdateHandler(new IUpdateHandler() {
+			private int updates = 0;
+			private int difficulty = 0;
+			
+			@Override
+			public void reset() {
 
+			}
+			
+			@Override
+			public void onUpdate(float pSecondsElapsed) {
+				if (helpWindow.isVisible()) {
+					updates = 0;
+				}
+				Random rand = new Random();
+				int box;
+				updates++;
+				
+				if (updates < START_GAME_UPDATES) {
+					availablePause = false;
 				}
 				
-				@Override
-				public void onUpdate(float pSecondsElapsed) {
-					if (helpWindow.isVisible()) {
-						updates = 0;
-					}
-					Random rand = new Random();
-					int box;
-					updates++;
-					
-					if (updates < START_GAME_UPDATES) {
-						availablePause = false;
-					}
-					
-					if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
-						difficulty += 50;
-					}
+				if (difficulty < (LARGE_ROCK_CREATION_UPDATES - 50) && (updates % 750) == 0) {
+					difficulty += 50;
+				}
 
-					if (updates == 70) {
-						countdownFrame1.setVisible(false);
-						countdownFrame2.setVisible(true);
-					}
-					if (updates == 140) {
-						countdownFrame2.setVisible(false);
-						countdownFrame3.setVisible(true);
-					}
-					if (updates == 210) {
-						countdownFrame3.setVisible(false);
-						countdownFrame4.setVisible(true);
-					}
-					if (updates == START_GAME_UPDATES) {
-						resourcesManager.gameMusic.play();
-						countdownFrame4.setVisible(false);
-						availablePause = true;
+				if (updates == 70) {
+					countdownFrame1.setVisible(false);
+					countdownFrame2.setVisible(true);
+				}
+				if (updates == 140) {
+					countdownFrame2.setVisible(false);
+					countdownFrame3.setVisible(true);
+				}
+				if (updates == 210) {
+					countdownFrame3.setVisible(false);
+					countdownFrame4.setVisible(true);
+				}
+				if (updates == START_GAME_UPDATES) {
+					resourcesManager.gameMusic.play();
+					countdownFrame4.setVisible(false);
+					availablePause = true;
+					largeRock1.getLargeRockBody().setActive(true);
+				}
+				
+				if ((updates % 250) == 0 && availablePause) {
+					if (!largeRock1.getLargeRockBody().isActive()) {
 						largeRock1.getLargeRockBody().setActive(true);
-					}
-					
-					if ((updates % 250) == 0 && availablePause) {
-						if (!largeRock1.getLargeRockBody().isActive()) {
-							largeRock1.getLargeRockBody().setActive(true);
-						}					
-					}
-					
-					if ((updates > 2500) && (updates % 250) == 0 && availablePause) {
-						if (!largeRock2.getLargeRockBody().isActive()) {
-							largeRock2.getLargeRockBody().setActive(true);
-						}					
-					}
-					
-					if ((updates > 5000) && (updates % 250) == 0 && availablePause) {
-						if (!largeRock3.getLargeRockBody().isActive()) {
-							largeRock3.getLargeRockBody().setActive(true);
-						}					
-					}
-					
-					if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
-						if (!ufo1.getUfoBody().isActive()) {
-							ufo1.getUfoBody().setActive(true);
-						}
-					}
-					
-					if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
-						if (!ufo2.getUfoBody().isActive()) {
-							ufo2.getUfoBody().setActive(true);
-						}
-					}
-					
-					if ((updates > 5000) && (updates % 1000) == 0 && availablePause) {
-						if (!satelite.getSateliteBody().isActive()) {
-							regenerateSatelite(satelite.getSateliteBody());
-							satelite.getSateliteBody().setActive(true);
-						}
-					}
-					
-					if ((updates > 2500) && (updates % 500) == 0 && availablePause) {
-						//n = rand.nextInt(max - min + 1) + min;
-						box = rand.nextInt(3) + 1;
-						
-						switch (box) {
-							case 1:
-								if (!bombBox.getBombBody().isActive()) {
-									bombBox.getBombBody().setActive(true);
-								}
-								break;
-							case 2:
-								if (!repairBox.getRepairBody().isActive()) {
-									repairBox.getRepairBody().setActive(true);
-								}
-								break;
-							case 3:
-								if (!shieldBox.getShieldBody().isActive()) {
-									shieldBox.getShieldBody().setActive(true);
-								}
-								break;
-							default:
-								break;
-						}
-					}
-					
-					if (domeActivated && availablePause) {
-						if (shieldBar.getWidth() > 0) {
-							shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
-						}
-						shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
+					}					
+				}
+				
+				if ((updates > 2000) && (updates % 250) == 0 && availablePause) {
+					if (!largeRock2.getLargeRockBody().isActive()) {
+						largeRock2.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 4000) && (updates % 250) == 0 && availablePause) {
+					if (!largeRock3.getLargeRockBody().isActive()) {
+						largeRock3.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 6000) && (updates % 250) == 0 && availablePause) {
+					if (!largeRock4.getLargeRockBody().isActive()) {
+						largeRock4.getLargeRockBody().setActive(true);
+					}					
+				}
+				
+				if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
+					if (!ufo1.getUfoBody().isActive()) {
+						ufo1.getUfoBody().setActive(true);
 					}
 				}
-			});
-		//}
+				
+				if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
+					if (!ufo2.getUfoBody().isActive()) {
+						ufo2.getUfoBody().setActive(true);
+					}
+				}
+				
+				if ((updates > 5000) && (updates % 1000) == 0 && availablePause) {
+					if (!satelite.getSateliteBody().isActive()) {
+						regenerateSatelite(satelite.getSateliteBody());
+						satelite.getSateliteBody().setActive(true);
+					}
+				}
+				
+				if ((updates > 2500) && (updates % 750) == 0 && availablePause) {
+					//n = rand.nextInt(max - min + 1) + min;
+					box = rand.nextInt(3) + 1;
+					
+					switch (box) {
+						case 1:
+							if (!bombBox.getBombBody().isActive()) {
+								bombBox.getBombBody().setActive(true);
+							}
+							break;
+						case 2:
+							if (!repairBox.getRepairBody().isActive()) {
+								repairBox.getRepairBody().setActive(true);
+							}
+							break;
+						case 3:
+							if (!shieldBox.getShieldBody().isActive()) {
+								shieldBox.getShieldBody().setActive(true);
+							}
+							break;
+						default:
+							break;
+					}
+				}
+				
+				if (domeActivated && availablePause) {
+					if (shieldBar.getWidth() > 0) {
+						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
+					}
+					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
+				}
+			}
+		});
 	}
 	
 	public void firstGame() {
@@ -404,6 +395,40 @@ public class GameScene extends BaseScene{
         GameScene.this.registerTouchArea(helpWindow);
 	}
 	
+	private void destroySatelite(Satelite sat) {
+		regenerateSatelite(sat.getSateliteBody());
+		sat.getSateliteBody().setActive(false);
+		createExplosion(sat.getX(), sat.getY());
+	}
+	
+	private void destroyUfo(Ufo ufo) {
+		regenerateUfo(ufo.getUfoBody());
+		ufo.getUfoBody().setActive(false);
+		createExplosion(ufo.getX(), ufo.getY());
+	}
+	
+	private void destroyLargeRock(LargeRock largeRock) {
+		regenerateRocks(largeRock.getLargeRockBody());
+		largeRock.getLargeRockBody().setActive(false);
+		createExplosion(largeRock.getX(), largeRock.getY());
+	}
+	
+	private void destroyRock(Rock rock) {
+		rock.setVisible(false);
+		rock.getRockBody().setActive(false);
+		rock.setIgnoreUpdate(true);
+		createExplosion(rock.getX(), rock.getY());
+		GameScene.this.unregisterTouchArea(rock);		
+	}
+	
+	private void destroySmallRock(SmallRock smallRock) {
+		smallRock.setVisible(false);
+		smallRock.getSmallRockBody().setActive(false);
+		smallRock.setIgnoreUpdate(true);
+		createSmallExplosion(smallRock.getX(), smallRock.getY());
+		GameScene.this.unregisterTouchArea(smallRock);
+	}
+	
 	private void createBoxes() {
 		createBombBox();
 		createRepairBox();
@@ -414,6 +439,7 @@ public class GameScene extends BaseScene{
 		largeRock1 = createLargeRock();
 		largeRock2 = createLargeRock();
 		largeRock3 = createLargeRock();
+		largeRock4 = createLargeRock();
 	}
 	
 	private void createUfos() {
@@ -472,14 +498,7 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(SATELITE_SCORE);
-								/*ref.setVisible(false);
-								ref.getSateliteBody().setActive(false);
-								ref.setIgnoreUpdate(true);
-								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(ref);*/
-								regenerateSatelite(ref.getSateliteBody());
-								ref.getSateliteBody().setActive(false);
-								createExplosion(ref.getX(), ref.getY());
+								destroySatelite(ref);
 							}
 						});
 					}
@@ -491,14 +510,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(SATELITE_SCORE);
-							/*ref.setVisible(false);
-							ref.getSateliteBody().setActive(false);
-							ref.setIgnoreUpdate(true);
-							sateliteCounter--;
-							GameScene.this.unregisterTouchArea(ref);*/
-							regenerateSatelite(ref.getSateliteBody());
-							ref.getSateliteBody().setActive(false);
-							createExplosion(ref.getX(), ref.getY());
+							destroySatelite(ref);
 						}
 					});
 				}
@@ -506,21 +518,14 @@ public class GameScene extends BaseScene{
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
-					final Satelite satRef = this;
+					final Satelite ref = this;
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							if (satRef.getSateliteBody().isActive() && availablePause && !gameOver) {
+							if (ref.getSateliteBody().isActive() && availablePause && !gameOver) {
 								addScore(SATELITE_SCORE);
-								/*satRef.setVisible(false);
-								satRef.getSateliteBody().setActive(false);
-								satRef.setIgnoreUpdate(true);
-								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(satRef);*/
-								regenerateSatelite(satRef.getSateliteBody());
-								satRef.getSateliteBody().setActive(false);
-								createExplosion(satRef.getX(), satRef.getY());
+								destroySatelite(ref);
 							}						
 						}
 					});
@@ -528,9 +533,7 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
-		
-		sateliteCounter++;
-		
+
 		satelite.getSateliteBody().setActive(false);
 		satelite.setCullingEnabled(true);
 		GameScene.this.attachChild(satelite);
@@ -540,24 +543,23 @@ public class GameScene extends BaseScene{
 	private Ufo createUfo() {
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
-		final int ufoSpeed = rand.nextInt(3) + 5;
+		
 		final int ufoLimit = 200;
-		final int appereanceSide = rand.nextInt(2) + 1;
 		final int ufo_initial_x;
+		
+		final int ufoSpeed = rand.nextInt(3) + 5;	
+		final int appereanceSide = rand.nextInt(2) + 1;
 		final int ufoRandomRegion = rand.nextInt(3) + 1;
+		
 		final ITextureRegion ufoRegion;
 		
 		final Rectangle smallSensor = new Rectangle(smallHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
 		final Rectangle sensor = new Rectangle(house.getX(), screenHeight/2 , 1f, screenHeight, vbom);
 		final Rectangle largeSensor = new Rectangle(largeHouse.getX(), screenHeight/2 , 1f, screenHeight, vbom);
-		final Rectangle soundSensorStart = new Rectangle(1280, screenHeight/2 , 1f, screenHeight, vbom);
-		final Rectangle soundSensorStop = new Rectangle(1280, screenHeight/2 , 1f, screenHeight, vbom);
 		
 		smallSensor.setVisible(false);
 		sensor.setVisible(false);
 		largeSensor.setVisible(false);
-		soundSensorStart.setVisible(false);
-		soundSensorStop.setVisible(false);
 		
 		switch (ufoRandomRegion) {
 		case 1:
@@ -584,21 +586,14 @@ public class GameScene extends BaseScene{
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
-					final Ufo ufoRef = this;
+					final Ufo ref = this;
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							if (ufoRef.getUfoBody().isActive() && availablePause && !gameOver) {
+							if (ref.getUfoBody().isActive() && availablePause && !gameOver) {
 								addScore(UFO_SCORE);
-								/*ufoRef.setVisible(false);
-								ufoRef.getUfoBody().setActive(false);
-								ufoRef.setIgnoreUpdate(true);
-								ufoCounter--;
-								GameScene.this.unregisterTouchArea(ufoRef);*/
-								regenerateUfo(ufoRef.getUfoBody());
-								ufoRef.getUfoBody().setActive(false);
-								createExplosion(ufoRef.getX(), ufoRef.getY());
+								destroyUfo(ref);
 							}
 							
 						}
@@ -619,14 +614,7 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(UFO_SCORE);
-								/*ref.setVisible(false);
-								ref.getUfoBody().setActive(false);
-								ref.setIgnoreUpdate(true);
-								sateliteCounter--;
-								GameScene.this.unregisterTouchArea(ref);*/
-								regenerateUfo(ref.getUfoBody());
-								ref.getUfoBody().setActive(false);
-								createExplosion(ref.getX(), ref.getY());
+								destroyUfo(ref);
 							}
 						});
 					}
@@ -639,14 +627,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(UFO_SCORE);
-							/*ref.setVisible(false);
-							ref.getUfoBody().setActive(false);
-							ref.setIgnoreUpdate(true);
-							sateliteCounter--;
-							GameScene.this.unregisterTouchArea(ref);*/
-							regenerateUfo(ref.getUfoBody());
-							ref.getUfoBody().setActive(false);
-							createExplosion(ref.getX(), ref.getY());
+							destroyUfo(ref);
 						}
 					});
 				}
@@ -656,35 +637,17 @@ public class GameScene extends BaseScene{
 					smallSensor.setPosition(smallHouse.getX() - 50, screenHeight/2);
 					sensor.setPosition(house.getX() - 50, screenHeight/2);
 					largeSensor.setPosition(largeHouse.getX() - 50, screenHeight/2);
-					soundSensorStart.setPosition(screenWidth, screenHeight/2);
-					soundSensorStop.setPosition(0, screenHeight/2);
 				} else if (this.getX() < (-ufoLimit)) {
 					this.setUfoVelocityX(ufoSpeed);
 					smallSensor.setPosition(smallHouse.getX() + 50, screenHeight/2);
 					sensor.setPosition(house.getX() + 50, screenHeight/2);
 					largeSensor.setPosition(largeHouse.getX() + 50, screenHeight/2);
-					soundSensorStart.setPosition(0, screenHeight/2);
-					soundSensorStop.setPosition(screenWidth, screenHeight/2);
 				}
-				
-				/*if (this.collidesWith(soundSensorStart)) {
-					resourcesManager.ufoSound.play();
-				}
-				
-				if (this.collidesWith(soundSensorStop) || !this.getUfoBody().isActive()) {
-					resourcesManager.ufoSound.stop();
-				}*/
 				
 				if (this.getY() > UFO_INITIAL_Y + 100) {
 					this.setUfoVelocityY(-5);
-					/*smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
-					sensor.setPosition(house.getX(), screenHeight/2);
-					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);*/
 				} else if (this.getY() < UFO_INITIAL_Y - 100) {
 					this.setUfoVelocityY(5);
-					/*smallSensor.setPosition(smallHouse.getX(), screenHeight/2);
-					sensor.setPosition(house.getX(), screenHeight/2);
-					largeSensor.setPosition(largeHouse.getX(), screenHeight/2);*/
 				}
 				
 				if (this.collidesWith(smallSensor) && !smallHouse.isSmallHouseDestroyed()) {
@@ -764,14 +727,13 @@ public class GameScene extends BaseScene{
 		
 		ufo.setCullingEnabled(true);
 		
-		ufoCounter++;
-		
 		ufo.getUfoBody().setActive(false);
 		
 		GameScene.this.attachChild(smallSensor);
 		GameScene.this.attachChild(sensor);
 		GameScene.this.attachChild(largeSensor);
 		GameScene.this.attachChild(ufo);
+		
 		GameScene.this.registerTouchArea(ufo);
 		
 		return ufo;
@@ -798,14 +760,7 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(LARGE_ROCK_SCORE);
-								/*ref.setVisible(false);
-								ref.getLargeRockBody().setActive(false);
-								ref.setIgnoreUpdate(true);
-								largeRocksCounter--;
-								GameScene.this.unregisterTouchArea(ref);*/
-								regenerateRocks(ref.getLargeRockBody());
-								ref.getLargeRockBody().setActive(false);
-								createExplosion(ref.getX(), ref.getY());
+								destroyLargeRock(ref);
 							}
 						});
 					}
@@ -817,14 +772,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(LARGE_ROCK_SCORE);
-							/*ref.setVisible(false);
-							ref.getLargeRockBody().setActive(false);
-							ref.setIgnoreUpdate(true);
-							largeRocksCounter--;
-							GameScene.this.unregisterTouchArea(ref);*/
-							regenerateRocks(ref.getLargeRockBody());
-							ref.getLargeRockBody().setActive(false);
-							createExplosion(ref.getX(), ref.getY());
+							destroyLargeRock(ref);
 						}
 					});
 				}
@@ -837,23 +785,16 @@ public class GameScene extends BaseScene{
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
-					final LargeRock largeRockRef = this;
+					final LargeRock ref = this;
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							if (largeRockRef.getLargeRockBody().isActive() && availablePause && !gameOver) {
-								createRockFromLargeRock(largeRockRef.getX() + 5, largeRockRef.getY(), ROCK_POSITIVE_VEL_X);
-								createRockFromLargeRock(largeRockRef.getX() - 5, largeRockRef.getY(), ROCK_NEGATIVE_VEL_X);
+							if (ref.getLargeRockBody().isActive() && availablePause && !gameOver) {
+								createRockFromLargeRock(ref.getX() + 5, ref.getY(), ROCK_POSITIVE_VEL_X);
+								createRockFromLargeRock(ref.getX() - 5, ref.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(LARGE_ROCK_SCORE);
-								/*largeRocksCounter--;
-								largeRockRef.setVisible(false);
-								largeRockRef.getLargeRockBody().setActive(false);
-								largeRockRef.setIgnoreUpdate(true);
-								GameScene.this.unregisterTouchArea(largeRockRef);*/
-								regenerateRocks(largeRockRef.getLargeRockBody());
-								largeRockRef.getLargeRockBody().setActive(false);
-								createExplosion(largeRockRef.getX(), largeRockRef.getY());
+								destroyLargeRock(ref);
 							}						
 						}
 					});
@@ -864,8 +805,6 @@ public class GameScene extends BaseScene{
 		};
 		
 		setRockDirection(x, largeRock.getLargeRockBody(), yVel);
-
-		largeRocksCounter++;
 		
 		largeRock.getLargeRockBody().setActive(false);
 		largeRock.setCullingEnabled(true);
@@ -876,57 +815,12 @@ public class GameScene extends BaseScene{
 	}
 	
 	/*
-	 * Creates a new medium rock
-	 */
-	/*private void createRock() {
-		//n = rand.nextInt(max - min + 1) + min;
-		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		final float yVel = -(rand.nextInt(ROCK_MAX_RANDOM_Y_VEL) + ROCK_MIN_RANDOM_Y_VEL);
-		
-		Rock rock = new Rock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld){
-			@Override
-			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				if (pSceneTouchEvent.isActionDown()) {
-					final Rock rockRef = this;
-					engine.runOnUpdateThread(new Runnable() {
-						
-						@Override
-						public void run() {
-							if (rockRef.getRockBody().isActive() && availablePause && !gameOver) {
-								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
-								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
-								addScore(ROCK_SCORE);
-								rocksCounter--;
-					 			rockRef.setVisible(false);
-								rockRef.getRockBody().setActive(false);
-								GameScene.this.unregisterTouchArea(rockRef);
-								createExplosion(rockRef.getX(), rockRef.getY());
-							}
-						}
-					});
-				}
-				
-				return true;
-			}
-		};
-		
-		setRockDirection(x, rock.getRockBody(), yVel);
-
-		rocksCounter++;
-		
-		rock.setCullingEnabled(true);
-		GameScene.this.attachChild(rock);
-		GameScene.this.registerTouchArea(rock);
-	}*/
-	
-	/*
 	 * Creates a new rock when a large rock is destroyed
 	 */
 	private void createRockFromLargeRock(float x, float y, float xVel) {
 		Random rand = new Random();
 		final float yVel = -(rand.nextInt(ROCK_MAX_RANDOM_Y_VEL) + ROCK_MIN_RANDOM_Y_VEL);
-		final float velocityMultiplier = rand.nextInt(3) + 3;
+		final float velocityMultiplier = rand.nextInt(VELOCITY_MULTIPLIER_MAX_RANDOM - VELOCITY_MULTIPLIER_MIN_RANDOM + 1) + VELOCITY_MULTIPLIER_MIN_RANDOM;
 		
 		Rock rock = new Rock(x, y, vbom, camera, physicsWorld) {
 			@Override
@@ -940,12 +834,7 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(ROCK_SCORE);
-								ref.setVisible(false);
-								ref.getRockBody().setActive(false);
-								ref.setIgnoreUpdate(true);
-								rocksCounter--;
-								GameScene.this.unregisterTouchArea(ref);
-								createExplosion(ref.getX(), ref.getY());
+								destroyRock(ref);
 							}
 						});
 					}
@@ -962,12 +851,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(ROCK_SCORE);
-							ref.setVisible(false);
-							ref.getRockBody().setActive(false);
-							ref.setIgnoreUpdate(true);
-							rocksCounter--;
-							GameScene.this.unregisterTouchArea(ref);
-							createExplosion(ref.getX(), ref.getY());
+							destroyRock(ref);
 						}
 					});
 				}
@@ -975,21 +859,16 @@ public class GameScene extends BaseScene{
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
-					final Rock rockRef = this;
+					final Rock ref = this;
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							if (rockRef.getRockBody().isActive() && availablePause && !gameOver) {
-								createSmallRockFromRock(rockRef.getX() + 5, rockRef.getY(), ROCK_POSITIVE_VEL_X);
-								createSmallRockFromRock(rockRef.getX() - 5, rockRef.getY(), ROCK_NEGATIVE_VEL_X);
+							if (ref.getRockBody().isActive() && availablePause && !gameOver) {
+								createSmallRockFromRock(ref.getX() + 5, ref.getY(), ROCK_POSITIVE_VEL_X);
+								createSmallRockFromRock(ref.getX() - 5, ref.getY(), ROCK_NEGATIVE_VEL_X);
 								addScore(ROCK_SCORE);
-								rocksCounter--;
-								rockRef.setVisible(false);
-								rockRef.getRockBody().setActive(false);
-								rockRef.setIgnoreUpdate(true);
-								GameScene.this.unregisterTouchArea(rockRef);
-								createExplosion(rockRef.getX(), rockRef.getY());
+								destroyRock(ref);
 							}										
 						}
 					});	
@@ -1002,56 +881,10 @@ public class GameScene extends BaseScene{
 
 		rock.setRockDirection(velocityMultiplier * xVel, yVel);
 		
-		rocksCounter++;
-				
 		rock.setCullingEnabled(true);
 		GameScene.this.attachChild(rock);
 		GameScene.this.registerTouchArea(rock);		
 	}
-		
-	/*
-	 * Creates a new small rock
-	 */
-	/*private void createSmallRock() {
-		Random rand = new Random();
-		final int x = rand.nextInt(ROCK_MAX_RANDOM_X) + ROCK_MIN_RANDOM_X;
-		final float yVel = -(rand.nextInt(SMALL_ROCK_MAX_RANDOM_Y_VEL) + SMALL_ROCK_MIN_RANDOM_Y_VEL);
-		
-		SmallRock smallRock = new SmallRock(x, ROCK_INITIAL_Y, vbom, camera, physicsWorld) {
-			
-			@Override
-			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				if (pSceneTouchEvent.isActionDown()) {
-					final SmallRock smallRockRef = this;
-					engine.runOnUpdateThread(new Runnable() {
-						
-						@Override
-						public void run() {
-							if (smallRockRef.getSmallRockBody().isActive() && availablePause && !gameOver) {
-								addScore(SMALL_ROCK_SCORE);
-								smallRocksCounter--;
-								smallRockRef.setVisible(false);
-								smallRockRef.getSmallRockBody().setActive(false);
-								GameScene.this.unregisterTouchArea(smallRockRef);
-								createExplosion(smallRockRef.getX(), smallRockRef.getY());
-							}	
-						}
-					});
-				}
-				
-				return true;
-			}
-			
-		};
-		
-		setRockDirection(x, smallRock.getSmallRockBody(), yVel);
-		
-		smallRocksCounter++;
-				
-		smallRock.setCullingEnabled(true);
-		GameScene.this.attachChild(smallRock);
-		GameScene.this.registerTouchArea(smallRock);		
-	}*/
 	
 	/*
 	 * Creates a new small rock when a medium rock is destroyed
@@ -1059,7 +892,7 @@ public class GameScene extends BaseScene{
 	private void createSmallRockFromRock(float x, float y, float xVel) {
 		Random rand = new Random();
 		final float yVel = -(rand.nextInt(SMALL_ROCK_MAX_RANDOM_Y_VEL) + SMALL_ROCK_MIN_RANDOM_Y_VEL);
-		final float velocityMultiplier = rand.nextInt(3) + 3;
+		final float velocityMultiplier = rand.nextInt(VELOCITY_MULTIPLIER_MAX_RANDOM - VELOCITY_MULTIPLIER_MIN_RANDOM + 1) + VELOCITY_MULTIPLIER_MIN_RANDOM;
 		
 		SmallRock smallRock = new SmallRock(x, y, vbom, camera, physicsWorld) {
 			@Override
@@ -1073,12 +906,7 @@ public class GameScene extends BaseScene{
 							@Override
 							public void run() {
 								addScore(SMALL_ROCK_SCORE);
-								ref.setVisible(false);
-								ref.getSmallRockBody().setActive(false);
-								ref.setIgnoreUpdate(true);
-								smallRocksCounter--;
-								GameScene.this.unregisterTouchArea(ref);
-								createExplosion(ref.getX(), ref.getY());
+								destroySmallRock(ref);
 							}
 						});
 					}
@@ -1095,12 +923,7 @@ public class GameScene extends BaseScene{
 						@Override
 						public void run() {
 							addScore(SMALL_ROCK_SCORE);
-							ref.setVisible(false);
-							ref.getSmallRockBody().setActive(false);
-							ref.setIgnoreUpdate(true);
-							smallRocksCounter--;
-							GameScene.this.unregisterTouchArea(ref);
-							createExplosion(ref.getX(), ref.getY());
+							destroySmallRock(ref);
 						}
 					});
 				}
@@ -1108,19 +931,14 @@ public class GameScene extends BaseScene{
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
-					final SmallRock smallRockRef = this;
+					final SmallRock ref = this;
 					engine.runOnUpdateThread(new Runnable() {
 						
 						@Override
 						public void run() {
-							if (smallRockRef.getSmallRockBody().isActive() && availablePause && !gameOver) {
+							if (ref.getSmallRockBody().isActive() && availablePause && !gameOver) {
 								addScore(SMALL_ROCK_SCORE);
-								smallRocksCounter--;
-								smallRockRef.setVisible(false);
-								smallRockRef.getSmallRockBody().setActive(false);
-								smallRockRef.setIgnoreUpdate(true);
-								GameScene.this.unregisterTouchArea(smallRockRef);
-								createExplosion(smallRockRef.getX(), smallRockRef.getY());
+								destroySmallRock(ref);
 							}
 						}
 					});
@@ -1132,8 +950,6 @@ public class GameScene extends BaseScene{
 		};
 
 		smallRock.setSmallRockDirection(velocityMultiplier * xVel, yVel);
-		
-		smallRocksCounter++;
 				
 		smallRock.setCullingEnabled(true);
 		GameScene.this.attachChild(smallRock);
@@ -1259,17 +1075,7 @@ public class GameScene extends BaseScene{
 		smallHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
 		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
-		
-		//int[] house_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
-		int[] house_positions = {120, 240, 440, 600, 760, 920, 1060, 1180};
-		
-		//n = rand.nextInt(max - min + 1) + min;
-		Random rand = new Random();
-		/*int smallX = rand.nextInt(7) + 0;
-		int normalX = rand.nextInt(7) + 0;
-		int largeX = rand.nextInt(7) + 0;*/
-				
-		//smallHouse = new SmallHouse(house_positions[smallX], housesInitialHeight, vbom, camera, physicsWorld) {
+
 		smallHouse = new SmallHouse(240, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
@@ -1278,12 +1084,7 @@ public class GameScene extends BaseScene{
 				if (this.isSmallHouseDestroyed() && this.getSmallHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getSmallHouseBody().setActive(false);
-					resourcesManager.explosion.play();
-					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-					explosion.setPosition(this.getX(), this.getY());
-					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-					GameScene.this.attachChild(explosion);
+					createExplosion(this.getX(), this.getY());
 				}
 				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
 				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2 - 13, smallHouseHealthBar.getY());
@@ -1303,7 +1104,6 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		//largeHouse = new LargeHouse(house_positions[largeX], housesInitialHeight, vbom, camera, physicsWorld) {
 		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
@@ -1312,12 +1112,7 @@ public class GameScene extends BaseScene{
 				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getLargeHouseBody().setActive(false);
-					resourcesManager.explosion.play();
-					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-					explosion.setPosition(this.getX(), this.getY());
-					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-					GameScene.this.attachChild(explosion);
+					createExplosion(this.getX(), this.getY());
 				}
 				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
 				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2 - 13, largeHouseHealthBar.getY());
@@ -1337,7 +1132,6 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		//house = new House(house_positions[normalX], housesInitialHeight, vbom, camera, physicsWorld) {
 		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
@@ -1346,12 +1140,7 @@ public class GameScene extends BaseScene{
 				if (this.isHouseDestroyed() && this.getHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getHouseBody().setActive(false);
-					resourcesManager.explosion.play();
-					explosion = new AnimatedSprite(0, 0, resourcesManager.game_explosion_region.deepCopy(), vbom);
-					explosion.setPosition(this.getX(), this.getY());
-					final long[] EXPLOSION_ANIMATE = new long[] {75, 75, 75, 75, 75, 150};
-					explosion.animate(EXPLOSION_ANIMATE, 0, 5, false);
-					GameScene.this.attachChild(explosion);
+					createExplosion(this.getX(), this.getY());
 				}
 				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
 				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
@@ -1375,12 +1164,14 @@ public class GameScene extends BaseScene{
 		house.attachChild(houseHealthBarBackground);
 		house.attachChild(houseHealthBar);
 		house.attachChild(healthBarFrame);
+		
 		smallHouse.attachChild(smallHouseHealthBarBackground);
 		smallHouse.attachChild(smallHouseHealthBar);
 		smallHouse.attachChild(smallHealthBarFrame);
 		largeHouse.attachChild(largeHouseHealthBarBackground);
 		largeHouse.attachChild(largeHouseHealthBar);
 		largeHouse.attachChild(largeHealthBarFrame);
+		
 		GameScene.this.attachChild(house);
 		GameScene.this.attachChild(smallHouse);
 		GameScene.this.attachChild(largeHouse);
@@ -1785,7 +1576,6 @@ public class GameScene extends BaseScene{
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		finalScoreText.setText(""+score);
 		
-		//450
 		retryButton = new Sprite(550, 50, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
@@ -1801,14 +1591,12 @@ public class GameScene extends BaseScene{
 	    submitScoreButton = new Sprite(270, 50, resourcesManager.game_submit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
-	    			//activity.setSubmitScore(score);
-	    			//activity.onGameOver();
 	    			activity.submitScore(score);
 	    		}
 	    		return true;
 	    	};
 	    };
-	    //150
+
 	    quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
@@ -1854,7 +1642,6 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createExplosion(float x, float y) {
-		//explosion = new AnimatedSprite(x, y, resourcesManager.game_explosion_region.deepCopy(), vbom);
 		resourcesManager.explosion.play();
 		explosion = explosionPool.obtainPoolItem();
 		explosion.setPosition(x, y);
@@ -1887,13 +1674,9 @@ public class GameScene extends BaseScene{
 		});
 		
 		explosion.setCullingEnabled(true);
-		/*if (!explosion.hasParent()) {
-			GameScene.this.attachChild(explosion);
-		}*/		
 	}
 	
 	private void createSmallExplosion(float x, float y) {
-		//small_explosion = new AnimatedSprite(x, y, resourcesManager.game_small_explosion_region.deepCopy(), vbom);
 		resourcesManager.explosion.play();
 		small_explosion = smallExplosionPool.obtainPoolItem();
 		small_explosion.setPosition(x, y);
@@ -1925,7 +1708,6 @@ public class GameScene extends BaseScene{
 			}
 		});
 		small_explosion.setCullingEnabled(true);
-		//GameScene.this.attachChild(small_explosion);
 	}
 	
 	private void createBombBox() {
@@ -1941,9 +1723,7 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (ref.getBombBody().isActive() && availablePause && !gameOver) {
 								regenerateBoxes(ref.getBombBody());
-								//ref.setVisible(false);
 								ref.getBombBody().setActive(false);
-								//GameScene.this.unregisterTouchArea(ref);
 								registerEntityModifier(new DelayModifier(0.1f, new IEntityModifierListener() {
 									
 									@Override
@@ -1984,9 +1764,7 @@ public class GameScene extends BaseScene{
 						public void run() {
 							if (ref.getRepairBody().isActive() && availablePause && !gameOver) {
 								regenerateBoxes(ref.getRepairBody());
-								//ref.setVisible(false);
 								ref.getRepairBody().setActive(false);
-								//GameScene.this.unregisterTouchArea(ref);
 								if (!smallHouse.isSmallHouseDestroyed()) {
 									smallHouse.repairCompleteSmallHouse();
 								}
@@ -2025,9 +1803,7 @@ public class GameScene extends BaseScene{
 								resourcesManager.shield.play();
 								resourcesManager.shield.setLooping(true);
 								regenerateBoxes(ref.getShieldBody());
-								//ref.setVisible(false);
 								ref.getShieldBody().setActive(false);
-								//GameScene.this.unregisterTouchArea(ref);
 								registerEntityModifier(new DelayModifier(SHIELD_DURATION, new IEntityModifierListener() {
 									
 									@Override
