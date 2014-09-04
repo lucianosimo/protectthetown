@@ -70,6 +70,7 @@ public class GameScene extends BaseScene{
 	//Physics world variable
 	private PhysicsWorld physicsWorld;
 	
+	
 	//Texts
 	private Text scoreText;
 	private Text currentScoreText;
