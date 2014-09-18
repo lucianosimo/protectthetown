@@ -121,7 +121,7 @@ public class ResourcesManager {
 	
 	//Platforms
 	public ITextureRegion game_floor_region;
-	public ITextureRegion game_floor_back_region;
+	//public ITextureRegion game_floor_back_region;
 	public ITextureRegion game_earth_region;
 	public ITextureRegion game_base_floor_region;
 	
@@ -301,7 +301,7 @@ public class ResourcesManager {
 		
 		game_small_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_small.png");
 		game_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house.png");
-		game_large_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_large_house.png");
+		game_large_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_large.png");
 		
 		game_health_bar_frame_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_health_bar_frame.png");
 		game_shield_bar_frame_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_shield_bar_frame.png");
@@ -316,7 +316,7 @@ public class ResourcesManager {
 		game_base_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_base_floor.png");
 		game_earth_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_earth.png");
 		game_floor_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor.png");
-		game_floor_back_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor_back.png");
+		//game_floor_back_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_floor_back.png");
 		
 		game_help_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameHelpWindowTextureAtlas, activity, "game_help_window.png");
 		game_over_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_over_window.png");

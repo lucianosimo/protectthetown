@@ -5,7 +5,6 @@ import java.util.Random;
 
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.IUpdateHandler;
-import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
@@ -1048,33 +1047,39 @@ public class GameScene extends BaseScene{
 	 */
 	private void createHouses() {
 		final int housesInitialHeight = 600;
-		final int healthBarWidth = 100;
-		final int healthBarHeight = 12;
+		final int healthBarWidth = 150;
+		final int healthBarHeight = 15;
 		
-		final int smallInitialX = 37;
-		final int smallInitialY = 100;
-		final int houseInitialX = 37;
-		final int houseInitialY = 125;
-		final int largeInitialX = 37;
-		final int largeInitialY = 175;
+		final int smallInitialX = 90;
+		final int smallInitialY = -25;
+		final int houseInitialX = 121;
+		final int houseInitialY = -25;
+		final int largeInitialX = 120;
+		final int largeInitialY = -25;
 		
 		final Rectangle smallHouseHealthBarBackground = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, healthBarHeight, vbom);
 		final Rectangle smallHouseHealthBar = new Rectangle(smallInitialX, smallInitialY, healthBarWidth, healthBarHeight, vbom);
 		final Rectangle houseHealthBarBackground = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, healthBarHeight, vbom);
 		final Rectangle houseHealthBar = new Rectangle(houseInitialX, houseInitialY, healthBarWidth, healthBarHeight, vbom);
-		final Rectangle largeHouseHealthBarBackground = new Rectangle(largeInitialX, largeInitialY, 102, healthBarHeight, vbom);
-		final Rectangle largeHouseHealthBar = new Rectangle(largeInitialX, largeInitialY, 102, healthBarHeight, vbom);
+		final Rectangle largeHouseHealthBarBackground = new Rectangle(largeInitialX, largeInitialY, healthBarWidth, healthBarHeight, vbom);
+		final Rectangle largeHouseHealthBar = new Rectangle(largeInitialX, largeInitialY, healthBarWidth, healthBarHeight, vbom);
 		
 		final Sprite smallHealthBarFrame = new Sprite(smallInitialX, smallInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		final Sprite healthBarFrame = new Sprite(houseInitialX, houseInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		final Sprite largeHealthBarFrame = new Sprite(largeInitialX, largeInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		
-		houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
-		smallHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		smallHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
-		largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		//houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		//houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		houseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
+		houseHealthBar.setColor(0.514f, 0.729f, 0.188f);
+		//smallHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		//smallHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		smallHouseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
+		smallHouseHealthBar.setColor(0.514f, 0.729f, 0.188f);
+		//largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
+		//largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
+		largeHouseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
+		largeHouseHealthBar.setColor(0.514f, 0.729f, 0.188f);
 
 		smallHouse = new SmallHouse(240, housesInitialHeight, vbom, camera, physicsWorld) {
 			@Override
@@ -1087,7 +1092,7 @@ public class GameScene extends BaseScene{
 					createExplosion(this.getX(), this.getY());
 				}
 				smallHouseHealthBar.setSize(this.getSmallHouseEnergy() * energyWidthFactor, smallHouseHealthBar.getHeight());
-				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2 - 13, smallHouseHealthBar.getY());
+				smallHouseHealthBar.setPosition((this.getSmallHouseEnergy() * energyWidthFactor) / 2 + 15, smallHouseHealthBar.getY());
 			}
 
 			@Override
@@ -1108,14 +1113,14 @@ public class GameScene extends BaseScene{
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
-				float energyWidthFactor = 102 / this.getMaxEnergy();
+				float energyWidthFactor = healthBarWidth / this.getMaxEnergy();
 				if (this.isLargeHouseDestroyed() && this.getLargeHouseBody().isActive()) {
 					this.setVisible(false);
 					this.getLargeHouseBody().setActive(false);
 					createExplosion(this.getX(), this.getY());
 				}
 				largeHouseHealthBar.setSize(this.getLargeHouseEnergy() * energyWidthFactor, largeHouseHealthBar.getHeight());
-				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2 - 13, largeHouseHealthBar.getY());
+				largeHouseHealthBar.setPosition((this.getLargeHouseEnergy() * energyWidthFactor) / 2 + 45, largeHouseHealthBar.getY());
 			}
 
 			@Override
@@ -1143,7 +1148,7 @@ public class GameScene extends BaseScene{
 					createExplosion(this.getX(), this.getY());
 				}
 				houseHealthBar.setSize(this.getHouseEnergy() * energyWidthFactor, houseHealthBar.getHeight());
-				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 - 13, houseHealthBar.getY());
+				houseHealthBar.setPosition((this.getHouseEnergy() * energyWidthFactor) / 2 + 47, houseHealthBar.getY());
 			}
 
 			@Override
@@ -1195,9 +1200,9 @@ public class GameScene extends BaseScene{
 		for (int i = 0; i < 8; i++) {
 			elevation = rand.nextInt(5) + 1;
 			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
-			Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
+			//Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
 			floor[i].setCullingEnabled(true);
-			floor[i].attachChild(floor_back);
+			//floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
 			if (elevation == 2) {
 				Earth earth = new Earth(floor_positions[i], 50, vbom, camera, physicsWorld);
@@ -1209,9 +1214,9 @@ public class GameScene extends BaseScene{
 	
 	private void createDecoration() {
 		//n = rand.nextInt(max - min + 1) + min;
-		Random rand = new Random();
-		int x = rand.nextInt(1281) + 1;
-		int y = rand.nextInt(321) + 400;
+		//Random rand = new Random();
+		//int x = rand.nextInt(1281) + 1;
+		//int y = rand.nextInt(321) + 400;
 		//int cloudSpeed = -(rand.nextInt(11) + 35);
 		//int farCloudSpeed = -(rand.nextInt(11) + 10);
 		Tree[] trees = new Tree[6];
