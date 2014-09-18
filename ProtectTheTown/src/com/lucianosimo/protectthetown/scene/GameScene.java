@@ -1212,8 +1212,8 @@ public class GameScene extends BaseScene{
 		Random rand = new Random();
 		int x = rand.nextInt(1281) + 1;
 		int y = rand.nextInt(321) + 400;
-		int cloudSpeed = -(rand.nextInt(11) + 35);
-		int farCloudSpeed = -(rand.nextInt(11) + 10);
+		//int cloudSpeed = -(rand.nextInt(11) + 35);
+		//int farCloudSpeed = -(rand.nextInt(11) + 10);
 		Tree[] trees = new Tree[6];
 		int[] trees_positions = {80, 350, 450, 680, 880, 1200};
 		ITextureRegion region = resourcesManager.game_trees_1_region;
@@ -1245,7 +1245,7 @@ public class GameScene extends BaseScene{
 			GameScene.this.attachChild(trees[i]);
 		}
 		
-		Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
+		/*Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
 				if (this.getX() < -200) {
@@ -1302,12 +1302,12 @@ public class GameScene extends BaseScene{
 		};
 		PhysicsHandler handler5 = new PhysicsHandler(farCloud2);
 		farCloud2.registerUpdateHandler(handler5);
-		handler5.setVelocity(farCloudSpeed, 0);
+		handler5.setVelocity(farCloudSpeed, 0);*/
 		
-		GameScene.this.attachChild(cloud1);
+		/*GameScene.this.attachChild(cloud1);
 		GameScene.this.attachChild(cloud2);
 		GameScene.this.attachChild(farCloud1);
-		GameScene.this.attachChild(farCloud2);
+		GameScene.this.attachChild(farCloud2);*/
 	}
 	
 	private void setRockDirection(float x, Body body, float yVel) {

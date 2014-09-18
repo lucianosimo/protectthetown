@@ -1,7 +1,5 @@
 package com.lucianosimo.protectthetown.scene;
 
-import org.andengine.entity.modifier.LoopEntityModifier;
-import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -10,11 +8,7 @@ import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.decorator.ScaleMenuItemDecorator;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.util.adt.align.HorizontalAlign;
-import org.andengine.util.adt.color.Color;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,8 +29,8 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	private float screenWidth;
 	private float screenHeight;
 	
-	private Text highScoreText;
-	private int highScore;
+	//private Text highScoreText;
+	//private int highScore;
 	
 	private Sprite soundDisabled;
 	private Sprite musicDisabled;
@@ -112,20 +106,20 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		menuChildScene = new MenuScene(camera);
 		menuChildScene.setPosition(screenWidth/2, screenHeight/2);
 		
-		loadHighScore();
+		//loadHighScore();
 		
-		highScoreText = new Text(0, -300, resourcesManager.highScoreFont, "High Score: 123456789", new TextOptions(HorizontalAlign.CENTER), vbom);
+		/*highScoreText = new Text(0, -300, resourcesManager.highScoreFont, "High Score: 123456789", new TextOptions(HorizontalAlign.CENTER), vbom);
 		highScoreText.setText("High Score: " + highScore);
-		highScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
+		highScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);*/
 		
-		Sprite play_button_background = new Sprite(0, -10, resourcesManager.menu_play_button_background_region, vbom);
+		/*Sprite play_button_background = new Sprite(0, -10, resourcesManager.menu_play_button_background_region, vbom);
 		play_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, -(4 * 180))));
 		
 		Sprite rateus_button_background = new Sprite(-500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
 		rateus_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
 		
 		Sprite global_scores_button_background = new Sprite(500, -225, resourcesManager.menu_rateus_button_background_region, vbom);
-		global_scores_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));
+		global_scores_button_background.registerEntityModifier(new LoopEntityModifier(new RotationModifier(60, 0, 3 * 180)));*/
 		
 		Sprite soundButton = new Sprite(-570, 290, resourcesManager.menu_sound_button_region, vbom) {
 			@Override
@@ -186,10 +180,10 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		menuChildScene.registerTouchArea(soundButton);
 		menuChildScene.registerTouchArea(musicButton);
 		
-		menuChildScene.attachChild(play_button_background);
+		/*menuChildScene.attachChild(play_button_background);
 		menuChildScene.attachChild(rateus_button_background);
-		menuChildScene.attachChild(global_scores_button_background);
-		menuChildScene.attachChild(highScoreText);
+		menuChildScene.attachChild(global_scores_button_background);*/
+		//menuChildScene.attachChild(highScoreText);
 		
 		final IMenuItem playMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_PLAY, resourcesManager.menu_play_button_region, vbom), 1.2f, 1);
 		final IMenuItem rateusMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(MENU_RATEUS, resourcesManager.menu_rateus_button_region, vbom), 1.2f, 1);
@@ -204,9 +198,9 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		menuChildScene.buildAnimations();
 		menuChildScene.setBackgroundEnabled(false);
 		
-		playMenuItem.setPosition(0, -10);
-		rateusMenuItem.setPosition(-500, -225);
-		globalScoresMenuItem.setPosition(500, -225);
+		playMenuItem.setPosition(0, -225);
+		rateusMenuItem.setPosition(-375, -250);
+		globalScoresMenuItem.setPosition(375, -250);
 		quitMenuItem.setPosition(570, 290);
 		
 		menuChildScene.setOnMenuItemClickListener(this);
@@ -246,10 +240,10 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 		
 	}
 	
-	private void loadHighScore() {
+	/*private void loadHighScore() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 		highScore = sharedPreferences.getInt("highScore", 0);
-	}
+	}*/
 	
 	private void displayRateUsWindow() {
 		MainMenuScene.this.activity.runOnUiThread(new Runnable() {
