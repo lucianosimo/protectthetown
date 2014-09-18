@@ -1046,7 +1046,7 @@ public class GameScene extends BaseScene{
 	 * Creates houses on level generation
 	 */
 	private void createHouses() {
-		final int housesInitialHeight = 600;
+		final int housesInitialHeight = 500;
 		final int healthBarWidth = 150;
 		final int healthBarHeight = 15;
 		
@@ -1188,24 +1188,24 @@ public class GameScene extends BaseScene{
 	private void createFloor() {
 		Random rand = new Random();
 		int elevation;
-		int[] floor_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
+		int[] floor_positions = {80, 240, 450, 560, 720, 880, 1040, 1200};
 		Floor[] floor = new Floor[8];
  		
-		Sprite base_floor = new Sprite(screenWidth/2, 0, resourcesManager.game_base_floor_region, vbom);
+		Sprite base_floor = new Sprite(screenWidth/2, -25, resourcesManager.game_base_floor_region, vbom);
 		Body base_floor_body = PhysicsFactory.createBoxBody(physicsWorld, base_floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		base_floor_body.setUserData("base_floor");
 		base_floor.setCullingEnabled(true);
 		GameScene.this.attachChild(base_floor);
 		
 		for (int i = 0; i < 8; i++) {
-			elevation = rand.nextInt(5) + 1;
+			elevation = rand.nextInt(4) + 1;
 			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
 			//Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
 			floor[i].setCullingEnabled(true);
 			//floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
 			if (elevation == 2) {
-				Earth earth = new Earth(floor_positions[i], 50, vbom, camera, physicsWorld);
+				Earth earth = new Earth(floor_positions[i], 25, vbom, camera, physicsWorld);
 				GameScene.this.attachChild(earth);
 			}
 		}
@@ -1220,7 +1220,7 @@ public class GameScene extends BaseScene{
 		//int cloudSpeed = -(rand.nextInt(11) + 35);
 		//int farCloudSpeed = -(rand.nextInt(11) + 10);
 		Tree[] trees = new Tree[6];
-		int[] trees_positions = {80, 350, 450, 680, 880, 1200};
+		int[] trees_positions = {80, 300, 400, 500, 880, 1200};
 		ITextureRegion region = resourcesManager.game_trees_1_region;
 		
 		for (int i = 0; i < 6; i++) {
@@ -1246,7 +1246,7 @@ public class GameScene extends BaseScene{
 			default:
 				break;
 			}
-			trees[i] = new Tree(trees_positions[i], 600, vbom, camera, physicsWorld, region);
+			trees[i] = new Tree(trees_positions[i], 500, vbom, camera, physicsWorld, region);
 			GameScene.this.attachChild(trees[i]);
 		}
 		
