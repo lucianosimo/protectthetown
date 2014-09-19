@@ -81,8 +81,8 @@ public class MainMenuScene extends BaseScene implements IOnMenuItemClickListener
 	}
 	
 	private void createMenuChildScene() {
-		soundDisabled = new Sprite(51, 51, resourcesManager.menu_disabled_region, vbom);
-		musicDisabled = new Sprite(51, 51, resourcesManager.menu_disabled_region, vbom);
+		soundDisabled = new Sprite(51, 51, resourcesManager.menu_sound_disabled_button_region, vbom);
+		musicDisabled = new Sprite(51, 51, resourcesManager.menu_music_disabled_button_region, vbom);
 		
 		//If soundEnabled = 0, enabled..if 1 disabled
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);

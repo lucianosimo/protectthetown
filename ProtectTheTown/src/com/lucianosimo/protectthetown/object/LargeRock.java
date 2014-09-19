@@ -26,7 +26,6 @@ public class LargeRock extends Sprite{
 	public LargeRock(float pX, float pY, VertexBufferObjectManager vbom, Camera camera, PhysicsWorld physicsWorld) {
 		super(pX, pY, ResourcesManager.getInstance().game_large_rock_region.deepCopy(), vbom);
 		createPhysics(camera, physicsWorld);
-		//camera.setChaseEntity(this);
 	}
 	
 	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) {
@@ -37,19 +36,18 @@ public class LargeRock extends Sprite{
 		final float width = 160 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		final float height = 166 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		final Vector2[] v = {
-			new Vector2(-0.23125f*width, -0.43373f*height),
-			new Vector2(+0.05000f*width, -0.50602f*height),
-			new Vector2(+0.36250f*width, -0.40361f*height),
-			new Vector2(+0.53750f*width, +0.15060f*height),
-			new Vector2(+0.14375f*width, +0.51807f*height),
-			new Vector2(-0.36250f*width, +0.43976f*height),
-			new Vector2(-0.51250f*width, -0.06627f*height),
+			new Vector2(-0.53125f*width, -0.10241f*height),
+			new Vector2(-0.31875f*width, -0.43976f*height),
+			new Vector2(+0.01875f*width, -0.52410f*height),
+			new Vector2(+0.51875f*width, -0.01807f*height),
+			new Vector2(+0.26250f*width, +0.45783f*height),
+			new Vector2(-0.18125f*width, +0.52410f*height),
+			new Vector2(-0.46875f*width, +0.22892f*height),
 		};
 		
 		this.setUserData("large_rock");
 		fixture = PhysicsFactory.createFixtureDef(0, 0, 0);
 		fixture.filter.groupIndex = -1;
-		//body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, fixture);
 		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v, BodyType.DynamicBody, fixture);
 		body.setUserData("large_rock");
 		body.setFixedRotation(true);

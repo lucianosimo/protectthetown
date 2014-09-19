@@ -1046,9 +1046,48 @@ public class GameScene extends BaseScene{
 	 * Creates houses on level generation
 	 */
 	private void createHouses() {
+		ITextureRegion mediumHouseRegion;
+		ITextureRegion largeHouseRegion;
+		
 		final int housesInitialHeight = 500;
 		final int healthBarWidth = 150;
 		final int healthBarHeight = 15;
+		
+		//n = rand.nextInt(max - min + 1) + min;
+		Random rand = new Random();
+		final int whichMediumHouse = rand.nextInt(4) + 1;
+		final int whichLargeHouse = rand.nextInt(2) + 1;
+		
+		switch (whichMediumHouse) {
+		case 1:
+			mediumHouseRegion = resourcesManager.game_house_1_region;
+			break;
+		case 2:
+			mediumHouseRegion = resourcesManager.game_house_2_region;
+			break;
+		case 3:
+			mediumHouseRegion = resourcesManager.game_house_3_region;
+			break;
+		case 4:
+			mediumHouseRegion = resourcesManager.game_house_4_region;
+			break;
+		default:
+			mediumHouseRegion = resourcesManager.game_house_1_region;
+			break;
+		}
+		
+		switch (whichLargeHouse) {
+		case 1:
+			largeHouseRegion = resourcesManager.game_large_house_1_region;
+			break;
+		case 2:
+			largeHouseRegion = resourcesManager.game_large_house_2_region;
+			break;
+		default:
+			largeHouseRegion = resourcesManager.game_large_house_1_region;
+			break;
+		}
+		
 		
 		final int smallInitialX = 90;
 		final int smallInitialY = -25;
@@ -1068,16 +1107,10 @@ public class GameScene extends BaseScene{
 		final Sprite healthBarFrame = new Sprite(houseInitialX, houseInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		final Sprite largeHealthBarFrame = new Sprite(largeInitialX, largeInitialY, resourcesManager.game_health_bar_frame_region, vbom);
 		
-		//houseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		//houseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		houseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
 		houseHealthBar.setColor(0.514f, 0.729f, 0.188f);
-		//smallHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		//smallHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		smallHouseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
 		smallHouseHealthBar.setColor(0.514f, 0.729f, 0.188f);
-		//largeHouseHealthBarBackground.setColor(Color.RED_ARGB_PACKED_INT);
-		//largeHouseHealthBar.setColor(Color.GREEN_ARGB_PACKED_INT);
 		largeHouseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
 		largeHouseHealthBar.setColor(0.514f, 0.729f, 0.188f);
 
@@ -1109,7 +1142,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld) {
+		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld, largeHouseRegion, whichLargeHouse) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1137,7 +1170,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld) {
+		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld, mediumHouseRegion, whichMediumHouse) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1191,7 +1224,7 @@ public class GameScene extends BaseScene{
 		int[] floor_positions = {80, 240, 450, 560, 720, 880, 1040, 1200};
 		Floor[] floor = new Floor[8];
  		
-		Sprite base_floor = new Sprite(screenWidth/2, -25, resourcesManager.game_base_floor_region, vbom);
+		Sprite base_floor = new Sprite(screenWidth/2, -15, resourcesManager.game_base_floor_region, vbom);
 		Body base_floor_body = PhysicsFactory.createBoxBody(physicsWorld, base_floor, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		base_floor_body.setUserData("base_floor");
 		base_floor.setCullingEnabled(true);
@@ -1205,7 +1238,7 @@ public class GameScene extends BaseScene{
 			//floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
 			if (elevation == 2) {
-				Earth earth = new Earth(floor_positions[i], 25, vbom, camera, physicsWorld);
+				Earth earth = new Earth(floor_positions[i], 35, vbom, camera, physicsWorld);
 				GameScene.this.attachChild(earth);
 			}
 		}
@@ -1214,11 +1247,6 @@ public class GameScene extends BaseScene{
 	
 	private void createDecoration() {
 		//n = rand.nextInt(max - min + 1) + min;
-		//Random rand = new Random();
-		//int x = rand.nextInt(1281) + 1;
-		//int y = rand.nextInt(321) + 400;
-		//int cloudSpeed = -(rand.nextInt(11) + 35);
-		//int farCloudSpeed = -(rand.nextInt(11) + 10);
 		Tree[] trees = new Tree[6];
 		int[] trees_positions = {80, 300, 400, 500, 880, 1200};
 		ITextureRegion region = resourcesManager.game_trees_1_region;
@@ -1249,70 +1277,6 @@ public class GameScene extends BaseScene{
 			trees[i] = new Tree(trees_positions[i], 500, vbom, camera, physicsWorld, region);
 			GameScene.this.attachChild(trees[i]);
 		}
-		
-		/*Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
-			protected void onManagedUpdate(float pSecondsElapsed) {
-				super.onManagedUpdate(pSecondsElapsed);
-				if (this.getX() < -200) {
-					this.setPosition(1480, this.getY());
-				}
-			};
-		};
-		PhysicsHandler handler = new PhysicsHandler(cloud1);
-		cloud1.registerUpdateHandler(handler);
-		handler.setVelocity(cloudSpeed, 0);
-		
-		x = rand.nextInt(1281) + 1;
-		y = rand.nextInt(321) + 400;
-		cloudSpeed = -(rand.nextInt(11) + 35);
-		
-		Sprite cloud2 = new Sprite(x, y, resourcesManager.game_cloud_2_region, vbom) {
-			protected void onManagedUpdate(float pSecondsElapsed) {
-				super.onManagedUpdate(pSecondsElapsed);
-				if (this.getX() < -200) {
-					this.setPosition(1480, this.getY());
-				}
-			};
-		};
-		PhysicsHandler handler2 = new PhysicsHandler(cloud2);
-		cloud1.registerUpdateHandler(handler2);
-		handler2.setVelocity(cloudSpeed, 0);
-		
-		x = rand.nextInt(1281) + 1;
-		y = rand.nextInt(321) + 400;
-		
-		Sprite farCloud1 = new Sprite(x, y, resourcesManager.game_far_cloud_1_region, vbom) {
-			protected void onManagedUpdate(float pSecondsElapsed) {
-				super.onManagedUpdate(pSecondsElapsed);
-				if (this.getX() < -200) {
-					this.setPosition(1480, this.getY());
-				}
-			};
-		};
-		PhysicsHandler handler4 = new PhysicsHandler(farCloud1);
-		farCloud1.registerUpdateHandler(handler4);
-		handler4.setVelocity(farCloudSpeed, 0);
-		
-		x = rand.nextInt(1281) + 1;
-		y = rand.nextInt(321) + 400;
-		farCloudSpeed = -(rand.nextInt(11) + 10);
-		
-		Sprite farCloud2 = new Sprite(x, y, resourcesManager.game_far_cloud_2_region, vbom) {
-			protected void onManagedUpdate(float pSecondsElapsed) {
-				super.onManagedUpdate(pSecondsElapsed);
-				if (this.getX() < -200) {
-					this.setPosition(1480, this.getY());
-				}
-			};
-		};
-		PhysicsHandler handler5 = new PhysicsHandler(farCloud2);
-		farCloud2.registerUpdateHandler(handler5);
-		handler5.setVelocity(farCloudSpeed, 0);*/
-		
-		/*GameScene.this.attachChild(cloud1);
-		GameScene.this.attachChild(cloud2);
-		GameScene.this.attachChild(farCloud1);
-		GameScene.this.attachChild(farCloud2);*/
 	}
 	
 	private void setRockDirection(float x, Body body, float yVel) {
@@ -1359,7 +1323,6 @@ public class GameScene extends BaseScene{
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-				//GameScene.this.unregisterTouchArea(pauseButton);
 				if (availablePause) {
 					displayPauseWindow();
 				}
@@ -1415,8 +1378,8 @@ public class GameScene extends BaseScene{
 		currentScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		currentScoreText.setText(""+score);
 		
-		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_disabled_region, vbom);
-		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_disabled_region, vbom);
+		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_sound_button_disabled_region, vbom);
+		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_music_button_disabled_region, vbom);
 		
 		//If soundEnabled = 0, enabled..if 1 disabled
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);

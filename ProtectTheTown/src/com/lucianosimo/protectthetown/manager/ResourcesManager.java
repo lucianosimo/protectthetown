@@ -49,14 +49,13 @@ public class ResourcesManager {
 	public ITextureRegion loading_background_region;
 	public ITextureRegion menu_background_region;
 	public ITextureRegion menu_play_button_region;
-	//public ITextureRegion menu_play_button_background_region;
 	public ITextureRegion menu_rateus_button_region;
-	//public ITextureRegion menu_rateus_button_background_region;
 	public ITextureRegion menu_global_scores_button_region;
 	public ITextureRegion menu_quit_button_region;
 	public ITextureRegion menu_sound_button_region;
+	public ITextureRegion menu_sound_disabled_button_region;
 	public ITextureRegion menu_music_button_region;
-	public ITextureRegion menu_disabled_region;
+	public ITextureRegion menu_music_disabled_button_region;
 	
 	private BuildableBitmapTextureAtlas loadingBackgroundTextureAtlas;
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
@@ -112,8 +111,14 @@ public class ResourcesManager {
 	public ITextureRegion game_dome_region;
 		
 	public ITextureRegion game_small_house_region;
-	public ITextureRegion game_house_region;
-	public ITextureRegion game_large_house_region;
+	
+	public ITextureRegion game_house_1_region;
+	public ITextureRegion game_house_2_region;
+	public ITextureRegion game_house_3_region;
+	public ITextureRegion game_house_4_region;
+	
+	public ITextureRegion game_large_house_1_region;
+	public ITextureRegion game_large_house_2_region;
 	
 	public ITextureRegion game_health_bar_frame_region;
 	public ITextureRegion game_shield_bar_frame_region;
@@ -121,7 +126,6 @@ public class ResourcesManager {
 	
 	//Platforms
 	public ITextureRegion game_floor_region;
-	//public ITextureRegion game_floor_back_region;
 	public ITextureRegion game_earth_region;
 	public ITextureRegion game_base_floor_region;
 	
@@ -152,8 +156,9 @@ public class ResourcesManager {
 	public ITextureRegion game_submit_button_region;
 	public ITextureRegion game_twitter_button_region;
 	public ITextureRegion game_sound_button_region;
+	public ITextureRegion game_sound_button_disabled_region;
 	public ITextureRegion game_music_button_region;
-	public ITextureRegion game_disabled_region;
+	public ITextureRegion game_music_button_disabled_region;
 	
 	//Game Textures
 	private BuildableBitmapTextureAtlas gameTextureAtlas;
@@ -203,9 +208,10 @@ public class ResourcesManager {
 		//menu_rateus_button_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_rateus_button_background.png");
 		menu_global_scores_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_global_scores_button.png");
 		menu_quit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_quit_button.png");
-		menu_sound_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_sound_button.png");;
-		menu_music_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_music_button.png");;
-		menu_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_disabled.png");;
+		menu_sound_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_sound_button.png");
+		menu_sound_disabled_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_sound_button_off.png");;
+		menu_music_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_music_button.png");
+		menu_music_disabled_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_music_button_off.png");;
 		
 		try {
 			this.menuTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
@@ -276,7 +282,7 @@ public class ResourcesManager {
 		game_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBackgroundTextureAtlas, activity, "game_background.png");
 		
 		game_small_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_rock_small.png");
-		game_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_rock.png");
+		game_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_rock_medium.png");
 		game_large_rock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_rock_large.png");
 		
 		game_satelite_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_satelite.png");
@@ -300,8 +306,14 @@ public class ResourcesManager {
 		game_ufo_shot_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_ufo_shot.png");
 		
 		game_small_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_small.png");
-		game_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house.png");
-		game_large_house_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_large.png");
+		
+		game_house_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_medium_1.png");
+		game_house_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_medium_2.png");
+		game_house_3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_medium_3.png");
+		game_house_4_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_medium_4.png");
+		
+		game_large_house_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_large_1.png");
+		game_large_house_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_house_large_2.png");
 		
 		game_health_bar_frame_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_health_bar_frame.png");
 		game_shield_bar_frame_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "game_shield_bar_frame.png");
@@ -330,8 +342,10 @@ public class ResourcesManager {
 		game_submit_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_submit_button.png");
 		game_twitter_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_twitter_button.png");
 		game_sound_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_sound_button.png");
+		game_sound_button_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_sound_button_off.png");
 		game_music_button_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_music_button.png");
-		game_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_disabled.png");
+		game_music_button_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_music_button_off.png");		
+		//game_disabled_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_disabled.png");
 		
 		game_countdown_frame_1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_1.png");
 		game_countdown_frame_2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameWindowsTextureAtlas, activity, "game_countdown_frame_2.png");
