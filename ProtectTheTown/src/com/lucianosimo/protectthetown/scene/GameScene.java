@@ -44,7 +44,6 @@ import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
 import com.lucianosimo.protectthetown.object.Bomb;
-import com.lucianosimo.protectthetown.object.Earth;
 import com.lucianosimo.protectthetown.object.Floor;
 import com.lucianosimo.protectthetown.object.House;
 import com.lucianosimo.protectthetown.object.LargeHouse;
@@ -1048,15 +1047,29 @@ public class GameScene extends BaseScene{
 	private void createHouses() {
 		ITextureRegion mediumHouseRegion;
 		ITextureRegion largeHouseRegion;
+				
+		int smallHouseInitialX = 240;
+		int mediumHouseInitialX = 1000;
+		int largeHouseInitialX = 600;
+		int smallHouseInitialY= 200;
+		int mediumHouseInitialY = 225;
+		int largeHouseInitialY = 250;
 		
-		final int housesInitialHeight = 500;
 		final int healthBarWidth = 150;
 		final int healthBarHeight = 15;
 		
 		//n = rand.nextInt(max - min + 1) + min;
 		Random rand = new Random();
-		final int whichMediumHouse = rand.nextInt(4) + 1;
-		final int whichLargeHouse = rand.nextInt(2) + 1;
+		
+		int whichMediumHouse = rand.nextInt(4) + 1;
+		int whichLargeHouse = rand.nextInt(2) + 1;
+		int smallOffsetY = rand.nextInt(100) + 1;
+		int mediumOffsetY = rand.nextInt(125) + 1;
+		int largeOffsetY = rand.nextInt(150) + 1;
+		
+		smallHouseInitialY = smallHouseInitialY - smallOffsetY;
+		mediumHouseInitialY = mediumHouseInitialY - mediumOffsetY;
+		largeHouseInitialY = largeHouseInitialY - largeOffsetY;
 		
 		switch (whichMediumHouse) {
 		case 1:
@@ -1114,7 +1127,7 @@ public class GameScene extends BaseScene{
 		largeHouseHealthBarBackground.setColor(0.722f, 0.176f, 0.239f);
 		largeHouseHealthBar.setColor(0.514f, 0.729f, 0.188f);
 
-		smallHouse = new SmallHouse(240, housesInitialHeight, vbom, camera, physicsWorld) {
+		smallHouse = new SmallHouse(smallHouseInitialX, smallHouseInitialY, vbom, camera, physicsWorld) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1142,7 +1155,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		largeHouse = new LargeHouse(600, housesInitialHeight, vbom, camera, physicsWorld, largeHouseRegion, whichLargeHouse) {
+		largeHouse = new LargeHouse(largeHouseInitialX, largeHouseInitialY, vbom, camera, physicsWorld, largeHouseRegion, whichLargeHouse) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1170,7 +1183,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		house = new House(1000, housesInitialHeight, vbom, camera, physicsWorld, mediumHouseRegion, whichMediumHouse) {
+		house = new House(mediumHouseInitialX, mediumHouseInitialY, vbom, camera, physicsWorld, mediumHouseRegion, whichMediumHouse) {
 			@Override
 			protected void onManagedUpdate(float pSecondsElapsed) {
 				super.onManagedUpdate(pSecondsElapsed);
@@ -1219,9 +1232,10 @@ public class GameScene extends BaseScene{
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		Random rand = new Random();
-		int elevation;
-		int[] floor_positions = {80, 240, 450, 560, 720, 880, 1040, 1200};
+		//Random rand = new Random();
+		//int elevation;
+		//int[] floor_positions = {80, 240, 450, 560, 720, 880, 1040, 1200};
+		int[] floor_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
 		Floor[] floor = new Floor[8];
  		
 		Sprite base_floor = new Sprite(screenWidth/2, -15, resourcesManager.game_base_floor_region, vbom);
@@ -1231,16 +1245,16 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(base_floor);
 		
 		for (int i = 0; i < 8; i++) {
-			elevation = rand.nextInt(4) + 1;
-			floor[i] = new Floor(floor_positions[i], 200, vbom, camera, physicsWorld);
+			//elevation = rand.nextInt(4) + 1;
+			floor[i] = new Floor(floor_positions[i], 35, vbom, camera, physicsWorld);
 			//Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
 			floor[i].setCullingEnabled(true);
 			//floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
-			if (elevation == 2) {
-				Earth earth = new Earth(floor_positions[i], 35, vbom, camera, physicsWorld);
-				GameScene.this.attachChild(earth);
-			}
+			//if (elevation == 2) {
+				//Earth earth = new Earth(floor_positions[i], 35, vbom, camera, physicsWorld);
+				//GameScene.this.attachChild(earth);
+			//}
 		}
 		
 	}

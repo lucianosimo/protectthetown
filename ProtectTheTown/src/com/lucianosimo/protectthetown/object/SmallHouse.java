@@ -40,7 +40,7 @@ public abstract class SmallHouse extends Sprite{
 			new Vector2(-0.28981f*width, +0.53912f*height),
 			new Vector2(-0.41327f*width, +0.09898f*height),
 		};
-		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		body.setUserData("small_house");
 		body.setFixedRotation(true);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {

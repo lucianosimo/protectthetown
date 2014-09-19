@@ -43,7 +43,7 @@ public abstract class LargeHouse extends Sprite{
 				new Vector2(-0.00903f*width, +0.51071f*height),
 				new Vector2(-0.46620f*width, -0.15596f*height),
 			};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		case 2:
 			final float width2 = 240 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -55,7 +55,7 @@ public abstract class LargeHouse extends Sprite{
 				new Vector2(-0.07269f*width2, +0.52153f*height2),
 				new Vector2(-0.51250f*width2, -0.01088f*height2),
 				};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v2, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v2, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		default:
 			break;

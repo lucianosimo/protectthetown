@@ -36,16 +36,14 @@ public abstract class House extends Sprite{
 			final float width = 242 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 			final float height = 170 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 			final Vector2[] v1 = {
-				new Vector2(-0.50253f*width, -0.02353f*height),
-				new Vector2(-0.44513f*width, -0.41569f*height),
-				new Vector2(+0.45018f*width, -0.42386f*height),
-				new Vector2(+0.51905f*width, -0.01536f*height),
-				new Vector2(+0.33540f*width, +0.51569f*height),
-				new Vector2(+0.18044f*width, +0.49935f*height),
-				new Vector2(+0.08287f*width, +0.25425f*height),
-				new Vector2(-0.42792f*width, +0.25425f*height),
+				new Vector2(-0.50413f*width, -0.49412f*height),
+				new Vector2(+0.49174f*width, -0.48235f*height),
+				new Vector2(+0.50826f*width, +0.00588f*height),
+				new Vector2(+0.33884f*width, +0.52353f*height),
+				new Vector2(-0.37603f*width, +0.51765f*height),
+				new Vector2(-0.53719f*width, +0.05294f*height),
 			};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v1, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		case 2:
 			final float width2 = 230 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -58,7 +56,7 @@ public abstract class House extends Sprite{
 				new Vector2(+0.37101f*width2, +0.49064f*height2),
 				new Vector2(-0.36570f*width2, +0.49795f*height2),
 				};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v2, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v2, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		case 3:
 			final float width3 = 240 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -71,7 +69,7 @@ public abstract class House extends Sprite{
 				new Vector2(-0.41412f*width3, +0.49118f*height3),
 				new Vector2(-0.48356f*width3, -0.00719f*height3),
 				};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v3, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v3, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		case 4:
 			final float width4 = 232 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -84,7 +82,7 @@ public abstract class House extends Sprite{
 				new Vector2(-0.27275f*width4, +0.50451f*height4),
 				new Vector2(-0.53017f*width4, -0.01632f*height4),
 				};
-			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v4, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+			body = PhysicsFactory.createPolygonBody(physicsWorld, this, v4, BodyType.StaticBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 			break;
 		default:
 			break;
