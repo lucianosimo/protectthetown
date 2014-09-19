@@ -1064,8 +1064,8 @@ public class GameScene extends BaseScene{
 		int whichMediumHouse = rand.nextInt(4) + 1;
 		int whichLargeHouse = rand.nextInt(2) + 1;
 		int smallOffsetY = rand.nextInt(100) + 1;
-		int mediumOffsetY = rand.nextInt(125) + 1;
-		int largeOffsetY = rand.nextInt(150) + 1;
+		int mediumOffsetY = rand.nextInt(100) + 1;
+		int largeOffsetY = rand.nextInt(100) + 1;
 		
 		smallHouseInitialY = smallHouseInitialY - smallOffsetY;
 		mediumHouseInitialY = mediumHouseInitialY - mediumOffsetY;
