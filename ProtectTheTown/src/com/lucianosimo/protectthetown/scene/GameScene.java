@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.IUpdateHandler;
+import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
@@ -55,7 +56,6 @@ import com.lucianosimo.protectthetown.object.Shield;
 import com.lucianosimo.protectthetown.object.Shot;
 import com.lucianosimo.protectthetown.object.SmallHouse;
 import com.lucianosimo.protectthetown.object.SmallRock;
-import com.lucianosimo.protectthetown.object.Tree;
 import com.lucianosimo.protectthetown.object.Ufo;
 import com.lucianosimo.protectthetown.pools.ExplosionPool;
 import com.lucianosimo.protectthetown.pools.SmallExplosionPool;
@@ -120,7 +120,7 @@ public class GameScene extends BaseScene{
 	
 	//Rectangle
 	private Rectangle fade;
-	private Rectangle shieldBarBackground;
+	//private Rectangle shieldBarBackground;
 	private Rectangle shieldBar;
 	
 	//Countdown
@@ -181,8 +181,8 @@ public class GameScene extends BaseScene{
 	
 	private static final int ROCK_MAX_RANDOM_X = 840;
 	private static final int ROCK_MIN_RANDOM_X = 400;
-	private static final int BOX_MAX_RANDOM_X = 1000;
-	private static final int BOX_MIN_RANDOM_X = 100;
+	//private static final int BOX_MAX_RANDOM_X = 1000;
+	//private static final int BOX_MIN_RANDOM_X = 100;
 	
 	private static final int LARGE_ROCK_SCORE = 100;
 	private static final int ROCK_SCORE = 250;
@@ -290,6 +290,9 @@ public class GameScene extends BaseScene{
 					if (!largeRock1.getLargeRockBody().isActive()) {
 						largeRock1.getLargeRockBody().setActive(true);
 					}					
+					/*if (!shieldBox.getShieldBody().isActive()) {
+						shieldBox.getShieldBody().setActive(true);
+					}*/
 				}
 				
 				if ((updates > 2000) && (updates % 250) == 0 && availablePause) {
@@ -356,9 +359,9 @@ public class GameScene extends BaseScene{
 				
 				if (domeActivated && availablePause) {
 					if (shieldBar.getWidth() > 0) {
-						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 40, shieldBar.getHeight());
+						shieldBar.setSize(shieldBar.getWidth() - pSecondsElapsed * 18.5f, shieldBar.getHeight());
 					}
-					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 350) + shieldBar.getWidth() / 2, shieldBar.getY());
+					shieldBar.setPosition((screenWidth/2 + screenWidth/4 - 190) + shieldBar.getWidth() / 2, shieldBar.getY());
 				}
 			}
 		});
@@ -959,9 +962,12 @@ public class GameScene extends BaseScene{
 	 */
 	private void regenerateBoxes(Body boxBody) {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		
-		boxBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, boxBody.getAngle());
+		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
+		int positionIndex = rand.nextInt(4);
+		int[] box_position = {100, 400, 800, 1200};
+		
+		boxBody.setTransform(box_position[positionIndex] / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, boxBody.getAngle());
 	}
 	
 	/*
@@ -1053,7 +1059,7 @@ public class GameScene extends BaseScene{
 		int largeHouseInitialX = 600;
 		int smallHouseInitialY= 200;
 		int mediumHouseInitialY = 225;
-		int largeHouseInitialY = 250;
+		int largeHouseInitialY = 225;
 		
 		final int healthBarWidth = 150;
 		final int healthBarHeight = 15;
@@ -1065,7 +1071,10 @@ public class GameScene extends BaseScene{
 		int whichLargeHouse = rand.nextInt(2) + 1;
 		int smallOffsetY = rand.nextInt(100) + 1;
 		int mediumOffsetY = rand.nextInt(100) + 1;
-		int largeOffsetY = rand.nextInt(100) + 1;
+		int largeOffsetY = rand.nextInt(25) + 1;
+		/*int smallHouseOffsetX = rand.nextInt(101) - 50;
+		int mediumHouseOffsetX = rand.nextInt(101) - 50;
+		int largeHouseOffsetX = rand.nextInt(101) - 50;*/
 		
 		smallHouseInitialY = smallHouseInitialY - smallOffsetY;
 		mediumHouseInitialY = mediumHouseInitialY - mediumOffsetY;
@@ -1261,12 +1270,27 @@ public class GameScene extends BaseScene{
 	
 	private void createDecoration() {
 		//n = rand.nextInt(max - min + 1) + min;
-		Tree[] trees = new Tree[6];
-		int[] trees_positions = {80, 300, 400, 500, 880, 1200};
-		ITextureRegion region = resourcesManager.game_trees_1_region;
+		Random rand = new Random();
 		
-		for (int i = 0; i < 6; i++) {
-			switch (i) {
+		int x = rand.nextInt(1281) + 1;
+		int y = rand.nextInt(321) + 400;
+		int cloudSpeed = -(rand.nextInt(11) + 35);
+		int farCloudSpeed = -(rand.nextInt(11) + 10);
+		int numberOfTrees = 6;
+		int treeHeight = 75;
+		
+		//Tree[] trees = new Tree[6];
+		int[] trees_positions = {80, 350, 425, 750, 850, 1200};
+		ITextureRegion region = resourcesManager.game_trees_1_region;
+		Sprite treeSprite = new Sprite(0, 0, region.deepCopy(), vbom);
+		
+		for (int i = 0; i < numberOfTrees; i++) {
+			
+			int tree = rand.nextInt(6);
+			int treeOffsetX = rand.nextInt(51) - 25;
+			int treeOffsetY = rand.nextInt(101);
+			
+			switch (tree) {
 			case 0:
 				region = resourcesManager.game_trees_1_region;
 				break;
@@ -1288,9 +1312,75 @@ public class GameScene extends BaseScene{
 			default:
 				break;
 			}
-			trees[i] = new Tree(trees_positions[i], 500, vbom, camera, physicsWorld, region);
-			GameScene.this.attachChild(trees[i]);
+			treeSprite = new Sprite(trees_positions[i] + treeOffsetX, treeHeight + treeOffsetY, region.deepCopy(), vbom);
+			GameScene.this.attachChild(treeSprite);
+			//trees[i] = new Tree(trees_positions[i], 500, vbom, camera, physicsWorld, region);
+			//GameScene.this.attachChild(trees[i]);
 		}
+		
+			Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
+				protected void onManagedUpdate(float pSecondsElapsed) {
+					super.onManagedUpdate(pSecondsElapsed);
+					if (this.getX() < -200) {
+						this.setPosition(1480, this.getY());
+					}
+				};
+			};
+			PhysicsHandler handler = new PhysicsHandler(cloud1);
+			cloud1.registerUpdateHandler(handler);
+			handler.setVelocity(cloudSpeed, 0);
+			
+			x = rand.nextInt(1281) + 1;
+			y = rand.nextInt(321) + 400;
+			cloudSpeed = -(rand.nextInt(11) + 35);
+			
+			Sprite cloud2 = new Sprite(x, y, resourcesManager.game_cloud_2_region, vbom) {
+				protected void onManagedUpdate(float pSecondsElapsed) {
+					super.onManagedUpdate(pSecondsElapsed);
+					if (this.getX() < -200) {
+						this.setPosition(1480, this.getY());
+					}
+				};
+			};
+			PhysicsHandler handler2 = new PhysicsHandler(cloud2);
+			cloud1.registerUpdateHandler(handler2);
+			handler2.setVelocity(cloudSpeed, 0);
+			
+			x = rand.nextInt(1281) + 1;
+			y = rand.nextInt(321) + 400;
+			
+			Sprite farCloud1 = new Sprite(x, y, resourcesManager.game_far_cloud_1_region, vbom) {
+				protected void onManagedUpdate(float pSecondsElapsed) {
+					super.onManagedUpdate(pSecondsElapsed);
+					if (this.getX() < -200) {
+						this.setPosition(1480, this.getY());
+					}
+				};
+			};
+			PhysicsHandler handler4 = new PhysicsHandler(farCloud1);
+			farCloud1.registerUpdateHandler(handler4);
+			handler4.setVelocity(farCloudSpeed, 0);
+			
+			x = rand.nextInt(1281) + 1;
+			y = rand.nextInt(321) + 400;
+			farCloudSpeed = -(rand.nextInt(11) + 10);
+			
+			Sprite farCloud2 = new Sprite(x, y, resourcesManager.game_far_cloud_2_region, vbom) {
+				protected void onManagedUpdate(float pSecondsElapsed) {
+					super.onManagedUpdate(pSecondsElapsed);
+					if (this.getX() < -200) {
+						this.setPosition(1480, this.getY());
+					}
+				};
+			};
+			PhysicsHandler handler5 = new PhysicsHandler(farCloud2);
+			farCloud2.registerUpdateHandler(handler5);
+			handler5.setVelocity(farCloudSpeed, 0);
+			
+			GameScene.this.attachChild(cloud1);
+			GameScene.this.attachChild(cloud2);
+			GameScene.this.attachChild(farCloud1);
+			GameScene.this.attachChild(farCloud2);
 	}
 	
 	private void setRockDirection(float x, Body body, float yVel) {
@@ -1465,7 +1555,7 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-	    retryButton = new Sprite(270, 50, resourcesManager.game_retry_button_region, vbom){
+	    retryButton = new Sprite(270, 25, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1477,7 +1567,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
+	    quitButton = new Sprite(0, 25, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1489,7 +1579,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    resumeButton = new Sprite(550, 50, resourcesManager.game_resume_button_region, vbom){
+	    resumeButton = new Sprite(550, 25, resourcesManager.game_resume_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			availablePause = true;
@@ -1558,7 +1648,7 @@ public class GameScene extends BaseScene{
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
 		finalScoreText.setText(""+score);
 		
-		retryButton = new Sprite(550, 50, resourcesManager.game_retry_button_region, vbom){
+		retryButton = new Sprite(550, 25, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1570,7 +1660,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    submitScoreButton = new Sprite(270, 50, resourcesManager.game_submit_button_region, vbom){
+	    submitScoreButton = new Sprite(270, 25, resourcesManager.game_submit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			activity.submitScore(score);
@@ -1579,7 +1669,7 @@ public class GameScene extends BaseScene{
 	    	};
 	    };
 
-	    quitButton = new Sprite(0, 50, resourcesManager.game_quit_button_region, vbom){
+	    quitButton = new Sprite(0, 25, resourcesManager.game_quit_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			gameHud.dispose();
@@ -1591,7 +1681,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    twitterButton = new Sprite(380 + 47, 155 + 46, resourcesManager.game_twitter_button_region, vbom) {
+	    twitterButton = new Sprite(450, 195, resourcesManager.game_twitter_button_region, vbom) {
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			Intent shareIntent = new Intent();
@@ -1694,8 +1784,12 @@ public class GameScene extends BaseScene{
 	
 	private void createBombBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
-		bombBox = new Bomb(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
+		
+		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
+		int positionIndex = rand.nextInt(4);
+		int[] box_position = {100, 400, 800, 1200};
+		
+		bombBox = new Bomb(box_position[positionIndex], BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1735,8 +1829,12 @@ public class GameScene extends BaseScene{
 	
 	private void createRepairBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
-		repairBox = new Repair(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
+		
+		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
+		int positionIndex = rand.nextInt(4);
+		int[] box_position = {100, 400, 800, 1200};
+		
+		repairBox = new Repair(box_position[positionIndex], BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1772,8 +1870,12 @@ public class GameScene extends BaseScene{
 	
 	private void createShieldBox() {
 		Random rand = new Random();
-		final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
-		shieldBox = new Shield(x, BOX_INITIAL_Y, vbom, camera, physicsWorld) {
+		
+		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
+		int positionIndex = rand.nextInt(4);
+		int[] box_position = {100, 400, 800, 1200};
+		
+		shieldBox = new Shield(box_position[positionIndex], BOX_INITIAL_Y, vbom, camera, physicsWorld) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if (pSceneTouchEvent.isActionDown()) {
@@ -1790,10 +1892,10 @@ public class GameScene extends BaseScene{
 									
 									@Override
 									public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
-										dome.setPosition(screenWidth/2, 100);
-										shieldBarBackground.setWidth(400);
-										shieldBar.setWidth(400);
-										shieldBarBackground.setVisible(true);
+										dome.setPosition(screenWidth/2, 175);
+										//shieldBarBackground.setWidth(185);
+										shieldBar.setWidth(185);
+										//shieldBarBackground.setVisible(true);
 										shieldBar.setVisible(true);
 										shieldBarFrame.setVisible(true);
 										shieldBarLogo.setVisible(true);
@@ -1804,7 +1906,7 @@ public class GameScene extends BaseScene{
 									public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
 										resourcesManager.shield.stop();
 										dome.setPosition(-1500, -1500);
-										shieldBarBackground.setVisible(false);
+										//shieldBarBackground.setVisible(false);
 										shieldBar.setVisible(false);
 										shieldBarFrame.setVisible(false);
 										shieldBarLogo.setVisible(false);
@@ -1826,27 +1928,27 @@ public class GameScene extends BaseScene{
 	}
 	
 	private void createDome() {
-		float shieldBarWidth = 400;
-		float shieldBarHeight = 25;
+		float shieldBarWidth = 185;
+		float shieldBarHeight = 20;
 		
-		shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 150, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 150, 665, shieldBarWidth, shieldBarHeight, vbom);
-		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 150, 665, resourcesManager.game_shield_bar_frame_region, vbom);
-		shieldBarLogo = new Sprite(screenWidth/2 - 70, 670, resourcesManager.game_shield_bar_logo_region, vbom);
+		//shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 100, 665, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 100, 670, shieldBarWidth, shieldBarHeight, vbom);
+		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 100, 670, resourcesManager.game_shield_bar_frame_region, vbom);
+		shieldBarLogo = new Sprite(screenWidth/2 + 150 - 70, 670, resourcesManager.game_shield_bar_logo_region, vbom);
 		
 		dome = new Sprite(-1500, 1500, resourcesManager.game_dome_region, vbom);
 		
-		shieldBarBackground.setColor(Color.WHITE);
-		shieldBar.setColor(0.259f, 0.541f, 0.78f);
+		//shieldBarBackground.setColor(Color.WHITE);
+		shieldBar.setColor(0.314f, 0.157f, 0f);
 		
-		shieldBarBackground.setVisible(false);
+		//shieldBarBackground.setVisible(false);
 		shieldBar.setVisible(false);
 		shieldBarFrame.setVisible(false);
 		shieldBarLogo.setVisible(false);
 		
-		gameHud.attachChild(shieldBarBackground);
-		gameHud.attachChild(shieldBar);
+		//gameHud.attachChild(shieldBarBackground);
 		gameHud.attachChild(shieldBarFrame);
+		gameHud.attachChild(shieldBar);
 		gameHud.attachChild(shieldBarLogo);
 		GameScene.this.attachChild(dome);
 	}
