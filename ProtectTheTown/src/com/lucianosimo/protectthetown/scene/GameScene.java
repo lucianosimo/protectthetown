@@ -14,15 +14,13 @@ import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground.ParallaxEntity;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.IModifier;
@@ -70,15 +68,17 @@ public class GameScene extends BaseScene{
 	
 	
 	//Texts
-	private Text scoreText;
-	private Text currentScoreText;
-	private Text finalScoreText;
+	//private Text scoreText;
+	//private Text currentScoreText;
+	//private Text finalScoreText;
 	
 	//HUD sprites
 	private Sprite soundDisabled;
 	private Sprite musicDisabled;
 	private Sprite soundButton;
 	private Sprite musicButton;
+	private Sprite gameScore;
+	private TiledSprite[] gameScoreTiles;
 	
 	//Constants	
 	private float screenWidth;
@@ -94,6 +94,7 @@ public class GameScene extends BaseScene{
 	private boolean gameOver = false;
 	private boolean destroyAllEnemies = false;
 	private boolean domeActivated = false;
+	private boolean scoreChanged = false;
 	
 	//Integers
 	private int score = 0;
@@ -170,11 +171,11 @@ public class GameScene extends BaseScene{
 	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 3;
 	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 2;
 	
-	private static final int ROCK_MAX_RANDOM_Y_VEL = 4;
-	private static final int ROCK_MIN_RANDOM_Y_VEL = 3;
+	private static final int ROCK_MAX_RANDOM_Y_VEL = 3;
+	private static final int ROCK_MIN_RANDOM_Y_VEL = 2;
 	
-	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 5;
-	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 4;
+	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 4;
+	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 3;
 	
 	private static final int VELOCITY_MULTIPLIER_MAX_RANDOM = 5;
 	private static final int VELOCITY_MULTIPLIER_MIN_RANDOM = 4;
@@ -1057,7 +1058,7 @@ public class GameScene extends BaseScene{
 		int smallHouseInitialX = 240;
 		int mediumHouseInitialX = 1000;
 		int largeHouseInitialX = 600;
-		int smallHouseInitialY= 200;
+		int smallHouseInitialY= 225;
 		int mediumHouseInitialY = 225;
 		int largeHouseInitialY = 225;
 		
@@ -1423,7 +1424,208 @@ public class GameScene extends BaseScene{
 	private void createHud() {
 		gameHud = new HUD();	
 
-		scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		gameScoreTiles = new TiledSprite[6];
+		
+		gameScore = new Sprite(75, 685, resourcesManager.game_score_region, vbom);
+		score = 0;
+		
+		gameScoreTiles[0] = new TiledSprite(175 + 0 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				final TiledSprite scoreRef = this;
+				super.onManagedUpdate(pSecondsElapsed);
+				String test = Integer.toString(score);
+				if (score > 0 || scoreChanged) {
+					if (score < 1000) {
+						test = "000" + test;
+					} else if (score < 10000) {
+						test = "00" + test;
+					} else if (score < 100000) {
+						test = "0" + test;
+					}
+					String indexString = Character.toString(test.charAt(0));
+					int index = Integer.parseInt(indexString);
+					scoreRef.setCurrentTileIndex(index);
+				}
+				/*engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String test = Integer.toString(score);
+						if (score > 0 || scoreChanged) {
+							if (score < 1000) {
+								test = "000" + test;
+							} else if (score < 10000) {
+								test = "00" + test;
+							} else if (score < 100000) {
+								test = "0" + test;
+							}
+							String indexString = Character.toString(test.charAt(0));
+							int index = Integer.parseInt(indexString);
+							scoreRef.setCurrentTileIndex(index);
+						}
+					}
+				});*/
+			}
+		};		
+		gameScoreTiles[1] = new TiledSprite(175 + 1 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				final TiledSprite scoreRef = this;
+				super.onManagedUpdate(pSecondsElapsed);
+				String test = Integer.toString(score);
+				if (score > 0 || scoreChanged) {
+					if (score < 1000) {
+						test = "000" + test;
+					} else if (score < 10000) {
+						test = "00" + test;
+					} else if (score < 100000) {
+						test = "0" + test;
+					}
+					String indexString = Character.toString(test.charAt(1));
+					int index = Integer.parseInt(indexString);
+					scoreRef.setCurrentTileIndex(index);
+				}
+				/*engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String test = Integer.toString(score);
+						if (score > 0 || scoreChanged) {
+							if (score < 1000) {
+								test = "000" + test;
+							} else if (score < 10000) {
+								test = "00" + test;
+							} else if (score < 100000) {
+								test = "0" + test;
+							}
+							String indexString = Character.toString(test.charAt(1));
+							int index = Integer.parseInt(indexString);
+							scoreRef.setCurrentTileIndex(index);
+						}
+					}
+				});*/
+			}
+		};
+		gameScoreTiles[2] = new TiledSprite(175 + 2 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				final TiledSprite scoreRef = this;
+				super.onManagedUpdate(pSecondsElapsed);
+				String test = Integer.toString(score);
+				if (score > 0 || scoreChanged) {
+					if (score < 1000) {
+						test = "000" + test;
+					} else if (score < 10000) {
+						test = "00" + test;
+					} else if (score < 100000) {
+						test = "0" + test;
+					}
+					String indexString = Character.toString(test.charAt(2));
+					int index = Integer.parseInt(indexString);
+					scoreRef.setCurrentTileIndex(index);
+				}
+				/*engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String test = Integer.toString(score);
+						if (score > 0 || scoreChanged) {
+							if (score < 1000) {
+								test = "000" + test;
+							} else if (score < 10000) {
+								test = "00" + test;
+							} else if (score < 100000) {
+								test = "0" + test;
+							}
+							String indexString = Character.toString(test.charAt(2));
+							int index = Integer.parseInt(indexString);
+							scoreRef.setCurrentTileIndex(index);
+						}
+					}
+				});*/
+			}
+		};
+		gameScoreTiles[3] = new TiledSprite(175 + 3 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				final TiledSprite scoreRef = this;
+				super.onManagedUpdate(pSecondsElapsed);
+				String test = Integer.toString(score);
+				if (score > 0 || scoreChanged) {
+					if (score < 1000) {
+						test = "000" + test;
+					} else if (score < 10000) {
+						test = "00" + test;
+					} else if (score < 100000) {
+						test = "0" + test;
+					}
+					String indexString = Character.toString(test.charAt(3));
+					int index = Integer.parseInt(indexString);
+					scoreRef.setCurrentTileIndex(index);
+				}
+				/*engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String test = Integer.toString(score);
+						if (score > 0 || scoreChanged) {
+							if (score < 1000) {
+								test = "000" + test;
+							} else if (score < 10000) {
+								test = "00" + test;
+							} else if (score < 100000) {
+								test = "0" + test;
+							}
+							String indexString = Character.toString(test.charAt(3));
+							int index = Integer.parseInt(indexString);
+							scoreRef.setCurrentTileIndex(index);
+						}
+					}
+				});*/
+			}
+		};
+		gameScoreTiles[4] = new TiledSprite(175 + 4 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
+			@Override
+			protected void onManagedUpdate(float pSecondsElapsed) {
+				final TiledSprite scoreRef = this;
+				super.onManagedUpdate(pSecondsElapsed);
+				String test = Integer.toString(score);
+				if (score > 0 || scoreChanged) {
+					if (score < 1000) {
+						test = "000" + test;
+					} else if (score < 10000) {
+						test = "00" + test;
+					} else if (score < 100000) {
+						test = "0" + test;
+					}
+					String indexString = Character.toString(test.charAt(4));
+					int index = Integer.parseInt(indexString);
+					scoreRef.setCurrentTileIndex(index);
+				} 
+				/*engine.runOnUpdateThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String test = Integer.toString(score);
+						if (score > 0 || scoreChanged) {
+							if (score < 1000) {
+								test = "000" + test;
+							} else if (score < 10000) {
+								test = "00" + test;
+							} else if (score < 100000) {
+								test = "0" + test;
+							}
+							String indexString = Character.toString(test.charAt(4));
+							int index = Integer.parseInt(indexString);
+							scoreRef.setCurrentTileIndex(index);
+						} 
+					}
+				})*/
+			}
+		};
+		gameScoreTiles[5] = new TiledSprite(175 + 5 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom);
+		//scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1434,11 +1636,15 @@ public class GameScene extends BaseScene{
 			}
 		};
 		
-		scoreText.setAnchorCenter(0, 0);
+		/*scoreText.setAnchorCenter(0, 0);
 		scoreText.setText("Score: " + score);
-		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
+		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);*/
 
-		gameHud.attachChild(scoreText);
+		//gameHud.attachChild(scoreText);
+		gameHud.attachChild(gameScore);
+		for (int i = 0; i < gameScoreTiles.length; i++) {
+			gameHud.attachChild(gameScoreTiles[i]);
+		}
 		gameHud.attachChild(pauseButton);
 		
 		GameScene.this.registerTouchArea(pauseButton);
@@ -1470,7 +1676,66 @@ public class GameScene extends BaseScene{
 	
 	private void addScore(int score) {
 		this.score += score;
-		scoreText.setText("Score: " + this.score);
+		engine.runOnUpdateThread(new Runnable() {
+			@Override
+			public void run() {
+				registerEntityModifier(new DelayModifier(0.05f, new IEntityModifierListener() {
+						
+					@Override
+					public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+						scoreChanged = true;										
+					}
+						
+					@Override
+					public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+						scoreChanged = false;
+							
+					}
+				}));
+			}
+		});
+		/*String test = Integer.toString(this.score);
+		if (this.score < 1000) {
+			test = "000" + test;
+		} else if (this.score < 10000) {
+			test = "00" + test;
+		} else if (this.score < 100000) {
+			test = "0" + test;
+		}
+		
+		String decena = Character.toString(test.charAt(4));
+		String centena = Character.toString(test.charAt(3));
+		String millar = Character.toString(test.charAt(2));
+		String decenaMillar = Character.toString(test.charAt(1));
+		String centenaMillar = Character.toString(test.charAt(0));
+		
+		final int decenaIndex = Integer.parseInt(decena);
+		final int centenaIndex = Integer.parseInt(centena);
+		final int millarIndex = Integer.parseInt(millar);
+		final int decenaMillarIndex = Integer.parseInt(decenaMillar);
+		final int centenaMillarIndex = Integer.parseInt(centenaMillar);
+		
+		Log.i("protect", "centena " + centenaIndex);
+		
+		engine.runOnUpdateThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				gameScoreTiles[0].setCurrentTileIndex(centenaMillarIndex);
+				gameScoreTiles[1].setCurrentTileIndex(decenaMillarIndex);
+				gameScoreTiles[2].setCurrentTileIndex(millarIndex);
+				gameScoreTiles[3].setCurrentTileIndex(centenaIndex);
+				gameScoreTiles[4].setCurrentTileIndex(decenaIndex);
+			}
+		});*/
+		/*Log.i("protect", "score: " + test);
+		Log.i("protect", "decena: " + decena);
+		Log.i("protect", "centena: " + centena);
+		Log.i("protect", "millar: " + millar);
+		Log.i("protect", "decenaMillar: " + decenaMillar);
+		Log.i("protect", "centenaMillar: " + centenaMillar);
+		Log.i("protect", "-----------------");*/
+		//scoreText.setText("Score: " + this.score);
 	}
 	
 	private void displayPauseWindow() {
@@ -1478,12 +1743,13 @@ public class GameScene extends BaseScene{
 		GameScene.this.setIgnoreUpdate(true);		
 		
 		pauseWindow.setPosition(camera.getCenterX(), camera.getCenterY());
-		currentScoreText = new Text(291, 300, resourcesManager.currentScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		/*currentScoreText = new Text(291, 300, resourcesManager.currentScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		currentScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		currentScoreText.setText(""+score);
+		currentScoreText.setText(""+score);*/
 		
 		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_sound_button_disabled_region, vbom);
 		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_music_button_disabled_region, vbom);
+		//Sprite[] currentScore = new Sprite[6];
 		
 		//If soundEnabled = 0, enabled..if 1 disabled
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -1586,7 +1852,7 @@ public class GameScene extends BaseScene{
 					gameHud.setVisible(true);
 					GameScene.this.detachChild(fade);
 					GameScene.this.detachChild(pauseWindow);
-					pauseWindow.detachChild(currentScoreText);
+					//pauseWindow.detachChild(currentScoreText);
 	    			GameScene.this.setIgnoreUpdate(false);
 	    			GameScene.this.unregisterTouchArea(this);
 	    		    GameScene.this.unregisterTouchArea(retryButton);
@@ -1605,7 +1871,7 @@ public class GameScene extends BaseScene{
 		GameScene.this.registerTouchArea(musicButton);
 		GameScene.this.unregisterTouchArea(pauseButton);
 	    
-	    pauseWindow.attachChild(currentScoreText);
+	    //pauseWindow.attachChild(currentScoreText);
 	    pauseWindow.attachChild(resumeButton);
 	    pauseWindow.attachChild(retryButton);	    
 	    pauseWindow.attachChild(quitButton);
@@ -1625,7 +1891,7 @@ public class GameScene extends BaseScene{
 		gameOverWindow = new Sprite(0, 0, resourcesManager.game_over_window_region, vbom);
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
-		newRecord = new Sprite(580, 300, resourcesManager.game_new_record_region, vbom);
+		newRecord = new Sprite(600, 325, resourcesManager.game_new_record_region, vbom);
 		
 		activity.showAd();
 		
@@ -1644,9 +1910,9 @@ public class GameScene extends BaseScene{
 
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
 		
-		finalScoreText = new Text(291, 300, resourcesManager.finalScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		/*finalScoreText = new Text(291, 300, resourcesManager.finalScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		finalScoreText.setText(""+score);
+		finalScoreText.setText(""+score);*/
 		
 		retryButton = new Sprite(550, 25, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1705,7 +1971,7 @@ public class GameScene extends BaseScene{
 		gameOverWindow.attachChild(retryButton);
 		gameOverWindow.attachChild(submitScoreButton);
 		gameOverWindow.attachChild(quitButton);
-		gameOverWindow.attachChild(finalScoreText);
+		//gameOverWindow.attachChild(finalScoreText);
 		gameOverWindow.attachChild(newRecord);
 		gameOverWindow.attachChild(twitterButton);
 		
