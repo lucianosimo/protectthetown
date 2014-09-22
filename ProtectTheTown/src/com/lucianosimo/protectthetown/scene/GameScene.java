@@ -66,7 +66,6 @@ public class GameScene extends BaseScene{
 	//Physics world variable
 	private PhysicsWorld physicsWorld;
 	
-	
 	//Texts
 	//private Text scoreText;
 	//private Text currentScoreText;
@@ -79,6 +78,8 @@ public class GameScene extends BaseScene{
 	private Sprite musicButton;
 	private Sprite gameScore;
 	private TiledSprite[] gameScoreTiles;
+	private TiledSprite[] currentScore;
+	private TiledSprite[] finalScore;
 	
 	//Constants	
 	private float screenWidth;
@@ -1749,7 +1750,11 @@ public class GameScene extends BaseScene{
 		
 		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_sound_button_disabled_region, vbom);
 		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_music_button_disabled_region, vbom);
-		//Sprite[] currentScore = new Sprite[6];
+		currentScore = new TiledSprite[6];
+		for (int i = 0; i < currentScore.length; i++) {
+			currentScore[i] = new TiledSprite(140 + i * 60, 260, resourcesManager.game_score_tiled_region.deepCopy(), vbom);
+			currentScore[i].setCurrentTileIndex(gameScoreTiles[i].getCurrentTileIndex());
+		}
 		
 		//If soundEnabled = 0, enabled..if 1 disabled
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -1855,6 +1860,10 @@ public class GameScene extends BaseScene{
 					//pauseWindow.detachChild(currentScoreText);
 	    			GameScene.this.setIgnoreUpdate(false);
 	    			GameScene.this.unregisterTouchArea(this);
+	    			for (int i = 0; i < currentScore.length; i++) {
+	    				pauseWindow.detachChild(currentScore[i]);
+	    			}
+	    			GameScene.this.unregisterTouchArea(resumeButton);
 	    		    GameScene.this.unregisterTouchArea(retryButton);
 	    		    GameScene.this.unregisterTouchArea(quitButton);
 	    		    GameScene.this.unregisterTouchArea(soundButton);
@@ -1872,6 +1881,9 @@ public class GameScene extends BaseScene{
 		GameScene.this.unregisterTouchArea(pauseButton);
 	    
 	    //pauseWindow.attachChild(currentScoreText);
+		for (int i = 0; i < currentScore.length; i++) {
+			pauseWindow.attachChild(currentScore[i]);
+		}
 	    pauseWindow.attachChild(resumeButton);
 	    pauseWindow.attachChild(retryButton);	    
 	    pauseWindow.attachChild(quitButton);
@@ -1892,6 +1904,11 @@ public class GameScene extends BaseScene{
 		Rectangle fade = new Rectangle(screenWidth/2, screenHeight/2, screenWidth, screenHeight, vbom);
 		
 		newRecord = new Sprite(600, 325, resourcesManager.game_new_record_region, vbom);
+		finalScore = new TiledSprite[6];
+		for (int i = 0; i < finalScore.length; i++) {
+			finalScore[i] = new TiledSprite(140 + i * 60, 280, resourcesManager.game_score_tiled_region.deepCopy(), vbom);
+			finalScore[i].setCurrentTileIndex(gameScoreTiles[i].getCurrentTileIndex());
+		}
 		
 		activity.showAd();
 		
@@ -1947,7 +1964,7 @@ public class GameScene extends BaseScene{
 	    		return true;
 	    	};
 	    };
-	    twitterButton = new Sprite(450, 195, resourcesManager.game_twitter_button_region, vbom) {
+	    twitterButton = new Sprite(450, 190, resourcesManager.game_twitter_button_region, vbom) {
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 	    		if (pSceneTouchEvent.isActionDown()) {
 	    			Intent shareIntent = new Intent();
@@ -1968,6 +1985,9 @@ public class GameScene extends BaseScene{
 		GameScene.this.registerTouchArea(submitScoreButton);
 	    GameScene.this.registerTouchArea(quitButton);
 	    GameScene.this.registerTouchArea(twitterButton);
+	    for (int i = 0; i < finalScore.length; i++) {
+			gameOverWindow.attachChild(finalScore[i]);
+		}
 		gameOverWindow.attachChild(retryButton);
 		gameOverWindow.attachChild(submitScoreButton);
 		gameOverWindow.attachChild(quitButton);
