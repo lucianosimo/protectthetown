@@ -39,6 +39,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.chartboost.sdk.CBLocation;
+import com.chartboost.sdk.Chartboost;
 import com.lucianosimo.protectthetown.base.BaseScene;
 import com.lucianosimo.protectthetown.manager.SceneManager;
 import com.lucianosimo.protectthetown.manager.SceneManager.SceneType;
@@ -65,11 +67,6 @@ public class GameScene extends BaseScene{
 	
 	//Physics world variable
 	private PhysicsWorld physicsWorld;
-	
-	//Texts
-	//private Text scoreText;
-	//private Text currentScoreText;
-	//private Text finalScoreText;
 	
 	//HUD sprites
 	private Sprite soundDisabled;
@@ -122,7 +119,6 @@ public class GameScene extends BaseScene{
 	
 	//Rectangle
 	private Rectangle fade;
-	//private Rectangle shieldBarBackground;
 	private Rectangle shieldBar;
 	
 	//Countdown
@@ -183,8 +179,6 @@ public class GameScene extends BaseScene{
 	
 	private static final int ROCK_MAX_RANDOM_X = 840;
 	private static final int ROCK_MIN_RANDOM_X = 400;
-	//private static final int BOX_MAX_RANDOM_X = 1000;
-	//private static final int BOX_MIN_RANDOM_X = 100;
 	
 	private static final int LARGE_ROCK_SCORE = 100;
 	private static final int ROCK_SCORE = 250;
@@ -282,6 +276,7 @@ public class GameScene extends BaseScene{
 					countdownFrame4.setVisible(true);
 				}
 				if (updates == START_GAME_UPDATES) {
+					Chartboost.cacheInterstitial(CBLocation.LOCATION_DEFAULT);
 					resourcesManager.gameMusic.play();
 					countdownFrame4.setVisible(false);
 					availablePause = true;
@@ -292,9 +287,6 @@ public class GameScene extends BaseScene{
 					if (!largeRock1.getLargeRockBody().isActive()) {
 						largeRock1.getLargeRockBody().setActive(true);
 					}					
-					/*if (!shieldBox.getShieldBody().isActive()) {
-						shieldBox.getShieldBody().setActive(true);
-					}*/
 				}
 				
 				if ((updates > 2000) && (updates % 250) == 0 && availablePause) {
@@ -965,7 +957,6 @@ public class GameScene extends BaseScene{
 	private void regenerateBoxes(Body boxBody) {
 		Random rand = new Random();
 		
-		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		int positionIndex = rand.nextInt(4);
 		int[] box_position = {100, 400, 800, 1200};
 		
@@ -1074,9 +1065,6 @@ public class GameScene extends BaseScene{
 		int smallOffsetY = rand.nextInt(100) + 1;
 		int mediumOffsetY = rand.nextInt(100) + 1;
 		int largeOffsetY = rand.nextInt(25) + 1;
-		/*int smallHouseOffsetX = rand.nextInt(101) - 50;
-		int mediumHouseOffsetX = rand.nextInt(101) - 50;
-		int largeHouseOffsetX = rand.nextInt(101) - 50;*/
 		
 		smallHouseInitialY = smallHouseInitialY - smallOffsetY;
 		mediumHouseInitialY = mediumHouseInitialY - mediumOffsetY;
@@ -1243,9 +1231,6 @@ public class GameScene extends BaseScene{
 	 * Creates floor on level generation
 	 */
 	private void createFloor() {
-		//Random rand = new Random();
-		//int elevation;
-		//int[] floor_positions = {80, 240, 450, 560, 720, 880, 1040, 1200};
 		int[] floor_positions = {80, 240, 400, 560, 720, 880, 1040, 1200};
 		Floor[] floor = new Floor[8];
  		
@@ -1256,16 +1241,9 @@ public class GameScene extends BaseScene{
 		GameScene.this.attachChild(base_floor);
 		
 		for (int i = 0; i < 8; i++) {
-			//elevation = rand.nextInt(4) + 1;
 			floor[i] = new Floor(floor_positions[i], 35, vbom, camera, physicsWorld);
-			//Sprite floor_back = new Sprite(80, 25, resourcesManager.game_floor_back_region, vbom);
 			floor[i].setCullingEnabled(true);
-			//floor[i].attachChild(floor_back);
 			GameScene.this.attachChild(floor[i]);
-			//if (elevation == 2) {
-				//Earth earth = new Earth(floor_positions[i], 35, vbom, camera, physicsWorld);
-				//GameScene.this.attachChild(earth);
-			//}
 		}
 		
 	}
@@ -1281,7 +1259,6 @@ public class GameScene extends BaseScene{
 		int numberOfTrees = 6;
 		int treeHeight = 75;
 		
-		//Tree[] trees = new Tree[6];
 		int[] trees_positions = {80, 350, 425, 750, 850, 1200};
 		ITextureRegion region = resourcesManager.game_trees_1_region;
 		Sprite treeSprite = new Sprite(0, 0, region.deepCopy(), vbom);
@@ -1316,8 +1293,6 @@ public class GameScene extends BaseScene{
 			}
 			treeSprite = new Sprite(trees_positions[i] + treeOffsetX, treeHeight + treeOffsetY, region.deepCopy(), vbom);
 			GameScene.this.attachChild(treeSprite);
-			//trees[i] = new Tree(trees_positions[i], 500, vbom, camera, physicsWorld, region);
-			//GameScene.this.attachChild(trees[i]);
 		}
 		
 			Sprite cloud1 = new Sprite(x, y, resourcesManager.game_cloud_1_region, vbom) {
@@ -1448,25 +1423,6 @@ public class GameScene extends BaseScene{
 					int index = Integer.parseInt(indexString);
 					scoreRef.setCurrentTileIndex(index);
 				}
-				/*engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						String test = Integer.toString(score);
-						if (score > 0 || scoreChanged) {
-							if (score < 1000) {
-								test = "000" + test;
-							} else if (score < 10000) {
-								test = "00" + test;
-							} else if (score < 100000) {
-								test = "0" + test;
-							}
-							String indexString = Character.toString(test.charAt(0));
-							int index = Integer.parseInt(indexString);
-							scoreRef.setCurrentTileIndex(index);
-						}
-					}
-				});*/
 			}
 		};		
 		gameScoreTiles[1] = new TiledSprite(175 + 1 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
@@ -1487,25 +1443,6 @@ public class GameScene extends BaseScene{
 					int index = Integer.parseInt(indexString);
 					scoreRef.setCurrentTileIndex(index);
 				}
-				/*engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						String test = Integer.toString(score);
-						if (score > 0 || scoreChanged) {
-							if (score < 1000) {
-								test = "000" + test;
-							} else if (score < 10000) {
-								test = "00" + test;
-							} else if (score < 100000) {
-								test = "0" + test;
-							}
-							String indexString = Character.toString(test.charAt(1));
-							int index = Integer.parseInt(indexString);
-							scoreRef.setCurrentTileIndex(index);
-						}
-					}
-				});*/
 			}
 		};
 		gameScoreTiles[2] = new TiledSprite(175 + 2 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
@@ -1526,25 +1463,6 @@ public class GameScene extends BaseScene{
 					int index = Integer.parseInt(indexString);
 					scoreRef.setCurrentTileIndex(index);
 				}
-				/*engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						String test = Integer.toString(score);
-						if (score > 0 || scoreChanged) {
-							if (score < 1000) {
-								test = "000" + test;
-							} else if (score < 10000) {
-								test = "00" + test;
-							} else if (score < 100000) {
-								test = "0" + test;
-							}
-							String indexString = Character.toString(test.charAt(2));
-							int index = Integer.parseInt(indexString);
-							scoreRef.setCurrentTileIndex(index);
-						}
-					}
-				});*/
 			}
 		};
 		gameScoreTiles[3] = new TiledSprite(175 + 3 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
@@ -1565,25 +1483,6 @@ public class GameScene extends BaseScene{
 					int index = Integer.parseInt(indexString);
 					scoreRef.setCurrentTileIndex(index);
 				}
-				/*engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						String test = Integer.toString(score);
-						if (score > 0 || scoreChanged) {
-							if (score < 1000) {
-								test = "000" + test;
-							} else if (score < 10000) {
-								test = "00" + test;
-							} else if (score < 100000) {
-								test = "0" + test;
-							}
-							String indexString = Character.toString(test.charAt(3));
-							int index = Integer.parseInt(indexString);
-							scoreRef.setCurrentTileIndex(index);
-						}
-					}
-				});*/
 			}
 		};
 		gameScoreTiles[4] = new TiledSprite(175 + 4 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom) {
@@ -1604,29 +1503,9 @@ public class GameScene extends BaseScene{
 					int index = Integer.parseInt(indexString);
 					scoreRef.setCurrentTileIndex(index);
 				} 
-				/*engine.runOnUpdateThread(new Runnable() {
-					
-					@Override
-					public void run() {
-						String test = Integer.toString(score);
-						if (score > 0 || scoreChanged) {
-							if (score < 1000) {
-								test = "000" + test;
-							} else if (score < 10000) {
-								test = "00" + test;
-							} else if (score < 100000) {
-								test = "0" + test;
-							}
-							String indexString = Character.toString(test.charAt(4));
-							int index = Integer.parseInt(indexString);
-							scoreRef.setCurrentTileIndex(index);
-						} 
-					}
-				})*/
 			}
 		};
 		gameScoreTiles[5] = new TiledSprite(175 + 5 * 60, 670, resourcesManager.game_score_tiled_region.deepCopy(), vbom);
-		//scoreText = new Text(50, 650, resourcesManager.scoreFont, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		pauseButton = new Sprite(1230, 670, resourcesManager.game_pause_button_region, vbom) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1636,12 +1515,7 @@ public class GameScene extends BaseScene{
 				return true;
 			}
 		};
-		
-		/*scoreText.setAnchorCenter(0, 0);
-		scoreText.setText("Score: " + score);
-		scoreText.setColor(Color.BLACK_ARGB_PACKED_INT);*/
 
-		//gameHud.attachChild(scoreText);
 		gameHud.attachChild(gameScore);
 		for (int i = 0; i < gameScoreTiles.length; i++) {
 			gameHud.attachChild(gameScoreTiles[i]);
@@ -1695,48 +1569,6 @@ public class GameScene extends BaseScene{
 				}));
 			}
 		});
-		/*String test = Integer.toString(this.score);
-		if (this.score < 1000) {
-			test = "000" + test;
-		} else if (this.score < 10000) {
-			test = "00" + test;
-		} else if (this.score < 100000) {
-			test = "0" + test;
-		}
-		
-		String decena = Character.toString(test.charAt(4));
-		String centena = Character.toString(test.charAt(3));
-		String millar = Character.toString(test.charAt(2));
-		String decenaMillar = Character.toString(test.charAt(1));
-		String centenaMillar = Character.toString(test.charAt(0));
-		
-		final int decenaIndex = Integer.parseInt(decena);
-		final int centenaIndex = Integer.parseInt(centena);
-		final int millarIndex = Integer.parseInt(millar);
-		final int decenaMillarIndex = Integer.parseInt(decenaMillar);
-		final int centenaMillarIndex = Integer.parseInt(centenaMillar);
-		
-		Log.i("protect", "centena " + centenaIndex);
-		
-		engine.runOnUpdateThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				gameScoreTiles[0].setCurrentTileIndex(centenaMillarIndex);
-				gameScoreTiles[1].setCurrentTileIndex(decenaMillarIndex);
-				gameScoreTiles[2].setCurrentTileIndex(millarIndex);
-				gameScoreTiles[3].setCurrentTileIndex(centenaIndex);
-				gameScoreTiles[4].setCurrentTileIndex(decenaIndex);
-			}
-		});*/
-		/*Log.i("protect", "score: " + test);
-		Log.i("protect", "decena: " + decena);
-		Log.i("protect", "centena: " + centena);
-		Log.i("protect", "millar: " + millar);
-		Log.i("protect", "decenaMillar: " + decenaMillar);
-		Log.i("protect", "centenaMillar: " + centenaMillar);
-		Log.i("protect", "-----------------");*/
-		//scoreText.setText("Score: " + this.score);
 	}
 	
 	private void displayPauseWindow() {
@@ -1744,9 +1576,6 @@ public class GameScene extends BaseScene{
 		GameScene.this.setIgnoreUpdate(true);		
 		
 		pauseWindow.setPosition(camera.getCenterX(), camera.getCenterY());
-		/*currentScoreText = new Text(291, 300, resourcesManager.currentScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-		currentScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		currentScoreText.setText(""+score);*/
 		
 		soundDisabled = new Sprite(1500, 1500, resourcesManager.game_sound_button_disabled_region, vbom);
 		musicDisabled = new Sprite(1500, 1500, resourcesManager.game_music_button_disabled_region, vbom);
@@ -1857,7 +1686,6 @@ public class GameScene extends BaseScene{
 					gameHud.setVisible(true);
 					GameScene.this.detachChild(fade);
 					GameScene.this.detachChild(pauseWindow);
-					//pauseWindow.detachChild(currentScoreText);
 	    			GameScene.this.setIgnoreUpdate(false);
 	    			GameScene.this.unregisterTouchArea(this);
 	    			for (int i = 0; i < currentScore.length; i++) {
@@ -1910,7 +1738,7 @@ public class GameScene extends BaseScene{
 			finalScore[i].setCurrentTileIndex(gameScoreTiles[i].getCurrentTileIndex());
 		}
 		
-		activity.showAd();
+		Chartboost.showInterstitial(CBLocation.LOCATION_DEFAULT);
 		
 		loadHighScore();
 		saveHighScore("highScore", score);
@@ -1926,10 +1754,6 @@ public class GameScene extends BaseScene{
 		gameOver = true;
 
 		gameOverWindow.setPosition(camera.getCenterX(), camera.getCenterY());
-		
-		/*finalScoreText = new Text(291, 300, resourcesManager.finalScoreFont, "123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
-		finalScoreText.setColor(Color.BLACK_ARGB_PACKED_INT);
-		finalScoreText.setText(""+score);*/
 		
 		retryButton = new Sprite(550, 25, resourcesManager.game_retry_button_region, vbom){
 	    	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -1991,7 +1815,6 @@ public class GameScene extends BaseScene{
 		gameOverWindow.attachChild(retryButton);
 		gameOverWindow.attachChild(submitScoreButton);
 		gameOverWindow.attachChild(quitButton);
-		//gameOverWindow.attachChild(finalScoreText);
 		gameOverWindow.attachChild(newRecord);
 		gameOverWindow.attachChild(twitterButton);
 		
@@ -2070,8 +1893,6 @@ public class GameScene extends BaseScene{
 	
 	private void createBombBox() {
 		Random rand = new Random();
-		
-		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		int positionIndex = rand.nextInt(4);
 		int[] box_position = {100, 400, 800, 1200};
 		
@@ -2115,8 +1936,6 @@ public class GameScene extends BaseScene{
 	
 	private void createRepairBox() {
 		Random rand = new Random();
-		
-		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		int positionIndex = rand.nextInt(4);
 		int[] box_position = {100, 400, 800, 1200};
 		
@@ -2156,8 +1975,6 @@ public class GameScene extends BaseScene{
 	
 	private void createShieldBox() {
 		Random rand = new Random();
-		
-		//final int x = rand.nextInt(BOX_MAX_RANDOM_X - BOX_MIN_RANDOM_X + 1) + BOX_MIN_RANDOM_X;
 		int positionIndex = rand.nextInt(4);
 		int[] box_position = {100, 400, 800, 1200};
 		
@@ -2179,9 +1996,7 @@ public class GameScene extends BaseScene{
 									@Override
 									public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
 										dome.setPosition(screenWidth/2, 175);
-										//shieldBarBackground.setWidth(185);
 										shieldBar.setWidth(185);
-										//shieldBarBackground.setVisible(true);
 										shieldBar.setVisible(true);
 										shieldBarFrame.setVisible(true);
 										shieldBarLogo.setVisible(true);
@@ -2192,7 +2007,6 @@ public class GameScene extends BaseScene{
 									public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
 										resourcesManager.shield.stop();
 										dome.setPosition(-1500, -1500);
-										//shieldBarBackground.setVisible(false);
 										shieldBar.setVisible(false);
 										shieldBarFrame.setVisible(false);
 										shieldBarLogo.setVisible(false);
@@ -2217,22 +2031,18 @@ public class GameScene extends BaseScene{
 		float shieldBarWidth = 185;
 		float shieldBarHeight = 20;
 		
-		//shieldBarBackground = new Rectangle(screenWidth/2 + screenWidth/4 - 100, 665, shieldBarWidth, shieldBarHeight, vbom);
 		shieldBar = new Rectangle(screenWidth/2 + screenWidth/4 - 100, 670, shieldBarWidth, shieldBarHeight, vbom);
 		shieldBarFrame = new Sprite(screenWidth/2 + screenWidth/4 - 100, 670, resourcesManager.game_shield_bar_frame_region, vbom);
 		shieldBarLogo = new Sprite(screenWidth/2 + 150 - 70, 670, resourcesManager.game_shield_bar_logo_region, vbom);
 		
 		dome = new Sprite(-1500, 1500, resourcesManager.game_dome_region, vbom);
 		
-		//shieldBarBackground.setColor(Color.WHITE);
 		shieldBar.setColor(0.314f, 0.157f, 0f);
 		
-		//shieldBarBackground.setVisible(false);
 		shieldBar.setVisible(false);
 		shieldBarFrame.setVisible(false);
 		shieldBarLogo.setVisible(false);
-		
-		//gameHud.attachChild(shieldBarBackground);
+
 		gameHud.attachChild(shieldBarFrame);
 		gameHud.attachChild(shieldBar);
 		gameHud.attachChild(shieldBarLogo);
