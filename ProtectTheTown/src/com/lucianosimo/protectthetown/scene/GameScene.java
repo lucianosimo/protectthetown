@@ -160,19 +160,19 @@ public class GameScene extends BaseScene{
 	private static final int ROCK_POSITIVE_VEL_X = 1;
 	private static final int ROCK_NEGATIVE_VEL_X = -1;
 	
-	private static final int ROCK_INITIAL_Y = 900;
+	private static final int ROCK_INITIAL_Y = 805;
 	private static final int BOX_INITIAL_Y = 900;
 	private static final int UFO_INITIAL_Y = 600;
 	private static final int SATELITE_INITIAL_Y = 1500;
 	
-	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 3;
-	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 2;
+	private static final int LARGE_ROCK_MAX_RANDOM_Y_VEL = 2;
+	private static final int LARGE_ROCK_MIN_RANDOM_Y_VEL = 1;
 	
-	private static final int ROCK_MAX_RANDOM_Y_VEL = 3;
-	private static final int ROCK_MIN_RANDOM_Y_VEL = 2;
+	private static final int ROCK_MAX_RANDOM_Y_VEL = 2;
+	private static final int ROCK_MIN_RANDOM_Y_VEL = 1;
 	
-	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 4;
-	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 3;
+	private static final int SMALL_ROCK_MAX_RANDOM_Y_VEL = 3;
+	private static final int SMALL_ROCK_MIN_RANDOM_Y_VEL = 2;
 	
 	private static final int VELOCITY_MULTIPLIER_MAX_RANDOM = 5;
 	private static final int VELOCITY_MULTIPLIER_MIN_RANDOM = 4;
@@ -326,7 +326,7 @@ public class GameScene extends BaseScene{
 					}
 				}
 				
-				if ((updates > 2500) && (updates % 750) == 0 && availablePause) {
+				if ((updates > 1500) && (updates % 500) == 0 && availablePause) {
 					//n = rand.nextInt(max - min + 1) + min;
 					box = rand.nextInt(3) + 1;
 					
@@ -971,7 +971,7 @@ public class GameScene extends BaseScene{
 		final int x = rand.nextInt(ROCK_MAX_RANDOM_X - ROCK_MIN_RANDOM_X + 1) + ROCK_MIN_RANDOM_X;
 		final float yVel = -(rand.nextInt(ROCK_MAX_RANDOM_Y_VEL) + ROCK_MIN_RANDOM_Y_VEL);
 		
-		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 250) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
+		rockBody.setTransform(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, (ROCK_INITIAL_Y + 50) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, rockBody.getAngle());
 		if (x > screenWidth/2) {
 			rockBody.setLinearVelocity(ROCK_POSITIVE_VEL_X, yVel);
 		} else {
