@@ -44,7 +44,7 @@ public class Satelite extends Sprite{
 		body = PhysicsFactory.createPolygonBody(physicsWorld, this, v, BodyType.DynamicBody, fixture);
 		body.setUserData("satelite");
 		body.setFixedRotation(true);
-		body.setLinearVelocity(body.getLinearVelocity().x, FALL_VELOCITY);
+		body.setLinearVelocity(0, FALL_VELOCITY);
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false) {
 			@Override
 			public void onUpdate(float pSecondsElapsed) {

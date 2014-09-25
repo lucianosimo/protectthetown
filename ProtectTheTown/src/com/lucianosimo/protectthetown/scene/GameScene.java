@@ -289,23 +289,23 @@ public class GameScene extends BaseScene{
 					}					
 				}
 				
-				if ((updates > 2000) && (updates % 250) == 0 && availablePause) {
+				if ((updates > 2500) && (updates % 250) == 0 && availablePause) {
 					if (!largeRock2.getLargeRockBody().isActive()) {
 						largeRock2.getLargeRockBody().setActive(true);
 					}					
 				}
 				
-				if ((updates > 4000) && (updates % 250) == 0 && availablePause) {
+				if ((updates > 7500) && (updates % 250) == 0 && availablePause) {
 					if (!largeRock3.getLargeRockBody().isActive()) {
 						largeRock3.getLargeRockBody().setActive(true);
 					}					
 				}
 				
-				if ((updates > 6000) && (updates % 250) == 0 && availablePause) {
+				/*if ((updates > 6000) && (updates % 250) == 0 && availablePause) {
 					if (!largeRock4.getLargeRockBody().isActive()) {
 						largeRock4.getLargeRockBody().setActive(true);
 					}					
-				}
+				}*/
 				
 				if ((updates > 1500) && (updates % 250) == 0 && availablePause) {
 					if (!ufo1.getUfoBody().isActive()) {
@@ -313,20 +313,20 @@ public class GameScene extends BaseScene{
 					}
 				}
 				
-				if ((updates > 4000) && (updates % 400) == 0 && availablePause) {
+				if ((updates > 4500) && (updates % 400) == 0 && availablePause) {
 					if (!ufo2.getUfoBody().isActive()) {
 						ufo2.getUfoBody().setActive(true);
 					}
 				}
 				
-				if ((updates > 5000) && (updates % 1000) == 0 && availablePause) {
+				if ((updates > 3500) && (updates % 750) == 0 && availablePause) {
 					if (!satelite.getSateliteBody().isActive()) {
 						regenerateSatelite(satelite.getSateliteBody());
 						satelite.getSateliteBody().setActive(true);
 					}
 				}
 				
-				if ((updates > 1500) && (updates % 500) == 0 && availablePause) {
+				if ((updates > 1500) && (updates % 750) == 0 && availablePause) {
 					//n = rand.nextInt(max - min + 1) + min;
 					box = rand.nextInt(3) + 1;
 					
@@ -434,7 +434,7 @@ public class GameScene extends BaseScene{
 		largeRock1 = createLargeRock();
 		largeRock2 = createLargeRock();
 		largeRock3 = createLargeRock();
-		largeRock4 = createLargeRock();
+		//largeRock4 = createLargeRock();
 	}
 	
 	private void createUfos() {
@@ -1003,6 +1003,7 @@ public class GameScene extends BaseScene{
 		Random rand = new Random();
 		final int whichHouse = rand.nextInt(3) + 1;
 		final float initialX;
+		int fallVelocity = -6;
 		
 		switch (whichHouse) {
 			case 1:
@@ -1037,6 +1038,7 @@ public class GameScene extends BaseScene{
 				break;
 		}
 		
+		sateliteBody.setLinearVelocity(0, fallVelocity);
 		sateliteBody.setTransform(initialX / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, SATELITE_INITIAL_Y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, sateliteBody.getAngle());
 	}
 	
