@@ -134,7 +134,7 @@ public class GameScene extends BaseScene{
 	private LargeRock largeRock1;
 	private LargeRock largeRock2;
 	private LargeRock largeRock3;
-	private LargeRock largeRock4;
+	//private LargeRock largeRock4;
 	
 	//Satelite
 	private Satelite satelite;
